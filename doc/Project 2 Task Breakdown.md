@@ -84,10 +84,13 @@ As a user, I want a profile with a unique username.
 
 **US 01.05.01** Story Point: 1 risk Level: low  
 As a participant, I want to delete a given mood event of mine.
+
 **US 05.03.01** Story Point: 2 risk Level: medium 
 As a participant, I want to view as a list the most recent mood events of the other participants I am granted to follow, sorted by date and time, in reverse chronological order (most recent coming first).
+
 **US 04.01.01** Story Point: 2 risk Level: medium 
 - As a participant, I want to view as a list my mood history, sorted by date and time, in reverse chronological order (most recent coming first).
+
 **US 04.02.01** Story Point: 1 risk Level: low 
 - As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
 
@@ -106,6 +109,7 @@ As a participant, I want to ask another participant to follow their most recent 
 
 **US 05.02.01** Story Point: 2 risk Level: medium 
 As a participant, I want to grant another participant permission to follow my most recent mood event. 
+
 ### In order to implement the above user stories:
 - [ ] Requires an Android Activity and its corresponding layout xml that serves two purposes: display a list of pending friend requests; display a list of participants open to follow. 
 - [ ] the layout xml should contain a tabbed layout which allows participants to switch in between approving friend requests screen and view list of participants to follow screen.
