@@ -21,14 +21,14 @@
 Geolocation (optional)
 - **Data Class** 
 
-## ![#ff9900](https://placehold.it/15/f03c15/000000?text=+) Participant
+## ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Participant
 - Able to Add A Mood (to their own history)
 - Able to View A **a given???**  Mood (all details)
 - Able to Edit A Mood (of their own)
 - Able to Delete A Mood (of their own)
 - **One screen : Add/Edit/View A Mood** 
 
-## ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) Mood History 
+## ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Mood History 
 - Display A participant's Mood History **sorted by date and time, in reverse chronological order (most recent coming first)**
 - Filter A participant's Mood History by **a particular emotional state**
 - **One screen: A recycler view shows Mood History; allow mood deletion; click list item to view full details; allow filtering**
