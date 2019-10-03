@@ -1,4 +1,4 @@
-### MoodEvent Model Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+## MoodEvent Model Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 **US 02.03.01** Story Point: 1 risk Level: low 
 - As a participant, I want to specify the social situation for a mood event to be one of: alone, with one other person, with two to several people, or with a crowd. 
 
@@ -15,7 +15,7 @@
 - As a participant, I want to add a mood event to my mood history, each event with the current date and time, a required emotional state, optional reason, and optional social situation. 
 
 
-## In order to implement the above user stories: 
+### In order to implement the above user stories: 
 - [ ] **Requires a MoodEvent Model class**; The required instance variables of the class are as follows: 
 - date (String: MM-DD-YYYY) not null, 
 - time (String: HH:MM) not null, 
@@ -27,7 +27,7 @@
 
 - [ ] Requires encapulation to ensure data integrity; getters and setters of instance variables should be implemented.
 
-### Database Utility Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+## Database Utility Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
 **Database Implementation : Story Point: 5 risk Level: high** 
 - [ ] requires a Mood History Database  with tables as follows: 
@@ -44,7 +44,7 @@
 - more to come ...
 
 
-### Participant Login/ Registration Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+## Participant Login/ Registration Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 **US 03.01.01** Story Point: 3 risk Level: high
 As a user, I want a profile with a unique username. 
 - [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant registration screen.
@@ -52,7 +52,7 @@ As a user, I want a profile with a unique username.
 
 
 
-### Participant View/Edit/Add A MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+## Participant View/Edit/Add A MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
 **US 01.02.01** Story Point: 1 risk Level: low 
 - As a participant, I want consistent emoticons and colors to depict and distinguish the emotional states in any view.
@@ -65,7 +65,7 @@ As a user, I want a profile with a unique username.
 - As a participant, I want to edit the details of a given mood event of mine. 
 
 
-## In order to implement the above two user stories: 
+### In order to implement the above two user stories: 
 - [ ] Requires an **Android Activity and its corresponding layout xml**.
 - The activity and the layout serves two purposes: to Allow participant Add a new Mood Event and Edit an existing Mood Event. 
 
@@ -80,7 +80,7 @@ As a user, I want a profile with a unique username.
 - A Button, when participant is adding a new mood event, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
 - [ ] Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
 
-### Participant View Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## Participant View Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 01.05.01** Story Point: 1 risk Level: low  
 As a participant, I want to delete a given mood event of mine.
@@ -91,7 +91,7 @@ As a participant, I want to view as a list the most recent mood events of the ot
 **US 04.02.01** Story Point: 1 risk Level: low 
 - As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
 
-## In order to implement the above user stories:
+### In order to implement the above user stories:
 - [ ] Requires an Android Activity and its corresponding layout xml which serves two purposes: Display Mood History of the Participant; Display Mood History of the Participants that the current logged-in participants follow. 
 - [ ] The layout should be in LinearLayout that contains an EditText and a Recycler View below the EditText.
 - [ ] The Recycler view is used to display Mood history of the participant or the participants followed by the current logged-in participant. 
@@ -99,14 +99,14 @@ As a participant, I want to view as a list the most recent mood events of the ot
 - [ ] Requires a Recycler View list item xml which displays minimum information of a MoodEvent.
 
 
-### Participant Approve Pending Friend Request/ Add More Participant to Follow Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## Participant Approve Pending Friend Request/ Add More Participant to Follow Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 05.01.01** Story Point: 2 risk Level: medium 
 As a participant, I want to ask another participant to follow their most recent mood event. 
 
 **US 05.02.01** Story Point: 2 risk Level: medium 
 As a participant, I want to grant another participant permission to follow my most recent mood event. 
-## In order to implement the above user stories:
+### In order to implement the above user stories:
 - [ ] Requires an Android Activity and its corresponding layout xml that serves two purposes: display a list of pending friend requests; display a list of participants open to follow. 
 - [ ] the layout xml should contain a tabbed layout which allows participants to switch in between approving friend requests screen and view list of participants to follow screen.
 - [ ] Recycler View should be implemented in each Tab. 
@@ -115,7 +115,7 @@ As a participant, I want to grant another participant permission to follow my mo
 - [ ] for the Recycler View that displays pending friends request, the list item should contain the participant's username and a button, when pressed, grant access of most recent mood event to the participant. 
 
 
-### Map View Of Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## Map View Of Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 06.02.01** Story Point: 3 risk Level: high 
 
@@ -125,13 +125,13 @@ As a participant, I want to see a map of the mood events (showing their emotiona
 
 As a participant, I want to see a map of the mood events (showing their emotional states and the username) from my mood following list (that have locations). 
 
-## In order to implement the above user stories: 
+### In order to implement the above user stories: 
 - [ ] Requires an Android Activity and its corresponding layout xml that serves two purposes: 
 display participant's own mood event on map; display the mood events from the participant's mood following list
 - [ ] the layout xml should contain a Map View that displays participant's own mood event on map by showing emotional state of every mood event. Also, the Map View should display mood events from the following list by showing username and emotional state. 
 
 
-### Home Screen: Story Point: 1 risk Level: low ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## Home Screen: Story Point: 1 risk Level: low ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 - [ ] Requires an Activity and its corresponding layout xml which serves as a Home screen (portal) to all other functionalities.
 
