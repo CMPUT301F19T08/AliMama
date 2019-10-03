@@ -1,111 +1,141 @@
-## ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) A Menu Screen to show all avaliable Service
-- GO To View And Accept Friend's Request Screen
-- Go To Check and Add available Participants Screen
-- Go To View Own Mood History Screen 
-- Go To View Friend's Mood History Screen 
-- Anything else? 
+### MoodEvent Model Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+**US 02.03.01** Story Point: 1 risk Level: low 
+- As a participant, I want to specify the social situation for a mood event to be one of: alone, with one other person, with two to several people, or with a crowd. 
 
-## ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Firebase 
-- Mood History Database Table that contains: `Username (as primary key`), `Date`, `Time`, `Emotional State`, `Reason in text(nullable)`, `Reason in Photo(nullable)`, `Social Situation in text (nullable)`, `Geolocation (nullable)`
-- **A User Login Screen (password authetication)**
-- **A Database Class that exports Services** 
+**US 02.01.01** Story Point: 1 risk Level: low 
+- As a participant, I want to express the reason why for a mood event using a brief textual explanation (no more than 20 characters or 3 words). 
 
+**US 02.02.01** Story Point: 1 risk Level: low 
+- As a participant, I want to express the reason why for a mood event using a photograph. 
 
-## ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Mood Object 
-- Date 
-- Time 
-- Emotional State (mapping to emoticons and colors)
-- Reason (optional) in text (<= 20 Chars)
-- Reason (optional) in Photo 
-- Social Situation (optional) (one of the following values: `alone`, `with one other person`, `with two to several people`, or `with a crowd`.)
-Geolocation (optional)
-- **Data Class** 
+**US 06.01.01** Story Point: 1 risk Level: low 
+- As a participant, I want to optionally attach my current location to a mood event. 
 
-## ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Participant
-- Able to Add A Mood (to their own history)
-- Able to View A **a given???**  Mood (all details)
-- Able to Edit A Mood (of their own)
-- Able to Delete A Mood (of their own)
-- **One screen : Add/Edit/View A Mood** 
-
-## ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Mood History 
-- Display A participant's Mood History **sorted by date and time, in reverse chronological order (most recent coming first)**
-- Filter A participant's Mood History by **a particular emotional state**
-- **One screen: A recycler view shows Mood History; allow mood deletion; click list item to view full details; allow filtering**
-- **what to show minimum per list item ????**
+**US 01.01.01** Story Point: 1 risk Level: low 
+- As a participant, I want to add a mood event to my mood history, each event with the current date and time, a required emotional state, optional reason, and optional social situation. 
 
 
-## ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Mood Following And Sharing 
-- Allow Participant to follow others' Most Recent Mood Event (prerequisite: "friend request")
-- Allow Participant to grant others' "friend request"
-- Allow Participant to view Most Recent Mood Events of the participatns whom he/she follows. **in reverse chronological order (most recent coming first).**
-- **screen: display a list of available participants to follow; check & accept friend request**
-- **screen: display most recent mood events of the participants he/she follows**
+## In order to implement the above user stories: 
+- [ ] **Requires a MoodEvent Model class**; The required instance variables of the class are as follows: 
+- date (String: MM-DD-YYYY) not null, 
+- time (String: HH:MM) not null, 
+- emotionalState (String) not null, 
+- reasonInText (String <= 20 Characters) nullable, 
+- reasonInPhoto (Bitmap) nullable, 
+- socialSituation (String : "alone", "with one other person", "with two to several ppl", "with a crowd") nullable, 
+- localOfMoodEvent (Geolocation) nullable.
 
-## ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Map
-- Display a Map of Mood Event of their own (showing their emotional states on Map) If Has Location
-- Display a Map of Mood event from my mood following list (showing their emotional states on Map)If Has Location
-- **one screen: show own mood on map; show friend's mood on map**
+- [ ] Requires encapulation to ensure data integrity; getters and setters of instance variables should be implemented.
 
-User Stories 
-US 01.01.01
-As a participant, I want to add a mood event to my mood history, each event with the current date and time, a required emotional state, optional reason, and optional social situation.
+### Database Utility Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
-US 01.02.01
-As a participant, I want consistent emoticons and colors to depict and distinguish the emotional states in any view.
+**Database Implementation : Story Point: 5 risk Level: high** 
+- [ ] requires a Mood History Database  with tables as follows: 
+- a table that records All Mood Event associated with a participant, primary key : username
+- a table that stores user authentication information, primary key : username 
+- a table that stores all participants relationship, primary key : username 
+- a table that stores all pending friend request of a participants. 
+- [ ] a static class with name "Database" should be implemented in the project with class methods as follows: 
+- authenticateParticipant
+- retrieveAllMoodEventOfAParticipant
+- retrieveFriendRequestOfAParticipant
+- retrieveAllParticipantsOpenToFollow
+- retrieveGeolocationOfMoodEventsOfAParticipant
+- more to come ...
 
-US 01.03.01
-As a participant, **I want to view a given mood event and all its available details.** `Can it be someone else's Mood? `
 
-US 01.04.01
-As a participant, I want to edit the details of a given mood event of mine.
+### Participant Login/ Registration Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+**US 03.01.01** Story Point: 3 risk Level: high
+As a user, I want a profile with a unique username. 
+- [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant registration screen.
+- [ ] the layout should contains an Edit Text view for Username and an Edit Text view for password. Also, a button with Text "Register" and a button with Text "Log In"
 
-US 01.05.01
+
+
+### Participant View/Edit/Add A MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+
+**US 01.02.01** Story Point: 1 risk Level: low 
+- As a participant, I want consistent emoticons and colors to depict and distinguish the emotional states in any view.
+ - [ ] requires an Enum that binds emotionalState to a certain color in hash.  
+
+**US 01.03.01** Story Point: 1 risk Level: low 
+- As a participant, I want to view a given mood event and all its available details. 
+
+**US 01.04.01** Story Point: 1 risk Level: low 
+- As a participant, I want to edit the details of a given mood event of mine. 
+
+
+## In order to implement the above two user stories: 
+- [ ] Requires an **Android Activity and its corresponding layout xml**.
+- The activity and the layout serves two purposes: to Allow participant Add a new Mood Event and Edit an existing Mood Event. 
+
+- [ ] The layout file should contain views as follows: 
+- Edit Text for date and its prompt 
+- Edit Text for time and its prompt 
+- Edit Text for emotionalState and its prompt 
+- Edit Text for reasonInText and its prompt 
+- an embedded camera view to allow participant takes photo to explain the reason of the mood event. (reasonInPhoto)
+- an dropdown list view for socialSituation; Values of the dropdown are : "alone", "with one other person", "with two to several ppl", "with a crowd".
+- A CheckBox, when checked, record location where the mood event takes place.
+- A Button, when participant is adding a new mood event, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
+- [ ] Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
+
+### Participant View Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+
+**US 01.05.01** Story Point: 1 risk Level: low  
 As a participant, I want to delete a given mood event of mine.
+**US 05.03.01** Story Point: 2 risk Level: medium 
+As a participant, I want to view as a list the most recent mood events of the other participants I am granted to follow, sorted by date and time, in reverse chronological order (most recent coming first).
+**US 04.01.01** Story Point: 2 risk Level: medium 
+- As a participant, I want to view as a list my mood history, sorted by date and time, in reverse chronological order (most recent coming first).
+**US 04.02.01** Story Point: 1 risk Level: low 
+- As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
 
-Other Mood Details
+## In order to implement the above user stories:
+- [ ] Requires an Android Activity and its corresponding layout xml which serves two purposes: Display Mood History of the Participant; Display Mood History of the Participants that the current logged-in participants follow. 
+- [ ] The layout should be in LinearLayout that contains an EditText and a Recycler View below the EditText.
+- [ ] The Recycler view is used to display Mood history of the participant or the participants followed by the current logged-in participant. 
+- [ ] The Edit Text acts as a search bar so that when participant enters, only the MoodEvent with emotionalState value same as the participant's inputs are left on the screen. 
+- [ ] Requires a Recycler View list item xml which displays minimum information of a MoodEvent.
 
-US 02.01.01
-As a participant, I want to express the reason why for a mood event using a brief textual explanation (no more than 20 characters or 3 words).
 
-US 02.02.01
-As a participant, I want to express the reason why for a mood event using a photograph.
+### Participant Approve Pending Friend Request/ Add More Participant to Follow Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
-US 02.03.01
-As a participant, I want to specify the social situation for a mood event to be one of: alone, with one other person, with two to several people, or with a crowd.
+**US 05.01.01** Story Point: 2 risk Level: medium 
+As a participant, I want to ask another participant to follow their most recent mood event. 
 
-Profile
+**US 05.02.01** Story Point: 2 risk Level: medium 
+As a participant, I want to grant another participant permission to follow my most recent mood event. 
+## In order to implement the above user stories:
+- [ ] Requires an Android Activity and its corresponding layout xml that serves two purposes: display a list of pending friend requests; display a list of participants open to follow. 
+- [ ] the layout xml should contain a tabbed layout which allows participants to switch in between approving friend requests screen and view list of participants to follow screen.
+- [ ] Recycler View should be implemented in each Tab. 
+- [ ] Recycler View list item layout xml should be implemented for each Recycler View.
+- [ ] Specifically, for the Recycler View that displays list of participants to follow, the list item should contain the participant's username and a button when pressed, sends a friend request to that participant.
+- [ ] for the Recycler View that displays pending friends request, the list item should contain the participant's username and a button, when pressed, grant access of most recent mood event to the participant. 
 
-US 03.01.01
-As a user, I want a profile with a unique username.
 
-Mood History
+### Map View Of Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
-US 04.01.01
-As a participant, I want to view as a list my mood history, sorted by date and time, in reverse chronological order (most recent coming first).
+**US 06.02.01** Story Point: 3 risk Level: high 
 
-US 04.02.01
-As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
+As a participant, I want to see a map of the mood events (showing their emotional states) from my mood history list (that have locations). 
 
-Mood Following and Sharing
+**US 06.03.01** Story Point: 3 risk Level: high 
 
-US 05.01.01
-As a participant, I want to ask another participant to follow their most recent mood event. `Please define most recent event. like latest 20 ???`
+As a participant, I want to see a map of the mood events (showing their emotional states and the username) from my mood following list (that have locations). 
 
-US 05.02.01
-As a participant, I want to grant another participant permission to follow my most recent mood event.
+## In order to implement the above user stories: 
+- [ ] Requires an Android Activity and its corresponding layout xml that serves two purposes: 
+display participant's own mood event on map; display the mood events from the participant's mood following list
+- [ ] the layout xml should contain a Map View that displays participant's own mood event on map by showing emotional state of every mood event. Also, the Map View should display mood events from the following list by showing username and emotional state. 
 
-US 05.03.01
-As a participant, I want to view as a list the most recent mood events of the other participants(**display all together???**) I am granted to follow, sorted by date and time, in reverse chronological order (most recent coming first).
 
-Geolocation and Maps
+### Home Screen: Story Point: 1 risk Level: low ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
-US 06.01.01
-As a participant, I want to optionally attach my current location to a mood event.
+- [ ] Requires an Activity and its corresponding layout xml which serves as a Home screen (portal) to all other functionalities.
 
-US 06.02.01
-As a participant, I want to see a map of the mood events (showing their emotional states) from my mood history list (that have locations).
-
-US 06.03.01
-As a participant, I want to see a map of the mood events (showing their emotional states and the username) from my mood following list (that have locations).
-
+- [ ] the layout should contains several buttons as follows:
+- Button that when clicked, go To View/Accept friends request & Add open participants screen
+- Button that when clicked, Go To View Mood History Screen 
+- Button that when clicked, Go To View Mood History on Map Screen
