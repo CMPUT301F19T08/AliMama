@@ -109,7 +109,7 @@ As a participant, I want to view as a list the most recent mood events of the ot
 - [ ] The Recycler view is used to display Mood history of the participant or the participants followed by the current logged-in participant. 
 - [ ] The Edit Text acts as a search bar so that when participant enters, only the MoodEvent with emotionalState value same as the participant's inputs are left on the screen. 
 - [ ] The Floating Action button serves as a "Add MoodEvent" Button, when pressed, directs participant to View/Edit/Add A MoodEvent Screen. 
-- [ ] Requires a Recycler View list item xml which displays minimum information of a MoodEvent **(need to ask what information should at least be displayed on each list item).**
+- [ ] Requires a Recycler View list item xml which displays minimum information(date, time, emotionalState.) of a MoodEvent **(need to ask what information should at least be displayed on each list item).**
 - [ ] a button in the Action Bar which when pressed, directs participant to Home Screen.
 
 
