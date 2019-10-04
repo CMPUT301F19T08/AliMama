@@ -54,6 +54,8 @@ As a user, I want a profile with a unique username.
 - An Edit Text view for Username 
 - An Edit Text view for password
 - a button with Text "Register" and a button with Text "Log In"
+- After pressing Login Button and detected that participant entered wrong password, text should be displayed under password Edit Text in red that saying "Invalid password, please try again".
+
 
 
 ## Participant View/Edit/Add A MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
@@ -82,7 +84,9 @@ As a user, I want a profile with a unique username.
 - an dropdown list view for socialSituation; Values of the dropdown are : "alone", "with one other person", "with two to several ppl", "with a crowd".
 - A CheckBox, when checked, retrieve geolocation where the mood event takes place from GPS.
 - A Button, when participant is adding a new mood event, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
+- [ ] A Cancel Button, when pressed, directs participant back to View Mood History Screen. 
 - [ ] Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
+- [ ] After pressing the "Add/ Update" button, the participant should be directed backinto View Mood History Screen. 
 
 ## Participant View Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
@@ -106,6 +110,7 @@ As a participant, I want to view as a list the most recent mood events of the ot
 - [ ] The Edit Text acts as a search bar so that when participant enters, only the MoodEvent with emotionalState value same as the participant's inputs are left on the screen. 
 - [ ] The Floating Action button serves as a "Add MoodEvent" Button, when pressed, directs participant to View/Edit/Add A MoodEvent Screen. 
 - [ ] Requires a Recycler View list item xml which displays minimum information of a MoodEvent **(need to ask what information should at least be displayed on each list item).**
+- [ ] a button in the Action Bar which when pressed, directs participant to Home Screen.
 
 
 ## Participant Approve Pending Friend Request/ Add More Participant to Follow Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
@@ -143,6 +148,7 @@ display participant's own mood event on map; display the mood events from the pa
 
 #### Layout Design 
 - [ ] the layout xml should contain a Map View that displays participant's own mood event on map by showing emotional state of every mood event. Also, the Map View should display mood events from the following list by showing username and emotional state. 
+- [ ] a button in the Action Bar which when pressed, directs participant to Home Screen.
 
 
 
