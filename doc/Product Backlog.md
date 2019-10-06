@@ -43,10 +43,10 @@
 - more to come ...
 
 
-## Participant Login/ Registration Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+## Participant Login/ Signup Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 **US 03.01.01** Story Point: 3 risk Level: high
 As a user, I want a profile with a unique username. 
-- [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant registration screen.
+- [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant signup screen.
 #### Layout Design 
 - [ ] the layout should contains the following Widgets:
 - An Image View displaying Logo (Project Name)
