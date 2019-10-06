@@ -17,8 +17,7 @@
 
 ### In order to implement the above user stories: 
 - [ ] **Requires a MoodEvent Model class**; The required instance variables of the class are as follows: 
-- date (String: MM-DD-YYYY) not null, 
-- time (String: HH:MM) not null, 
+- date (Date) not null, 
 - emotionalState (String) not null, 
 - reasonInText (String <= 20 Characters) nullable, 
 - reasonInPhoto (Bitmap) nullable, 
@@ -77,7 +76,6 @@ As a user, I want a profile with a unique username.
 #### Layout Design
 - [ ] The layout file should contain views as follows: 
 - Edit Text for date and its prompt 
-- Edit Text for time and its prompt 
 - Edit Text for emotionalState and its prompt 
 - Edit Text for reasonInText and its prompt 
 - an embedded camera view to allow participant takes photo to explain the reason of the mood event. (reasonInPhoto)
