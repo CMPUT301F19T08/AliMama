@@ -20,7 +20,7 @@
 - date (Date) not null, 
 - emotionalState (String) not null, 
 - reasonInText (String <= 20 Characters) nullable, 
-- reasonInPhoto (Bitmap) nullable, 
+- reasonInPhoto (String) nullable, 
 - socialSituation (String : "alone", "with one other person", "with two to several ppl", "with a crowd") nullable, 
 - locationOfMoodEvent (Geolocation, retrieve from GPS) nullable.
 
@@ -30,10 +30,10 @@
 
 **Database Implementation : Story Point: 5 risk Level: high** 
 - [ ] requires a Mood History Database  with tables as follows: 
-- a table that records All Mood Event associated with a participant, primary key : username
-- a table that stores user authentication information, primary key : username 
+- a table that records All MoodEvents associated with a participant, primary key : username
+- a table that stores participant authentication information, primary key : username 
 - a table that stores all participants relationship, primary key : username 
-- a table that stores all pending friend request of a participants. 
+- a table that stores all pending Friend Requests of a participants. 
 - [ ] a static class with name "Database" should be implemented in the project with class methods as follows: 
 - authenticateParticipant
 - retrieveAllMoodEventOfAParticipant
@@ -52,12 +52,13 @@ As a user, I want a profile with a unique username.
 - An Image View displaying Logo (Project Name)
 - An Edit Text view for Username 
 - An Edit Text view for password
-- a button with Text "Register" and a button with Text "Log In"
+- a button with Text "Sign Up" and a button with Text "Log In"
 - After pressing Login Button and detected that participant entered wrong password, text should be displayed under password Edit Text in red that saying "Invalid password, please try again".
+- After pressing Login Button and detected that participant entered username that doesn't exist, text should be displayed under username Edit Text in red that saying "Invalid username, please try again".
 
 
 
-## Participant View/Edit/Add A MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+## Add/View/Edit MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
 **US 01.02.01** Story Point: 1 risk Level: low 
 - As a participant, I want consistent emoticons and colors to depict and distinguish the emotional states in any view.
@@ -72,21 +73,20 @@ As a user, I want a profile with a unique username.
 
 ### In order to implement the above two user stories: 
 - [ ] Requires an **Android Activity and its corresponding layout xml**.
-- The activity and the layout serves two purposes: to Allow participant Add a new Mood Event and Edit an existing Mood Event. 
+- The activity and the layout serves two purposes: to Allow participant Add a new MoodEvent and Edit an existing MoodEvent. 
 #### Layout Design
 - [ ] The layout file should contain views as follows: 
 - Edit Text for date and its prompt 
 - Edit Text for emotionalState and its prompt 
 - Edit Text for reasonInText and its prompt 
-- an embedded camera view to allow participant takes photo to explain the reason of the mood event. (reasonInPhoto)
-- an dropdown list view for socialSituation; Values of the dropdown are : "alone", "with one other person", "with two to several ppl", "with a crowd".
-- A CheckBox, when checked, retrieve geolocation where the mood event takes place from GPS.
-- A Button, when participant is adding a new mood event, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
-- [ ] A Cancel Button, when pressed, directs participant back to View Mood History Screen. 
+- an embedded camera view to allow participant takes photo to explain the reason of the mood event.
+- an dropdown list for socialSituation; Values of the dropdown are : "alone", "with one other person", "with two to several ppl", "with a crowd".
+- A CheckBox, when checked, retrieve geolocation where the MoodEvent takes place from GPS.
+- A Button, when participant is adding a new MoodEvent, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
 - [ ] Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
-- [ ] After pressing the "Add/ Update" button, the participant should be directed backinto View Mood History Screen. 
+- [ ] After pressing the "Add/ Update" button, the participant should be directed back to MoodEvent History Screen. 
 
-## Participant View Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## MoodEvent History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 01.05.01** Story Point: 1 risk Level: low  
 As a participant, I want to delete a given mood event of mine.
@@ -101,17 +101,18 @@ As a participant, I want to view as a list the most recent mood events of the ot
 - As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
 
 ### In order to implement the above user stories:
-- [ ] Requires an **Android Activity and its corresponding layout xml** which serves two purposes: Display Mood History of the Participant; Display Mood History of the Participants that the current logged-in participants follow. 
+- [ ] Requires an **Android Activity and its corresponding layout xml** which serves two purposes: Display Mood History of the Participant; Display Mood History of the Participants that the current participant follow. 
 #### Layout Design
-- [ ] The layout should be in LinearLayout that contains an EditText, a Recycler View below the EditText and a Floating Action Button below the Recycler View.
-- [ ] The Recycler view is used to display Mood history of the participant or the participants followed by the current logged-in participant. 
-- [ ] The Edit Text acts as a search bar so that when participant enters, only the MoodEvent with emotionalState value same as the participant's inputs are left on the screen. 
-- [ ] The Floating Action button serves as a "Add MoodEvent" Button, when pressed, directs participant to View/Edit/Add A MoodEvent Screen. 
-- [ ] Requires a Recycler View list item xml which displays minimum information(date, time, emotionalState.) of a MoodEvent **(need to ask what information should at least be displayed on each list item).**
-- [ ] a button in the Action Bar which when pressed, directs participant to Home Screen.
+- [ ] The layout should be in a tabbed layout with the following two tab:
+- [ ] **First tab** should contain a Recycler view which is used to display MoodEvent history of the current participant. 
+- [ ] A search bar above the Recycler View so that when participant enters, only the MoodEvent with emotionalState value same as the participant's inputs are left on the screen. 
+- [ ] A Floating Action button below the Reycler View which serves as a "Add MoodEvent" Button, when pressed, directs participant to Add/View/Edit MoodEvent Screen. 
+- [ ] Requires a Recycler View list item xml which displays minimum information(date, time, emotionalState.) of a MoodEvent, An edit button, when pressed redirects the current participant to  Add/View/Edit MoodEvent Screen. Also a delete button, when pressed deletes the MoodEvent from the current participant's MoodEvent history
+- [ ] **Second tab** should contain a Recycler View which is used to display MoodEvent history of the Friends of the current participant in read-only mode. 
+- [ ] Requires a Recycler View list item xml which displays minimum information(date, time, emotionalState.) of a MoodEvent.
 
 
-## Participant Approve Pending Friend Request/ Add More Participant to Follow Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## Add Friends & View Pending Friend Requests Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 05.01.01** Story Point: 2 risk Level: medium 
 As a participant, I want to ask another participant to follow their most recent mood event. 
@@ -122,15 +123,16 @@ As a participant, I want to grant another participant permission to follow my mo
 ### In order to implement the above user stories:
 - [ ] Requires an **Android Activity and its corresponding layout xml** that serves two purposes: display a list of pending friend requests; display a list of participants open to follow. 
 #### Layout Design 
-- [ ] the layout xml should contain a tabbed layout which contains two tabs: approving friend requests tab and view list of participants to follow tab. Should allow participants to switch in between the two. 
+- [ ] the layout xml should contain a tabbed layout which contains three tabs: view existing friends tab, approving friend requests tab and view list of participants to follow tab. Should allow participants to switch among the three. 
 - [ ] Recycler View should be implemented in each Tab. 
 - [ ] Recycler View list item layout xml should be implemented for each Recycler View.
 - [ ] Specifically, for the Recycler View that displays list of participants to follow, the list item should contain the participant's username and a button when pressed, sends a friend request to the participant.
-- [ ] for the Recycler View that displays pending friends request, the list item should contain the participant's username and a button, when pressed, grant access of most recent mood event to the participant. 
-- [ ] a button in the Action Bar which when pressed, directs participant to Home Screen. 
+- [ ] for the Recycler View that displays existing friends of a participant, the list item should contain the participant's username.
+- [ ] for the Recycler View that displays pending friends request, the list item should contain the participant's username and a button, when pressed, grant access of most recent MoodEvent to the participant. 
 
 
-## Map View Of Mood History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+
+## Map View Of MoodEvent History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 06.02.01** Story Point: 3 risk Level: high 
 
@@ -145,8 +147,9 @@ As a participant, I want to see a map of the mood events (showing their emotiona
 display participant's own mood event on map; display the mood events from the participant's mood following list
 
 #### Layout Design 
-- [ ] the layout xml should contain a Map View that displays participant's own mood event on map by showing emotional state of every mood event. Also, the Map View should display mood events from the following list by showing username and emotional state. 
-- [ ] a button in the Action Bar which when pressed, directs participant to Home Screen.
+- [ ] the layout xml should be in Tabbed Layout with two tabs. First tab should contain a Map View that displays participant's own MoodEvent on map by showing emotional state of every MoodEvent. 
+- [ ] A second tab should contain a Map View that displays MoodEvents from the following list by showing username and emotional state. 
+- [ ] a button at the bottom left corner which when pressed, directs participant to Home Screen.
 
 
 
@@ -154,8 +157,8 @@ display participant's own mood event on map; display the mood events from the pa
 
 - [ ] Requires an **Activity and its corresponding layout xml** which serves as a Home screen (portal) to all other functionalities.
 #### Layout Design
-- [ ] the layout should contains several buttons as follows:
-- should contain a Button that when clicked, go To View/Accept friends request & Add open participants screen
-- should contain a Button that when clicked, Go To View Mood History Screen 
-- should contain a Button that when clicked, Go To View Mood History on Map Screen
-- should contain a Button that when clicked, Log out the current Participant and return to the Login & SignUp Screen 
+- [ ] the layout should be in constraint layout which contains several buttons as follows:
+- should contain a Button that when clicked, go To Add Friends & View Pending Friend Requests Screen
+- should contain a Button that when clicked, Go To Map View Of MoodEvent History Screen
+- should contain a Button that when clicked, Go To MoodEvent History Screen
+- should contain a Button that when clicked, Log out the current Participant and return to the Participant Login/ Signup Screen 
