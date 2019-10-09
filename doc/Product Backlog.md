@@ -46,7 +46,8 @@
 ## Participant Login/ Signup Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
 
-**US 03.01.01** Story Point: 3 risk Level: high
+**US 03.01.01** Story Point: 3 risk Level: medium
+
 As a user, I want a profile with a unique username. 
 - [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant signup screen.
 #### Layout Design 
