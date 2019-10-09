@@ -28,7 +28,7 @@
 
 ## Database Utility Class ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
-**Database Implementation : Story Point: 5 risk Level: high** 
+**Database Implementation :**
 - [ ] requires a Mood History Database  with tables as follows: 
 - a table that records All MoodEvents associated with a participant, primary key : username
 - a table that stores participant authentication information, primary key : username 
@@ -44,6 +44,8 @@
 
 
 ## Participant Login/ Signup Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
+
+
 **US 03.01.01** Story Point: 3 risk Level: high
 As a user, I want a profile with a unique username. 
 - [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant signup screen.
