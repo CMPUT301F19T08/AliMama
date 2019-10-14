@@ -47,8 +47,7 @@
 
 
 **US 03.01.01** Story Point: 3 risk Level: medium
-
-As a user, I want a profile with a unique username. 
+- As a user, I want a profile with a unique username. 
 - [ ] requires an **Android Activity and its corresponding layout xml** which serves two purposes:  as an login screen; as a new participant signup screen.
 #### Layout Design 
 - [ ] the layout should contains the following Widgets:
@@ -118,12 +117,10 @@ As a user, I want a profile with a unique username.
 ## Add Friends & View Pending Friend Requests Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 05.01.01** Story Point: 2 risk Level: medium 
-
-As a participant, I want to ask another participant to follow their most recent mood event. 
+- As a participant, I want to ask another participant to follow their most recent mood event. 
 
 **US 05.02.01** Story Point: 2 risk Level: medium 
-
-As a participant, I want to grant another participant permission to follow my most recent mood event. 
+- As a participant, I want to grant another participant permission to follow my most recent mood event. 
 
 ### In order to implement the above user stories:
 - [ ] Requires an **Android Activity and its corresponding layout xml** that serves two purposes: display a list of pending friend requests; display a list of participants open to follow. 
@@ -140,12 +137,10 @@ As a participant, I want to grant another participant permission to follow my mo
 ## Map View Of MoodEvent History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 06.02.01** Story Point: 3 risk Level: high 
-
-As a participant, I want to see a map of the mood events (showing their emotional states) from my mood history list (that have locations). 
+- As a participant, I want to see a map of the mood events (showing their emotional states) from my mood history list (that have locations). 
 
 **US 06.03.01** Story Point: 3 risk Level: high 
-
-As a participant, I want to see a map of the mood events (showing their emotional states and the username) from my mood following list (that have locations). 
+- As a participant, I want to see a map of the mood events (showing their emotional states and the username) from my mood following list (that have locations). 
 
 ### In order to implement the above user stories: 
 - [ ] Requires an **Android Activity and its corresponding layout xml** that serves two purposes: 
@@ -158,7 +153,7 @@ display participant's own mood event on map; display the mood events from the pa
 
 
 
-## Home Screen: Story Point: 1 risk Level: low ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
+## Home Screen: ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 - [ ] Requires an **Activity and its corresponding layout xml** which serves as a Home screen (portal) to all other functionalities.
 #### Layout Design
