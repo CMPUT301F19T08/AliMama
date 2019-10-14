@@ -92,10 +92,10 @@ As a user, I want a profile with a unique username.
 ## MoodEvent History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 01.05.01** Story Point: 1 risk Level: low  
-As a participant, I want to delete a given mood event of mine.
+- As a participant, I want to delete a given mood event of mine.
 
 **US 05.03.01** Story Point: 2 risk Level: medium 
-As a participant, I want to view as a list the most recent mood events (**the most recent 1 mood event**) of the other participants I am granted to follow, sorted by date and time, in reverse chronological order (most recent coming first).
+- As a participant, I want to view as a list the most recent mood events (**the most recent 1 mood event**) of the other participants I am granted to follow, sorted by date and time, in reverse chronological order (most recent coming first).
 
 **US 04.01.01** Story Point: 2 risk Level: medium 
 - As a participant, I want to view as a list my mood history, sorted by date and time, in reverse chronological order (most recent coming first).
