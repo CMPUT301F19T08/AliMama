@@ -64,8 +64,7 @@ As a user, I want a profile with a unique username.
 ## Add/View/Edit MoodEvent Screen ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 
 **US 01.02.01** Story Point: 1 risk Level: low 
-- As a participant, I want consistent emoticons and colors to depict and distinguish the emotional states in any view.
- - [ ] requires an Enum that binds emotionalState to a certain color in hash.  
+- As a participant, I want consistent emoticons and colors to depict and distinguish the emotional states in any view.  
 
 **US 01.03.01** Story Point: 1 risk Level: low 
 - As a participant, I want to view a given mood event and all its available details. 
@@ -80,11 +79,12 @@ As a user, I want a profile with a unique username.
 #### Layout Design
 - [ ] The layout file should contain views as follows: 
 - Edit Text for date and its prompt 
-- Edit Text for emotionalState and its prompt 
+- a list of emoticons for emotionalState and its prompt 
 - Edit Text for reasonInText and its prompt 
 - an embedded camera view to allow participant takes photo to explain the reason of the mood event.
 - an dropdown list for socialSituation; Values of the dropdown are : "alone", "with one other person", "with two to several ppl", "with a crowd".
 - A CheckBox, when checked, retrieve geolocation where the MoodEvent takes place from GPS.
+- An Embedded Map view that pinpoints the current location on Map.
 - A Button, when participant is adding a new MoodEvent, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
 - [ ] Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
 - [ ] After pressing the "Add/ Update" button, the participant should be directed back to MoodEvent History Screen. 
