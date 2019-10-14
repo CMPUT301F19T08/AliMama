@@ -20,7 +20,7 @@
 - date (Date) not null, 
 - emotionalState (String) not null, 
 - reasonInText (String <= 20 Characters) nullable, 
-- reasonInPhoto (String) nullable, 
+- pathToPhoto (String) nullable, 
 - socialSituation (String : "alone", "with one other person", "with two to several ppl", "with a crowd") nullable, 
 - locationOfMoodEvent (Geolocation, retrieve from GPS) nullable.
 
@@ -57,6 +57,8 @@
 - a button with Text "Sign Up" and a button with Text "Log In"
 - After pressing Login Button and detected that participant entered wrong password, text should be displayed under password Edit Text in red that saying "Invalid password, please try again".
 - After pressing Login Button and detected that participant entered username that doesn't exist, text should be displayed under username Edit Text in red that saying "Invalid username, please try again".
+- After pressing Signup Button and detected that the username that participant entered already exist, text should be displayed under username Edit Text in red saying "Username already exists, please try another username".
+- If Participant successfully logged in or signed up, should direct participant to Home Screen. 
 
 
 
