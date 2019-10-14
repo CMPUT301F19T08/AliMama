@@ -118,9 +118,11 @@ As a participant, I want to view as a list the most recent mood events (**the mo
 ## Add Friends & View Pending Friend Requests Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
 **US 05.01.01** Story Point: 2 risk Level: medium 
+
 As a participant, I want to ask another participant to follow their most recent mood event. 
 
 **US 05.02.01** Story Point: 2 risk Level: medium 
+
 As a participant, I want to grant another participant permission to follow my most recent mood event. 
 
 ### In order to implement the above user stories:
