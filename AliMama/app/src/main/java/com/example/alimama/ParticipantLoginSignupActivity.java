@@ -177,8 +177,8 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
         mPassword.setError(null);
         mUsername.setError(null);
         Toast.makeText(this, "Participant log in Successfully", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(ParticipantLoginSignupActivity.this, Mainmenu.class);
-        startActivity(intent);
+        Intent goToHomeScreen = new Intent(ParticipantLoginSignupActivity.this, Mainmenu.class);
+        startActivity(goToHomeScreen);
 
     }
 
