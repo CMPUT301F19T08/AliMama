@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".MoodMap"
+            android:label="@string/title_activity_mood_map"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".FriendsList"
+            android:label="@string/title_activity_friends_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MoodHistory"
             android:label="@string/title_activity_mood_history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Mainmenu" />
         <activity android:name=".ParticipantLoginSignupActivity">
             <intent-filter>
