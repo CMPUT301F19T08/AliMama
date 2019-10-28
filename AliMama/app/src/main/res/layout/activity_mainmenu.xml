@@ -26,6 +26,27 @@
             android:text="View Mood History"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/main_menu_string"/>
+        <Button
+            android:id="@+id/mood_map_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Mood History on Map"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/mood_history_button"/>
+        <Button
+            android:id="@+id/add_view_friend_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View/Add Friends"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/mood_map_button"/>
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/add_view_friend_button"/>
 
     </RelativeLayout>
 
