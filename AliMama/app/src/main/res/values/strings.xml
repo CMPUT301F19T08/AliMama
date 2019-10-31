@@ -5,8 +5,8 @@
     <string name="participant_login_signup_login_btn">Log In</string>
     <string name="participant_login_signup_signup_btn">Sign Up</string>
     <string name="title_activity_mood_history">MoodHistory</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">My History</string>
+    <string name="tab_text_2">Friends History</string>
     <string name="title_activity_friends_list">FriendsList</string>
     <string name="title_activity_mood_map">MoodMap</string>
 </resources>

@@ -25,9 +25,10 @@ public class Mainmenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
 
-        viewMoodHistoryButton=(Button)findViewById(R.id.mood_history_button);
-        viewMoodMapButton=(Button)findViewById(R.id.mood_map_button);
-        viewOrAddFriendsButton=(Button)findViewById(R.id.add_view_friend_button);
+        viewMoodHistoryButton = findViewById(R.id.mood_history_button);
+        viewMoodMapButton = findViewById(R.id.mood_map_button);
+        viewOrAddFriendsButton = findViewById(R.id.add_view_friend_button);
+        logoutButton = findViewById(R.id.logout_button);
 
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,25 +54,24 @@ public class Mainmenu extends AppCompatActivity {
 //            }
 //        });
 
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        logoutButton=(Button)findViewById(R.id.logout_button);
-//        logoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                database.auth().signOut().then(function() {
-////                    console.log('Signed Out');
-////                };
-//
-//                firebaseAuth.signOut();
-//                finish();
-//                Intent logOut=new Intent(Mainmenu.this, ParticipantLoginSignupActivity.class);
-//                //i.putExtra("finish", true);
-//                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
-//                //startActivity(i);
-//                startActivity( logOut );
-//
-//            }
-//        });
+        firebaseAuth = FirebaseAuth.getInstance();
+        logoutButton=(Button)findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                database.auth().signOut().then(function() {
+//                    console.log('Signed Out');
+//                };
+
+                firebaseAuth.signOut();
+                finish();
+                Intent logOut=new Intent(Mainmenu.this, ParticipantLoginSignupActivity.class);
+                //i.putExtra("finish", true);
+                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+                //startActivity(i);
+                startActivity( logOut );
+            }
+        });
     }
 
 //    @Override

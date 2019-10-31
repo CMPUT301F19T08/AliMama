@@ -1,7 +1,6 @@
 package com.example.alimama;
 
 
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,9 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
 import java.util.Map;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -153,7 +150,6 @@ class Database {
                     @Override
                     public void onSuccess(Void aVoid) {
                         mmf.updateAnExistingMoodEventSuccessfully();
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -162,8 +158,6 @@ class Database {
                         mmf.failToUpdateAnExistingMoodEvent(e.getMessage());
                     }
                 });
-
-
     }
 
     void addANewMoodEvent(final MoodEvent newMoodEvent, final MoodEventManipulationFeedback mmf) {
@@ -175,7 +169,6 @@ class Database {
                     public void onSuccess(DocumentReference documentReference) {
                         System.out.println("successfully added a mood event");
                         mmf.addANewMoodEventSuccessfully();
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -183,11 +176,8 @@ class Database {
                     public void onFailure(@NonNull Exception e) {
                         System.out.println(e.getMessage());
                         mmf.failToAddANewMoodEvent(e.getMessage());
-
                     }
                 });
-
-
     }
 
     void retrieveAllMoodEventsOfAParticipant(final String username, final MoodEventManipulationFeedback mmf) {
@@ -205,7 +195,6 @@ class Database {
                                 MoodEvent each = document.toObject(MoodEvent.class);
                                 moodEventHistory.add(each);
                             }
-
                             mmf.retrieveAllMoodEventOfAParticipantSuccessfully(moodEventHistory);
                         }
                         else {
@@ -213,7 +202,6 @@ class Database {
                         }
                     }
                 });
-
     }
 
     void deleteAMoodEventOfAParticipant(final MoodEvent moodEvent, final MoodEventManipulationFeedback mmf) {
@@ -233,11 +221,9 @@ class Database {
                         mmf.failToDeleteAMoodEventOfAParticipant(e.getMessage());
                     }
                 });
-
     }
 
     void retrieveMostRecentMoodEventOfFriendsOfAParticipant(String username, final MoodEventManipulationFeedback mmf) {
-
         CollectionReference friendsCollectionReferece = db.collection("Friends");
         friendsCollectionReferece.whereEqualTo("username", username).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -247,7 +233,6 @@ class Database {
                             // retrieve a list of friends of a participant
                             final ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipant = new ArrayList<>();
                             CollectionReference moodEventCollectionReference = db.collection("MoodEvents");
-
 
                             // for every friend retrieve the most recent moodEvent
                             for (QueryDocumentSnapshot document: task.getResult()) {
@@ -273,8 +258,6 @@ class Database {
 
                                             }
                                         });
-
-
                             }// for every friend, retrieve the most recent Mood request
                         }
                         else {
@@ -282,13 +265,9 @@ class Database {
                         }
                     }
                 });
-
     }
 
-
     /* -----------------------------Friendship Operations -------------------------------- */
-
-
     void retrievePendingFriendRequestOfAParticipant(String username, final FriendshipOperationFeedback fof) {
         db.collection("PendingFriendRequests")
                 .whereEqualTo("friendToAdd", username)
@@ -310,7 +289,6 @@ class Database {
                         }
                     }
                 });
-
     }
 
     // delete the friend request sent by "usernameOfFriendRequestToAccept" participant to the current participant identified by "username" from PendingFriendRequests Collection
