@@ -38,13 +38,13 @@ public class Mainmenu extends AppCompatActivity {
             }
         });
 
-//        viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
-//                startActivity(goToMoodMap);
-//            }
-//        });
+        viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
+                startActivity(goToMoodMap);
+            }
+        });
 //
 //        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
