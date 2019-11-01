@@ -1,4 +1,4 @@
-package project.mood.page;
+package com.example.alimama.page;
 
 import android.os.Bundle;
 
