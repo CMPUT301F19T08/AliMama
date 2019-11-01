@@ -71,7 +71,6 @@
             android:text="Log Out"
             android:paddingHorizontal="10sp"
             android:textSize="24sp" />
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
