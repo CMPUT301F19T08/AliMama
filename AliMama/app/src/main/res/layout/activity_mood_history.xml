@@ -29,30 +29,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary" />
+
     </androidx.viewpager.widget.ViewPager>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp">
-
-        <TextView
-            android:id="@+id/mood_display"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="this is mood display text"
-            android:textSize="20sp" />
-
-
-    </androidx.cardview.widget.CardView>
+        android:layout_height="match_parent"
+        tools:layout_marginTop="50dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
     <Spinner
