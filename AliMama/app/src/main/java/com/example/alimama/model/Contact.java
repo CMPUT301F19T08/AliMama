@@ -1,4 +1,4 @@
-package project.mood.model;
+package com.example.alimama.model;
 
 public class Contact {
 
