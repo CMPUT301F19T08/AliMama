@@ -12,11 +12,14 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alimama.R;
+import com.example.alimama.model.Contact;
+
 import java.util.ArrayList;
 
 
-import project.mood.R;
-import project.mood.model.Contact;
+
+
 
 public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.MyViewHolder> {
     ArrayList<Contact> contactList;

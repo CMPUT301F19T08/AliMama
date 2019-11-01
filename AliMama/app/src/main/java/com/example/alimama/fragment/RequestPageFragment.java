@@ -1,4 +1,4 @@
-package com.example.alimama.fragment
+package com.example.alimama.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alimama.R;
+import com.example.alimama.adapter.RequestPageAdapter;
+import com.example.alimama.model.Contact;
+
 import java.util.ArrayList;
 
-import project.mood.R;
-import project.mood.adapter.ContactPageAdapter;
-import project.mood.adapter.RequestPageAdapter;
-import project.mood.model.Contact;
+
 
 
 public class RequestPageFragment extends Fragment {
@@ -52,7 +53,6 @@ public class RequestPageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         contactDataList = new ArrayList<>();

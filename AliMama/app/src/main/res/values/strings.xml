@@ -1,12 +1,20 @@
 <resources>
+
+
     <string name="app_name">AliMama</string>
     <string name="participant_login_signup_username">Username</string>
     <string name="participant_login_signup_password">Password</string>
     <string name="participant_login_signup_login_btn">Log In</string>
     <string name="participant_login_signup_signup_btn">Sign Up</string>
-    <string name="title_activity_mood_history">MoodHistory</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_mood_history">Mood History</string>
+    <string name="tab_text_1">My Mood</string>
+    <string name="tab_text_2">My Friends</string>
     <string name="title_activity_friends_list">FriendsList</string>
-    <string name="title_activity_mood_map">MoodMap</string>
+    <string name="title_activity_mood_map">Mood Map</string>
+    <string name="title_activity_google_maps">Map</string>
+
+
+    <string name="contact_Page">Contact Page</string>
+    <string name="friend_page">Friend Page</string>
+    <string name="request_page">Request Page</string>
 </resources>

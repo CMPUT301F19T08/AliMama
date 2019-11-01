@@ -9,16 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MoodHistory"
-            android:label="@string/title_activity_mood_history"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Mainmenu" />
-        <activity android:name=".ParticipantLoginSignupActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".page.FriendPage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT"></action>
+
             </intent-filter>
         </activity>
     </application>

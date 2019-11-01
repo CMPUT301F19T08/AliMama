@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alimama.R;
+import com.example.alimama.adapter.FriendPageAdapter;
+import com.example.alimama.model.Contact;
+
 import java.util.ArrayList;
 
-import project.mood.R;
-import project.mood.adapter.FriendPageAdapter;
-import project.mood.model.Contact;
+
+
 
 public class FriendPageFragment extends Fragment {
     View view;
@@ -50,7 +53,7 @@ public class FriendPageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        contactDataList = new ArrayList<>();
+
 
         contactDataList = new ArrayList<>();
         for(int i=0;i<contactList.length;i++){

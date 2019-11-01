@@ -5,10 +5,6 @@ public class Contact {
     private String contactName;
 
 
-
-
-
-
     public Contact(String contactName) {
         this.contactName = contactName;
     }

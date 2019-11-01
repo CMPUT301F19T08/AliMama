@@ -2,51 +2,63 @@ package com.example.alimama.page;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import java.util.ArrayList;
-
-import project.mood.R;
-import project.mood.model.Contact;
-
-import project.mood.ui.main.FriendPageAdapter;
+import com.example.alimama.R;
+import com.example.alimama.fragment.ContactPageFragment;
+import com.example.alimama.fragment.FriendPageFragment;
+import com.example.alimama.fragment.RequestPageFragment;
+import com.example.alimama.ui.main.TabPageAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class FriendPage extends AppCompatActivity {
-    RecyclerView recyclerView;
-    FriendPageAdapter friendPageAdapter;
-    ArrayList<Contact> contactDataList;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
+    private ViewPager viewContact;
+    private ViewPager viewFriend;
+    private ViewPager viewRequest;
 
-    public static final String[] contactList = {"ALPHA", "BETA", "GAMMA", "DELTA", "THETA", "OMEGA", "ZETA"};
+    private ViewPager viewPager;
 
+    private TabPageAdapter tabPageAdapter;
 
+    private TabLayout tabLayout;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.main_tmp_tab_view);
 
-        /*Recycler view setup*/
-        ArrayList<Contact> contactDataList = new ArrayList<Contact>();
-        for (int i = 0; i < contactList.length; i++) {
-            Contact contact = new Contact();
+        tabPageAdapter = new TabPageAdapter(this,getSupportFragmentManager());
 
-            contact.setContactName(contactList[i]);
+        viewPager = findViewById(R.id.view_pager);
+        /*Fragments*/
 
-            contactDataList.add(contact);
-        }
-        /*Setting up recycler view and card view from adapter*/
-        friendPageAdapter = new FriendPageAdapter(contactDataList);
+        tabPageAdapter.addFragment(new ContactPageFragment(),"Contact Page");
+        tabPageAdapter.addFragment(new FriendPageFragment(),"Friend Page");
+        tabPageAdapter.addFragment(new RequestPageFragment(),"Request Page");
 
+        viewPager.setAdapter(tabPageAdapter);
 
 
-        recyclerView = findViewById(R.id.my_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(friendPageAdapter);
+
+        tabLayout =findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
+
+
+
+
+         /*if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, MainFragment.newInstance())
+                    .commitNow();
+        }*/
 
 
     }

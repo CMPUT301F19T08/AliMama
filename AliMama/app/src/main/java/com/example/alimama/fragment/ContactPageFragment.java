@@ -12,12 +12,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alimama.R;
+import com.example.alimama.adapter.ContactPageAdapter;
+import com.example.alimama.model.Contact;
+
 import java.util.ArrayList;
 
 
-import project.mood.R;
-import project.mood.adapter.ContactPageAdapter;
-import project.mood.model.Contact;
+
+
+
 
 
 public class ContactPageFragment extends Fragment {
@@ -56,7 +60,6 @@ public class ContactPageFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         /*contactDataList = new ArrayList<>();
-
         contactDataList.add(new Contact("ALPHA"));
         contactDataList.add(new Contact("BETA"));
         contactDataList.add(new Contact("OMEGA"));*/

@@ -1,4 +1,4 @@
-package com.example.alimama;
+package com.example.alimama.adapter;
 
 
 
@@ -18,8 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-import project.mood.R;
-import project.mood.model.Contact;
+import com.example.alimama.R;
+import com.example.alimama.model.Contact;
+
 
 public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.MyViewHolder> {
     ArrayList<Contact> contactList;

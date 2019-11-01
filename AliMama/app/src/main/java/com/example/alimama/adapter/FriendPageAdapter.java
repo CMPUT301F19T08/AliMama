@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-import project.mood.R;
-import project.mood.model.Contact;
+import com.example.alimama.R;
+import com.example.alimama.model.Contact;
+
 
 public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.MyViewHolder> {
     ArrayList<Contact> contactList;
