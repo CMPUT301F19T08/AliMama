@@ -1,4 +1,4 @@
-package project.mood.adapter;
+package com.example.alimama.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
