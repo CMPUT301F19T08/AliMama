@@ -48,6 +48,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".page.FriendPage"
+            android:label="@string/title_activity_contact_page">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT"></action>
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
