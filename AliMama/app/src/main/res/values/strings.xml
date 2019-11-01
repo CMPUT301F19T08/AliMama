@@ -10,4 +10,8 @@
     <string name="title_activity_friends_list">FriendsList</string>
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
+    
+    <string name="contact_Page">Contact Page</string>
+    <string name="friend_page">Friend Page</string>
+    <string name="request_page">Request Page</string>
 </resources>
