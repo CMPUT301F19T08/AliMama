@@ -30,6 +30,11 @@ public class Mainmenu extends AppCompatActivity {
         viewOrAddFriendsButton = findViewById(R.id.add_view_friend_button);
         logoutButton = findViewById(R.id.logout_button);
 
+        //viewMoodHistoryButton=(Button)findViewById(R.id.mood_history_button);
+        //viewMoodMapButton=(Button)findViewById(R.id.mood_map_button);
+        //viewOrAddFriendsButton=(Button)findViewById(R.id.add_view_friend_button);
+
+
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,21 +43,13 @@ public class Mainmenu extends AppCompatActivity {
             }
         });
 
-//        viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
-//                startActivity(goToMoodMap);
-//            }
-//        });
-//
-//        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToFriendsList = new Intent(Mainmenu.this, FriendsList.class);
-//                startActivity(goToFriendsList);
-//            }
-//        });
+        viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
+                startActivity(goToMoodMap);
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         logoutButton=(Button)findViewById(R.id.logout_button);
@@ -72,11 +69,9 @@ public class Mainmenu extends AppCompatActivity {
                 startActivity( logOut );
             }
         });
+
+
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
+
 }
