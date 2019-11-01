@@ -1,4 +1,4 @@
-package project.mood.fragment;
+package com.example.alimama.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
