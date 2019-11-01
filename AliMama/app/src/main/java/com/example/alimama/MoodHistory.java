@@ -56,4 +56,7 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {}
+
+//    public void takePicture(View view) {
+//    }
 }
