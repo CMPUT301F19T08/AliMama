@@ -9,11 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".AddMoodEvent"></activity>
+
+
+
         <activity
             android:name=".MoodHistory"
             android:label="@string/title_activity_mood_history"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Mainmenu" />
+
         <activity android:name=".ParticipantLoginSignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
