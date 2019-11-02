@@ -22,7 +22,14 @@ import com.example.alimama.ui.main.SectionsPagerAdapter;
 
 public class MoodHistory extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     FloatingActionButton fab;
-    private static final String[] paths = {new String(Character.toChars(0x1F621)), new String(Character.toChars(0x1F61C)), new String(Character.toChars(0x1F622)), new String(Character.toChars(0x1F60A))};
+    static final String happy = new String(Character.toChars(0x1F60A));
+    static final String tears = new String(Character.toChars(0X1F602));
+    static final String heart = new String(Character.toChars(0x1F60D));
+    static final String angry = new String(Character.toChars(0x1F621));
+    static final String tongue = new String(Character.toChars(0x1F61C));
+    static final String cry = new String(Character.toChars(0x1F622));
+    static final String smirk = new String(Character.toChars(0x1F60F));
+    private static final String[] paths = {happy, tears, heart, angry, tongue, cry, smirk};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
         });
 
         Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item,paths);
+        ArrayAdapter<String> adapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, paths);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
