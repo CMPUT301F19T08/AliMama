@@ -20,7 +20,7 @@ public class AddMoodEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_mood);
+        setContentView(R.layout.activity_add_mood);
 
         takePhotoButton = findViewById(R.id.take_photo_button);
         addedPhoto = findViewById(R.id.imageView);
@@ -46,6 +46,4 @@ public class AddMoodEvent extends AppCompatActivity {
             addedPhoto.setImageBitmap(imageBitmap);
         }
     }
-
-
 }
