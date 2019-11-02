@@ -66,11 +66,13 @@
             android:textAllCaps="false"
             android:layout_below="@+id/add_view_friend_button"
             android:layout_centerHorizontal="true"
+
             android:layout_marginTop="90dp"
             android:background="@drawable/my_button_bg"
             android:text="Log Out"
             android:paddingHorizontal="10sp"
             android:textSize="24sp" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

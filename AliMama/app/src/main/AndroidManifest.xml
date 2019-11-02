@@ -9,6 +9,10 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-feature
+        android:name="android.hardware.Camera"
+        android:required="true"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -45,6 +49,7 @@
             android:label="@string/title_activity_mood_history"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Mainmenu" />
+
         <activity android:name=".ParticipantLoginSignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -16,6 +16,8 @@ import com.example.alimama.R;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    String tabOne = "Mood History";
+    String tabTwo = "Friends History";
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
