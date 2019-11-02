@@ -12,4 +12,13 @@
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
 
+    <string name="intent_key_request_code">request_code</string>
+    <string name="intent_key_date">date</string>
+    <string name="intent_key_time">time</string>
+    <string name="intent_key_distance">distance</string>
+    <string name="intent_key_avg_speed">avg_speed</string>
+    <string name="intent_key_avg_cadence">avg_cadence</string>
+    <string name="intent_key_comments">comments</string>
+
+
 </resources>

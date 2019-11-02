@@ -12,6 +12,7 @@ public class MoodEvent {
     private String documentId;
     private String username;
     private Date date;
+    private String time;
     private String emotionalState;
     private String reasonInText;
     private String pathToPhoto;
@@ -36,13 +37,15 @@ public class MoodEvent {
     }
 
 
-    public Date getDate() {
-        return date;
-    }
+    public Date getDate() { return date; }
 
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public String getTime() { return time; }
+
+    public void setTime() { this.time = time; }
 
     public String getEmotionalState() {
         return emotionalState;
