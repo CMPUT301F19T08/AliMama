@@ -32,7 +32,6 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
     LocationManager locationManager;
 
     private static final int REQUEST_LOCATION_PERMISSION = 1;
-    // Marker marker;
     LocationListener locationListener;
 
     @Override
@@ -61,7 +60,7 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
                 //get the location name from latitude and longitude
                 Geocoder geocoder = new Geocoder(getApplicationContext());
                 try {
-                    List<Address> addresses =
+                   List<Address> addresses =
                             geocoder.getFromLocation(latitude, longitude, 1);
                    String result = addresses.get(0).getLocality()+":";
                     result += addresses.get(0).getCountryName();
@@ -76,8 +75,8 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
                         marker = mMap.addMarker(new MarkerOptions().position(latLng).title(result));
                         mMap.setMaxZoomPreference(20);
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f));
-                    } */
-                   // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f));
+                    }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f)); */
 
                 } catch (IOException e) {
                     e.printStackTrace();
