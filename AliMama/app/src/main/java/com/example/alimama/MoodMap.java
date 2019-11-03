@@ -2,6 +2,7 @@ package com.example.alimama;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +42,7 @@ public class MoodMap extends AppCompatActivity {
                             {Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION_PERMISSION);
         }
+
 
        /* fab.setOnClickListener(new View.OnClickListener() {
             @Override
