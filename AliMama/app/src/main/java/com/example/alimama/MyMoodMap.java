@@ -41,17 +41,18 @@ public class MyMoodMap extends Fragment {
             @Override
             public void onMapReady(GoogleMap mMap) {
                 mMap.setIndoorEnabled(true); // Indoor Map
-                mMap.setMyLocationEnabled(false); // Location Sharing
-                UiSettings mapUiSettings = mMap.getUiSettings();
-                mapUiSettings.setZoomControlsEnabled(true); //Zoom in zoom out event
-                mapUiSettings.setMapToolbarEnabled(false);
+                mMap.setMyLocationEnabled(true); // Location Sharing
+                UiSettings Ui = mMap.getUiSettings();
+                Ui.setZoomControlsEnabled(true); //Zoom in zoom out event
+                Ui.setMapToolbarEnabled(false);
+                Ui.setMyLocationButtonEnabled(true);
 
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
                 mMap.clear(); //clear old markers
 
                 // Default location
-                LatLng UofA = new LatLng(53.526777, -113.527153); // Latitude, Longitude
+               /* LatLng UofA = new LatLng(53.526777, -113.527153); // Latitude, Longitude
                 mMap.addMarker(new MarkerOptions().position(UofA));
 
                 CameraPosition UAlberta = CameraPosition.builder()
@@ -63,6 +64,8 @@ public class MyMoodMap extends Fragment {
 
                 // Animation
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(UAlberta), 3000, null);
+
+                */
             }
         });
 
