@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Add Mood"
+            android:text="Edit Mood"
             android:textSize="55dp"></TextView>
 
         <EditText
@@ -174,7 +174,7 @@
             android:layout_marginBottom="12dp"
             android:background="@drawable/my_button_bg"
             android:paddingHorizontal="10sp"
-            android:text="Add Mood"
+            android:text="Edit Mood"
             android:textAllCaps="false"
             android:textSize="30sp" />
 
