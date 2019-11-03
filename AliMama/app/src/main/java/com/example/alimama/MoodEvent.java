@@ -11,57 +11,44 @@ public class MoodEvent {
     @DocumentId
     private String documentId;
     private String username;
-    private Date date;
+    private String date;
     private String time;
     private String emotionalState;
     private String reasonInText;
     private String pathToPhoto;
     private String socialSituation;
     private GeoPoint locationOfMoodEvent;
-    MoodEvent() {
-        this.date = new Date();
-    }
+//    MoodEvent() {
+//        this.date = new Date();
+//    }
+//
+//    MoodEvent(String username, String emotionalState) {
+//        this();
+//        this.emotionalState = emotionalState;
+//        this.username = username;
+//    }
 
-    MoodEvent(String username, String emotionalState) {
-        this();
-        this.emotionalState = emotionalState;
-        this.username = username;
-    }
-
-    MoodEvent(String username, String emotionalState, String socialSituation, String reasonInText) {
-        this();
-        this.emotionalState = emotionalState;
-        this.username = username;
-        this.socialSituation = socialSituation;
-        this.reasonInText = reasonInText;
-    }
-
-
-    public Date getDate() { return date; }
-
-    public void setDate(Date date) {
+    MoodEvent(String date, String time, String emotionalState, String reasonInText) {
+        //this();
         this.date = date;
-    }
-
-    public String getTime() { return time; }
-
-    public void setTime() { this.time = time; }
-
-    public String getEmotionalState() {
-        return emotionalState;
-    }
-
-    public void setEmotionalState(String emotionalState) {
+        this.time = time;
         this.emotionalState = emotionalState;
-    }
-
-    public String getReasonInText() {
-        return reasonInText;
-    }
-
-    public void setReasonInText(String reasonInText) {
+        //this.username = username;
+        //this.socialSituation = socialSituation;
         this.reasonInText = reasonInText;
     }
+
+
+    public String getDate() { return date; }
+    public void setDate(String date) { this.date = date; }
+    public String getTime() { return time; }
+    public void setTime() { this.time = time; }
+    public String getEmotionalState() { return emotionalState; }
+    public void setEmotionalState(String emotionalState) { this.emotionalState = emotionalState; }
+    public String getReasonInText() { return reasonInText; }
+    public void setReasonInText(String reasonInText) { this.reasonInText = reasonInText; }
+
+
 
     public String getPathToPhoto() {
         return pathToPhoto;

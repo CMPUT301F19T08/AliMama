@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.example.alimama.ui.main.SectionsPagerAdapter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MoodHistory extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     FloatingActionButton fab;
@@ -59,35 +60,32 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        moodEvents = new ArrayList<>();
+        mAdapter = new RecyclerViewAdapter(moodEvents, this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
+        //mResources = getResources();
+        // set onClickListener for addNewRideBtn
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-//        FloatingActionButton addNewMoodBtn = findViewById(R.id.fab_add_mood);
-//        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//        moodEvents = new ArrayList<>();
-//        mAdapter = new RecyclerViewAdapter(moodEvents, this);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(mAdapter);
-//        mResources = getResources();
-//        // set onClickListener for addNewRideBtn
-//        addNewMoodBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
 //                Bundle bundle = new Bundle();
-//                int requestCode = mResources.getInteger(R.integer.ADD_NEW_MOOD);
+//                int requestCode = mResources.getInteger(R.integer.ADD_NEW_RIDE);
 //                bundle.putInt(mResources.getString(R.string.intent_key_request_code),requestCode);
-//                Intent intent = new Intent(view.getContext(), AddMoodEvent.class);
+//                Intent intent = new Intent(view.getContext(), AddUpdateRideActivity.class);
 //                intent.putExtras(bundle);
 //                startActivityForResult(intent, requestCode);
-//
-//            }
-//        });
-//
-//        // add list item divider
-//        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-//                layoutManager.getOrientation());
-//
-//        recyclerView.addItemDecoration(mDividerItemDecoration);
+
+                Intent AddMood = new Intent(MoodHistory.this, AddMoodEvent.class);
+                startActivity(AddMood);
+
+            }
+        });
+
+
 
     }
 
