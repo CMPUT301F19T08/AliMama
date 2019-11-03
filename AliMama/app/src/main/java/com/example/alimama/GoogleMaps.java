@@ -8,6 +8,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -39,9 +41,33 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setIndoorEnabled(true); // Indoor Map
+        mMap.setMyLocationEnabled(false); // Location Sharing
+        UiSettings mapUiSettings = mMap.getUiSettings();
+        mapUiSettings.setZoomControlsEnabled(true); //Zoom in zoom out event
+        mapUiSettings.setMapToolbarEnabled(false);
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        /*LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney)); */
+
+        // Default location
+        LatLng UofA = new LatLng(53.526777, -113.527153); // Latitude, Longitude
+
+        // mMap.addMarker(new MarkerOptions().position(UofA).title("Marker in the University of Alberta"));
+        mMap.addMarker(new MarkerOptions().position(UofA));
+
+        CameraPosition UAlberta = CameraPosition.builder()
+                .target(UofA)
+                .zoom(10)
+                .bearing(0)
+                .tilt(45)
+                .build();
+
+        // Animation
+        // the number below represents the speed
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(UAlberta), 3000, null);
     }
+
 }
