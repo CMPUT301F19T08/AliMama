@@ -11,8 +11,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 //Reference: https://demonuts.com/android-google-map-in-fragment/
 public class MyFriendMoodMap extends Fragment {
@@ -38,21 +40,33 @@ public class MyFriendMoodMap extends Fragment {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
+
+                mMap.setIndoorEnabled(true); // Indoor Map
+                mMap.setMyLocationEnabled(false); // Location Sharing
+                UiSettings mapUiSettings = mMap.getUiSettings();
+                mapUiSettings.setZoomControlsEnabled(true); //Zoom in zoom out event
+                mapUiSettings.setMapToolbarEnabled(false);
+
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
                 mMap.clear(); //clear old markers
 
-                CameraPosition googlePlex = CameraPosition.builder()
-                        .target(new LatLng(37.4219999,-122.0862462))
+                // Default location
+                LatLng UofA = new LatLng(53.526777, -113.527153); // Latitude, Longitude
+                mMap.addMarker(new MarkerOptions().position(UofA));
+
+                CameraPosition UAlberta = CameraPosition.builder()
+                        .target(UofA)
                         .zoom(10)
                         .bearing(0)
                         .tilt(45)
                         .build();
 
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 10000, null);
+                // Animation
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(UAlberta), 3000, null);
+
             }
         });
-
 
         return rootView;
     }
