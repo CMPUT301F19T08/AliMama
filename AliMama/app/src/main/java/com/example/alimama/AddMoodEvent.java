@@ -25,10 +25,14 @@ public class AddMoodEvent extends AppCompatActivity {
     static final String smirk = new String(Character.toChars(0x1F60F));
     private static final String[] emoticon = {happy, tears, heart, angry, tongue, cry, smirk};
     private static final String[] social = {"Alone", "With one other person", "With two or several people", "With a crowd"};
-    private EditText emotionalState;
-    private EditText dateField;
-    private EditText timeField;
-    private EditText descriptionField;
+    EditText emotionalState;
+    EditText dateField;
+    EditText timeField;
+    EditText descriptionField;
+    String emotional;
+    String date;
+    String time;
+    String description;
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     Button takePhotoButton;
 
@@ -56,15 +60,19 @@ public class AddMoodEvent extends AppCompatActivity {
         });
 
         Spinner emotionSpinner = findViewById(R.id.EmotionSpinner);
-        ArrayAdapter<String> emotionAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, emoticon);
+        ArrayAdapter<String> emotionAdapter = new ArrayAdapter <>(this, android.R.layout.simple_spinner_item, emoticon);
         emotionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         emotionSpinner.setAdapter(emotionAdapter);
 
         Spinner socialSpinner = findViewById(R.id.SocialSpinner);
-        ArrayAdapter<String> socialAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, social);
+        ArrayAdapter<String> socialAdapter = new ArrayAdapter <>(this, android.R.layout.simple_spinner_item, social);
         socialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         socialSpinner.setAdapter(socialAdapter);
 
+        emotional = emotionalState.getText().toString();
+        date = dateField.getText().toString();
+        time = timeField.getText().toString();
+        description = descriptionField.getText().toString();
     }
 
     @Override

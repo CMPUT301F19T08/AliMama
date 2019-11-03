@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class EditMoodEvent extends AppCompatActivity {
-
     private ImageView addedPhoto;
     static final String happy = new String(Character.toChars(0x1F60A));
     static final String tears = new String(Character.toChars(0X1F602));
@@ -25,17 +24,17 @@ public class EditMoodEvent extends AppCompatActivity {
     static final String smirk = new String(Character.toChars(0x1F60F));
     private static final String[] emoticon = {happy, tears, heart, angry, tongue, cry, smirk};
     private static final String[] social = {"Alone", "With one other person", "With two or several people", "With a crowd"};
-    private EditText emotionalState;
-    private EditText dateField;
-    private EditText timeField;
-    private EditText descriptionField;
+    EditText emotionalState;
+    EditText dateField;
+    EditText timeField;
+    EditText descriptionField;
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     Button takePhotoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_mood);
+        setContentView(R.layout.activity_edit_mood);
 
         takePhotoButton = findViewById(R.id.take_photo_button);
         addedPhoto = findViewById(R.id.imageView);
@@ -44,16 +43,10 @@ public class EditMoodEvent extends AppCompatActivity {
         timeField = findViewById(R.id.time_field);
         descriptionField = findViewById(R.id.description_field);
 
-        takePhotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(imageTakeIntent.resolveActivity(getPackageManager())!=null){
-                    startActivityForResult(imageTakeIntent, REQUEST_IMAGE_CAPTURE);
-
-                }
-            }
-        });
+        emotionalState.setText("Temperate");
+        dateField.setText("Temperate");
+        timeField.setText("Temperate");
+        descriptionField.setText("Temperate");
 
         Spinner emotionSpinner = findViewById(R.id.EmotionSpinner);
         ArrayAdapter<String> emotionAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, emoticon);
@@ -64,6 +57,16 @@ public class EditMoodEvent extends AppCompatActivity {
         ArrayAdapter<String> socialAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, social);
         socialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         socialSpinner.setAdapter(socialAdapter);
+
+        takePhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if(imageTakeIntent.resolveActivity(getPackageManager())!=null){
+                    startActivityForResult(imageTakeIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        });
 
     }
 
