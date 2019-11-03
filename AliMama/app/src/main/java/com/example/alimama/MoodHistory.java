@@ -3,34 +3,32 @@ package com.example.alimama;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.alimama.ui.main.SectionsPagerAdapter;
-
 import java.util.ArrayList;
 
 public class MoodHistory extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     FloatingActionButton fab;
-    private static final String[] paths = {new String(Character.toChars(0x1F621)), new String(Character.toChars(0x1F61C)), new String(Character.toChars(0x1F622)), new String(Character.toChars(0x1F60A))};
+    static final String happy = new String(Character.toChars(0x1F60A));
+    static final String tears = new String(Character.toChars(0X1F602));
+    static final String heart = new String(Character.toChars(0x1F60D));
+    static final String angry = new String(Character.toChars(0x1F621));
+    static final String tongue = new String(Character.toChars(0x1F61C));
+    static final String cry = new String(Character.toChars(0x1F622));
+    static final String smirk = new String(Character.toChars(0x1F60F));
+    private static final String[] paths = {happy, tears, heart, angry, tongue, cry, smirk};
 
     private RecyclerView.Adapter mAdapter;
     private ArrayList<MoodEvent> moodEvents;
@@ -57,7 +55,7 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
         });
 
         Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item,paths);
+        ArrayAdapter<String> adapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, paths);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 

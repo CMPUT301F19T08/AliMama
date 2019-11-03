@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Add Mood"
+            android:text="Edit Mood"
             android:textSize="55dp"></TextView>
 
         <EditText
@@ -76,42 +76,36 @@
                 android:id="@+id/AddEmotionState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="280dp"
-                android:text="emotion state" />
+                android:text="emotion\nstate" />
 
             <Spinner
                 android:id="@+id/EmotionSpinner"
-                android:layout_width="233dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="275dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="280dp"
                 android:layout_marginRight="5dp"
-                android:spinnerMode="dialog" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+                android:spinnerMode="dropdown" />
 
             <TextView
                 android:id="@+id/AddSocialState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="310dp"
-                android:text="emotion state" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="280dp"
+                android:text="Social\nSituation" />
 
             <Spinner
                 android:id="@+id/SocialSpinner"
-                android:layout_width="233dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="310dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="280dp"
                 android:layout_marginRight="5dp"
-                android:spinnerMode="dialog" />
+                android:spinnerMode="dropdown" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -124,28 +118,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="35dp"
-                android:layout_marginTop="370dp"
+                android:layout_marginTop="350dp"
                 android:background="@drawable/my_button_bg"
                 android:paddingHorizontal="10sp"
+                android:text="Take a Photo"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:text="Take a Photo" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="320dp"
                 android:src="@mipmap/ic_launcher" />
         </LinearLayout>
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/Location"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="460dp"
+            android:layout_marginTop="440dp"
             android:visibility="visible"
             tools:visibility="visible" />
 
@@ -180,7 +174,7 @@
             android:layout_marginBottom="12dp"
             android:background="@drawable/my_button_bg"
             android:paddingHorizontal="10sp"
-            android:text="Add Mood"
+            android:text="Edit Mood"
             android:textAllCaps="false"
             android:textSize="30sp" />
 
