@@ -30,9 +30,6 @@ public class Mainmenu extends AppCompatActivity {
         viewMoodHistoryButton=(Button)findViewById(R.id.mood_history_button);
         viewMoodMapButton=(Button)findViewById(R.id.mood_map_button);
         viewOrAddFriendsButton=(Button)findViewById(R.id.add_view_friend_button);
-        // delete the following button before submit code
-        viewGoogleMapButton=(Button)findViewById(R.id.googlemap_button);
-
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,14 +46,6 @@ public class Mainmenu extends AppCompatActivity {
             }
         });
 
-        //delete the code below
-        viewGoogleMapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToMoodMap = new Intent(Mainmenu.this, GoogleMaps.class);
-                startActivity(goToMoodMap);
-            }
-        });
 //
 //        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
 //            @Override

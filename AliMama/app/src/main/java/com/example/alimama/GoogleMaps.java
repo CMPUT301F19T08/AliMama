@@ -65,18 +65,7 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
                    String result = addresses.get(0).getLocality()+":";
                     result += addresses.get(0).getCountryName();
                     LatLng latLng = new LatLng(latitude, longitude);
-                  /*  if (marker != null){
-                        marker.remove();
-                        marker = mMap.addMarker(new MarkerOptions().position(latLng).title(result));
-                        mMap.setMaxZoomPreference(20);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
-                    }
-                    else{
-                        marker = mMap.addMarker(new MarkerOptions().position(latLng).title(result));
-                        mMap.setMaxZoomPreference(20);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f));
-                    }
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f)); */
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f));
 
                 } catch (IOException e) {
                     e.printStackTrace();

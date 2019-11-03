@@ -50,14 +50,6 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/add_view_friend_button"/>
 
-        <Button
-            android:id="@+id/googlemap_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GoogleMap"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/logout_button"/>
-
 
     </RelativeLayout>
 

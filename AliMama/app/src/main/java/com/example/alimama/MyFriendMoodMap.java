@@ -38,7 +38,6 @@ public class MyFriendMoodMap extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Reference: https://github.com/brightgeevarghese/TrackMyLocationUpdated
     }
 
     @Override
@@ -54,11 +53,11 @@ public class MyFriendMoodMap extends Fragment {
             public void onMapReady(GoogleMap mMap) {
 
                 mMap.setIndoorEnabled(true); // Indoor Map
-        //        mMap.setMyLocationEnabled(true); // Location Sharing
+                mMap.setMyLocationEnabled(false); // Location Sharing
                 UiSettings Ui = mMap.getUiSettings();
                 Ui.setZoomControlsEnabled(true); //Zoom in zoom out event
                 Ui.setMapToolbarEnabled(false);
-         //       Ui.setMyLocationButtonEnabled(true);
+                Ui.setMyLocationButtonEnabled(false);
 
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
