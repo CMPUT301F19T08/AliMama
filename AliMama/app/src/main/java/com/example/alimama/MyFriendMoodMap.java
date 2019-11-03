@@ -3,8 +3,6 @@ package com.example.alimama;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,6 +27,7 @@ import static androidx.core.content.ContextCompat.getSystemService;
 public class MyFriendMoodMap extends Fragment {
 
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    LocationManager locationManager;
 
     public MyFriendMoodMap() {
         // Required empty public constructor
@@ -38,6 +37,7 @@ public class MyFriendMoodMap extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -48,7 +48,6 @@ public class MyFriendMoodMap extends Fragment {
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.frg);  //use SuppoprtMapFragment for using in fragment instead of activity  MapFragment = activity   SupportMapFragment = fragment
         mapFragment.getMapAsync(new OnMapReadyCallback() {
-
             @Override
             public void onMapReady(GoogleMap mMap) {
 

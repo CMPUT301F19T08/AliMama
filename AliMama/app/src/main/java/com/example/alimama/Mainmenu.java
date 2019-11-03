@@ -40,7 +40,7 @@ public class Mainmenu extends AppCompatActivity {
         viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToMoodMap = new Intent(Mainmenu.this, GoogleMaps.class);
+                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
                 startActivity(goToMoodMap);
             }
         });

@@ -56,7 +56,7 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                double latitude = location.getLatitude();
+                /* double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 //get the location name from latitude and longitude
                 Geocoder geocoder = new Geocoder(getApplicationContext());
@@ -66,7 +66,7 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
                    String result = addresses.get(0).getLocality()+":";
                     result += addresses.get(0).getCountryName();
                     LatLng latLng = new LatLng(latitude, longitude);
-                  /*  if (marker != null){
+                    if (marker != null){
                         marker.remove();
                         marker = mMap.addMarker(new MarkerOptions().position(latLng).title(result));
                         mMap.setMaxZoomPreference(20);
@@ -76,12 +76,13 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
                         marker = mMap.addMarker(new MarkerOptions().position(latLng).title(result));
                         mMap.setMaxZoomPreference(20);
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f));
-                    } */
-                   // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21.0f));
+                    }
+
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
 
             @Override
