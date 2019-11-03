@@ -15,10 +15,11 @@
     <string name="intent_key_request_code">request_code</string>
     <string name="intent_key_date">date</string>
     <string name="intent_key_time">time</string>
-    <string name="intent_key_distance">distance</string>
-    <string name="intent_key_avg_speed">avg_speed</string>
-    <string name="intent_key_avg_cadence">avg_cadence</string>
-    <string name="intent_key_comments">comments</string>
+    <string name="intent_key_emotional_state">emotional_state</string>
+    <string name="intent_key_description">description</string>
+    <string name="add_mood_btn_prompt">Add</string>
+    <string name="update_mood_btn_prompt">Update</string>
+    <string name="intent_key_item_position">item_position</string>
 
 
 </resources>

@@ -156,16 +156,15 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/add_mood"
+        android:id="@+id/add_mood_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/my_button_bg"
         android:paddingHorizontal="10sp"
         android:text="Add Mood"
         android:textAllCaps="false"
-        android:textSize="30sp" />
+        android:textSize="30sp"/>
 
 </LinearLayout>
