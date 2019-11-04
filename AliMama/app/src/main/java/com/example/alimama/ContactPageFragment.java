@@ -21,7 +21,7 @@ import com.example.alimama.adapter.ContactPageAdapter;
 
 
 
-public class ContactPageFragment extends Fragment implements FriendshipOperationFeedback {
+public class ContactPageFragment extends Fragment {
     View view;
 
     private RecyclerView recyclerView;
@@ -63,53 +63,5 @@ public class ContactPageFragment extends Fragment implements FriendshipOperation
 
     }
 
-    @Override
-    public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
 
-    }
-
-    @Override
-    public void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void acceptAFriendRequestOfAParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failAcceptAFriendRequestOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
-
-    }
-
-    @Override
-    public void failRetrieveCurrentFriendsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
-
-    }
-
-    @Override
-    public void failRetrieveAListOfParticipantsToAdd(String message) {
-
-    }
-
-    @Override
-    public void sendFriendRequestFromCurrentParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failSendFriendRequestFromCurrentParticipant(String message) {
-
-    }
 }

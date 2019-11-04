@@ -12,7 +12,10 @@ import com.example.alimama.R;
 
 import com.example.alimama.ui.main.TabPageAdapter;
 
-public class FriendPage extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -59,6 +62,65 @@ public class FriendPage extends AppCompatActivity {
                     .commitNow();
         }*/
 
+
+    }
+
+
+    @Override
+    public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
+        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+        fpf.setAdapterData(pendingFriendRequests);
+        fpf.getFriendPageAdapter().notifyDataSetChanged();
+
+
+    }
+
+    @Override
+    public void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
+
+    }
+
+    @Override
+    public void acceptAFriendRequestOfAParticipantSuccessfully() {
+        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+
+        fpf.getFriendPageAdapter().notifyDataSetChanged();
+
+
+    }
+
+    @Override
+    public void failAcceptAFriendRequestOfAParticipant(String message) {
+
+    }
+
+    @Override
+    public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
+
+    }
+
+    @Override
+    public void failRetrieveCurrentFriendsOfAParticipant(String message) {
+
+    }
+
+    @Override
+    public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
+
+    }
+
+    @Override
+    public void failRetrieveAListOfParticipantsToAdd(String message) {
+
+    }
+
+    @Override
+    public void sendFriendRequestFromCurrentParticipantSuccessfully() {
+
+    }
+
+    @Override
+    public void failSendFriendRequestFromCurrentParticipant(String message) {
 
     }
 }

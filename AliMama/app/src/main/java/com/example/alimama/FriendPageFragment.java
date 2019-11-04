@@ -22,7 +22,7 @@ import com.example.alimama.TestFriendshipOperation;
 import com.example.alimama.adapter.FriendPageAdapter;
 
 
-public class FriendPageFragment extends Fragment implements FriendshipOperationFeedback {
+public class FriendPageFragment extends Fragment {
     String userName;
     View view;
     RecyclerView recyclerView;
@@ -33,8 +33,9 @@ public class FriendPageFragment extends Fragment implements FriendshipOperationF
     private ArrayList<String> contactDataList;
 
 
-    public static final String[] contactList = {"PYTHON","JAVA","C","R","C#","SWIFT"};
+    //public static final String[] contactList = {"PYTHON","JAVA","C","R","C#","SWIFT"};
     public FriendPageFragment() {
+
     }
 
     @Nullable
@@ -43,27 +44,46 @@ public class FriendPageFragment extends Fragment implements FriendshipOperationF
         view = inflater.inflate(R.layout.view_recycler,container,false);
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
-        friendPageAdapter = new FriendPageAdapter(contactDataList);
+        this.contactDataList = new ArrayList<>();
+        friendPageAdapter = new FriendPageAdapter(contactDataList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
+        this.db = new Database();
 
         recyclerView.setAdapter(friendPageAdapter);
         acceptButton = view.findViewById(R.id.friend_accept);
-        friendPageAdapter.notifyDataSetChanged();
+
+
         return view;
     }
 
+    public void function (int position) {
+        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
+        this.contactDataList.remove(position);
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
+
+    }
+
+    public FriendPageAdapter getFriendPageAdapter() {
+        return this.friendPageAdapter;
+    }
+    public void setAdapterData(ArrayList<String> updatedData ) {
+        this.contactDataList.addAll(updatedData);
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        contactDataList = new ArrayList<>();
-        for (int i=0;i<contactList.length;i++){
-            contactDataList.add(contactList[i]);
-        }
+//        contactDataList = new ArrayList<>();
+//        for (int i=0;i<contactList.length;i++){
+//            contactDataList.add(contactList[i]);
+//        }
 
         /*acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,62 +98,5 @@ public class FriendPageFragment extends Fragment implements FriendshipOperationF
 
     }
 
-    @Override
-    public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
 
-    }
-
-    @Override
-    public void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void acceptAFriendRequestOfAParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failAcceptAFriendRequestOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
-        db = new Database();
-        db.retrieveCurrentFriendsOfAParticipant("xhou1",this);
-        contactDataList = new ArrayList<>();
-        for (String each: currentFriendsOfAParticipant){
-
-            contactDataList.add(each);
-
-        }
-
-        friendPageAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void failRetrieveCurrentFriendsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
-
-    }
-
-    @Override
-    public void failRetrieveAListOfParticipantsToAdd(String message) {
-
-    }
-
-    @Override
-    public void sendFriendRequestFromCurrentParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failSendFriendRequestFromCurrentParticipant(String message) {
-
-    }
 }
