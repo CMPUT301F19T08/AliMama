@@ -31,5 +31,10 @@
     <string name="emotional_state_required">emotional state -Required</string>
     <string name="checkbox">CheckBox</string>
     <string name="description_optional">description - optional</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="view_mood_history">View Mood History</string>
+    <string name="view_mood_history_on_map">View Mood History on Map</string>
+    <string name="view_add_friends">View/Add Friends</string>
+    <string name="log_out">Log Out</string>
 
 </resources>
