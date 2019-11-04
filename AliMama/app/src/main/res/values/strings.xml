@@ -10,4 +10,9 @@
     <string name="title_activity_friends_list">FriendsList</string>
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
+    <string name="main_menu_name">Main Menu</string>
+    <string name="main_menu_view_mood_history_btn_name">View Mood History</string>
+    <string name="main_menu_view_mood_history_on_map_btn_name">View Mood History on Map</string>
+    <string name="main_menu_view_add_friends_btn_name">View/Add Friends</string>
+    <string name="main_menu_logout_btn_name">Log Out</string>
 </resources>
