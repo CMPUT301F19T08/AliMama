@@ -18,14 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
+import com.example.alimama.FriendPageFragment;
 import com.example.alimama.R;
 
 public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
     Context context;
 
-    public FriendPageAdapter(ArrayList<String> contactDataList) {
+    FriendPageFragment fpf;
+
+    public FriendPageAdapter(ArrayList<String> contactDataList, FriendPageFragment fpf) {
         this.contactList = contactDataList;
+        this.fpf = fpf;
+
+
     }
 
 
@@ -73,10 +79,18 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
         // - replace the contents of the view with that element
         String contact = contactList.get(position);
         holder.contactName.setText(contact);
+
+
+
+        // accept setOnClickListener();
+
+
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"The position is:"+position,Toast.LENGTH_SHORT).show();
+
+
             }
         });
 

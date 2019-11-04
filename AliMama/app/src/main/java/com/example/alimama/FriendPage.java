@@ -65,8 +65,17 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     }
 
+
+
+
+
     @Override
     public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
+        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+        fpf.setAdapterData(pendingFriendRequests);
+        fpf.getFriendPageAdapter().notifyDataSetChanged();
+
+
 
     }
 
@@ -77,6 +86,13 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void acceptAFriendRequestOfAParticipantSuccessfully() {
+
+
+        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+
+        fpf.getFriendPageAdapter().notifyDataSetChanged();
+
+
 
     }
 

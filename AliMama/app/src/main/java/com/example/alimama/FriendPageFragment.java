@@ -33,8 +33,9 @@ public class FriendPageFragment extends Fragment {
     private ArrayList<String> contactDataList;
 
 
-    public static final String[] contactList = {"PYTHON","JAVA","C","R","C#","SWIFT"};
+    //public static final String[] contactList = {"PYTHON","JAVA","C","R","C#","SWIFT"};
     public FriendPageFragment() {
+
     }
 
     @Nullable
@@ -43,14 +44,16 @@ public class FriendPageFragment extends Fragment {
         view = inflater.inflate(R.layout.view_recycler,container,false);
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
-        friendPageAdapter = new FriendPageAdapter(contactDataList);
+        this.contactDataList = new ArrayList<>();
+        friendPageAdapter = new FriendPageAdapter(contactDataList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
+        this.db = new Database();
 
         recyclerView.setAdapter(friendPageAdapter);
         acceptButton = view.findViewById(R.id.friend_accept);
+
 
         return view;
     }
@@ -60,22 +63,34 @@ public class FriendPageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        contactDataList = new ArrayList<>();
-        for (int i=0;i<contactList.length;i++){
-            contactDataList.add(contactList[i]);
-        }
-
-        /*acceptButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
 
 
 
 
 
+
+
+    }
+
+
+
+    public void function (int position) {
+        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
+        this.contactDataList.remove(position);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
+
+    }
+
+    public FriendPageAdapter getFriendPageAdapter() {
+        return this.friendPageAdapter;
+    }
+    public void setAdapterData(ArrayList<String> updatedData ) {
+        this.contactDataList.addAll(updatedData);
     }
 
 
