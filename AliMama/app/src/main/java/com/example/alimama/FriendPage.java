@@ -74,9 +74,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
-        RequestPageFragment fpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
-        fpf.setAdapterData(pendingFriendRequests);
-        fpf.getRequestPageAdapter().notifyDataSetChanged();
+        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
+        rpf.setAdapterData(pendingFriendRequests);
+        rpf.getRequestPageAdapter().notifyDataSetChanged();
 
     }
 

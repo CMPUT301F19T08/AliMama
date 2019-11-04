@@ -42,12 +42,14 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         ImageView pic;
         TextView contactName;
         CardView cv;
+        Button acceptButton;
 
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
             contactName = itemView.findViewById(R.id.contact_name);
             cv = itemView.findViewById(R.id.card_view);
+            acceptButton = itemView.findViewById(R.id.friend_accept);
         }
 
 
@@ -76,12 +78,21 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        String contact = contactList.get(position);
+        final String contact = contactList.get(position);
         holder.contactName.setText(contact);
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"The position is:"+position,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rpf.acceptPending(position);
+                contactList.remove(position);
+
             }
         });
 
@@ -94,7 +105,7 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
 
-    public class ViewHolder extends  RecyclerView.ViewHolder{
+    /*public class ViewHolder extends  RecyclerView.ViewHolder{
         ImageView pic;
         TextView contactName;
         CardView cv;
@@ -110,7 +121,7 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
             accept = itemView.findViewById(R.id.friend_accept);
 
         }
-    }
+    }*/
 
 
 }
