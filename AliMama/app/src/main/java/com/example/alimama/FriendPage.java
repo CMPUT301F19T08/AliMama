@@ -29,6 +29,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
     private TabPageAdapter tabPageAdapter;
 
     private TabLayout tabLayout;
+
+    private int positionRequestpage = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +74,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
-        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+        RequestPageFragment fpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
         fpf.setAdapterData(pendingFriendRequests);
-        fpf.getFriendPageAdapter().notifyDataSetChanged();
-
-
+        fpf.getRequestPageAdapter().notifyDataSetChanged();
 
     }
 
@@ -87,10 +88,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
     @Override
     public void acceptAFriendRequestOfAParticipantSuccessfully() {
 
+        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
 
-        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
-
-        fpf.getFriendPageAdapter().notifyDataSetChanged();
+        rpf.getRequestPageAdapter().notifyDataSetChanged();
 
 
 

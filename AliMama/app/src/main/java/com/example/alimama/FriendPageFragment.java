@@ -28,7 +28,7 @@ public class FriendPageFragment extends Fragment {
     RecyclerView recyclerView;
     FriendPageAdapter friendPageAdapter;
     Database db;
-    Button acceptButton;
+    Button addButton;
 
     private ArrayList<String> contactDataList;
 
@@ -52,7 +52,7 @@ public class FriendPageFragment extends Fragment {
         this.db = new Database();
 
         recyclerView.setAdapter(friendPageAdapter);
-        acceptButton = view.findViewById(R.id.friend_accept);
+        addButton = view.findViewById(R.id.friend_add);
 
 
         return view;
@@ -74,24 +74,24 @@ public class FriendPageFragment extends Fragment {
 
 
 
-    public void function (int position) {
-        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
-        this.contactDataList.remove(position);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
-
-    }
-
-    public FriendPageAdapter getFriendPageAdapter() {
-        return this.friendPageAdapter;
-    }
-    public void setAdapterData(ArrayList<String> updatedData ) {
-        this.contactDataList.addAll(updatedData);
-    }
+//    public void function (int position) {
+//        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
+//        this.contactDataList.remove(position);
+//    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
+//
+//    }
+//
+//    public FriendPageAdapter getFriendPageAdapter() {
+//        return this.friendPageAdapter;
+//    }
+//    public void setAdapterData(ArrayList<String> updatedData ) {
+//        this.contactDataList.addAll(updatedData);
+//    }
 
 
 }

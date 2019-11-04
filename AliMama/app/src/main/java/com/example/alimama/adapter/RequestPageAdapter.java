@@ -21,13 +21,16 @@ import java.util.ArrayList;
 
 
 import com.example.alimama.R;
+import com.example.alimama.RequestPageFragment;
 
 public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
     Context context;
+    RequestPageFragment rpf;
 
-    public RequestPageAdapter(ArrayList<String> contactDataList) {
+    public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageFragment rpf) {
         this.contactList = contactDataList;
+        this.rpf = rpf;
     }
 
 
