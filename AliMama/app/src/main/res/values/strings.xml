@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">AliMama</string>
-
     <string name="participant_login_signup_username">Username</string>
     <string name="participant_login_signup_password">Password</string>
     <string name="participant_login_signup_login_btn">Log In</string>
@@ -13,20 +12,14 @@
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
 
-
     <string name="intent_key_request_code">request_code</string>
     <string name="intent_key_date">date</string>
     <string name="intent_key_time">time</string>
-    <string name="intent_key_distance">distance</string>
-    <string name="intent_key_avg_speed">avg_speed</string>
-    <string name="intent_key_avg_cadence">avg_cadence</string>
-    <string name="intent_key_comments">comments</string>
+    <string name="intent_key_emotional_state">emotional_state</string>
+    <string name="intent_key_description">description</string>
+    <string name="add_mood_btn_prompt">Add</string>
+    <string name="update_mood_btn_prompt">Update</string>
+    <string name="intent_key_item_position">item_position</string>
 
-
-
-    <string name="title_activity_contact_page">Contact List</string>
-    <string name="contact_Page">Contact Page</string>
-    <string name="friend_page">Friend Page</string>
-    <string name="request_page">Request Page</string>
 
 </resources>
