@@ -74,7 +74,41 @@ public class Mainmenu extends AppCompatActivity {
             }
         });
 
+        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToFriendPage = new Intent(Mainmenu.this, FriendPage.class);
+                startActivity(goToFriendPage);
+            }
+        });
+//
+//        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent goToFriendsList = new Intent(Mainmenu.this, FriendsList.class);
+//                startActivity(goToFriendsList);
+//            }
+//        });
 
+//        firebaseAuth = FirebaseAuth.getInstance();
+//        logoutButton=(Button)findViewById(R.id.logout_button);
+//        logoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                database.auth().signOut().then(function() {
+////                    console.log('Signed Out');
+////                };
+//
+//                firebaseAuth.signOut();
+//                finish();
+//                Intent logOut=new Intent(Mainmenu.this, ParticipantLoginSignupActivity.class);
+//                //i.putExtra("finish", true);
+//                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+//                //startActivity(i);
+//                startActivity( logOut );
+//
+//            }
+//        });
     }
 
 

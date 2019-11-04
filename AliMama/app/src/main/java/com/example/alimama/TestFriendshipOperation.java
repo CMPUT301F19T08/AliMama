@@ -29,7 +29,7 @@ public class TestFriendshipOperation implements  FriendshipOperationFeedback {
     }
 
 
-    void retrieveAListOfParticipantsToAdd(String username) {
+    public void retrieveAListOfParticipantsToAdd(String username) {
         db.retrieveAListOfParticipantsToAdd(username, this);
     }
 
