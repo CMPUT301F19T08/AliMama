@@ -20,7 +20,7 @@ import java.util.HashSet;
 import com.example.alimama.R;
 import com.example.alimama.TestFriendshipOperation;
 import com.example.alimama.adapter.FriendPageAdapter;
-import com.example.alimama.model.Contact;
+
 
 public class FriendPageFragment extends Fragment implements FriendshipOperationFeedback {
     String userName;

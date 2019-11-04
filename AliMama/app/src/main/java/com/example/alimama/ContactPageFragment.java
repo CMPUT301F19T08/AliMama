@@ -56,18 +56,7 @@ public class ContactPageFragment extends Fragment implements FriendshipOperation
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*contactDataList = new ArrayList<>();
 
-        contactDataList.add(new Contact("ALPHA"));
-        contactDataList.add(new Contact("BETA"));
-        contactDataList.add(new Contact("OMEGA"));*/
-        /*contactDataList = new ArrayList<>();
-        for(int i=0;i<contactList.length;i++){
-
-            contactDataList.add((new Contact(contactList[i])));
-
-
-        }*/
 
 
 
