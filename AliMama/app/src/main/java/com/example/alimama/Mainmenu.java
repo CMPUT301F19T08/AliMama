@@ -29,15 +29,6 @@ public class Mainmenu extends AppCompatActivity {
         viewMoodMapButton = findViewById(R.id.mood_map_button);
         viewOrAddFriendsButton = findViewById(R.id.add_view_friend_button);
         logoutButton = findViewById(R.id.logout_button);
-        Button button = findViewById(R.id.button2);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent editMood = new Intent(Mainmenu.this, EditMoodEvent.class);
-                startActivity(editMood);
-            }
-        });
 
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override

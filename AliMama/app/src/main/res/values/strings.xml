@@ -20,6 +20,16 @@
     <string name="add_mood_btn_prompt">Add</string>
     <string name="update_mood_btn_prompt">Update</string>
     <string name="intent_key_item_position">item_position</string>
-
+    <string name="add_mood">Add Mood</string>
+    <string name="date_required">date --required</string>
+    <string name="time_required">time --required</string>
+    <string name="emotion_state">emotion\nstate</string>
+    <string name="socialsituation">Social\nSituation</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="edit_mood">Edit Mood</string>
+    <string name="record_location_from_gps">Record Location from GPS</string>
+    <string name="emotional_state_required">emotional state -Required</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="description_optional">description - optional</string>
 
 </resources>
