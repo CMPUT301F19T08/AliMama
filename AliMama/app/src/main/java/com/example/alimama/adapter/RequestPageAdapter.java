@@ -15,18 +15,18 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alimama.model.Contact;
+
 import java.util.ArrayList;
 
 
 import com.example.alimama.R;
-import com.example.alimama.model.Contact;
-
 
 public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.MyViewHolder> {
-    ArrayList<Contact> contactList;
+    ArrayList<String> contactList;
     Context context;
 
-    public RequestPageAdapter(ArrayList<Contact> contactDataList) {
+    public RequestPageAdapter(ArrayList<String> contactDataList) {
         this.contactList = contactDataList;
     }
 
@@ -52,7 +52,7 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public void requestAdapter(ArrayList<Contact> contactList) {
+    public void requestAdapter(ArrayList<String> contactList) {
         this.contactList=contactList;
     }
 
@@ -73,8 +73,8 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Contact contact = contactList.get(position);
-        holder.contactName.setText(contact.getContactName());
+        String contact = contactList.get(position);
+        holder.contactName.setText(contact);
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

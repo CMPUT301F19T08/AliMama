@@ -44,6 +44,14 @@ public class Mainmenu extends AppCompatActivity {
                 startActivity(goToMoodMap);
             }
         });
+
+        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToFriendPage = new Intent(Mainmenu.this, FriendPage.class);
+                startActivity(goToFriendPage);
+            }
+        });
 //
 //        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
 //            @Override

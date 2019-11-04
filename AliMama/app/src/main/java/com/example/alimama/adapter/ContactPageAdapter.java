@@ -12,17 +12,15 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alimama.R;
 import com.example.alimama.model.Contact;
 
 import java.util.ArrayList;
 
 
-
-
+import com.example.alimama.R;
 
 public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.MyViewHolder> {
-    ArrayList<Contact> contactList;
+    ArrayList<String> contactList;
     Context context;
 
 
@@ -47,12 +45,12 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ContactPageAdapter(Context context,ArrayList<Contact> contactDataList) {
+    public ContactPageAdapter(Context context,ArrayList<String> contactDataList) {
         this.context = context;
         this.contactList = contactDataList;
     }
 
-    public ContactPageAdapter(ArrayList<Contact> contactDataList) {
+    public ContactPageAdapter(ArrayList<String> contactDataList) {
         this.contactList = contactDataList;
     }
     // Create new views (invoked by the layout manager)
@@ -72,8 +70,8 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Contact contact = contactList.get(position);
-        holder.contactName.setText(contact.getContactName());
+        String contact = contactList.get(position);
+        holder.contactName.setText(contact);
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +84,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
+        contactList = new ArrayList<>();
         return contactList.size();
     }
 

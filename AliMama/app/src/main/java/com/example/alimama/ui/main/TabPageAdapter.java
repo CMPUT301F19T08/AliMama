@@ -1,4 +1,5 @@
 package com.example.alimama.ui.main;
+
 import android.content.Context;
 
 import androidx.annotation.Nullable;
@@ -7,13 +8,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
-import com.example.alimama.R;
-
 import java.util.ArrayList;
 
 
-
-
+import com.example.alimama.R;
 
 
 public class TabPageAdapter extends FragmentPagerAdapter {

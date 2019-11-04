@@ -1,4 +1,5 @@
 package com.example.alimama.adapter;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,18 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alimama.model.Contact;
+
 import java.util.ArrayList;
 
 
 import com.example.alimama.R;
-import com.example.alimama.model.Contact;
-
 
 public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.MyViewHolder> {
-    ArrayList<Contact> contactList;
+    ArrayList<String> contactList;
     Context context;
 
-    public FriendPageAdapter(ArrayList<Contact> contactDataList) {
+    public FriendPageAdapter(ArrayList<String> contactDataList) {
         this.contactList = contactDataList;
     }
 
@@ -49,7 +50,7 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public void friendAdapter(ArrayList<Contact> contactList) {
+    public void friendAdapter(ArrayList<String> contactList) {
         this.contactList=contactList;
     }
 
@@ -70,8 +71,8 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Contact contact = contactList.get(position);
-        holder.contactName.setText(contact.getContactName());
+        String contact = contactList.get(position);
+        holder.contactName.setText("test1");
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
