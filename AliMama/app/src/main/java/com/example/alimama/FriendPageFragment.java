@@ -22,7 +22,7 @@ import com.example.alimama.TestFriendshipOperation;
 import com.example.alimama.adapter.FriendPageAdapter;
 
 
-public class FriendPageFragment extends Fragment implements FriendshipOperationFeedback {
+public class FriendPageFragment extends Fragment {
     String userName;
     View view;
     RecyclerView recyclerView;
@@ -51,7 +51,7 @@ public class FriendPageFragment extends Fragment implements FriendshipOperationF
 
         recyclerView.setAdapter(friendPageAdapter);
         acceptButton = view.findViewById(R.id.friend_accept);
-        friendPageAdapter.notifyDataSetChanged();
+
         return view;
     }
 
@@ -78,62 +78,5 @@ public class FriendPageFragment extends Fragment implements FriendshipOperationF
 
     }
 
-    @Override
-    public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
 
-    }
-
-    @Override
-    public void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void acceptAFriendRequestOfAParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failAcceptAFriendRequestOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
-        db = new Database();
-        db.retrieveCurrentFriendsOfAParticipant("xhou1",this);
-        contactDataList = new ArrayList<>();
-        for (String each: currentFriendsOfAParticipant){
-
-            contactDataList.add(each);
-
-        }
-
-        friendPageAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void failRetrieveCurrentFriendsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
-
-    }
-
-    @Override
-    public void failRetrieveAListOfParticipantsToAdd(String message) {
-
-    }
-
-    @Override
-    public void sendFriendRequestFromCurrentParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failSendFriendRequestFromCurrentParticipant(String message) {
-
-    }
 }

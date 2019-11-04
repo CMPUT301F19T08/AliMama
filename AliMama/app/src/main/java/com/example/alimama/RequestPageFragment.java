@@ -24,7 +24,7 @@ import java.util.HashSet;
 import com.example.alimama.R;
 
 
-public class RequestPageFragment extends Fragment implements FriendshipOperationFeedback{
+public class RequestPageFragment extends Fragment {
     private Database db;
     FriendshipOperationFeedback friendshipOperationFeedback;
 
@@ -76,69 +76,9 @@ public class RequestPageFragment extends Fragment implements FriendshipOperation
 
     /*functionality*/
     /*receive all pending*/
-    public void retrieveAListOfParticipantsToAdd(String username) {
-        db.retrieveAListOfParticipantsToAdd(username, this);
-    }
 
 
 
 
-    @Override
-    public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
-        Log.d("IDA", "retrieveAllPendingFriendRequestsOfAParticipantSuccessfully");
 
-        /*contactDataList = new ArrayList<>();
-        for (String each: pendingFriendRequests) {
-            System.out.println(each);
-            retrieveAListOfParticipantsToAdd(each);
-            contactDataList.add(new Contact(each));
-        }*/
-
-    }
-
-
-    @Override
-    public void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void acceptAFriendRequestOfAParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failAcceptAFriendRequestOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
-
-    }
-
-    @Override
-    public void failRetrieveCurrentFriendsOfAParticipant(String message) {
-
-    }
-
-    @Override
-    public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
-
-    }
-
-    @Override
-    public void failRetrieveAListOfParticipantsToAdd(String message) {
-
-    }
-
-    @Override
-    public void sendFriendRequestFromCurrentParticipantSuccessfully() {
-
-    }
-
-    @Override
-    public void failSendFriendRequestFromCurrentParticipant(String message) {
-
-    }
 }

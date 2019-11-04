@@ -72,7 +72,7 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         String contact = contactList.get(position);
-        holder.contactName.setText("test1");
+        holder.contactName.setText(contact);
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
