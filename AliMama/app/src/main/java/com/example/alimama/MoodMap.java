@@ -37,8 +37,6 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
     private Database db = new Database();
     private static final int REQUEST_LOCATION_PERMISSION = 1;
 
-    static final String happy 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
