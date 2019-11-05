@@ -37,4 +37,7 @@
     <string name="view_add_friends">View/Add Friends</string>
     <string name="log_out">Log Out</string>
 
+    <string name="distance_prompt"></string>
+    <string name="date_prompt"></string>
+
 </resources>
