@@ -3,54 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
+    android:background="#00594b"
     android:layout_height="match_parent">
 
-
-    <Button
-        android:id="@+id/mood_map_friend_map_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="8dp"
-        android:text="@string/mood_map_friend_map_btn_name"
-        app:layout_constraintEnd_toStartOf="@+id/mood_map_my_map_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mood_map_title" />
 
     <Button
         android:id="@+id/mood_map_my_map_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
-
-        android:layout_marginEnd="8dp"
-        android:text="@string/mood_map_my_map_btn_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mood_map_friend_map_btn"
-        app:layout_constraintTop_toBottomOf="@+id/mood_map_title" />
-
-    <TextView
-        android:id="@+id/mood_map_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/mood_map_name_string"
-        android:textAlignment="center"
-        android:textSize="55sp"
-        app:layout_constraintBottom_toTopOf="@+id/mood_map_friend_map_btn"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#008577"
+        android:textColor="#ffffff"
+        android:text="@string/mood_map_my_map_btn_name"
+        app:layout_constraintEnd_toStartOf="@+id/mood_map_friend_map_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="4dp" />
+
+    <Button
+        android:id="@+id/mood_map_friend_map_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#008577"
+        android:textColor="#ffffff"
+        android:text="@string/mood_map_friend_map_btn_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mood_map_my_map_btn"
+        tools:layout_editor_absoluteY="4dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="146dp" />
+        app:layout_constraintGuide_begin="52dp" />
 
     <fragment
         android:id="@+id/mood_map_map_fragment"
@@ -59,6 +45,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
