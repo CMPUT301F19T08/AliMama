@@ -13,12 +13,15 @@ public class Mainmenu extends AppCompatActivity {
     Button viewMoodHistoryButton;
     Button viewMoodMapButton;
     Button viewOrAddFriendsButton;
+    // delete the following button before submit code
+    Button viewGoogleMapButton;
     Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
+
 
         viewMoodHistoryButton = findViewById(R.id.main_menu_mood_history_button);
         viewMoodMapButton = findViewById(R.id.main_menu_mood_map_button);
@@ -32,6 +35,7 @@ public class Mainmenu extends AppCompatActivity {
                 finish();
             }
         });
+
 
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override

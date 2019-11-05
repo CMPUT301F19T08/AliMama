@@ -19,30 +19,25 @@ import android.view.View;
 
 import com.example.alimama.MoodMapUI.SectionsPagerAdapter;
 
-public class MoodMap extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MoodMap extends AppCompatActivity implements MapViewFeedback{
 
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     // tab event
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_map);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        // Reference: https://github.com/brightgeevarghese/TrackMyLocationUpdated
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]
-                            {Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_LOCATION_PERMISSION);
-        }
 
+        FloatingActionButton fab = findViewById(R.id.fab);
 
        /* fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +46,29 @@ public class MoodMap extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         }); */
+    }
+
+    @Override
+    public void retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventsWithLocation) {
+
+    }
+
+    @Override
+    public void failRetrieveAllLocatedMoodEventsOfAParticipant(String message) {
+
+    }
+
+    @Override
+    public void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
+        MyFriendMoodMap myFriendMoodMap = (MyFriendMoodMap) this.sectionsPagerAdapter.getItem(1);
+        myFriendMoodMap.setMapData(mostRecentMoodEventsOfFriendsOfAParticipantWithLocation);
+
+
+
+    }
+
+    @Override
+    public void failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(String message) {
+
     }
 }
