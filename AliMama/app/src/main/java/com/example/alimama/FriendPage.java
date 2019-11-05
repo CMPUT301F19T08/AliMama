@@ -30,6 +30,8 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     private TabLayout tabLayout;
 
+    private int positionContactpage =0;
+    private int positionFriendpage = 1;
     private int positionRequestpage = 2;
 
     @Override

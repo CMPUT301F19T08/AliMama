@@ -92,8 +92,9 @@ public class RequestPageFragment extends Fragment {
 
     /*accept button pass the position to the main page and delete*/
     public void acceptPending (int position) {
-
-        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
+        String friendToAdd = this.contactDataList.get(position);
         this.contactDataList.remove(position);
+        db.acceptAFriendRequestOfAParticipant(friendToAdd, "xhou2", (FriendPage) getContext());
+
     }
 }
