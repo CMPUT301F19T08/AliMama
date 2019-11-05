@@ -1,105 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listitem_layout"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/Edit"-->
-<!--        android:contentDescription="Mood"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:background="#4CAF50"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/listitem_distance_value"-->
-<!--        app:srcCompat="@android:drawable/ic_menu_edit" />-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="119dp">
 
-<!--    <ImageButton-->
+    </androidx.cardview.widget.CardView>
 
-<!--        android:id="@+id/Delete"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:background="#E91E63"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/listitem_edit_ride_btn"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/listitem_edit_ride_btn"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/listitem_distance_value"-->
-<!--        app:srcCompat="@android:drawable/ic_menu_delete"-->
-<!--        android:contentDescription="@string/list_ite_delete_ride_btn_description" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-<!--    <TextView-->
-<!--        android:id="@+id/Time"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:text="@string/time_prompt"-->
-<!--        app:layout_constraintBaseline_toBaselineOf="@+id/listitem_time_value"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/listitem_time_value"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+        <ImageButton
 
-<!--    <TextView-->
-<!--        android:id="@+id/listitem_time_value"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
+            android:id="@+id/Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#E91E63"
+            app:layout_constraintTop_toBottomOf="@+id/listitem_distance_value"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
 
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/listitem_time_prompt"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/listitem_date_value" />-->
+        <TextView
+            android:id="@+id/Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="right"
+            android:text="time_prompt" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/listitem_distance_value"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
+        <ImageButton
+            android:id="@+id/Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#4CAF50"
+            android:contentDescription="Mood"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
 
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/listitem_distance_prompt"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/listitem_time_value" />-->
+        <TextView
+            android:id="@+id/listitem_time_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-<!--    <TextView-->
-<!--        android:id="@+id/listitem_distance_prompt"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:text="@string/distance_prompt"-->
-<!--        app:layout_constraintBaseline_toBaselineOf="@+id/listitem_distance_value"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/listitem_distance_value"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/listitem_time_prompt"
+            app:layout_constraintTop_toBottomOf="@+id/listitem_date_value" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/listitem_date_value"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
+        <TextView
+            android:id="@+id/listitem_distance_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/listitem_date_prompt"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/listitem_distance_prompt"
+            app:layout_constraintTop_toBottomOf="@+id/listitem_time_value" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/listitem_date_prompt"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:text="@string/date_prompt"-->
-<!--        app:layout_constraintBaseline_toBaselineOf="@+id/listitem_date_value"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/listitem_date_value"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/listitem_distance_prompt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/distance_prompt"
+            app:layout_constraintBaseline_toBaselineOf="@+id/listitem_distance_value"
+            app:layout_constraintEnd_toStartOf="@+id/listitem_distance_value"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/listitem_date_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/listitem_date_prompt"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/listitem_date_prompt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/date_prompt"
+            app:layout_constraintBaseline_toBaselineOf="@+id/listitem_date_value"
+            app:layout_constraintEnd_toStartOf="@+id/listitem_date_value"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+</LinearLayout>
