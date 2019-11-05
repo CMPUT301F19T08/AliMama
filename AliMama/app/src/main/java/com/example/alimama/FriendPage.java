@@ -18,9 +18,6 @@ import java.util.HashSet;
 public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback {
 
     private TabPageAdapter tabPageAdapter;
-
-    private int positionRequestpage = 2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,20 +36,6 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
-
-
-
-
-
-         /*if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow();
-        }*/
-
-
     }
 
 
@@ -75,7 +58,7 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
     @Override
     public void acceptAFriendRequestOfAParticipantSuccessfully() {
 
-        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
+        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(2);
 
         rpf.getRequestPageAdapter().notifyDataSetChanged();
 
@@ -103,6 +86,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
+        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+        fpf.setAdapterData(existingParticipants);
+        fpf.getFriendPageAdapter().notifyDataSetChanged();
 
     }
 

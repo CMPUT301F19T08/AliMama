@@ -23,17 +23,14 @@ import com.example.alimama.adapter.FriendPageAdapter;
 
 
 public class FriendPageFragment extends Fragment implements ClickDelegate {
-    String userName;
-    View view;
-    RecyclerView recyclerView;
-    FriendPageAdapter friendPageAdapter;
-    Database db;
-    Button addButton;
+    private String userName;
+    private View view;
+    private RecyclerView recyclerView;
+    private FriendPageAdapter friendPageAdapter;
+    private Database db;
+
 
     private ArrayList<String> contactDataList;
-
-
-    //public static final String[] contactList = {"PYTHON","JAVA","C","R","C#","SWIFT"};
     public FriendPageFragment() {
 
     }
@@ -50,10 +47,6 @@ public class FriendPageFragment extends Fragment implements ClickDelegate {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         this.db = new Database();
-
-
-        addButton = view.findViewById(R.id.friend_add);
-
         this.userName = "xhou2";
         return view;
     }
@@ -71,41 +64,35 @@ public class FriendPageFragment extends Fragment implements ClickDelegate {
 
 
     }
-
-
-
-//    public void function (int position) {
-//        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
-//        this.contactDataList.remove(position);
-//    }
-//
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         FriendPage friendPage = (FriendPage) getContext();
         friendPageAdapter = new FriendPageAdapter(contactDataList, this );
         recyclerView.setAdapter(friendPageAdapter);
-        db.retrievePendingFriendRequestOfAParticipant(this.userName,friendPage);
+        db.retrieveAListOfParticipantsToAdd(this.userName, friendPage);
 
     }
 
-    public FriendPageAdapter getFriendPageAdapter() {
+    FriendPageAdapter getFriendPageAdapter() {
         return this.friendPageAdapter;
     }
-    public void setAdapterData(ArrayList<String> updatedData ) {
+    void setAdapterData(HashSet<String> updatedData) {
+        this.contactDataList.clear();
         this.contactDataList.addAll(updatedData);
     }
 
 
     @Override
     public void onFriendAddButtonClick(int position) {
-        String frindToAdd = contactDataList.get(position);
+        String friendToAdd = contactDataList.get(position);
         contactDataList.remove(position);
-        this.db.sendFriendRequestFromCurrentParticipant(this.userName, frindToAdd,(FriendPage) getContext() );
+        System.out.println(friendToAdd);
+        this.db.sendFriendRequestFromCurrentParticipant(this.userName, friendToAdd,(FriendPage) getContext());
 
     }
 
-    public RecyclerView.Adapter getContactPageAdapter() {
+    RecyclerView.Adapter getContactPageAdapter() {
         return this.friendPageAdapter;
     }
 }

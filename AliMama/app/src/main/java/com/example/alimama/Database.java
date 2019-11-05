@@ -487,6 +487,7 @@ class Database {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if (task.isSuccessful()) {
+
                             fof.sendFriendRequestFromCurrentParticipantSuccessfully();
                         }
                         else {
