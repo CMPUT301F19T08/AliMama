@@ -26,20 +26,22 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
     private int positionFriendpage = 1;
     private int positionRequestpage = 2;
 
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tmp_tab_view);
+        username  = getIntent().getStringExtra("USERNAME");
 
         tabPageAdapter = new TabPageAdapter(this,getSupportFragmentManager());
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         /*Fragments*/
 
-        tabPageAdapter.addFragment(new ContactPageFragment(),"Contact Page");
-        tabPageAdapter.addFragment(new FriendPageFragment(),"Friend Page");
-        tabPageAdapter.addFragment(new RequestPageFragment(),"Request Page");
+        tabPageAdapter.addFragment(new ContactPageFragment(username ),"Contact Page");
+        tabPageAdapter.addFragment(new FriendPageFragment(username ),"Friend Page");
+        tabPageAdapter.addFragment(new RequestPageFragment(username ),"Request Page");
 
         viewPager.setAdapter(tabPageAdapter);
 

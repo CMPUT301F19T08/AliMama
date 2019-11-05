@@ -18,18 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-import com.example.alimama.ClickDelegate;
+
+import com.example.alimama.FriendPageClickDelegate;
 import com.example.alimama.FriendPageFragment;
 import com.example.alimama.R;
 
 public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
     Context context;
-    ClickDelegate mClickDelegate;
+    FriendPageClickDelegate mClickDelegate;
 
 
 
-    public FriendPageAdapter(ArrayList<String> contactDataList, ClickDelegate clickDelegate) {
+    public FriendPageAdapter(ArrayList<String> contactDataList, FriendPageClickDelegate clickDelegate) {
         this.contactList = contactDataList;
         this.mClickDelegate = clickDelegate;
 

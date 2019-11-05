@@ -34,7 +34,8 @@ public class ContactPageFragment extends Fragment {
 
 
 
-    public ContactPageFragment() {
+    public ContactPageFragment(String currParticipant) {
+        this.currParticipant = currParticipant;
     }
 
 
@@ -53,7 +54,7 @@ public class ContactPageFragment extends Fragment {
         recyclerView.setAdapter(contactPageAdapter);
         this.db = new Database();
         // hardcode for now will connect to main menu later
-        this.currParticipant = "xhou9";
+
 
 
         return view;
@@ -64,7 +65,7 @@ public class ContactPageFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         FriendPage friendPage = (FriendPage)getContext();
-        this.db.retrieveCurrentFriendsOfAParticipant(this.currParticipant, friendPage);
+
         this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPage);
 
 

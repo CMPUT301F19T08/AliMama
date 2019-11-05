@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import com.example.alimama.R;
 
 public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.MyViewHolder> {
-    ArrayList<String> contactList;
-    Context context;
+    private ArrayList<String> contactList;
+    private Context context;
 
 
     // Provide a reference to the views for each data item
@@ -72,12 +72,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
         // - replace the contents of the view with that element
         String contact = contactList.get(position);
         holder.contactName.setText(contact);
-        holder.cv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"The position is:"+position,Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
 

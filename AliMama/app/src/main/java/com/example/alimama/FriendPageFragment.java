@@ -22,16 +22,18 @@ import com.example.alimama.TestFriendshipOperation;
 import com.example.alimama.adapter.FriendPageAdapter;
 
 
-public class FriendPageFragment extends Fragment implements ClickDelegate {
-    private String userName;
+public class FriendPageFragment extends Fragment implements FriendPageClickDelegate {
+
     private View view;
     private RecyclerView recyclerView;
     private FriendPageAdapter friendPageAdapter;
     private Database db;
+    private String currParticipant;
 
 
     private ArrayList<String> contactDataList;
-    public FriendPageFragment() {
+    public FriendPageFragment(String currParticipant) {
+        this.currParticipant = currParticipant;
 
     }
 
@@ -47,7 +49,7 @@ public class FriendPageFragment extends Fragment implements ClickDelegate {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         this.db = new Database();
-        this.userName = "xhou2";
+
         return view;
     }
 
@@ -70,7 +72,7 @@ public class FriendPageFragment extends Fragment implements ClickDelegate {
         FriendPage friendPage = (FriendPage) getContext();
         friendPageAdapter = new FriendPageAdapter(contactDataList, this );
         recyclerView.setAdapter(friendPageAdapter);
-        db.retrieveAListOfParticipantsToAdd(this.userName, friendPage);
+        db.retrieveAListOfParticipantsToAdd(this.currParticipant, friendPage);
 
     }
 
@@ -88,7 +90,7 @@ public class FriendPageFragment extends Fragment implements ClickDelegate {
         String friendToAdd = contactDataList.get(position);
         contactDataList.remove(position);
         System.out.println(friendToAdd);
-        this.db.sendFriendRequestFromCurrentParticipant(this.userName, friendToAdd,(FriendPage) getContext());
+        this.db.sendFriendRequestFromCurrentParticipant(this.currParticipant, friendToAdd,(FriendPage) getContext());
 
     }
 

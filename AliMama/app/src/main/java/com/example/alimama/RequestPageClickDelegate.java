@@ -1,4 +1,6 @@
 package com.example.alimama;
 
-interface RequestPageClickDelegate {
+public interface RequestPageClickDelegate {
+
+    void onAcceptButtonClick(int position);
 }

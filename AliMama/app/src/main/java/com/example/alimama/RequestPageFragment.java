@@ -26,7 +26,7 @@ import java.util.HashSet;
 import com.example.alimama.R;
 
 
-public class RequestPageFragment extends Fragment {
+public class RequestPageFragment extends Fragment implements RequestPageClickDelegate{
     private Database db;
     FriendshipOperationFeedback friendshipOperationFeedback;
 
@@ -36,10 +36,10 @@ public class RequestPageFragment extends Fragment {
     RequestPageAdapter requestPageAdapter;
 
 
+    private String currParticipant;
     private ArrayList<String> contactDataList;
-
-    public static final String[] contactList = {"UBUNTU","UNIX","MACOS","WINDOWS","ANDROID","LINUX","DOS"};
-    public RequestPageFragment() {
+    public RequestPageFragment(String currParticipant) {
+        this.currParticipant = currParticipant;
 
     }
 
@@ -80,7 +80,7 @@ public class RequestPageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       db.retrievePendingFriendRequestOfAParticipant("xhou9", (FriendPage) getContext());
+       db.retrievePendingFriendRequestOfAParticipant(this.currParticipant, (FriendPage) getContext());
 
     }
 
@@ -94,11 +94,14 @@ public class RequestPageFragment extends Fragment {
     }
 
 
-    /*accept button pass the position to the main page and delete*/
-    public void acceptPending (int position) {
+
+
+    @Override
+    public void onAcceptButtonClick(int position) {
         String friendToAdd = this.contactDataList.get(position);
         this.contactDataList.remove(position);
-        db.acceptAFriendRequestOfAParticipant(friendToAdd, "xhou9", (FriendPage) getContext());
+        db.acceptAFriendRequestOfAParticipant(friendToAdd, this.currParticipant, (FriendPage) getContext());
+
 
     }
 }
