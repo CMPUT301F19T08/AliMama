@@ -21,4 +21,7 @@
     <string name="contact_Page">Contact Page</string>
     <string name="friend_page">Friend Page</string>
     <string name="request_page">Request Page</string>
+    <string name="mood_map_name_string">Mood Map</string>
+    <string name="mood_map_friend_map_btn_name">friendMoodMap</string>
+    <string name="mood_map_my_map_btn_name">myMoodMap</string>
 </resources>
