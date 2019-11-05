@@ -21,12 +21,14 @@ import java.util.ArrayList;
 
 
 import com.example.alimama.R;
+
+import com.example.alimama.RequestPageClickDelegate;
 import com.example.alimama.RequestPageFragment;
 
 public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
     Context context;
-    RequestPageFragment rpf;
+    RequestPageClickDelegate rpc;
 
 
     // Provide a reference to the views for each data item
@@ -52,9 +54,9 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageFragment rpf) {
+    public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageClickDelegate rpc) {
         this.contactList = contactDataList;
-        this.rpf = rpf;
+        this.rpc = rpc;
     }
 
 
@@ -88,8 +90,9 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"The button position is:"+position,Toast.LENGTH_SHORT).show();
-                rpf.acceptPending(position);
-                rpf.getRequestPageAdapter().notifyDataSetChanged();
+                rpc.onAcceptButtonClick(position);
+
+
 
 
 

@@ -30,76 +30,15 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
-    // examples of using Database MapView API
-    private void testMapViewOperation() {
-        TestMapViewOperation test = new TestMapViewOperation();
-        test.retrieveAllLocatedMoodEventsOfAParticipant("xhou1");
-        test.retrieveAllLocatedMoodEventsOfFriendsOfAParticipant("xhou1");
-    }
-    // examples of using Database Friendship Operation API
-    private void  testFriendshipOperation() {
-        TestFriendshipOperation test = new TestFriendshipOperation();
-        test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou3", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou4", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou6", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou7", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou3");
-        test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou4");
-        test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou5");
-        test.sendFriendRequestFromCurrentParticipant("xhou7", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou8", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou5", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou6", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou7", "xhou2");
-        test.sendFriendRequestFromCurrentParticipant("xhou12", "xhou3");
-
-
-
-        test.acceptAFriendRequestOfAParticipant("xhou1", "xhou2");
-        test.acceptAFriendRequestOfAParticipant("xhou1", "xhou3");
-        test.acceptAFriendRequestOfAParticipant("xhou1", "xhou4");
-
-        //test.retrieveAListOfParticipantsToAdd("xhou1");
-        //test.retrieveAListOfParticipantsToAdd("xhou1");
-
-    }
-
-    // example of using Database MoodEventManipulation API
-    private void testMoodEventManipulation() {
-        TestMoodEventManipulation test = new TestMoodEventManipulation();
-        test.registerMoodEventRealTimeListener("xhou1");
-        MoodEvent m1 = new MoodEvent("xhou1", "sad", "alone", "I cant finish my assignment");
-        MoodEvent m2 = new MoodEvent("xhou2", "cry", "alone", "I cant finish my assignment");
-        MoodEvent m3 = new MoodEvent("xhou3", "happy", "alone", "I cant finish my assignment");
-        MoodEvent m4 = new MoodEvent("xhou4", "I am to be deleted", "alone", "I cant finish my assignment");
-        MoodEvent m5 = new MoodEvent("xhou1", "salty", "alone", "I cant finish my assignment");
-        MoodEvent m6 = new MoodEvent("xhou2", "excited", "alone", "I cant finish my assignment");
-        MoodEvent m7 = new MoodEvent("xhou3", "angry", "alone", "I cant finish my assignment");
-        MoodEvent m8 = new MoodEvent("xhou4", "painful", "alone", "I cant finish my assignment");
-        test.addMood(m1);
-        test.addMood(m2);
-        test.addMood(m3);
-        test.addMood(m4);
-        test.addMood(m5);
-        test.addMood(m6);
-        test.addMood(m7);
-        test.addMood(m8);
-
-        //test.retrieveAllMoodGivenUser("xhou1");
-        //test.retrieveMostRecentMoodEventOfFriends("xhou1");
-
-    }
-
     private void verifyNewParticipantCredential() {
         String username = mUsername.getEditText().getText().toString();
         String password = mPassword.getEditText().getText().toString();
-        if (username == null || username.trim().length() == 0) {
+        if (username.trim().length() == 0) {
             mUsername.setError("Username can not be empty");
             return;
         }
         mUsername.setError(null);
-        if (password == null || password.trim().length() == 0) {
+        if (password.trim().length() == 0) {
             mPassword.setError("Password can not be empty");
             return;
         }
@@ -112,12 +51,12 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
     private void verifyExistingParticipantCredential() {
         String username = mUsername.getEditText().getText().toString();
         String password = mPassword.getEditText().getText().toString();
-        if (username == null || username.trim().length() == 0) {
+        if (username.trim().length() == 0) {
             mUsername.setError("The Username and Password you entered do not match");
             return;
         }
         mUsername.setError(null);
-        if (password == null || password.trim().length() == 0) {
+        if (password.trim().length() == 0) {
             mPassword.setError("The Username and Password you entered do not match");
             return;
         }
@@ -163,6 +102,12 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+    private void startMainMenuScreen() {
+        Intent goToHomeScreen = new Intent(ParticipantLoginSignupActivity.this, Mainmenu.class);
+        goToHomeScreen.putExtra("USERNAME", mUsername.getEditText().getText().toString().trim());
+        startActivity(goToHomeScreen);
+
+    }
     @Override
     public void usernameExist() {
         mUsername.setError("Username already exist, please try another Username");
@@ -182,12 +127,10 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
     @Override
     public void existingParticipantLoginSuccessfully() {
         // should switch to Home Screen
-        testFriendshipOperation();
         mPassword.setError(null);
         mUsername.setError(null);
-        Toast.makeText(this, "Participant log in Successfully", Toast.LENGTH_SHORT).show();
-        Intent goToHomeScreen = new Intent(ParticipantLoginSignupActivity.this, Mainmenu.class);
-        startActivity(goToHomeScreen);
+        startMainMenuScreen();
+
 
     }
 
@@ -207,7 +150,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     @Override
     public void newParticipantSignupError(String message) {
-        // should switch to Home Screen
+
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
 
@@ -218,8 +161,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
         mPassword.setError(null);
         mUsername.setError(null);
-        // should switch to Home Screen
-        Toast.makeText(this, "Participant Sign up Successfully", Toast.LENGTH_SHORT).show();
+        startMainMenuScreen();
 
 
     }
