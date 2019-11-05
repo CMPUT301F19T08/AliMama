@@ -34,6 +34,7 @@
             android:name=".MoodMap"
             android:label="@string/title_activity_mood_map"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".ParticipantLoginSignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
