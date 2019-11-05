@@ -28,11 +28,6 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     Context context;
     RequestPageFragment rpf;
 
-    public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageFragment rpf) {
-        this.contactList = contactDataList;
-        this.rpf = rpf;
-    }
-
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -42,12 +37,14 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         ImageView pic;
         TextView contactName;
         CardView cv;
+        Button acceptButton;
 
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
             contactName = itemView.findViewById(R.id.contact_name);
             cv = itemView.findViewById(R.id.card_view);
+            acceptButton = itemView.findViewById(R.id.friend_accept);
         }
 
 
@@ -55,9 +52,11 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public void requestAdapter(ArrayList<String> contactList) {
-        this.contactList=contactList;
+    public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageFragment rpf) {
+        this.contactList = contactDataList;
+        this.rpf = rpf;
     }
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -76,12 +75,24 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        String contact = contactList.get(position);
+        final String contact = contactList.get(position);
         holder.contactName.setText(contact);
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"The position is:"+position,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context,"The button position is:"+position,Toast.LENGTH_SHORT).show();
+                rpf.acceptPending(position);
+                rpf.getRequestPageAdapter().notifyDataSetChanged();
+
+
+
             }
         });
 
@@ -94,23 +105,6 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
 
-    public class ViewHolder extends  RecyclerView.ViewHolder{
-        ImageView pic;
-        TextView contactName;
-        CardView cv;
-        Button accept;
-
-
-
-        public ViewHolder(View itemView){
-            super(itemView);
-            pic = itemView.findViewById(R.id.imageV);
-            contactName = itemView.findViewById(R.id.contact_name);
-            cv = itemView.findViewById(R.id.card_view);
-            accept = itemView.findViewById(R.id.friend_accept);
-
-        }
-    }
 
 
 }

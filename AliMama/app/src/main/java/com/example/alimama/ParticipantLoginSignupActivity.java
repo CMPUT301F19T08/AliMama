@@ -47,6 +47,14 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
         test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou3");
         test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou4");
         test.sendFriendRequestFromCurrentParticipant("xhou1", "xhou5");
+        test.sendFriendRequestFromCurrentParticipant("xhou7", "xhou2");
+        test.sendFriendRequestFromCurrentParticipant("xhou8", "xhou2");
+        test.sendFriendRequestFromCurrentParticipant("xhou5", "xhou2");
+        test.sendFriendRequestFromCurrentParticipant("xhou6", "xhou2");
+        test.sendFriendRequestFromCurrentParticipant("xhou7", "xhou2");
+        test.sendFriendRequestFromCurrentParticipant("xhou12", "xhou3");
+
+
 
         test.acceptAFriendRequestOfAParticipant("xhou1", "xhou2");
         test.acceptAFriendRequestOfAParticipant("xhou1", "xhou3");
@@ -174,6 +182,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
     @Override
     public void existingParticipantLoginSuccessfully() {
         // should switch to Home Screen
+        testFriendshipOperation();
         mPassword.setError(null);
         mUsername.setError(null);
         Toast.makeText(this, "Participant log in Successfully", Toast.LENGTH_SHORT).show();

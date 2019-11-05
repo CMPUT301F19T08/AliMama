@@ -93,9 +93,12 @@ public class RequestPageFragment extends Fragment {
         this.contactDataList.addAll(updatedData);
     }
 
-//    /*accept button pass the position to the main page and delete*/
-//    public void function (int position) {
-//        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
-//        //this.contactDataList.remove(position);
-//    }
+
+    /*accept button pass the position to the main page and delete*/
+    public void acceptPending (int position) {
+        String friendToAdd = this.contactDataList.get(position);
+        this.contactDataList.remove(position);
+        db.acceptAFriendRequestOfAParticipant(friendToAdd, "xhou2", (FriendPage) getContext());
+
+    }
 }

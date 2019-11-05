@@ -18,6 +18,15 @@ import java.util.HashSet;
 public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback {
 
     private TabPageAdapter tabPageAdapter;
+
+
+    private TabLayout tabLayout;
+
+    private int positionContactpage =0;
+    private int positionFriendpage = 1;
+    private int positionRequestpage = 2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +53,11 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
-//        RequestPageFragment fpf = (RequestPageFragment) this.tabPageAdapter.getItem(2);
-//        fpf.setAdapterData(pendingFriendRequests);
-//        fpf.getRequestPageAdapter().notifyDataSetChanged();
+
+        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
+        rpf.setAdapterData(pendingFriendRequests);
+        rpf.getRequestPageAdapter().notifyDataSetChanged();
+
 
     }
 
