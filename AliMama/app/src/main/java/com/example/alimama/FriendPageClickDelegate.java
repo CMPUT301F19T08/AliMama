@@ -1,5 +1,5 @@
 package com.example.alimama;
 
-public interface ClickDelegate {
+public interface FriendPageClickDelegate {
     void onFriendAddButtonClick(int position);
 }
