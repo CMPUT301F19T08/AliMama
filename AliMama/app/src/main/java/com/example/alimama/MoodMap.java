@@ -71,13 +71,13 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
             }
         });
         // LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this,
+     /*   if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]
                             {Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION_PERMISSION);
-        }
+        } */
     }
 
 
@@ -121,11 +121,11 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
     @Override
     public void onMapReady(GoogleMap googleMap) {
         googleMap.setIndoorEnabled(true); // Indoor Map
-        googleMap.setMyLocationEnabled(true); // Location Sharing
+        googleMap.setMyLocationEnabled(false); // Location Sharing
         UiSettings Ui = googleMap.getUiSettings();
         Ui.setZoomControlsEnabled(true); //Zoom in zoom out event
         Ui.setMapToolbarEnabled(false);
-        Ui.setMyLocationButtonEnabled(true);
+        Ui.setMyLocationButtonEnabled(false);
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
