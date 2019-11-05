@@ -58,10 +58,12 @@ public class RequestPageFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+
         this.db = new Database();
 
         recyclerView.setAdapter(requestPageAdapter);
         acceptButton = view.findViewById(R.id.friend_accept);
+
 
         return view;
     }
@@ -78,7 +80,7 @@ public class RequestPageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
+       // db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
 
     }
 
@@ -87,12 +89,13 @@ public class RequestPageFragment extends Fragment {
     }
 
     public void setAdapterData(ArrayList<String> updatedData ) {
+        this.contactDataList.clear();
         this.contactDataList.addAll(updatedData);
     }
 
-    /*accept button pass the position to the main page and delete*/
-    public void function (int position) {
-        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
-        this.contactDataList.remove(position);
-    }
+//    /*accept button pass the position to the main page and delete*/
+//    public void function (int position) {
+//        db.acceptAFriendRequestOfAParticipant("xhou2", this.contactDataList.get(position), (FriendPage) getContext());
+//        //this.contactDataList.remove(position);
+//    }
 }

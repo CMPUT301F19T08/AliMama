@@ -373,6 +373,33 @@ class Database {
 
     }
 
+    // this function retrieves MoodEvent of a participant identified with username real time which
+    // means that this function will be called as soon as there is updates to the MoodEvent of the participant.
+    // notifyDatasetChanged could be called within callback function retrieveAllMoodEventOfAParticipantSuccessfully
+    void registerCurrentFriendsOfAParticipantRealTimeListener(String username, final FriendshipOperationFeedback fof) {
+        db.collection("Friends")
+                .whereEqualTo("username", username)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                        if (e != null) {
+
+                            fof.failRetrieveCurrentFriendsOfAParticipant(e.getMessage());
+                        }
+
+                        ArrayList<String> existingFriends = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            existingFriends.add(doc.getString("friend"));
+
+                        }
+                        fof.retrieveCurrentFriendsOfAParticipantSuccessfully(existingFriends);
+
+                    }
+
+                });
+    }
+
 
     void retrieveCurrentFriendsOfAParticipant(final String username, final FriendshipOperationFeedback fof) {
         CollectionReference friendsCollectionReferece = db.collection("Friends");

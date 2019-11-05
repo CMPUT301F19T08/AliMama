@@ -18,47 +18,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
+import com.example.alimama.ClickDelegate;
 import com.example.alimama.FriendPageFragment;
 import com.example.alimama.R;
 
 public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
     Context context;
+    ClickDelegate mClickDelegate;
 
-    FriendPageFragment fpf;
 
-    public FriendPageAdapter(ArrayList<String> contactDataList, FriendPageFragment fpf) {
+
+    public FriendPageAdapter(ArrayList<String> contactDataList, ClickDelegate clickDelegate) {
         this.contactList = contactDataList;
-        this.fpf = fpf;
+        this.mClickDelegate = clickDelegate;
 
 
     }
-
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+    public class MyViewHolder extends  RecyclerView.ViewHolder{
         ImageView pic;
         TextView contactName;
-        CardView cv;
-        public TextView textView;
+        private Button addButton;
+
+
+
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
             contactName = itemView.findViewById(R.id.contact_name);
-            cv = itemView.findViewById(R.id.card_view);
+            addButton = itemView.findViewById(R.id.friend_add);
+
+
         }
 
+        public Button getAddButton() {
+            return addButton;
+        }
 
-
+        public void setAddButton(Button add) {
+            this.addButton = add;
+        }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public void friendAdapter(ArrayList<String> contactList) {
-        this.contactList=contactList;
-    }
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -79,20 +81,15 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
         // - replace the contents of the view with that element
         String contact = contactList.get(position);
         holder.contactName.setText(contact);
-
-
-
-        // accept setOnClickListener();
-
-
-        holder.cv.setOnClickListener(new View.OnClickListener() {
+        holder.getAddButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"The position is:"+position,Toast.LENGTH_SHORT).show();
-
-
+                mClickDelegate.onFriendAddButtonClick(position);
             }
         });
+
+
+
 
     }
 
@@ -103,23 +100,7 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
     }
 
 
-    public class ViewHolder extends  RecyclerView.ViewHolder{
-        ImageView pic;
-        TextView contactName;
-        CardView cv;
-        Button add;
 
-
-
-        public ViewHolder(View itemView){
-            super(itemView);
-            pic = itemView.findViewById(R.id.imageV);
-            contactName = itemView.findViewById(R.id.contact_name);
-            cv = itemView.findViewById(R.id.card_view);
-            add = itemView.findViewById(R.id.friend_add);
-
-        }
-    }
 
 
 }

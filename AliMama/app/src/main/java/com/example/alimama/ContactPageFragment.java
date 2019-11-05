@@ -26,10 +26,13 @@ public class ContactPageFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<String> contactDataList;
-    private String contractName;
+    private Database db;
+    private String currParticipant;
+    ContactPageAdapter contactPageAdapter;
 
 
-    public static final String[] contactList = {"ALPHA","BETA","GAMMA","DELTA","THETA","OMEGA","ZETA"};
+
+
 
     public ContactPageFragment() {
     }
@@ -42,15 +45,30 @@ public class ContactPageFragment extends Fragment {
         view=inflater.inflate(R.layout.view_recycler,container,false);
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
-        ContactPageAdapter contactPageAdapter = new ContactPageAdapter(contactDataList);
+        this.contactDataList = new ArrayList<>();
+        this.contactPageAdapter = new ContactPageAdapter(contactDataList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(contactPageAdapter);
+        this.db = new Database();
+        // hardcode for now will connect to main menu later
+        this.currParticipant = "xhou1";
+
 
         return view;
     }
 
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        FriendPage friendPage = (FriendPage)getContext();
+        this.db.retrieveCurrentFriendsOfAParticipant(this.currParticipant, friendPage);
+        this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPage);
+
+
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,4 +82,12 @@ public class ContactPageFragment extends Fragment {
     }
 
 
+    public void setAdapterData(ArrayList<String> currentFriendsOfAParticipant) {
+        this.contactDataList.clear();
+        this.contactDataList.addAll(currentFriendsOfAParticipant);
+    }
+
+    public ContactPageAdapter getContactPageAdapter() {
+        return this.contactPageAdapter;
+    }
 }

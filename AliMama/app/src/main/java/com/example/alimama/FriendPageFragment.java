@@ -22,7 +22,7 @@ import com.example.alimama.TestFriendshipOperation;
 import com.example.alimama.adapter.FriendPageAdapter;
 
 
-public class FriendPageFragment extends Fragment {
+public class FriendPageFragment extends Fragment implements ClickDelegate {
     String userName;
     View view;
     RecyclerView recyclerView;
@@ -44,17 +44,17 @@ public class FriendPageFragment extends Fragment {
         view = inflater.inflate(R.layout.view_recycler,container,false);
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
+        // list to be passed to Adapter
         this.contactDataList = new ArrayList<>();
-        friendPageAdapter = new FriendPageAdapter(contactDataList, this);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         this.db = new Database();
 
-        recyclerView.setAdapter(friendPageAdapter);
+
         addButton = view.findViewById(R.id.friend_add);
 
-
+        this.userName = "xhou2";
         return view;
     }
 
@@ -79,19 +79,33 @@ public class FriendPageFragment extends Fragment {
 //        this.contactDataList.remove(position);
 //    }
 //
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
-//
-//    }
-//
-//    public FriendPageAdapter getFriendPageAdapter() {
-//        return this.friendPageAdapter;
-//    }
-//    public void setAdapterData(ArrayList<String> updatedData ) {
-//        this.contactDataList.addAll(updatedData);
-//    }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        FriendPage friendPage = (FriendPage) getContext();
+        friendPageAdapter = new FriendPageAdapter(contactDataList, this );
+        recyclerView.setAdapter(friendPageAdapter);
+        db.retrievePendingFriendRequestOfAParticipant(this.userName,friendPage);
+
+    }
+
+    public FriendPageAdapter getFriendPageAdapter() {
+        return this.friendPageAdapter;
+    }
+    public void setAdapterData(ArrayList<String> updatedData ) {
+        this.contactDataList.addAll(updatedData);
+    }
 
 
+    @Override
+    public void onFriendAddButtonClick(int position) {
+        String frindToAdd = contactDataList.get(position);
+        contactDataList.remove(position);
+        this.db.sendFriendRequestFromCurrentParticipant(this.userName, frindToAdd,(FriendPage) getContext() );
+
+    }
+
+    public RecyclerView.Adapter getContactPageAdapter() {
+        return this.friendPageAdapter;
+    }
 }

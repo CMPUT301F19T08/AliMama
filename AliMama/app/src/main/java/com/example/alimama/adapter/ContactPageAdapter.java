@@ -84,7 +84,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        contactList = new ArrayList<>();
+
         return contactList.size();
     }
 

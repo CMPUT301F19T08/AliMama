@@ -15,20 +15,9 @@ import com.example.alimama.ui.main.TabPageAdapter;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback{
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-    private ViewPager viewContact;
-    private ViewPager viewFriend;
-    private ViewPager viewRequest;
-
-    private ViewPager viewPager;
+public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback {
 
     private TabPageAdapter tabPageAdapter;
-
-    private TabLayout tabLayout;
 
     private int positionRequestpage = 2;
 
@@ -39,7 +28,7 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
         tabPageAdapter = new TabPageAdapter(this,getSupportFragmentManager());
 
-        viewPager = findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         /*Fragments*/
 
         tabPageAdapter.addFragment(new ContactPageFragment(),"Contact Page");
@@ -48,9 +37,7 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
         viewPager.setAdapter(tabPageAdapter);
 
-
-
-        tabLayout =findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -74,9 +61,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
-        RequestPageFragment fpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
-        fpf.setAdapterData(pendingFriendRequests);
-        fpf.getRequestPageAdapter().notifyDataSetChanged();
+//        RequestPageFragment fpf = (RequestPageFragment) this.tabPageAdapter.getItem(2);
+//        fpf.setAdapterData(pendingFriendRequests);
+//        fpf.getRequestPageAdapter().notifyDataSetChanged();
 
     }
 
@@ -103,6 +90,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
+        ContactPageFragment cpf = (ContactPageFragment) this.tabPageAdapter.getItem(0);
+        cpf.setAdapterData(currentFriendsOfAParticipant);
+        cpf.getContactPageAdapter().notifyDataSetChanged();
 
     }
 
@@ -123,6 +113,9 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
 
     @Override
     public void sendFriendRequestFromCurrentParticipantSuccessfully() {
+        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+
+        fpf.getContactPageAdapter().notifyDataSetChanged();
 
     }
 
@@ -130,4 +123,6 @@ public class FriendPage extends AppCompatActivity implements FriendshipOperation
     public void failSendFriendRequestFromCurrentParticipant(String message) {
 
     }
+
+
 }
