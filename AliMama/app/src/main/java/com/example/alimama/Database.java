@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -332,22 +333,29 @@ class Database {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 final CollectionReference friendsCollectionRef = db.collection("Friends");
+                                                WriteBatch batch = db.batch();
+                                                DocumentReference doc1 = friendsCollectionRef.document();
+                                                DocumentReference doc2 = friendsCollectionRef.document();
                                                 Map<String, String> friendDocument = new HashMap<>();
                                                 friendDocument.put("username" , username);
                                                 friendDocument.put("friend", usernameOfFriendRequestToAccept);
-                                                friendsCollectionRef.add(friendDocument)
-                                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                                if (task.isSuccessful()) {
-                                                                    fof.acceptAFriendRequestOfAParticipantSuccessfully();
+                                                doc1.set(friendDocument);
+                                                friendDocument.clear();
+                                                friendDocument.put("username" , usernameOfFriendRequestToAccept);
+                                                friendDocument.put("friend", username);
+                                                doc2.set(friendDocument);
+                                                batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            fof.acceptAFriendRequestOfAParticipantSuccessfully();
 
-                                                                }else {
-                                                                    fof.failAcceptAFriendRequestOfAParticipant(task.getException().getMessage());
+                                                        }else {
+                                                            fof.failAcceptAFriendRequestOfAParticipant(task.getException().getMessage());
 
-                                                                }
-                                                            }
-                                                        });
+                                                        }
+                                                    }
+                                                });
 
 
                                             }

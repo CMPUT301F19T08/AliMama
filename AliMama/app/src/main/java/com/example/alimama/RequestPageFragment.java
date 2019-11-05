@@ -80,7 +80,7 @@ public class RequestPageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       // db.retrievePendingFriendRequestOfAParticipant("xhou2", (FriendPage) getContext());
+       db.retrievePendingFriendRequestOfAParticipant("xhou9", (FriendPage) getContext());
 
     }
 
@@ -98,7 +98,7 @@ public class RequestPageFragment extends Fragment {
     public void acceptPending (int position) {
         String friendToAdd = this.contactDataList.get(position);
         this.contactDataList.remove(position);
-        db.acceptAFriendRequestOfAParticipant(friendToAdd, "xhou2", (FriendPage) getContext());
+        db.acceptAFriendRequestOfAParticipant(friendToAdd, "xhou9", (FriendPage) getContext());
 
     }
 }

@@ -53,7 +53,7 @@ public class ContactPageFragment extends Fragment {
         recyclerView.setAdapter(contactPageAdapter);
         this.db = new Database();
         // hardcode for now will connect to main menu later
-        this.currParticipant = "xhou1";
+        this.currParticipant = "xhou9";
 
 
         return view;
