@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.auth.FirebaseAuth;
 
 public class Mainmenu extends AppCompatActivity {
 
@@ -18,18 +16,27 @@ public class Mainmenu extends AppCompatActivity {
     // delete the following button before submit code
     Button viewGoogleMapButton;
     Button logoutButton;
-    private Database database;
-
-    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
 
-        viewMoodHistoryButton=(Button)findViewById(R.id.mood_history_button);
-        viewMoodMapButton=(Button)findViewById(R.id.mood_map_button);
-        viewOrAddFriendsButton=(Button)findViewById(R.id.add_view_friend_button);
+
+        viewMoodHistoryButton = findViewById(R.id.main_menu_mood_history_button);
+        viewMoodMapButton = findViewById(R.id.main_menu_mood_map_button);
+        viewOrAddFriendsButton = findViewById(R.id.main_menu_add_view_friend_button);
+        logoutButton = findViewById(R.id.main_menu_logout_button);
+
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,39 +53,5 @@ public class Mainmenu extends AppCompatActivity {
             }
         });
 
-//
-//        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent goToFriendsList = new Intent(Mainmenu.this, FriendsList.class);
-//                startActivity(goToFriendsList);
-//            }
-//        });
-
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        logoutButton=(Button)findViewById(R.id.logout_button);
-//        logoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                database.auth().signOut().then(function() {
-////                    console.log('Signed Out');
-////                };
-//
-//                firebaseAuth.signOut();
-//                finish();
-//                Intent logOut=new Intent(Mainmenu.this, ParticipantLoginSignupActivity.class);
-//                //i.putExtra("finish", true);
-//                //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
-//                //startActivity(i);
-//                startActivity( logOut );
-//
-//            }
-//        });
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
 }

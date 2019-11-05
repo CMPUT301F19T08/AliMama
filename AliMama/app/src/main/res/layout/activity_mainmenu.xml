@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Mainmenu">
 
-    <RelativeLayout
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/main_menu_string"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:textAlignment="center"
+        android:text="@string/main_menu_name"
+        android:textSize="55sp"
 
-        <TextView
-            android:id="@+id/main_menu_string"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Main Menu"
-            android:textSize="55dp"
-            android:layout_centerHorizontal="true"/>
+        />
 
-        <Button
-            android:id="@+id/mood_history_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Mood History"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/main_menu_string"/>
-        <Button
-            android:id="@+id/mood_map_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Mood History on Map"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/mood_history_button"/>
-        <Button
-            android:id="@+id/add_view_friend_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View/Add Friends"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/mood_map_button"/>
+    <Button
+        android:id="@+id/main_menu_mood_history_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_menu_view_mood_history_btn_name"
+        android:layout_margin="8dp"
+
+        />
+    <Button
+        android:id="@+id/main_menu_mood_map_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_menu_view_mood_history_on_map_btn_name"
+        android:layout_margin="8dp"
+
+       />
+    <Button
+        android:id="@+id/main_menu_add_view_friend_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/main_menu_view_add_friends_btn_name"
+        android:layout_margin="8dp"
+
+        />
+    <Button
+        android:id="@+id/main_menu_logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_menu_logout_btn_name"
+        android:layout_margin="8dp"
+
+       />
+
+</LinearLayout>
 
 
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/add_view_friend_button"/>
 
 
-    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
