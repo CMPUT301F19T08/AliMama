@@ -71,7 +71,7 @@ public class Mainmenu extends AppCompatActivity {
         viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPage.class);
+                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPageActivity.class);
                 goToViewAddFriend.putExtra("USERNAME", loggedInParticipant);
                 startActivity(goToViewAddFriend);
             }

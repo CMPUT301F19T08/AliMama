@@ -66,10 +66,10 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FriendPage friendPage = (FriendPage) getContext();
+        FriendPageActivity friendPageActivity = (FriendPageActivity) getContext();
         friendPageAdapter = new FriendPageAdapter(contactDataList, this );
         recyclerView.setAdapter(friendPageAdapter);
-        db.retrieveAListOfParticipantsToAdd(this.currParticipant, friendPage);
+        db.retrieveAListOfParticipantsToAdd(this.currParticipant, friendPageActivity);
 
     }
 
@@ -87,7 +87,7 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
         String friendToAdd = contactDataList.get(position);
         contactDataList.remove(position);
         System.out.println(friendToAdd);
-        this.db.sendFriendRequestFromCurrentParticipant(this.currParticipant, friendToAdd,(FriendPage) getContext());
+        this.db.sendFriendRequestFromCurrentParticipant(this.currParticipant, friendToAdd,(FriendPageActivity) getContext());
 
     }
 

@@ -62,9 +62,9 @@ public class ContactPageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FriendPage friendPage = (FriendPage)getContext();
+        FriendPageActivity friendPageActivity = (FriendPageActivity)getContext();
 
-        this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPage);
+        this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPageActivity);
 
 
     }

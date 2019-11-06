@@ -73,7 +73,7 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       db.retrievePendingFriendRequestOfAParticipant(this.currParticipant, (FriendPage) getContext());
+       db.retrievePendingFriendRequestOfAParticipant(this.currParticipant, (FriendPageActivity) getContext());
 
     }
 
@@ -93,7 +93,7 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     public void onAcceptButtonClick(int position) {
         String friendToAdd = this.contactDataList.get(position);
         this.contactDataList.remove(position);
-        db.acceptAFriendRequestOfAParticipant(friendToAdd, this.currParticipant, (FriendPage) getContext());
+        db.acceptAFriendRequestOfAParticipant(friendToAdd, this.currParticipant, (FriendPageActivity) getContext());
 
 
     }

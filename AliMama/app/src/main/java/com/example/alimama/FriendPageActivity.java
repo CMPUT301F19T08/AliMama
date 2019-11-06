@@ -12,7 +12,7 @@ import com.example.alimama.Controller.TabPageAdapter;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback {
+public class FriendPageActivity extends AppCompatActivity implements FriendshipOperationFeedback {
 
     private TabPageAdapter tabPageAdapter;
 
