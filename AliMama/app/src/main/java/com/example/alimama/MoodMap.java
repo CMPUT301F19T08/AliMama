@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.GeoPoint;
@@ -24,10 +26,16 @@ import com.google.maps.android.ui.IconGenerator;
 
 import java.util.ArrayList;
 
+/**
+ * This class is the entrance to all other screens of the applications
+ *
+ * */
+
 public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMapReadyCallback{
 
     private GoogleMap mMap;
     private Context context;
+    LatLngBounds.Builder latLngBounds = new LatLngBounds.Builder();
 
     private String currParticipant;
     private Database db = new Database();
@@ -47,7 +55,7 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         friendMoodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(currParticipant, (MoodMap)context);
+                db.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(currParticipant, (MoodMap) context);
                 friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
                 friendMoodBtn.setTextColor(Color.parseColor("#008577"));
                 myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
@@ -79,9 +87,16 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(location.getLatitude(),location.getLongitude()))
                         .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(each.getEmoticon())))); // change
+                latLngBounds.include(new LatLng(location.getLatitude(),location.getLongitude()));
             }
-
         }
+        if(latLngBounds!= null){
+        LatLngBounds bounds = latLngBounds.build();
+        CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
+                    getResources().getDisplayMetrics().widthPixels,
+                    getResources().getDisplayMetrics().heightPixels,
+                    (int)((getResources().getDisplayMetrics().widthPixels)*0.2));
+        mMap.animateCamera(show_markers, 3000, null);}
 
     }
 
@@ -102,9 +117,16 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
                         .title(each.getUsername())
                         .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(each.getEmoticon()))));
                 marker.showInfoWindow();
+                latLngBounds.include(new LatLng(location.getLatitude(),location.getLongitude()));
             }
-
         }
+        if(latLngBounds!= null){
+        LatLngBounds bounds = latLngBounds.build();
+        CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
+                getResources().getDisplayMetrics().widthPixels,
+                getResources().getDisplayMetrics().heightPixels,
+                (int)((getResources().getDisplayMetrics().widthPixels)*0.2));
+        mMap.animateCamera(show_markers, 3000, null);}
     }
 
     @Override
