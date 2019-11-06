@@ -16,6 +16,7 @@ public class MoodEvent {
     private String reasonInText;
     private String pathToPhoto;
     private String socialSituation;
+    private String emoticon;
     private GeoPoint locationOfMoodEvent;
     MoodEvent() {
         this.date = new Date();
@@ -104,5 +105,13 @@ public class MoodEvent {
     @Override
     public String toString() {
         return "Document ID: " + this.documentId + " Date: " + date.toString() +  " username: " + this.username + " emotionalState : " + emotionalState + " social Situation: " + socialSituation +"\n";
+    }
+
+    public String getEmoticon() {
+        return emoticon;
+    }
+
+    public void setEmoticon(String emoticon) {
+        this.emoticon = emoticon;
     }
 }
