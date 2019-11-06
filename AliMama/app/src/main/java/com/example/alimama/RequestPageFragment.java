@@ -1,7 +1,6 @@
 package com.example.alimama;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +13,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alimama.Database;
-import com.example.alimama.TestFriendshipOperation;
-import com.example.alimama.adapter.FriendPageAdapter;
-import com.example.alimama.adapter.RequestPageAdapter;
+import com.example.alimama.Controller.RequestPageAdapter;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
-import com.example.alimama.R;
 
 
 public class RequestPageFragment extends Fragment implements RequestPageClickDelegate{

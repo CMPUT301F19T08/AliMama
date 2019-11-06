@@ -1,5 +1,7 @@
 package com.example.alimama;
 
+import com.example.alimama.Model.MoodEvent;
+
 import java.util.ArrayList;
 
 /**
