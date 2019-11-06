@@ -8,97 +8,50 @@
     <TextView
         android:id="@+id/main_menu_string"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:background="@drawable/ic_blue_bg"
-        android:text="@string/main_menu_name"
+        android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="40dp" />
+        android:text="@string/main_menu_name"
+        android:textSize="55sp"
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/user_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="86dp"
-                android:layout_marginEnd="98dp"
-                android:text="You have 20 contacts"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/mood_post"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="33dp"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="47dp"
-                android:layout_toEndOf="@id/user_profile"
-                android:text="You have posted 10 moods"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+        />
 
     <Button
         android:id="@+id/main_menu_mood_history_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_button"
-        android:drawableLeft="@drawable/ic_mood_black_24dp"
         android:text="@string/main_menu_view_mood_history_btn_name"
-        android:textColor="@color/colorWhite"
         android:layout_margin="8dp"
-        android:layout_gravity="center" />
+
+        />
     <Button
-        android:layout_gravity="center"
         android:id="@+id/main_menu_mood_map_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_button"
-        android:drawableLeft="@drawable/ic_map_black_24dp"
         android:text="@string/main_menu_view_mood_history_on_map_btn_name"
-        android:textColor="@color/colorWhite"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
 
+       />
     <Button
-        android:layout_gravity="center"
         android:id="@+id/main_menu_add_view_friend_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_button"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:textColor="@color/colorWhite"
-        android:text="@string/main_menu_view_add_friends_btn_name"
-        android:layout_margin="8dp" />
 
+        android:text="@string/main_menu_view_add_friends_btn_name"
+        android:layout_margin="8dp"
+
+        />
     <Button
-        android:layout_gravity="center"
         android:id="@+id/main_menu_logout_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/ic_button"
         android:text="@string/main_menu_logout_btn_name"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+
+       />
 
 </LinearLayout>
+
+
+
+
+

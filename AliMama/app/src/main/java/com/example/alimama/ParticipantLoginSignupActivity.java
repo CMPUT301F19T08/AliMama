@@ -13,6 +13,13 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
+
+
+/**
+ * This is the first screen of the the whole application which allows new Participants to sign up or existing Participants
+ * to log in.
+ * @author Xuechun Hou
+ */
 public class ParticipantLoginSignupActivity extends AppCompatActivity implements CredentialValidationDelegate {
 
 
@@ -29,6 +36,11 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
 
     }
+
+    /**
+     * this function verify the credential of the new Participant.
+
+     * */
 
     private void verifyNewParticipantCredential() {
         String username = mUsername.getEditText().getText().toString();
@@ -48,6 +60,11 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+
+    /**
+     * this function verify the credential of the existing Participant.
+
+     * */
     private void verifyExistingParticipantCredential() {
         String username = mUsername.getEditText().getText().toString();
         String password = mPassword.getEditText().getText().toString();
@@ -66,6 +83,10 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * this function retrieves the reference to the Views on the screen, sets the application logo, as well
+     * as register button onClickListener
+     * */
     private void init() {
         ImageView logo = findViewById(R.id.participant_loginsignup_app_logo);
         /*
@@ -102,12 +123,22 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * This function sends intent to MainMenu Screen with username of current logged-in Participant sent along the intent
+     *
+     * */
     private void startMainMenuScreen() {
         Intent goToHomeScreen = new Intent(ParticipantLoginSignupActivity.this, Mainmenu.class);
         goToHomeScreen.putExtra("USERNAME", mUsername.getEditText().getText().toString().trim());
         startActivity(goToHomeScreen);
 
     }
+
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which displays error
+     * on screen if username exists in database when new Participant sign up
+     *
+     * */
     @Override
     public void usernameExist() {
         mUsername.setError("Username already exist, please try another Username");
@@ -116,6 +147,11 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which displays error
+     * on screen if username does not exist in database when existing Participant logs in
+     *
+     * */
     @Override
     public void usernameNotExist() {
         mUsername.setError("Username does not exist, please enter again");
@@ -124,6 +160,12 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which clears
+     * errors that displayed on screen (if any) when existing Participant logged in successfully
+     *
+     * */
     @Override
     public void existingParticipantLoginSuccessfully() {
         // should switch to Home Screen
@@ -134,6 +176,13 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+
+
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which displays
+     * errors when existing Participant enters wrong password.
+     *
+     * */
     @Override
     public void existingParticipantPasswordNotMatch() {
         mPassword.setError("Password is not valid, please enter again");
@@ -141,12 +190,24 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which displays
+     * a Toast when existing Participant failed to log in
+     *
+     * */
+
     @Override
     public void existingParticipantLoginError(String message) {
 
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which displays
+     * a Toast when new Participant failed to  sign up
+     *
+     * */
 
     @Override
     public void newParticipantSignupError(String message) {
@@ -156,6 +217,12 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     }
 
+
+    /**
+     * This function is part of implementation of CredentialValidationDelegate Interface, which clears
+     * errors that displayed on screen (if any) when new Participant signed in successfully
+     *
+     * */
     @Override
     public void newParticipantSignupSuccessfully() {
 

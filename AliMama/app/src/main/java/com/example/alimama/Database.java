@@ -1,6 +1,10 @@
 package com.example.alimama;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.alimama.Model.MoodEvent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,19 +19,30 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 
+
+/**
+ * Database class is a custom API that aims to provide an easy-to-use interface to Firestore backend.
+ * Database class adopts Singleton design pattern to ensure that only one instance of the Database object
+ * will exist throughout the application life cycle.
+ *
+ * @author Xuechun Hou
+ * */
 class Database {
 
     private static FirebaseFirestore db = null;
 
 
+    /**
+     * Class Constructor
+     *
+     * */
     Database() {
         if (db == null) {
             db = FirebaseFirestore.getInstance();
@@ -35,6 +50,16 @@ class Database {
         FirebaseFirestore.setLoggingEnabled(true);
     }
 
+
+    /**
+     * Authenticate the given existing Participant.
+     * Result of authentication will be passed through callback functions
+     * defined in CredentialValidationDelegate interface
+     * @param username username of Participant
+     * @param password password of Participant
+     * @param cvd a reference to an implementation of CredentialValidationDelegate interface
+     *
+     * */
     /* ------------------------------------- Participant Authentication ------------------------------------*/
     void authenticExistingParticipant(String username, final String password, final CredentialValidationDelegate cvd) {
 
@@ -67,6 +92,14 @@ class Database {
     }
 
 
+    /**
+     * Perform new Participant sign up. Result of the sign up process will be passed through callback functions
+     * defined in CredentialValidationDelegate interface
+     * @param username username of new Participant
+     * @param password password of new Participant
+     * @param cvd a reference to an implementation of CredentialValidationDelegate interface
+     *
+     * */
     void signupNewParticipant(final String username, final String password, final CredentialValidationDelegate cvd) {
 
         // check if username exists
@@ -114,9 +147,16 @@ class Database {
 
     /* -------------------------------- MoodEvent Manipulation ----------------------------------*/
 
-    // this function retrieves MoodEvent of a participant identified with username real time which
-    // means that this function will be called as soon as there is updates to the MoodEvent of the participant.
-    // notifyDatasetChanged could be called within callback function retrieveAllMoodEventOfAParticipantSuccessfully
+    /**
+     * This function retrieves MoodEvent of a participant identified with username real time which
+     * means that this function will be called as soon as there is updates to the MoodEvent of the participant in the database.
+     *
+     * @param username username of current logged-in Participant
+     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
+     *
+     * */
+
     void registerMoodEventRealTimeListener(String username, final MoodEventManipulationFeedback mmf) {
         db.collection("MoodEvents")
                 .whereEqualTo("username", username)
@@ -143,6 +183,15 @@ class Database {
 
     }
 
+
+    /**
+     * This function updates an MoodEvent of the current logged-in Participant. Result of the update process will be passed through callback functions
+     * defined in MoodEventManipulationFeedback interface
+     * @param moodEvent a MoodEvent object to be updated
+     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
+     *
+     * */
     void updateAnExistingMoodEvent(final MoodEvent moodEvent, final MoodEventManipulationFeedback mmf) {
         db.collection("MoodEvents")
                 .document(moodEvent.getDocumentId())
@@ -151,6 +200,7 @@ class Database {
                     @Override
                     public void onSuccess(Void aVoid) {
                         mmf.updateAnExistingMoodEventSuccessfully();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -159,8 +209,20 @@ class Database {
                         mmf.failToUpdateAnExistingMoodEvent(e.getMessage());
                     }
                 });
+
+
     }
 
+
+    /**
+     * This function adds a new MoodEvent created by current logged-in Participant's to database.
+     * Result of the add process will be passed through callback functions
+     * defined in MoodEventManipulationFeedback interface
+     * @param newMoodEvent a new MoodEvent object to be added
+     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
+     *
+     * */
     void addANewMoodEvent(final MoodEvent newMoodEvent, final MoodEventManipulationFeedback mmf) {
 
         db.collection("MoodEvents")
@@ -170,6 +232,7 @@ class Database {
                     public void onSuccess(DocumentReference documentReference) {
                         System.out.println("successfully added a mood event");
                         mmf.addANewMoodEventSuccessfully();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -177,10 +240,23 @@ class Database {
                     public void onFailure(@NonNull Exception e) {
                         System.out.println(e.getMessage());
                         mmf.failToAddANewMoodEvent(e.getMessage());
+
                     }
                 });
+
+
     }
 
+
+    /**
+     * This function retrieves all MoodEvents of current logged-in Participant from database.
+     * Result of the retrieval process will be passed through callback functions
+     * defined in MoodEventManipulationFeedback interface
+     * @param username username of current logged-in Participant
+     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
+     *
+     * */
     void retrieveAllMoodEventsOfAParticipant(final String username, final MoodEventManipulationFeedback mmf) {
 
         db.collection("MoodEvents")
@@ -196,6 +272,7 @@ class Database {
                                 MoodEvent each = document.toObject(MoodEvent.class);
                                 moodEventHistory.add(each);
                             }
+
                             mmf.retrieveAllMoodEventOfAParticipantSuccessfully(moodEventHistory);
                         }
                         else {
@@ -203,7 +280,19 @@ class Database {
                         }
                     }
                 });
+
     }
+
+
+    /**
+     * This function deletes a MoodEvent of current logged-in Participant from database.
+     * Result of the delete process will be passed through callback functions
+     * defined in MoodEventManipulationFeedback interface
+     * @param moodEvent a MoodEvent object to be deleted
+     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
+     *
+     * */
 
     void deleteAMoodEventOfAParticipant(final MoodEvent moodEvent, final MoodEventManipulationFeedback mmf) {
         db.collection("MoodEvents")
@@ -222,9 +311,21 @@ class Database {
                         mmf.failToDeleteAMoodEventOfAParticipant(e.getMessage());
                     }
                 });
+
     }
 
+
+    /**
+     * This function retrieves most recent MoodEvents of all existing friends of current logged-in Participant from database
+     * Result of the retrieval process will be passed through callback functions
+     * defined in MoodEventManipulationFeedback interface
+     * @param username username of current logged-in Participant
+     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
+     *
+     * */
     void retrieveMostRecentMoodEventOfFriendsOfAParticipant(String username, final MoodEventManipulationFeedback mmf) {
+
         CollectionReference friendsCollectionReferece = db.collection("Friends");
         friendsCollectionReferece.whereEqualTo("username", username).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -234,6 +335,7 @@ class Database {
                             // retrieve a list of friends of a participant
                             final ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipant = new ArrayList<>();
                             CollectionReference moodEventCollectionReference = db.collection("MoodEvents");
+
 
                             // for every friend retrieve the most recent moodEvent
                             for (QueryDocumentSnapshot document: task.getResult()) {
@@ -259,6 +361,8 @@ class Database {
 
                                             }
                                         });
+
+
                             }// for every friend, retrieve the most recent Mood request
                         }
                         else {
@@ -266,9 +370,23 @@ class Database {
                         }
                     }
                 });
+
     }
 
+
     /* -----------------------------Friendship Operations -------------------------------- */
+
+
+    /**
+     * This function retrieves all pending friend requests of current logged-in Participant from database
+     * Result of the retrieval process will be passed through callback functions
+     * defined in FriendshipOperationFeedback interface
+     * @param username username of current logged-in Participant
+     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
+     *
+     *
+     * */
+
     void retrievePendingFriendRequestOfAParticipant(String username, final FriendshipOperationFeedback fof) {
         db.collection("PendingFriendRequests")
                 .whereEqualTo("friendToAdd", username)
@@ -290,10 +408,21 @@ class Database {
                         }
                     }
                 });
+
     }
 
-    // delete the friend request sent by "usernameOfFriendRequestToAccept" participant to the current participant identified by "username" from PendingFriendRequests Collection
-    // then Add to Friends Collection a new Document with username "username" and friend "usernameOfFriendRequestToAccept"
+
+    /**
+     * This function accepts a friend request sent to the current logged-in Participant.
+     * Result of the acceptance process will be passed through callback functions
+     * defined in FriendshipOperationFeedback interface
+     * @param username username of current logged-in Participant
+     * @param usernameOfFriendRequestToAccept the username of the Participant who created the friend request
+     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
+     *
+     *
+     * */
+
     void acceptAFriendRequestOfAParticipant(final String username, final String usernameOfFriendRequestToAccept, final FriendshipOperationFeedback fof) {
         final CollectionReference itemsRef = db.collection("PendingFriendRequests");
 
@@ -360,9 +489,13 @@ class Database {
 
     }
 
-    // this function retrieves MoodEvent of a participant identified with username real time which
-    // means that this function will be called as soon as there is updates to the MoodEvent of the participant.
-    // notifyDatasetChanged could be called within callback function retrieveAllMoodEventOfAParticipantSuccessfully
+    /**
+     * This function registers a realtime listener of existing friend list of current logged-in Participant.
+     * @param username username of current logged-in Participant
+     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
+     *
+     *
+     * */
     void registerCurrentFriendsOfAParticipantRealTimeListener(String username, final FriendshipOperationFeedback fof) {
         db.collection("Friends")
                 .whereEqualTo("username", username)
@@ -388,6 +521,15 @@ class Database {
     }
 
 
+    /**
+     * This function retrieves a list of existing friends of current logged-in Participant from database.
+     * Result of the retrieval process will be passed through callback functions
+     * defined in FriendshipOperationFeedback interface
+     * @param username username of current logged-in Participant
+     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
+     *
+     *
+     * */
     void retrieveCurrentFriendsOfAParticipant(final String username, final FriendshipOperationFeedback fof) {
         CollectionReference friendsCollectionReferece = db.collection("Friends");
         friendsCollectionReferece
@@ -413,8 +555,15 @@ class Database {
                 });
     }
 
-    // given username of the current Participant, this function will retrieve A list of Participants that haven't been
-    // friend with the current Participant.
+    /**
+     * This function retrieves a list of Participants who haven't been friends with current logged-in Participant from database.
+     * Result of the retrieval process will be passed through callback functions
+     * defined in FriendshipOperationFeedback interface
+     * @param username username of current logged-in Participant
+     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
+     *
+     *
+     * */
     void retrieveAListOfParticipantsToAdd(final String username, final FriendshipOperationFeedback fof ) {
         CollectionReference participantsCollectionRef = db.collection("Participants");
         participantsCollectionRef.get()
@@ -463,6 +612,16 @@ class Database {
 
 
 
+    /**
+     * This function initiated a friend request on behalf of current logged-in user and send to the designated participant.
+     * Result of the process will be passed through callback functions
+     * defined in FriendshipOperationFeedback interface
+     * @param currentParticipant username of current logged-in Participant
+     * @param participantToBeSentFriendRequest username of recipient Participant
+     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
+     *
+     *
+     * */
     void sendFriendRequestFromCurrentParticipant(final String currentParticipant, final String participantToBeSentFriendRequest, final FriendshipOperationFeedback fof) {
         CollectionReference pendingFriendRequestCollectionRef = db.collection("PendingFriendRequests");
         Map<String, String> pendingFriendRequestDocument = new HashMap();
@@ -489,6 +648,16 @@ class Database {
 
 
 
+
+    /**
+     * This function retrieves all MoodEvent of current logged-in Participant that have locations from database
+     * Result of the retrieval process will be passed through callback functions
+     * defined in MapViewFeedback interface
+     * @param username username of current logged-in Participant
+     * @param mvf a reference to an implementation of MapViewFeedback interface
+     *
+     *
+     * */
     /* -----------------------------Map View Operations -------------------------------- */
 
     void retrieveAllLocatedMoodEventsOfAParticipant(String username, final MapViewFeedback mvf ) {
@@ -518,6 +687,17 @@ class Database {
 
 
     }
+
+
+    /**
+     * This function retrieves most recent MoodEvents of friends of current logged-in Participant that have locations from database
+     * Result of the retrieval process will be passed through callback functions
+     * defined in MapViewFeedback interface
+     * @param username username of current logged-in Participant
+     * @param mvf a reference to an implementation of MapViewFeedback interface
+     *
+     *
+     * */
 
     void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(String username, final  MapViewFeedback mvf) {
 

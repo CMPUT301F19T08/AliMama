@@ -9,10 +9,6 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-feature
-        android:name="android.hardware.Camera"
-        android:required="true"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,9 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".AddMoodEvent"></activity>
-        <activity android:name=".EditMoodEvent"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -32,9 +25,9 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-       <!-- <meta-data
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />-->
+            android:value="@string/google_maps_key" />
 
         <activity
             android:name=".GoogleMaps"
@@ -43,17 +36,25 @@
             android:name=".FriendPage"
             android:label="Friend Page"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.alimama.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+        <activity android:name=".AddEditMoodActivity"></activity>
         <activity
             android:name=".MoodMap"
             android:label="@string/title_activity_mood_map"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".MoodHistory"
             android:label="@string/title_activity_mood_history"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Mainmenu" />
-
         <activity android:name=".ParticipantLoginSignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

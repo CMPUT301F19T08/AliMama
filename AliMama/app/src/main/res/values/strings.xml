@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">AliMama</string>
+
     <string name="participant_login_signup_username">Username</string>
     <string name="participant_login_signup_password">Password</string>
     <string name="participant_login_signup_login_btn">Log In</string>
     <string name="participant_login_signup_signup_btn">Sign Up</string>
-
     <string name="title_activity_mood_history">Mood History</string>
     <string name="tab_text_1">My Mood</string>
     <string name="tab_text_2">My Friends</string>
@@ -12,11 +12,10 @@
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
 
-
     <string name="main_menu_name">Main Menu</string>
-    <string name="main_menu_view_mood_history_btn_name">Mood History </string>
-    <string name="main_menu_view_mood_history_on_map_btn_name">Mood History on Map </string>
-    <string name="main_menu_view_add_friends_btn_name">Contacts </string>
+    <string name="main_menu_view_mood_history_btn_name">View Mood History</string>
+    <string name="main_menu_view_mood_history_on_map_btn_name">View Mood History on Map</string>
+    <string name="main_menu_view_add_friends_btn_name">View/Add Friends</string>
     <string name="main_menu_logout_btn_name">Log Out</string>
     <string name="title_activity_contact_page">Contact List</string>
     <string name="contact_Page">Contact Page</string>
@@ -25,35 +24,34 @@
     <string name="mood_map_name_string">Mood Map</string>
     <string name="mood_map_friend_map_btn_name">friendMoodMap</string>
     <string name="mood_map_my_map_btn_name">myMoodMap</string>
+    <string name="item_mood_history_username_prompt">Username:</string>
+    <string name="item_mood_history_emotional_state_prompt">Emotional State</string>
+    <string name="item_mood_history_description_prompt">Description</string>
+    <string-array name="social_situation_array">
+        <item>alone</item>
+        <item>with one other person</item>
+        <item>with two to several ppl</item>
+        <item>with a crowd</item>
+    </string-array>
 
+    <string-array name="emoticons_array">
+        <item>&#128522;</item> <!-- happy -->
+        <item>&#128514;</item> <!-- tears -->
+        <item>&#128525;</item> <!-- heart -->
+        <item>&#128545;</item> <!-- angry -->
+        <item>&#128540;</item> <!-- tongue -->
+        <item>&#128546;</item> <!-- cry -->
+        <item>&#128527;</item> <!-- smirk -->
+    </string-array>
 
-    <string name="intent_key_request_code">request_code</string>
-    <string name="intent_key_date">date</string>
-    <string name="intent_key_time">time</string>
-    <string name="intent_key_emotional_state">emotional_state</string>
-    <string name="intent_key_description">description</string>
-    <string name="add_mood_btn_prompt">Add</string>
-    <string name="update_mood_btn_prompt">Update</string>
-    <string name="intent_key_item_position">item_position</string>
-    <string name="add_mood">Add Mood</string>
-    <string name="date_required">date --required</string>
-    <string name="time_required">time --required</string>
-    <string name="emotion_state">emotion\nstate</string>
-    <string name="socialsituation">Social\nSituation</string>
-    <string name="take_a_photo">Take a Photo</string>
-    <string name="edit_mood">Edit Mood</string>
-    <string name="record_location_from_gps">Record Location from GPS</string>
-    <string name="emotional_state_required">emotional state -Required</string>
-    <string name="checkbox">CheckBox</string>
-    <string name="description_optional">description - optional</string>
-    <string name="main_menu">Main Menu</string>
-    <string name="view_mood_history">View Mood History</string>
-    <string name="view_mood_history_on_map">View Mood History on Map</string>
-    <string name="view_add_friends">View/Add Friends</string>
-    <string name="log_out">Log Out</string>
-
-    <string name="distance_prompt"></string>
-    <string name="date_prompt"></string>
-
-
+    <string-array name="emoticons_array_filter">
+        <item>Select filter</item>
+        <item>&#128522;</item> <!-- happy -->
+        <item>&#128514;</item> <!-- tears -->
+        <item>&#128525;</item> <!-- heart -->
+        <item>&#128545;</item> <!-- angry -->
+        <item>&#128540;</item> <!-- tongue -->
+        <item>&#128546;</item> <!-- cry -->
+        <item>&#128527;</item> <!-- smirk -->
+    </string-array>
 </resources>

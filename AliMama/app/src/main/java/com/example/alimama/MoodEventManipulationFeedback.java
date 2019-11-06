@@ -1,6 +1,13 @@
 package com.example.alimama;
 
+import com.example.alimama.Model.MoodEvent;
+
 import java.util.ArrayList;
+
+/**
+ * Should be implemented by classes that require MoodEvent Manipulation(Add Edit Delete) part of the Database API
+ * in order to receive return results from database
+ * */
 
 public interface MoodEventManipulationFeedback {
     void failToUpdateAnExistingMoodEvent(String errmsg);

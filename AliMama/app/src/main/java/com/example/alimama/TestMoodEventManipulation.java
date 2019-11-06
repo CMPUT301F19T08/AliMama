@@ -2,6 +2,8 @@ package com.example.alimama;
 
 import android.util.Log;
 
+import com.example.alimama.Model.MoodEvent;
+
 import java.util.ArrayList;
 
 public class TestMoodEventManipulation implements MoodEventManipulationFeedback{
