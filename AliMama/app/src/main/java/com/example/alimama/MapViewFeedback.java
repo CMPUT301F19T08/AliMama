@@ -2,6 +2,10 @@ package com.example.alimama;
 
 import java.util.ArrayList;
 
+/**
+ * Should be implemented by classes that require Map View Operation part of the Database API
+ * in order to receive return results from database
+ * */
 public interface MapViewFeedback {
     void retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventsWithLocation);
 
