@@ -83,7 +83,6 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(location.getLatitude(),location.getLongitude()))
                         .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(actualEmoticon)))); // change
-
             }
 
         }
@@ -100,21 +99,16 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         mMap.clear();
         IconGenerator iconGenerator = new IconGenerator(this);
         for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
-//            try {
-//                emoticon_db = Integer.parseInt(each.getEmoticon(), 16);
-//            } catch (NumberFormatException e) {
-//                emoticon_db = 0x2753;
-//            }
-//            emoticon = new String(Character.toChars((emoticon_db)));
-//            GeoPoint location = each.getLocationOfMoodEvent();
-//            String username = each.getUsername();
-//            mMap.addMarker(new MarkerOptions()
-//                    .position(new LatLng(location.getLatitude(),location.getLongitude()))
-//                    .title(username)
-//                    .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon)))); // change
+            if (each.getEmoticon() != null) {
+                GeoPoint location = each.getLocationOfMoodEvent();
+                Integer number = Integer.decode(each.getEmoticon());
+                String actualEmoticon = new String(Character.toChars(number));
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(location.getLatitude(),location.getLongitude()))
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(actualEmoticon)))); // change
+            }
 
         }
-
     }
 
     @Override
