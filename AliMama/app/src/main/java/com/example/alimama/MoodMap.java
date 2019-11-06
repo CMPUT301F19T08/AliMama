@@ -28,7 +28,8 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
     private GoogleMap mMap;
     private Context context;
 
-    static final String happy = new String(Character.toChars((0x1F60A))); // change
+    static int emoticon_db;
+    static String emoticon;
 
     private String currParticipant;
     private Database db = new Database();
@@ -66,14 +67,7 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
 
             }
         });
-        // LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-     /*   if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]
-                            {Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_LOCATION_PERMISSION);
-        } */
+
     }
 
 
@@ -82,12 +76,17 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         mMap.clear();
         IconGenerator iconGenerator = new IconGenerator(this);
         for(MoodEvent each: moodEventsWithLocation) {
+            try {
+                emoticon_db = Integer.parseInt(each.getEmoticon(), 16);
+            } catch (NumberFormatException e) {
+                emoticon_db = 0x2753;
+            }
+            emoticon = new String(Character.toChars((emoticon_db)));
             GeoPoint location = each.getLocationOfMoodEvent();
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(location.getLatitude(),location.getLongitude()))
-                    .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(happy)))); // change
+                    .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon)))); // change
         }
-
 
     }
 
@@ -99,17 +98,22 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
     @Override
     public void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
         mMap.clear();
+        IconGenerator iconGenerator = new IconGenerator(this);
         for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
+            try {
+                emoticon_db = Integer.parseInt(each.getEmoticon(), 16);
+            } catch (NumberFormatException e) {
+                emoticon_db = 0x2753;
+            }
+            emoticon = new String(Character.toChars((emoticon_db)));
             GeoPoint location = each.getLocationOfMoodEvent();
             String username = each.getUsername();
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(location.getLatitude(),location.getLongitude()))
-                    .title(username));
+                    .title(username)
+                    .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon)))); // change
 
         }
-
-
-
 
     }
 
@@ -146,8 +150,6 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
 //        mMap.addMarker(new MarkerOptions().position(new LatLng(53.526709, -113.521721)).title("Excited"));
 //        mMap.addMarker(new MarkerOptions().position(new LatLng(53.526658, -113.524714)).title("Happy"));
 //        mMap.addMarker(new MarkerOptions().position(new LatLng(53.526051, -113.526211)).title("Disappointment"));
-
-
 
     }
 }
