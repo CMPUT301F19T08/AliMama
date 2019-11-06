@@ -35,6 +35,7 @@
         android:id="@+id/main_menu_add_view_friend_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="@string/main_menu_view_add_friends_btn_name"
         android:layout_margin="8dp"
 
@@ -49,7 +50,6 @@
        />
 
 </LinearLayout>
-
 
 
 

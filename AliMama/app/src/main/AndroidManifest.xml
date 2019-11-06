@@ -31,7 +31,11 @@
 
         <activity
             android:name=".GoogleMaps"
-            android:label="@string/title_activity_google_maps"></activity>
+            android:label="@string/title_activity_google_maps"/>
+        <activity
+            android:name=".FriendPage"
+            android:label="Friend Page"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MoodMap"
             android:label="@string/title_activity_mood_map"

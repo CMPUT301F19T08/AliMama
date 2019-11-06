@@ -1,6 +1,8 @@
 package com.example.alimama;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -15,14 +17,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 
 class Database {
@@ -333,22 +333,29 @@ class Database {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 final CollectionReference friendsCollectionRef = db.collection("Friends");
+                                                WriteBatch batch = db.batch();
+                                                DocumentReference doc1 = friendsCollectionRef.document();
+                                                DocumentReference doc2 = friendsCollectionRef.document();
                                                 Map<String, String> friendDocument = new HashMap<>();
                                                 friendDocument.put("username" , username);
                                                 friendDocument.put("friend", usernameOfFriendRequestToAccept);
-                                                friendsCollectionRef.add(friendDocument)
-                                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                                if (task.isSuccessful()) {
-                                                                    fof.acceptAFriendRequestOfAParticipantSuccessfully();
+                                                doc1.set(friendDocument);
+                                                friendDocument.clear();
+                                                friendDocument.put("username" , usernameOfFriendRequestToAccept);
+                                                friendDocument.put("friend", username);
+                                                doc2.set(friendDocument);
+                                                batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            fof.acceptAFriendRequestOfAParticipantSuccessfully();
 
-                                                                }else {
-                                                                    fof.failAcceptAFriendRequestOfAParticipant(task.getException().getMessage());
+                                                        }else {
+                                                            fof.failAcceptAFriendRequestOfAParticipant(task.getException().getMessage());
 
-                                                                }
-                                                            }
-                                                        });
+                                                        }
+                                                    }
+                                                });
 
 
                                             }
@@ -372,6 +379,33 @@ class Database {
 
 
 
+    }
+
+    // this function retrieves MoodEvent of a participant identified with username real time which
+    // means that this function will be called as soon as there is updates to the MoodEvent of the participant.
+    // notifyDatasetChanged could be called within callback function retrieveAllMoodEventOfAParticipantSuccessfully
+    void registerCurrentFriendsOfAParticipantRealTimeListener(String username, final FriendshipOperationFeedback fof) {
+        db.collection("Friends")
+                .whereEqualTo("username", username)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                        if (e != null) {
+
+                            fof.failRetrieveCurrentFriendsOfAParticipant(e.getMessage());
+                        }
+
+                        ArrayList<String> existingFriends = new ArrayList<>();
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                            existingFriends.add(doc.getString("friend"));
+
+                        }
+                        fof.retrieveCurrentFriendsOfAParticipantSuccessfully(existingFriends);
+
+                    }
+
+                });
     }
 
 
@@ -461,6 +495,7 @@ class Database {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if (task.isSuccessful()) {
+
                             fof.sendFriendRequestFromCurrentParticipantSuccessfully();
                         }
                         else {
