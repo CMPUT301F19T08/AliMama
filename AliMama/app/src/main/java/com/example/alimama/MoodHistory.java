@@ -35,6 +35,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
     private Button btnFriendsHistory;
     private Spinner spEmoticon;
     private String currentEmoticon = "\uD83D\uDE0A"; //happy
+    private String currentLoggedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         btnMyHistory = findViewById(R.id.btnMyHistory);
         btnFriendsHistory = findViewById(R.id.btnFriendsHistory);
         spEmoticon = findViewById(R.id.spEmoticon);
+        this.currentLoggedInUser = getIntent().getStringExtra("USERNAME");
 
         setupEmoticonsList();
 
@@ -75,7 +77,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 CURRENT_STATE = STATE_MY_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-                database.retrieveAllMoodEventsOfAParticipant("xhou1", MoodHistory.this);
+                database.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
             }
         });
 
@@ -85,7 +87,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 CURRENT_STATE = STATE_FRIENDS_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
-                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant("xhou1", MoodHistory.this);
+                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
             }
         });
 
@@ -94,6 +96,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), AddEditMoodActivity.class);
+                intent.putExtra("USERNAME", currentLoggedInUser);
                 startActivity(intent);
             }
         });
@@ -141,7 +144,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     @Override
     public void deleteAMoodEventOfAParticipantSuccessfully() {
-        database.retrieveAllMoodEventsOfAParticipant("xhou1", MoodHistory.this);
+        database.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, MoodHistory.this);
     }
 
     @Override
@@ -197,9 +200,9 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     private void getMoodEvents() {
         if (CURRENT_STATE == STATE_MY_HISTORY) {
-            database.retrieveAllMoodEventsOfAParticipant("xhou1", this);
+            database.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, this);
         } else if (CURRENT_STATE == STATE_FRIENDS_HISTORY) {
-            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant("xhou1", this);
+            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currentLoggedInUser, this);
         }
     }
 

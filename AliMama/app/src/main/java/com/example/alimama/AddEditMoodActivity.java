@@ -108,6 +108,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     private LatLng currentLocation;
 
     private Database database;
+    private String currLoggedInUser;
 
     private MoodEvent event = new MoodEvent();
     String currentPhotoPath;
@@ -118,6 +119,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_mood);
 
+        currLoggedInUser = getIntent().getStringExtra("USERNAME");
         tvTitle = findViewById(R.id.tvTitle);
         etEmotionalState = findViewById(R.id.etEmotionalState);
         etDatePicker = findViewById(R.id.etDate);
@@ -223,7 +225,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
                 event.setUsername(username);
                 if (username == null) {
-                    event.setUsername("xhou1");
+                    event.setUsername(currLoggedInUser);
                 }
                 event.setEmotionalState(etEmotionalState.getText().toString());
                 event.setReasonInText(etDescription.getText().toString());
