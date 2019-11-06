@@ -84,9 +84,6 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
-
-
-
     }
 
 //    @Override
@@ -144,5 +141,4 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
 //        moodEvents.remove(position);
 //        this.mAdapter.notifyDataSetChanged();
 //    }
-
 }

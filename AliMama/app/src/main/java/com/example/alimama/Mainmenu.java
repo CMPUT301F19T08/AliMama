@@ -1,60 +1,76 @@
 package com.example.alimama;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+
 public class Mainmenu extends AppCompatActivity {
+
+    FirebaseAuth firebaseAuth;
 
     Button viewMoodHistoryButton;
     Button viewMoodMapButton;
     Button viewOrAddFriendsButton;
+    // delete the following button before submit code
+    Button viewGoogleMapButton;
     Button logoutButton;
-    private Database database;
-
-    private FirebaseAuth firebaseAuth;
+    String loggedInParticipant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
 
-        viewMoodHistoryButton = findViewById(R.id.mood_history_button);
-        viewMoodMapButton = findViewById(R.id.mood_map_button);
-        viewOrAddFriendsButton = findViewById(R.id.add_view_friend_button);
-        logoutButton = findViewById(R.id.logout_button);
+        loggedInParticipant  = getIntent().getStringExtra("USERNAME");
+        viewMoodHistoryButton = findViewById(R.id.main_menu_mood_history_button);
+        viewMoodMapButton = findViewById(R.id.main_menu_mood_map_button);
+        viewOrAddFriendsButton = findViewById(R.id.main_menu_add_view_friend_button);
+        logoutButton = findViewById(R.id.main_menu_logout_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         viewMoodHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent goToMoodHistory = new Intent(Mainmenu.this, MoodHistory.class);
+                goToMoodHistory.putExtra("USERNAME", MoodHistory.class);
                 startActivity(goToMoodHistory);
             }
         });
 
-        viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
+//        viewMoodMapButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
+//                goToMoodMap.putExtra("USERNAME", loggedInParticipant);
+//                startActivity(goToMoodMap);
+//            }
+//        });
+
+        viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToMoodMap = new Intent(Mainmenu.this, MoodMap.class);
-                startActivity(goToMoodMap);
+                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPage.class);
+                goToViewAddFriend.putExtra("USERNAME", loggedInParticipant);
+                startActivity(goToViewAddFriend);
             }
         });
 
         firebaseAuth = FirebaseAuth.getInstance();
-        logoutButton=(Button)findViewById(R.id.logout_button);
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                database.auth().signOut().then(function() {
-//                    console.log('Signed Out');
-//                };
-
                 firebaseAuth.signOut();
                 finish();
                 Intent logOut=new Intent(Mainmenu.this, ParticipantLoginSignupActivity.class);
@@ -64,9 +80,5 @@ public class Mainmenu extends AppCompatActivity {
                 startActivity( logOut );
             }
         });
-
-
     }
-
-
 }
