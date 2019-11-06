@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +32,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.maps.android.ui.IconGenerator;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -45,6 +48,8 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
     LatLngBounds.Builder latLngBounds = new LatLngBounds.Builder();
     private String currParticipant;
     private Database db = new Database();
+    String dateformat = "MM/dd/yyyy HH:mm:ss";
+    DateFormat dateF = new SimpleDateFormat(dateformat);
 
     /**
      *
@@ -110,13 +115,18 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         for(MoodEvent each: moodEventsWithLocation) { // get user's emotion
             if (each.getEmoticon() != null) {
                 GeoPoint location = each.getLocationOfMoodEvent();
-                mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
+                String date = dateF.format(each.getDate());
+                Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                         .position(new LatLng(location.getLatitude(),
                                 location.getLongitude()))
+                        .title(date)
                         .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(each.getEmoticon())))); // change
+
+                marker.showInfoWindow(); // Solve overlap icons problem
 
                 latLngBounds.include(new LatLng(location.getLatitude(),
                         location.getLongitude())); // record markers
+
             }
         }
 
@@ -153,14 +163,19 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
             if (each.getEmoticon() != null) {
                 GeoPoint location = each.getLocationOfMoodEvent();
+                String date = dateF.format(each.getDate());
                 Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                         .position(new LatLng(location.getLatitude(),
                                 location.getLongitude()))
                         .title(each.getUsername())
+                        .snippet(date)
                         .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(each.getEmoticon()))));
+
                 marker.showInfoWindow();
+
                 latLngBounds.include(new LatLng(location.getLatitude(),
                         location.getLongitude())); // record markers
+
             }
         }
         // move camera to show the new markers
