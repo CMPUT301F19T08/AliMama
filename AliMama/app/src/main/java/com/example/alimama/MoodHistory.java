@@ -31,7 +31,7 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
     static final String smirk = new String(Character.toChars(0x1F60F));
     private static final String[] paths = {happy, tears, heart, angry, tongue, cry, smirk};
 
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter moodAdapter;
     private ArrayList<MoodEvent> moodEvents;
     private Resources mResources;
 
@@ -62,10 +62,10 @@ public class MoodHistory extends AppCompatActivity implements AdapterView.OnItem
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         moodEvents = new ArrayList<>();
-        mAdapter = new RecyclerViewAdapter(moodEvents, this);
+        moodAdapter = new RecyclerViewAdapter(moodEvents, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(moodAdapter);
         //mResources = getResources();
         // set onClickListener for addNewRideBtn
         fab.setOnClickListener(new View.OnClickListener() {
