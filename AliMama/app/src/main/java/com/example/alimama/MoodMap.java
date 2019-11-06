@@ -17,6 +17,7 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.maps.android.ui.IconGenerator;
@@ -27,9 +28,6 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
 
     private GoogleMap mMap;
     private Context context;
-
-    //static int emoticon_db;
-    //static String emoticon;
 
     private String currParticipant;
     private Database db = new Database();
@@ -78,11 +76,9 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         for(MoodEvent each: moodEventsWithLocation) {
             if (each.getEmoticon() != null) {
                 GeoPoint location = each.getLocationOfMoodEvent();
-                Integer number = Integer.decode(each.getEmoticon());
-                String actualEmoticon = new String(Character.toChars(number));
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(location.getLatitude(),location.getLongitude()))
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(actualEmoticon)))); // change
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(each.getEmoticon())))); // change
             }
 
         }
@@ -101,11 +97,11 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
             if (each.getEmoticon() != null) {
                 GeoPoint location = each.getLocationOfMoodEvent();
-                Integer number = Integer.decode(each.getEmoticon());
-                String actualEmoticon = new String(Character.toChars(number));
-                mMap.addMarker(new MarkerOptions()
+                Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(location.getLatitude(),location.getLongitude()))
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(actualEmoticon)))); // change
+                        .title(each.getUsername())
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(each.getEmoticon()))));
+                marker.showInfoWindow();
             }
 
         }
