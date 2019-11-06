@@ -1,4 +1,4 @@
-package com.example.alimama;
+package com.example.alimama.Model;
 
 import com.google.firebase.firestore.DocumentId;
 import com.google.firebase.firestore.GeoPoint;
@@ -25,7 +25,7 @@ public class MoodEvent {
     /**
      * Class Constructor
      * */
-    MoodEvent() {
+    public MoodEvent() {
         this.date = new Date();
     }
 
@@ -34,7 +34,7 @@ public class MoodEvent {
      * @param username username of the current logged-in participant.
      * @param emotionalState a string represents participant's emotional state.
      * */
-    MoodEvent(String username, String emotionalState) {
+    public MoodEvent(String username, String emotionalState) {
         this();
         this.emotionalState = emotionalState;
         this.username = username;

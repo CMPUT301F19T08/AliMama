@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.example.alimama.R;
-import com.example.alimama.TestFriendshipOperation;
-import com.example.alimama.adapter.FriendPageAdapter;
+import com.example.alimama.Controller.FriendPageAdapter;
 
 
 public class FriendPageFragment extends Fragment implements FriendPageClickDelegate {
