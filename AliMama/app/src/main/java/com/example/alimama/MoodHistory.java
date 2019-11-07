@@ -1,148 +1,199 @@
 package com.example.alimama;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-import com.example.alimama.ui.main.SectionsPagerAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.alimama.Model.MoodEvent;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MoodHistory extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-    FloatingActionButton fab;
-    static final String happy = new String(Character.toChars(0x1F60A));
-    static final String tears = new String(Character.toChars(0X1F602));
-    static final String heart = new String(Character.toChars(0x1F60D));
-    static final String angry = new String(Character.toChars(0x1F621));
-    static final String tongue = new String(Character.toChars(0x1F61C));
-    static final String cry = new String(Character.toChars(0x1F622));
-    static final String smirk = new String(Character.toChars(0x1F60F));
-    private static final String[] paths = {happy, tears, heart, angry, tongue, cry, smirk};
+public class MoodHistory extends AppCompatActivity implements MoodEventManipulationFeedback, MoodEventClickListener {
 
-    private RecyclerView.Adapter mAdapter;
-    private ArrayList<MoodEvent> moodEvents;
-    private Resources mResources;
+    private final int STATE_MY_HISTORY = 0;
+    private final int STATE_FRIENDS_HISTORY = 1;
+    private int CURRENT_STATE = 0;
+    private Database database;
+    private String currLoggedInUser;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private MoodHistoryAdapter adapter;
+    private Button btnMyHistory;
+    private Button btnFriendsHistory;
+    private Spinner spEmoticon;
+    private String currentEmoticon = "\uD83D\uDE0A"; //happy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_history);
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        currLoggedInUser = getIntent().getStringExtra("USERNAME");
+        FloatingActionButton fab = findViewById(R.id.fab);
+        btnMyHistory = findViewById(R.id.btnMyHistory);
+        btnFriendsHistory = findViewById(R.id.btnFriendsHistory);
+        spEmoticon = findViewById(R.id.spEmoticon);
+        this.currLoggedInUser = getIntent().getStringExtra("USERNAME");
 
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        setupEmoticonsList();
+
+        spEmoticon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent AddMood = new Intent(MoodHistory.this, AddMoodEvent.class);
-                startActivity(AddMood);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                currentEmoticon = spEmoticon.getSelectedItem().toString();
+                getMoodEvents();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
-        Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, paths);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        moodEvents = new ArrayList<>();
-        mAdapter = new RecyclerViewAdapter(moodEvents, this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView = findViewById(R.id.rvMoods);
+        adapter = new MoodHistoryAdapter(this);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mAdapter);
-        //mResources = getResources();
-        // set onClickListener for addNewRideBtn
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        database = new Database();
+
+        btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Bundle bundle = new Bundle();
-//                int requestCode = mResources.getInteger(R.integer.ADD_NEW_RIDE);
-//                bundle.putInt(mResources.getString(R.string.intent_key_request_code),requestCode);
-//                Intent intent = new Intent(view.getContext(), AddUpdateRideActivity.class);
-//                intent.putExtras(bundle);
-//                startActivityForResult(intent, requestCode);
-
-                Intent AddMood = new Intent(MoodHistory.this, AddMoodEvent.class);
-                startActivity(AddMood);
-
+                CURRENT_STATE = STATE_MY_HISTORY;
+                btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
+                btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
+                database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
             }
         });
 
+        btnFriendsHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CURRENT_STATE = STATE_FRIENDS_HISTORY;
+                btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
+                btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
+                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currLoggedInUser, MoodHistory.this);
+            }
+        });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AddEditMoodActivity.class);
+                intent.putExtra("USERNAME", currLoggedInUser);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
+        btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
+        getMoodEvents();
+    }
+
+    @Override
+    public void failToUpdateAnExistingMoodEvent(String errmsg) {
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK) {
-//            // Make sure the request was successful
-//            Bundle bundle = data.getExtras();
-//            String date = bundle.getString(mResources.getString(R.string.intent_key_date));
-//            String time = bundle.getString(mResources.getString(R.string.intent_key_time));
-//            Float distance = Float.valueOf(bundle.getString(mResources.getString(R.string.intent_key_distance)));
-//            Float avgSpeed = Float.valueOf(bundle.getString(mResources.getString(R.string.intent_key_avg_speed)));
-//            Integer avgCadence = Integer.valueOf(bundle.getString(mResources.getString(R.string.intent_key_avg_cadence)));
-//            String comments = bundle.getString(mResources.getString(R.string.intent_key_comments));
-//            MoodEvent newRide = new MoodEvent(username, emotionalState, date, time);
-//            if (requestCode == mResources.getInteger(R.integer.ADD_NEW_RIDE)) {
-//                this.rides.add(newRide);
-//            } else if (requestCode == mResources.getInteger(R.integer.UPDATE_RIDE)) {
-//                int itemPosition = bundle.getInt(mResources.getString(R.string.intent_key_item_position));
-//                this.rides.set(itemPosition, newRide);
-//            }
-//            this.mAdapter.notifyDataSetChanged();
-//
-//        }
-//    }
+    @Override
+    public void updateAnExistingMoodEventSuccessfully() {
+
+    }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {}
+    public void failToAddANewMoodEvent(String errmsg) {
+
+    }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {}
+    public void addANewMoodEventSuccessfully() {
 
-//    @Override
-//    public void onUpdateMoodBtnClick(int position) {
-//        Intent intent = new Intent(this, AddMoodEvent.class);
-//        Bundle bundle = new Bundle();
-//        MoodEvent moodevent = this.moodEvents.get(position);
-//        bundle.putInt(mResources.getString(R.string.intent_key_item_position), position);
-//        bundle.putString(mResources.getString(R.string.intent_key_date), ride.getDate());
-//        bundle.putString(mResources.getString(R.string.intent_key_time), ride.getTime());
-//        bundle.putString(mResources.getString(R.string.intent_key_distance), String.valueOf(ride.getDistance()));
-//        bundle.putString(mResources.getString(R.string.intent_key_avg_speed), String.valueOf(ride.getAvgSpeed()));
-//        bundle.putString(mResources.getString(R.string.intent_key_avg_cadence), String.valueOf(ride.getAvgCadence()));
-//        bundle.putString(mResources.getString(R.string.intent_key_comments), ride.getComments());
-//
-//        bundle.putInt(mResources.getString(R.string.intent_key_request_code), mResources.getInteger(R.integer.UPDATE_RIDE));
-//        intent.putExtras(bundle);
-//
-//        startActivityForResult(intent, mResources.getInteger(R.integer.UPDATE_RIDE));
-//
-//    }
-//
-//    @Override
-//    public void onDeleteMoodBtnClick(int position) {
-//        moodEvents.remove(position);
-//        this.mAdapter.notifyDataSetChanged();
-//    }
+    }
 
+    @Override
+    public void retrieveAllMoodEventOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventHistory) {
+        adapter.setMoodEvents(moodEventHistory, currentEmoticon);
+    }
+
+    @Override
+    public void failToRetrieveAllMoodEventOfAParticipant(String errmsg) {
+
+    }
+
+    @Override
+    public void deleteAMoodEventOfAParticipantSuccessfully() {
+        database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
+    }
+
+    @Override
+    public void failToDeleteAMoodEventOfAParticipant(String errmsg) {
+
+    }
+
+    @Override
+    public void failRetrieveMostRecentMoodEventOfFriendsOfAParticipant(String message) {
+
+    }
+
+    @Override
+    public void retrieveMostRecentMoodEventOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipant) {
+        adapter.setMoodEvents(mostRecentMoodEventsOfFriendsOfAParticipant, currentEmoticon);
+
+    }
+
+    @Override
+    public void failRegisterMoodEventRealTimeListener(String message) {
+
+    }
+
+    @Override
+    public void onEditClick(MoodEvent event) {
+        Intent intent = new Intent(this, AddEditMoodActivity.class);
+        intent.putExtra(AddEditMoodActivity.EXTRA_DOCUMENT_ID, event.getDocumentId());
+        intent.putExtra(AddEditMoodActivity.EXTRA_DATE, event.getDate().toString());
+        intent.putExtra(AddEditMoodActivity.EXTRA_EMOTIONAL_STATE, event.getEmotionalState());
+        intent.putExtra(AddEditMoodActivity.EXTRA_USERNAME, event.getUsername());
+        intent.putExtra(AddEditMoodActivity.EXTRA_DESCRIPTION, event.getReasonInText());
+        intent.putExtra(AddEditMoodActivity.EXTRA_PHOTO_PATH, event.getPathToPhoto());
+        if (event.getLocationOfMoodEvent() != null) {
+            intent.putExtra(AddEditMoodActivity.EXTRA_LOCATION_LAT, event.getLocationOfMoodEvent().getLatitude());
+            intent.putExtra(AddEditMoodActivity.EXTRA_LOCATION_LNG, event.getLocationOfMoodEvent().getLongitude());
+        }
+        intent.putExtra(AddEditMoodActivity.EXTRA_EMOTICON, event.getEmoticon());
+        intent.putExtra(AddEditMoodActivity.EXTRA_SOCIAL_SITUATION, event.getSocialSituation());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteClick(MoodEvent event) {
+        database.deleteAMoodEventOfAParticipant(event, this);
+    }
+
+    private void setupEmoticonsList() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spEmoticon.setAdapter(adapter);
+    }
+
+    private void getMoodEvents() {
+        if (CURRENT_STATE == STATE_MY_HISTORY) {
+            database.retrieveAllMoodEventsOfAParticipant(this.currLoggedInUser, this);
+        } else if (CURRENT_STATE == STATE_FRIENDS_HISTORY) {
+            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currLoggedInUser, this);
+        }
+    }
 }
