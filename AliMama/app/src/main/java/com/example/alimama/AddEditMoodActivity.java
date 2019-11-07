@@ -58,7 +58,10 @@ import java.util.Locale;
 import javax.annotation.Nullable;
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
-
+/**
+ * AddEditEvent Model class
+ * It is the encapsulation of the information regarging to add/edit mood event.
+ */
 public class AddEditMoodActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback,
 OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
@@ -109,11 +112,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     String currentPhotoPath;
     Boolean didPhotoUpdate = false;
 
-    /**
-     * This setup the interface when it is created
-     * @param savedInstanceState
-     *  This is passed in from previous activity
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,8 +184,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             event.setPathToPhoto(photoPath);
         }
 
-
-
         // Retrieve the emoticon information
         final String emoticon = getIntent().getStringExtra(EXTRA_EMOTICON);
         if (emoticon != null) {
@@ -224,7 +220,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         etTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePickerDialog(view);
+                showTimePickerDialog();
             }
         });
 
@@ -264,7 +260,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
                         database.addANewMoodEvent(event, AddEditMoodActivity.this);
                     else if (CURRENT_STATE == STATE_EDIT)
                         database.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
-
                 }
             }
         });
@@ -338,8 +333,8 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     /**
      * This function retrieve the image
-     * @return image
-     * @throws IOException
+     * @return image Information of the picture
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -356,7 +351,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     }
 
     /**
-     * This function retrieve the result from the activity
+     * This function retrieve the result from the activity.
      * @param requestCode
      * It is the request code.
      * @param resultCode
@@ -376,28 +371,47 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     }
 
     /**
-     * This function
-     * @param v
-     * It
+     * This function shows the dialog that let user to choose a date
+     * @param v Pass in the view
      */
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public void showTimePickerDialog(View v) {
+    /**
+     * This function shows the dialog that let user to choose a time
+     */
+    public void showTimePickerDialog() {
         DialogFragment newFragment = new TimePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
+    /**
+     * This function set the date dialog when editing.
+     * @param view It is the view of the current activity.
+     * @param year The candidate year that user wants to edit.
+     * @param month The candidate month that user wants to edit.
+     * @param day The candidate day that user wants to edit.
+     */
     public void onDateSet(DatePicker view, int year, int month, int day) {
         etDatePicker.setText(String.format(Locale.CANADA, "%d-%d-%d", year, month + 1, day));
     }
 
+    /**
+     * This function set the date dialog when editing.
+     * @param view It is the view of the current activity.
+     * @param hourOfDay The candidate hour that users wants to edit.
+     * @param minute The candidate minute that users wants to edit.
+     */
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         etTimePicker.setText(String.format(Locale.CANADA, "%d-%d", hourOfDay, minute));
     }
 
+    /**
+     * This function calls Gogle map.
+     * @param googleMap This retrieve the Google map.
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
@@ -405,6 +419,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         moveMapCameraToCurrentLocation(googleMap);
     }
 
+    /**
+     * This function locate the user location on Google Map.
+     * @param googleMap The map that needs location.
+     */
     private void moveMapCameraToCurrentLocation(GoogleMap googleMap) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED &&
@@ -438,6 +456,12 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
     }
 
+    /**
+     * This function get the result of the
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case LOCATION_REQUEST_CODE:
