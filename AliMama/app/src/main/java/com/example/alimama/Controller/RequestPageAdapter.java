@@ -112,4 +112,4 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 }
 
->>>>>>> 62854744745611b7800a8e96ba998a54b38a7869:AliMama/app/src/main/java/com/example/alimama/Controller/RequestPageAdapter.java
+
