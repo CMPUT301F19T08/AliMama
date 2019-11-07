@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.Button;
 
 
+
+/**
+ * This function is the entrance to all other screens of the applications
+ *
+ * */
 public class Mainmenu extends AppCompatActivity {
 
     Button viewMoodHistoryButton;
@@ -18,6 +23,12 @@ public class Mainmenu extends AppCompatActivity {
     Button logoutButton;
     String loggedInParticipant;
 
+
+    /**
+     *
+     * this method acts as an init method which retrieves all references to Views on screen as well as setting on
+     * button onClickListener
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +71,7 @@ public class Mainmenu extends AppCompatActivity {
         viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPage.class);
+                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPageActivity.class);
                 goToViewAddFriend.putExtra("USERNAME", loggedInParticipant);
                 startActivity(goToViewAddFriend);
             }

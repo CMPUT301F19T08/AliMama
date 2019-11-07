@@ -1,8 +1,5 @@
 package com.example.alimama;
 
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -12,18 +9,25 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+
 
 import java.io.IOException;
 import java.util.List;
+
+/**
+ * This is the Google Map View screen which allows users to access their location
+ * on Map
+ */
+
 
 public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
 
@@ -33,6 +37,12 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
 
     private static final int REQUEST_LOCATION_PERMISSION = 1;
     LocationListener locationListener;
+
+    /**
+     *
+     * this method contains the grant location permission fragment
+     * if user allows the program to access their location, the method gets the user's geopoint
+     * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +110,10 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
+     * @copyright Google Map API
+     * https://developers.google.com/maps/documentation/android-sdk/start
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

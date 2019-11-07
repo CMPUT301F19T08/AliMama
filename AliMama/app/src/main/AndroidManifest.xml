@@ -33,9 +33,19 @@
             android:name=".GoogleMaps"
             android:label="@string/title_activity_google_maps"/>
         <activity
-            android:name=".FriendPage"
+            android:name=".FriendPageActivity"
             android:label="Friend Page"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.alimama.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+        <activity android:name=".AddEditMoodActivity"></activity>
         <activity
             android:name=".MoodMap"
             android:label="@string/title_activity_mood_map"

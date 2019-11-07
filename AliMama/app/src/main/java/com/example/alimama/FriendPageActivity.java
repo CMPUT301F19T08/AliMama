@@ -1,21 +1,18 @@
 package com.example.alimama;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
-import com.example.alimama.R;
-
-import com.example.alimama.ui.main.TabPageAdapter;
+import com.example.alimama.Controller.TabPageAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class FriendPage extends AppCompatActivity implements FriendshipOperationFeedback {
+public class FriendPageActivity extends AppCompatActivity implements FriendshipOperationFeedback {
 
     private TabPageAdapter tabPageAdapter;
 

@@ -24,4 +24,34 @@
     <string name="mood_map_name_string">Mood Map</string>
     <string name="mood_map_friend_map_btn_name">friendMoodMap</string>
     <string name="mood_map_my_map_btn_name">myMoodMap</string>
+    <string name="item_mood_history_username_prompt">Username:</string>
+    <string name="item_mood_history_emotional_state_prompt">Emotional State</string>
+    <string name="item_mood_history_description_prompt">Description</string>
+    <string-array name="social_situation_array">
+        <item>alone</item>
+        <item>with one other person</item>
+        <item>with two to several ppl</item>
+        <item>with a crowd</item>
+    </string-array>
+
+    <string-array name="emoticons_array">
+        <item>&#128522;</item> <!-- happy -->
+        <item>&#128514;</item> <!-- tears -->
+        <item>&#128525;</item> <!-- heart -->
+        <item>&#128545;</item> <!-- angry -->
+        <item>&#128540;</item> <!-- tongue -->
+        <item>&#128546;</item> <!-- cry -->
+        <item>&#128527;</item> <!-- smirk -->
+    </string-array>
+
+    <string-array name="emoticons_array_filter">
+        <item>Select filter</item>
+        <item>&#128522;</item> <!-- happy -->
+        <item>&#128514;</item> <!-- tears -->
+        <item>&#128525;</item> <!-- heart -->
+        <item>&#128545;</item> <!-- angry -->
+        <item>&#128540;</item> <!-- tongue -->
+        <item>&#128546;</item> <!-- cry -->
+        <item>&#128527;</item> <!-- smirk -->
+    </string-array>
 </resources>

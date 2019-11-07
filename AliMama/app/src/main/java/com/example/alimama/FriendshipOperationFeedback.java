@@ -3,6 +3,10 @@ package com.example.alimama;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Should be implemented by classes that require Add Friend /View Friend Requests part of the Database API
+ * in order to receive return results from database
+ * */
 public interface FriendshipOperationFeedback {
     void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests);
 

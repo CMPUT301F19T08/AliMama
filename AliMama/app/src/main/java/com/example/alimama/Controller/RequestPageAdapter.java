@@ -1,4 +1,5 @@
-package com.example.alimama.adapter;
+
+package com.example.alimama.Controller;
 
 
 
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 import com.example.alimama.R;
 
 import com.example.alimama.RequestPageClickDelegate;
-import com.example.alimama.RequestPageFragment;
 
 public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
@@ -34,18 +34,12 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    /**
-     *
-     * Provide reference for each item in view
-     *
-     * */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         ImageView pic;
         TextView contactName;
         CardView cv;
         Button acceptButton;
-
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -60,12 +54,6 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    /**
-     * Constructor for the contactList that would be displayed
-     * in the fragment for each contact card
-     * @param contactDataList
-     * @param rpc
-     * */
     public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageClickDelegate rpc) {
         this.contactList = contactDataList;
         this.rpc = rpc;
@@ -73,10 +61,6 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 
     // Create new views (invoked by the layout manager)
-    /**
-     * Create new views
-     *
-     * */
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
@@ -88,13 +72,7 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         return viewHolder;
     }
 
-
-    /**
-     * Replacing the view when add/delete
-     * @param position
-     * initialize Accept button that would pass position to fragment
-     * */
-
+    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
@@ -116,19 +94,14 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 
 
+
+
             }
         });
 
     }
 
-
-    /**
-     *
-     * This returns contactList size
-     * @return contactList.size()
-     * return the size of the ArrayList
-     *
-     */
+    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return contactList.size();
@@ -139,3 +112,4 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 }
 
+>>>>>>> 62854744745611b7800a8e96ba998a54b38a7869:AliMama/app/src/main/java/com/example/alimama/Controller/RequestPageAdapter.java

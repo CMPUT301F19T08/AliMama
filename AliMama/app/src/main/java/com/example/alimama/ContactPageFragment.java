@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 
-import com.example.alimama.R;
-import com.example.alimama.adapter.ContactPageAdapter;
+import com.example.alimama.Controller.ContactPageAdapter;
 
 
 /**
@@ -67,7 +65,7 @@ public class ContactPageFragment extends Fragment {
 
         recyclerView.setAdapter(contactPageAdapter);
         this.db = new Database();
-        // hardcode for now will connect to main menu later
+        // hardcode for now will connect to Controller menu later
 
 
 
@@ -83,9 +81,9 @@ public class ContactPageFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FriendPage friendPage = (FriendPage)getContext();
+        FriendPageActivity friendPageActivity = (FriendPageActivity)getContext();
 
-        this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPage);
+        this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPageActivity);
 
 
     }
