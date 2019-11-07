@@ -14,17 +14,20 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alimama.Database;
-import com.example.alimama.TestFriendshipOperation;
-import com.example.alimama.adapter.FriendPageAdapter;
+
 import com.example.alimama.adapter.RequestPageAdapter;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
-import com.example.alimama.R;
 
+/**
+ * @author Sky
+ * RequestPage tab's Fragment page.
+ * Set up data for each contact card
+ * For viewing.
+ *
+ * */
 
 public class RequestPageFragment extends Fragment implements RequestPageClickDelegate{
     private Database db;
@@ -34,10 +37,13 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     Button acceptButton;
     RecyclerView recyclerView;
     RequestPageAdapter requestPageAdapter;
-
-
     private String currParticipant;
     private ArrayList<String> contactDataList;
+
+    /**
+     * Constructor for fragment
+     * @param currParticipant
+     * */
     public RequestPageFragment(String currParticipant) {
         this.currParticipant = currParticipant;
 
@@ -84,10 +90,19 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
 
     }
 
+    /**
+     *  Get RequestPage adapter page adapter
+     * @return RequestPageAdapter
+     * */
     public RequestPageAdapter getRequestPageAdapter() {
         return this.requestPageAdapter;
     }
 
+    /**
+     * set Adapter for contactList.
+     * add All of the friends to contactDataList
+     * @param updatedData
+     * */
     public void setAdapterData(ArrayList<String> updatedData ) {
         this.contactDataList.clear();
         this.contactDataList.addAll(updatedData);
@@ -96,6 +111,10 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
 
 
 
+    /**
+     * This is to initial the AcceptButton
+     * @param position
+     * */
     @Override
     public void onAcceptButtonClick(int position) {
         String friendToAdd = this.contactDataList.get(position);

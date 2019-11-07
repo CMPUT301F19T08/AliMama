@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 import com.example.alimama.R;
 
+/**
+ * This class sets up RecyclerView for the contactPageFragment
+ * */
 public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.MyViewHolder> {
     private ArrayList<String> contactList;
     private Context context;
@@ -27,6 +30,11 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
+    /**
+     *
+     * Provide reference for each item in view
+     * @param
+     * */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         ImageView pic;
@@ -44,16 +52,23 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
 
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public ContactPageAdapter(Context context,ArrayList<String> contactDataList) {
-        this.context = context;
-        this.contactList = contactDataList;
-    }
+
+
+    /**
+     * Constructor for the contactList that would be displayed
+     * in the fragment for each contact card
+     * @param contactDataList
+     * */
 
     public ContactPageAdapter(ArrayList<String> contactDataList) {
         this.contactList = contactDataList;
     }
     // Create new views (invoked by the layout manager)
+
+    /**
+     * Create new views
+     *
+     * */
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
@@ -66,6 +81,10 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
     }
 
     // Replace the contents of a view (invoked by the layout manager)
+
+    /**
+    * Replace the content of view when add/delete
+    * */
     @Override
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
@@ -76,7 +95,14 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     *
+     * This returns contactList size
+     * @return contactList.size()
+     * return the size of the ArrayList
+     *
+     */
     @Override
     public int getItemCount() {
 

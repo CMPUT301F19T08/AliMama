@@ -22,6 +22,14 @@ import com.example.alimama.TestFriendshipOperation;
 import com.example.alimama.adapter.FriendPageAdapter;
 
 
+/**
+ * @author Sky
+ * FriendPage tab's Fragment page.
+ * Set up data for each contact card that can be added
+ * For viewing.
+ * Action: add friend
+ * Function for later version: search friend
+ * */
 public class FriendPageFragment extends Fragment implements FriendPageClickDelegate {
 
     private View view;
@@ -29,9 +37,13 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
     private FriendPageAdapter friendPageAdapter;
     private Database db;
     private String currParticipant;
-
-
     private ArrayList<String> contactDataList;
+
+    /**
+     * Constructor for fragment
+     * @param currParticipant
+     *
+     * */
     public FriendPageFragment(String currParticipant) {
         this.currParticipant = currParticipant;
 
@@ -58,13 +70,6 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-
-
-
-
-
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -76,15 +81,31 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
 
     }
 
+    /**
+     *get ContactPageAdapter
+     *
+     * @return FriendPageAdapter
+     * */
+
     FriendPageAdapter getFriendPageAdapter() {
         return this.friendPageAdapter;
     }
+
+    /**
+     * set Adapter for contactList.
+     * add All of the friends to contactDataList
+     * @param updatedData
+     * */
     void setAdapterData(HashSet<String> updatedData) {
         this.contactDataList.clear();
         this.contactDataList.addAll(updatedData);
     }
 
-
+    /**
+     *This is a to initial add friend button
+     *
+     * @param position
+     * */
     @Override
     public void onFriendAddButtonClick(int position) {
         String friendToAdd = contactDataList.get(position);
@@ -94,6 +115,11 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
 
     }
 
+
+    /**
+     * Get FriendPage adapter page adapter
+     *
+     * @return FriendPageAdapter */
     RecyclerView.Adapter getContactPageAdapter() {
         return this.friendPageAdapter;
     }

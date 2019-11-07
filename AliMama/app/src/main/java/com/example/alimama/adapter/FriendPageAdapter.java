@@ -23,19 +23,33 @@ import com.example.alimama.FriendPageClickDelegate;
 import com.example.alimama.FriendPageFragment;
 import com.example.alimama.R;
 
+/**
+ * This class sets up RecyclerView for the FriendPageAdapter
+ * */
 public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;
     Context context;
     FriendPageClickDelegate mClickDelegate;
 
 
-
+    /**
+     * Constructor for the contactList that would be displayed
+     * in the fragment for each contact card
+     * @param contactDataList
+     * @param clickDelegate
+     * */
     public FriendPageAdapter(ArrayList<String> contactDataList, FriendPageClickDelegate clickDelegate) {
         this.contactList = contactDataList;
         this.mClickDelegate = clickDelegate;
 
 
     }
+
+    /**
+     *
+     * Provide reference for each item in view
+     *
+     * */
     public class MyViewHolder extends  RecyclerView.ViewHolder{
         ImageView pic;
         TextView contactName;
@@ -56,14 +70,12 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
             return addButton;
         }
 
-        public void setAddButton(Button add) {
-            this.addButton = add;
-        }
+
     }
 
 
 
-    // Create new views (invoked by the layout manager)
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
@@ -75,7 +87,11 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
         return viewHolder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    /**
+     * Replace the content of view when add/delete
+     * @param position
+     * initialize Accept button that would pass position to fragment
+     * */
     @Override
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
@@ -94,7 +110,13 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    /**
+     *
+     * This returns contactList size
+     * @return contactList.size()
+     * return the size of the ArrayList
+     *
+     */
     @Override
     public int getItemCount() {
         return contactList.size();

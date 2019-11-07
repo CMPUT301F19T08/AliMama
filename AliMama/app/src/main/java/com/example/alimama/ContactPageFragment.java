@@ -20,7 +20,13 @@ import com.example.alimama.R;
 import com.example.alimama.adapter.ContactPageAdapter;
 
 
-
+/**
+ * @author Sky
+ * ContactPage tab's Fragment page.
+ * Set up data for each contact card
+ * For viewing.
+ *
+ * */
 public class ContactPageFragment extends Fragment {
     View view;
 
@@ -33,12 +39,20 @@ public class ContactPageFragment extends Fragment {
 
 
 
-
+    /**
+     * Constructor for fragment
+     * @param currParticipant
+     *
+     * */
     public ContactPageFragment(String currParticipant) {
         this.currParticipant = currParticipant;
     }
 
 
+
+    /**
+     * Set up view in fragment
+     * */
 
     @Nullable
     @Override
@@ -61,6 +75,11 @@ public class ContactPageFragment extends Fragment {
     }
 
 
+    /**
+     *Connect to FriendPage
+     *
+     * */
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -74,19 +93,22 @@ public class ContactPageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
-
-
     }
 
+    /**
+     * set Adapter for contactList.
+     * add All of the friends to contactDataList
+     * @param currentFriendsOfAParticipant
+     * */
 
     public void setAdapterData(ArrayList<String> currentFriendsOfAParticipant) {
         this.contactDataList.clear();
         this.contactDataList.addAll(currentFriendsOfAParticipant);
     }
+    /**
+     * Get contact page adapter
+     * @return ContactPageAdapter
+     * */
 
     public ContactPageAdapter getContactPageAdapter() {
         return this.contactPageAdapter;

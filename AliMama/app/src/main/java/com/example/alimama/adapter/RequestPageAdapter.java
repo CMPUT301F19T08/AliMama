@@ -34,12 +34,18 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
+    /**
+     *
+     * Provide reference for each item in view
+     *
+     * */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         ImageView pic;
         TextView contactName;
         CardView cv;
         Button acceptButton;
+
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -54,6 +60,12 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Constructor for the contactList that would be displayed
+     * in the fragment for each contact card
+     * @param contactDataList
+     * @param rpc
+     * */
     public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageClickDelegate rpc) {
         this.contactList = contactDataList;
         this.rpc = rpc;
@@ -61,6 +73,10 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 
     // Create new views (invoked by the layout manager)
+    /**
+     * Create new views
+     *
+     * */
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
@@ -72,7 +88,13 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         return viewHolder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+
+    /**
+     * Replacing the view when add/delete
+     * @param position
+     * initialize Accept button that would pass position to fragment
+     * */
+
     @Override
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
@@ -94,14 +116,19 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 
 
-
-
             }
         });
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     *
+     * This returns contactList size
+     * @return contactList.size()
+     * return the size of the ArrayList
+     *
+     */
     @Override
     public int getItemCount() {
         return contactList.size();
