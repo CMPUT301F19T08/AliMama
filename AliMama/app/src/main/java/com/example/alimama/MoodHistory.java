@@ -2,20 +2,18 @@ package com.example.alimama;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.alimama.Model.MoodEvent;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.alimama.Model.MoodEvent;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -57,7 +55,6 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 currentEmoticon = spEmoticon.getSelectedItem().toString();
                 getMoodEvents();
-
             }
 
             @Override
@@ -110,8 +107,6 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
         btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
         getMoodEvents();
-
-
     }
 
     @Override
@@ -207,5 +202,4 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currentLoggedInUser, this);
         }
     }
-
 }
