@@ -7,14 +7,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.alimama.Model.MoodEvent;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
 public class MoodHistory extends AppCompatActivity implements MoodEventManipulationFeedback, MoodEventClickListener {
@@ -22,19 +19,15 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
     private final int STATE_MY_HISTORY = 0;
     private final int STATE_FRIENDS_HISTORY = 1;
     private int CURRENT_STATE = 0;
-
     private Database database;
     private String currLoggedInUser;
-
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private MoodHistoryAdapter adapter;
-
     private Button btnMyHistory;
     private Button btnFriendsHistory;
     private Spinner spEmoticon;
     private String currentEmoticon = "\uD83D\uDE0A"; //happy
-    private String currentLoggedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +39,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         btnMyHistory = findViewById(R.id.btnMyHistory);
         btnFriendsHistory = findViewById(R.id.btnFriendsHistory);
         spEmoticon = findViewById(R.id.spEmoticon);
-        this.currentLoggedInUser = getIntent().getStringExtra("USERNAME");
+        this.currLoggedInUser = getIntent().getStringExtra("USERNAME");
 
         setupEmoticonsList();
 
@@ -77,7 +70,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 CURRENT_STATE = STATE_MY_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-                database.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+                database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
             }
         });
 
@@ -87,7 +80,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 CURRENT_STATE = STATE_FRIENDS_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
-                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currLoggedInUser, MoodHistory.this);
             }
         });
 
@@ -95,7 +88,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), AddEditMoodActivity.class);
-                intent.putExtra("USERNAME", currentLoggedInUser);
+                intent.putExtra("USERNAME", currLoggedInUser);
                 startActivity(intent);
             }
         });
@@ -141,7 +134,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     @Override
     public void deleteAMoodEventOfAParticipantSuccessfully() {
-        database.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+        database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
     }
 
     @Override
@@ -197,9 +190,9 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     private void getMoodEvents() {
         if (CURRENT_STATE == STATE_MY_HISTORY) {
-            database.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, this);
+            database.retrieveAllMoodEventsOfAParticipant(this.currLoggedInUser, this);
         } else if (CURRENT_STATE == STATE_FRIENDS_HISTORY) {
-            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currentLoggedInUser, this);
+            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currLoggedInUser, this);
         }
     }
 }
