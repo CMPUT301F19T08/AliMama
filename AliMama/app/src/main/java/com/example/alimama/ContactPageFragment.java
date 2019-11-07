@@ -24,7 +24,7 @@ public class ContactPageFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<String> contactDataList;
-    private Database db;
+    private DatabaseUtil db;
     private String currParticipant;
     ContactPageAdapter contactPageAdapter;
 
@@ -50,7 +50,7 @@ public class ContactPageFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(contactPageAdapter);
-        this.db = new Database();
+        this.db = new DatabaseUtil();
         // hardcode for now will connect to Controller menu later
 
 

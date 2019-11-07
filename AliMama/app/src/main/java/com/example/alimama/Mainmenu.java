@@ -18,8 +18,6 @@ public class Mainmenu extends AppCompatActivity {
     Button viewMoodHistoryButton;
     Button viewMoodMapButton;
     Button viewOrAddFriendsButton;
-    // delete the following button before submit code
-    Button viewGoogleMapButton;
     Button logoutButton;
     String loggedInParticipant;
 

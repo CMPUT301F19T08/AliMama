@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,7 +46,7 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
     private Context context;
     LatLngBounds.Builder latLngBounds = new LatLngBounds.Builder();
     private String currParticipant;
-    private Database db = new Database();
+    private DatabaseUtil db = new DatabaseUtil();
     String dateformat = "MM/dd/yyyy HH:mm:ss";
     DateFormat dateF = new SimpleDateFormat(dateformat);
 

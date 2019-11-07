@@ -107,10 +107,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     private GoogleMap googleMap;
     private LatLng currentLocation;
 
-    private Database database;
+    private DatabaseUtil mDatabaseUtil;
     private String currLoggedInUser;
 
-    private MoodEvent event = new MoodEvent();
+    private MoodEvent event;
     String currentPhotoPath;
     Boolean didPhotoUpdate = false;
 
@@ -132,8 +132,8 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         btnAddMood = findViewById(R.id.btnAddMood);
         spSocalSituation = findViewById(R.id.spSocialSituation);
         spEmoticon = findViewById(R.id.spEmoticon);
-
-        database = new Database();
+        event = new MoodEvent();
+        mDatabaseUtil = new DatabaseUtil();
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
@@ -243,9 +243,9 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
                     uploadFile(currentPhotoPath);
                 else {
                     if (CURRENT_STATE == STATE_ADD)
-                        database.addANewMoodEvent(event, AddEditMoodActivity.this);
+                        mDatabaseUtil.addANewMoodEvent(event, AddEditMoodActivity.this);
                     else if (CURRENT_STATE == STATE_EDIT)
-                        database.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
+                        mDatabaseUtil.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
 
                 }
 
@@ -456,9 +456,9 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             if (downloadUri != null) {
                 event.setPathToPhoto(downloadUri.toString());
                 if (CURRENT_STATE == STATE_ADD)
-                    database.addANewMoodEvent(event, AddEditMoodActivity.this);
+                    mDatabaseUtil.addANewMoodEvent(event, AddEditMoodActivity.this);
                 else if (CURRENT_STATE == STATE_EDIT)
-                    database.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
+                    mDatabaseUtil.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
             }
         } else {
             Toast.makeText(this, "Photo upload failed", Toast.LENGTH_SHORT).show();

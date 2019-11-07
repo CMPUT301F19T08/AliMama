@@ -15,10 +15,6 @@ import java.util.HashSet;
 public class FriendPageActivity extends AppCompatActivity implements FriendshipOperationFeedback {
 
     private TabPageAdapter tabPageAdapter;
-
-
-    private TabLayout tabLayout;
-
     private int positionContactpage =0;
     private int positionFriendpage = 1;
     private int positionRequestpage = 2;
@@ -37,7 +33,7 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
         /*Fragments*/
 
         tabPageAdapter.addFragment(new ContactPageFragment(username ),"Contact Page");
-        tabPageAdapter.addFragment(new FriendPageFragment(username ),"Friend Page");
+        tabPageAdapter.addFragment(new AddFriendPageFragment(username ),"Friend Page");
         tabPageAdapter.addFragment(new RequestPageFragment(username ),"Request Page");
 
         viewPager.setAdapter(tabPageAdapter);
@@ -96,7 +92,7 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
 
     @Override
     public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
-        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+        AddFriendPageFragment fpf = (AddFriendPageFragment) this.tabPageAdapter.getItem(1);
         fpf.setAdapterData(existingParticipants);
         fpf.getFriendPageAdapter().notifyDataSetChanged();
 
@@ -109,7 +105,7 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
 
     @Override
     public void sendFriendRequestFromCurrentParticipantSuccessfully() {
-        FriendPageFragment fpf = (FriendPageFragment) this.tabPageAdapter.getItem(1);
+        AddFriendPageFragment fpf = (AddFriendPageFragment) this.tabPageAdapter.getItem(1);
 
         fpf.getContactPageAdapter().notifyDataSetChanged();
 

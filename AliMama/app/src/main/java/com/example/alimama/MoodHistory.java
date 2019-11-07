@@ -25,7 +25,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
     private final int STATE_FRIENDS_HISTORY = 1;
     private int CURRENT_STATE = 0;
 
-    private Database database;
+    private DatabaseUtil mDatabaseUtil;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -69,7 +69,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-        database = new Database();
+        mDatabaseUtil = new DatabaseUtil();
 
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 CURRENT_STATE = STATE_MY_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-                database.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+                mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
             }
         });
 
@@ -87,7 +87,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 CURRENT_STATE = STATE_FRIENDS_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
-                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+                mDatabaseUtil.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
             }
         });
 
@@ -144,7 +144,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     @Override
     public void deleteAMoodEventOfAParticipantSuccessfully() {
-        database.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, MoodHistory.this);
+        mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, MoodHistory.this);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     @Override
     public void onDeleteClick(MoodEvent event) {
-        database.deleteAMoodEventOfAParticipant(event, this);
+        mDatabaseUtil.deleteAMoodEventOfAParticipant(event, this);
     }
 
     private void setupEmoticonsList() {
@@ -200,9 +200,9 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     private void getMoodEvents() {
         if (CURRENT_STATE == STATE_MY_HISTORY) {
-            database.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, this);
+            mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, this);
         } else if (CURRENT_STATE == STATE_FRIENDS_HISTORY) {
-            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currentLoggedInUser, this);
+            mDatabaseUtil.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currentLoggedInUser, this);
         }
     }
 

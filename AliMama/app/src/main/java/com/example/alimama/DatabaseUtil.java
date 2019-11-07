@@ -28,13 +28,13 @@ import java.util.Map;
 
 
 /**
- * Database class is a custom API that aims to provide an easy-to-use interface to Firestore backend.
- * Database class adopts Singleton design pattern to ensure that only one instance of the Database object
+ * DatabaseUtil class is a custom API that aims to provide an easy-to-use interface to Firestore backend.
+ * DatabaseUtil class adopts Singleton design pattern to ensure that only one instance of the DatabaseUtil object
  * will exist throughout the application life cycle.
  *
  * @author Xuechun Hou
  * */
-class Database {
+public class DatabaseUtil {
 
     private static FirebaseFirestore db = null;
 
@@ -43,7 +43,7 @@ class Database {
      * Class Constructor
      *
      * */
-    Database() {
+    public DatabaseUtil() {
         if (db == null) {
             db = FirebaseFirestore.getInstance();
         }

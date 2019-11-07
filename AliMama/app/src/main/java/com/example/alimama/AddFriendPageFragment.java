@@ -19,17 +19,17 @@ import java.util.HashSet;
 import com.example.alimama.Controller.FriendPageAdapter;
 
 
-public class FriendPageFragment extends Fragment implements FriendPageClickDelegate {
+public class AddFriendPageFragment extends Fragment implements FriendPageClickDelegate {
 
     private View view;
     private RecyclerView recyclerView;
     private FriendPageAdapter friendPageAdapter;
-    private Database db;
+    private DatabaseUtil db;
     private String currParticipant;
 
 
     private ArrayList<String> contactDataList;
-    public FriendPageFragment(String currParticipant) {
+    public AddFriendPageFragment(String currParticipant) {
         this.currParticipant = currParticipant;
 
     }
@@ -45,7 +45,7 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        this.db = new Database();
+        this.db = new DatabaseUtil();
 
         return view;
     }
