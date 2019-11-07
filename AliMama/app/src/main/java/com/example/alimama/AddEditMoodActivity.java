@@ -60,7 +60,7 @@ import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
 /**
  * AddEditEvent Model class
- * It is the encapsulation of the information regarging to add/edit mood event.
+ * It is the encapsulation of the information regarding to add/edit mood event.
  */
 public class AddEditMoodActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback,
 OnCompleteListener<Uri>, MoodEventManipulationFeedback{
