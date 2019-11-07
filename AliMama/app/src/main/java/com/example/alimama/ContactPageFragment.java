@@ -19,7 +19,7 @@ import com.example.alimama.Controller.ContactPageAdapter;
 
 
 /**
- * @author Sky
+ * @author Zi Xuan Zhang
  * ContactPage tab's Fragment page.
  * Set up data for each contact card
  * For viewing.

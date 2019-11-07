@@ -20,7 +20,7 @@ import com.example.alimama.Controller.FriendPageAdapter;
 
 
 /**
- * @author Sky
+ * @author Zi Xuan Zhang
  * FriendPage tab's Fragment page.
  * Set up data for each contact card that can be added
  * For viewing.

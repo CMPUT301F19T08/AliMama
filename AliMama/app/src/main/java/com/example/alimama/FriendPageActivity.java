@@ -114,7 +114,7 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
      * */
     @Override
     public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
-        ContactPageFragment cpf = (ContactPageFragment) this.tabPageAdapter.getItem(positionFriendpage);
+        ContactPageFragment cpf = (ContactPageFragment) this.tabPageAdapter.getItem(positionContactpage);
         cpf.setAdapterData(currentFriendsOfAParticipant);
         cpf.getContactPageAdapter().notifyDataSetChanged();
 

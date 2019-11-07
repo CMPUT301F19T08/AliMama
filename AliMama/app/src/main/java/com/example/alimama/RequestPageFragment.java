@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 
 /**
- * @author Sky
+ * @author Zi Xuan Zhang
  * RequestPage tab's Fragment page.
  * Set up data for each contact card
  * For viewing.

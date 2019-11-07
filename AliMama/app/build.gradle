@@ -30,24 +30,15 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     testImplementation 'junit:junit:4.12'
-<<<<<<< HEAD
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
-=======
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     androidTestImplementation 'androidx.test:runner:1.1.1'
->>>>>>> 62854744745611b7800a8e96ba998a54b38a7869
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.3.1'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
-<<<<<<< HEAD
-    androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.3.1'
-=======
     implementation 'com.google.firebase:firebase-storage:19.1.0'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
->>>>>>> 62854744745611b7800a8e96ba998a54b38a7869
 
 }
 apply plugin: 'com.google.gms.google-services'
