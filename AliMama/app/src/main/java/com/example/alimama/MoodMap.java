@@ -9,6 +9,7 @@ package com.example.alimama;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -131,13 +132,15 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         }
 
         // move camera to show the new markers
-        if(latLngBounds!= null){
-        LatLngBounds bounds = latLngBounds.build();
-        CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
+        try{
+            LatLngBounds bounds = latLngBounds.build();
+            CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
                     getResources().getDisplayMetrics().widthPixels,
                     getResources().getDisplayMetrics().heightPixels,
                     (int)((getResources().getDisplayMetrics().widthPixels)*0.2));  // determine where to set the camera based on markers
         mMap.animateCamera(show_markers, 3000, null);}
+        catch (Exception e) {
+        }
 
     }
 
@@ -179,13 +182,15 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
             }
         }
         // move camera to show the new markers
-        if(latLngBounds!= null){
+        try{
         LatLngBounds bounds = latLngBounds.build();
         CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
                 getResources().getDisplayMetrics().widthPixels,
                 getResources().getDisplayMetrics().heightPixels,
                 (int)((getResources().getDisplayMetrics().widthPixels)*0.2)); // determine where to set the camera based on markers
         mMap.animateCamera(show_markers, 3000, null);}
+        catch (Exception e) {
+        }
     }
 
     /**
