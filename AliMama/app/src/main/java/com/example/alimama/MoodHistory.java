@@ -15,6 +15,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This is a class that keeps track of a list of the MoodEvent objects and displays them using a recycler view
+ */
+
 public class MoodHistory extends AppCompatActivity implements MoodEventManipulationFeedback, MoodEventClickListener {
 
     private final int STATE_MY_HISTORY = 0;
@@ -65,6 +69,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
         database = new Database();
 
+        //Checks to see if the My History button is pressed so that it displays the mood history of the current logged on user.
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +80,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             }
         });
 
+        //Checks to see if the Friends History button is pressed so that it displays the mood history of the current logged on users friends.
         btnFriendsHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +91,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             }
         });
 
+        //Checks to see if the Add mood button is pressed so that a user can add a mood. It will switch to a new activity "AddEditMoodActivity"
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +102,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         });
     }
 
+    //Gets mood events from the database and sets the colors of the tabs to verify that we are on the tab that was selected.
     @Override
     protected void onResume() {
         super.onResume();
@@ -103,6 +111,8 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         getMoodEvents();
     }
 
+    // The following functions checks to see if updating or adding a mood event, or retrieving a mood event is successful or failed.
+    // If failed them then an error message is printed
     @Override
     public void failToUpdateAnExistingMoodEvent(String errmsg) {
 
@@ -159,6 +169,11 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     }
 
+    /**
+     * When the edit button is pressed, we switch to a new activity: "AddEditMoodActivity". It takes in the previous inputs for the current
+     * mood event and displays them on the edit screen so all the information can be viewed or edited.
+     * @param event
+     */
     @Override
     public void onEditClick(MoodEvent event) {
         Intent intent = new Intent(this, AddEditMoodActivity.class);
@@ -177,11 +192,17 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         startActivity(intent);
     }
 
+    /**
+     * This function deletes the mood event of the current logged on user.
+     * @param event
+     */
     @Override
     public void onDeleteClick(MoodEvent event) {
         database.deleteAMoodEventOfAParticipant(event, this);
     }
 
+
+    //This function sets of the emoticon list that the user can use to filter by mood by choosing an emoticon
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);
@@ -189,6 +210,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         spEmoticon.setAdapter(adapter);
     }
 
+    //Gets the mood events from the database depending on whether we are on the My History tab or the Friends History tab
     private void getMoodEvents() {
         if (CURRENT_STATE == STATE_MY_HISTORY) {
             database.retrieveAllMoodEventsOfAParticipant(this.currLoggedInUser, this);

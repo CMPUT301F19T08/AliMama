@@ -518,6 +518,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }).addOnCompleteListener(this);
     }
 
+    /**
+     * Checks to see id the photo added is added or updated on the database.
+     * @param task
+     */
     @Override
     public void onComplete(@NonNull Task<Uri> task) {
         if (task.isSuccessful()) {
@@ -535,6 +539,8 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
     }
 
+    // The following functions checks to see if updating or adding a mood event, or retrieving a mood event is successful or failed.
+    // If failed them then an error message is printed
     @Override
     public void failToUpdateAnExistingMoodEvent(String errmsg) {
 
@@ -590,6 +596,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     }
 
+    /**
+     * Gets the emoticon selected of the mood using a switch statement
+     * @param value
+     */
     private int getEmoticonPosition(String value) {
         switch (value) {
             case "\uD83D\uDE0A":
@@ -609,6 +619,11 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
         return -1;
     }
+
+    /**
+     * Gets the social situation of the mood using a switch statement
+     * @param value
+     */
 
     private int getSocialSituationPosition(String value) {
         switch (value) {
