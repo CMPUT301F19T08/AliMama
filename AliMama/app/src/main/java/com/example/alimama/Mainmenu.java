@@ -1,12 +1,10 @@
 package com.example.alimama;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 
 
 /**
@@ -18,15 +16,12 @@ public class Mainmenu extends AppCompatActivity {
     Button viewMoodHistoryButton;
     Button viewMoodMapButton;
     Button viewOrAddFriendsButton;
-    // delete the following button before submit code
-    Button viewGoogleMapButton;
     Button logoutButton;
     String loggedInParticipant;
 
 
     /**
-     *
-     * this method acts as an init method which retrieves all references to Views on screen as well as setting on
+     * This method acts as an init method which retrieves all references to Views on screen as well as setting on
      * button onClickListener
      * */
     @Override
@@ -76,6 +71,5 @@ public class Mainmenu extends AppCompatActivity {
                 startActivity(goToViewAddFriend);
             }
         });
-
     }
 }
