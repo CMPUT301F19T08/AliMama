@@ -63,7 +63,7 @@ import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
  * It is the encapsulation of the information regarding to add/edit mood event.
  */
 public class AddEditMoodActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback,
-OnCompleteListener<Uri>, MoodEventManipulationFeedback{
+        OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private static final int LOCATION_REQUEST_CODE = 1;
@@ -454,9 +454,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     /**
      * This function get the result of the
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
      */
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -514,6 +511,9 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }).addOnCompleteListener(this);
     }
 
+    /**
+     * Checks to see id the photo added is added or updated on the database.
+     */
     @Override
     public void onComplete(@NonNull Task<Uri> task) {
         if (task.isSuccessful()) {
@@ -531,6 +531,8 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
     }
 
+    // The following functions checks to see if updating or adding a mood event, or retrieving a mood event is successful or failed.
+    // If failed them then an error message is printed
     @Override
     public void failToUpdateAnExistingMoodEvent(String errmsg) {
 
@@ -586,6 +588,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     }
 
+    /**
+     * Gets the emoticon selected of the mood using a switch statement
+     * @param value value that represents the emoticon
+     */
     private int getEmoticonPosition(String value) {
         switch (value) {
             case "\uD83D\uDE0A":
@@ -605,6 +611,11 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
         return -1;
     }
+
+    /**
+     * Gets the social situation of the mood using a switch statement
+     * @param value value that represents the social status
+     */
 
     private int getSocialSituationPosition(String value) {
         switch (value) {

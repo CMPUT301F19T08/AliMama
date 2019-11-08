@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alimama.Model.MoodEvent;
+/**
+ * This is a class is the Mood History view holder for the recycler view to display on the MoodHistory activity
+ */
 
 class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
 
@@ -21,6 +24,11 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
     private MoodEventClickListener listener;
 
 
+    /**
+     * items in the each view of the mood event in the Mood History screen
+     * @param itemView
+     * @param listener
+     */
     public MoodHistoryViewHolder(@NonNull View itemView, final MoodEventClickListener listener) {
         super(itemView);
         this.listener = listener;
@@ -33,6 +41,10 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
         btnDeleteMood = itemView.findViewById(R.id.btnDeleteMood);
     }
 
+    /**
+     * Binds the mood event information to the view on the Mood History screen
+     * @param moodEvent
+     */
     public void bind(final MoodEvent moodEvent) {
         int year = moodEvent.getDate().getYear() + 1900;
         tvDate.setText(year + "-" +moodEvent.getDate().getMonth() + "-" + moodEvent.getDate().getDate());
