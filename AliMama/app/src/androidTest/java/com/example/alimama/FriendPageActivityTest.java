@@ -42,8 +42,8 @@ public class FriendPageActivityTest {
     private Solo friendpage;
     private Solo mainmenu;
     private TextView textView;
-    RecyclerView recyclerView;
-    CardView cardView;
+
+
     String name;
 
     @Rule
