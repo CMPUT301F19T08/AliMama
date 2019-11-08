@@ -40,9 +40,9 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
         ViewPager viewPager = findViewById(R.id.view_pager);
         /*Fragments*/
 
-        tabPageAdapter.addFragment(new ContactPageFragment(username ),"Contact Page");
-        tabPageAdapter.addFragment(new FriendPageFragment(username ),"Friend Page");
-        tabPageAdapter.addFragment(new RequestPageFragment(username ),"Request Page");
+        tabPageAdapter.addFragment(new ContactPageFragment(username ),"Contacts");
+        tabPageAdapter.addFragment(new FriendPageFragment(username ),"Friends");
+        tabPageAdapter.addFragment(new RequestPageFragment(username ),"Requests");
 
         viewPager.setAdapter(tabPageAdapter);
 

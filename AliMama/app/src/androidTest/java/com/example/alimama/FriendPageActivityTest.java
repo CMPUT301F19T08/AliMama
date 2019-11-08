@@ -3,20 +3,21 @@ package com.example.alimama;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TabHost;
 
-import androidx.cardview.widget.CardView;
+import android.widget.Button;
+
+
+import android.widget.TextView;
+
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 
-import com.example.alimama.Controller.TabPageAdapter;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputLayout;
+
+
+
 import com.robotium.solo.Solo;
 
 import junit.framework.TestCase;
@@ -26,10 +27,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+
 
 
 /**
@@ -39,9 +40,7 @@ import static org.junit.Assert.assertFalse;
 
 public class FriendPageActivityTest {
     private Solo friendpage;
-    private Solo mainmenu;
-    private Solo login;
-    private Solo anotheruserFriendPage;
+
 
     @Rule
     public ActivityTestRule<FriendPageActivity> rule = new ActivityTestRule<FriendPageActivity>(FriendPageActivity.class,true,true){
@@ -53,129 +52,70 @@ public class FriendPageActivityTest {
         }
     };
 
-   /* @Rule
-    public ActivityTestRule<FriendPageActivity> rule4 = new ActivityTestRule<FriendPageActivity>(FriendPageActivity.class,true,true){
-        @Override
-        protected Intent getActivityIntent() {
-            Intent intent = new Intent();
-            intent.putExtra("USERNAME","xhou1");
-            return intent;
-        }
-    };*/
 
-    @Rule
-    public ActivityTestRule<ParticipantLoginSignupActivity> rule2 =
-            new ActivityTestRule<ParticipantLoginSignupActivity>(ParticipantLoginSignupActivity.class,true,true){
-
-        @Override
-        protected Intent getActivityIntent() {
-           Intent intent = new Intent();
-           intent.putExtra("USERNAME","sky1");
-            return intent;
-        }
-    };
-
-    @Rule
-    public ActivityTestRule<Mainmenu> rule3 = new ActivityTestRule<Mainmenu>(Mainmenu.class,true,true){
-        @Override
-    protected Intent getActivityIntent() {
-        Intent intent = new Intent();
-        intent.putExtra("USERNAME","sky1");
-        return intent;
-    }};
 
     @Before
     public void setUp() throws Exception{
         friendpage = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         friendpage.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
-//        anotheruserFriendPage = new Solo(InstrumentationRegistry.getInstrumentation(),rule4.getActivity());
-        login = new Solo(InstrumentationRegistry.getInstrumentation(),rule2.getActivity());
-        mainmenu = new Solo(InstrumentationRegistry.getInstrumentation(),rule3.getActivity());
+
+
     }
 
-   /* @Test
+    @Test
     public void start() throws Exception{
         Activity friendPageActivity = rule.getActivity();
-        Activity loginActivity = rule2.getActivity();
-        Activity mainmenuActivity = rule3.getActivity();
-    }*/
-    public void loginWithUsername(){
-        login.assertCurrentActivity("Wrong Activity",ParticipantLoginSignupActivity.class);
-        TextInputLayout usernameTIL = (TextInputLayout)login.getView(R.id.participant_login_signup_username);
-        EditText usernameET = usernameTIL.getEditText();
-        TextInputLayout  passwordTIL = (TextInputLayout)login.getView(R.id.participant_login_signup_password);
-        EditText passwordET = passwordTIL.getEditText();
-        login.enterText(usernameET, "sky1");
-        friendpage.sleep(2000);
-        login.enterText(passwordET,"sky");
-        login.clickOnView(login.getView(R.id.participant_login_signup_login_btn));
+
+
     }
 
-    public void loginAnotherUser(){
-        login.assertCurrentActivity("Wrong Activity",ParticipantLoginSignupActivity.class);
-        TextInputLayout usernameTIL = (TextInputLayout)login.getView(R.id.participant_login_signup_username);
-        EditText usernameET = usernameTIL.getEditText();
-        TextInputLayout  passwordTIL = (TextInputLayout)login.getView(R.id.participant_login_signup_password);
-        EditText passwordET = passwordTIL.getEditText();
-        login.enterText(usernameET, "sky1");
-        friendpage.sleep(2000);
-        login.enterText(passwordET,"sky");
-        login.clickOnView(login.getView(R.id.participant_login_signup_login_btn));
-    }
 
-    public void menupageAccess(){
-        TestCase.assertTrue(mainmenu.waitForActivity(Mainmenu.class, 5000));
+    public void tabworking() {
+        TestCase.assertTrue(friendpage.waitForActivity(FriendPageActivity.class, 5000));
         // verify that ShowActivity successfully started
-        mainmenu.assertCurrentActivity("Not MainMenu Activity", Mainmenu.class);
-
-        mainmenu.clickOnView(mainmenu.getView((R.id.main_menu_add_view_friend_button)));
-
-    }
-    public void confirmRequestAccepted(){
-        friendpage.clickOnText("Request Page");
+        friendpage.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+        friendpage.clickOnText("Requests");
         friendpage.sleep(500);
-        friendpage.clickOnText("Accept");
-        friendpage.clickOnText("Contact Page");
+        friendpage.clickOnText("Friends");
+        friendpage.sleep(500);
+        friendpage.clickOnText("Contacts");
         assertTrue(friendpage.searchText("xhou3"));
+
+
     }
     public void addFriend(){
-        ViewGroup tabLayout = (ViewGroup)friendpage.getView(R.id.tabs);
-        View friendpagetab = tabLayout.getChildAt(1);
-        View requestpagetab = tabLayout.getChildAt(2);
-        friendpage.clickOnText("Friend Page");
 
+        friendpage.clickOnText("Requests");
+        friendpage.clickOnText("Friends");
+        friendpage.clickOnButton(0);
         friendpage.waitForActivity(FriendPageActivity.class,5000);
-        System.out.println("clicked yooooooooooooooooooooooooooooooooooooooooooooooooo");
-
-
-        RecyclerView recyclerView = (RecyclerView) friendpage.getView(R.id.my_recycler_view,1);
-        assertTrue(friendpage.searchText("xhou1"));
-        View view = recyclerView.getChildAt(0);
-        Button button = (Button)view.findViewById(R.id.friend_add);
         friendpage.sleep(5000);
+
+    }
+
+    public void seekFriend(){
+        friendpage.clickOnText("Requests");
+
+        friendpage.clickOnText("Friends");
+
+
+        RecyclerView recyclerView = (RecyclerView) friendpage.getView(R.id.my_recycler_view);
+        View view = recyclerView.getChildAt(0);
+        TextView textView = view.findViewById(R.id.contact_name);
+        String name  = textView.getText().toString();
+        Button button = (Button)view.findViewById(R.id.friend_add);
         friendpage.clickOnView(button);
+        assertEquals(name,"xhou1");
+        System.out.println(name);
+
 
 
     }
     @Test
     public void FriendRequestSend(){
 
-        /*Sign in
-        * with username = xhou1,password = a380
-        *signup.validCredentialExistingParticipantLogIn();*/
-        /*press add friend
-*/
-
-       /* loginWithUsername();
-        menupageAccess();*/
-
-        friendpage.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
-        addFriend();
-//        anotheruserFriendPage.assertCurrentActivity("Wrong Activity",FriendPageActivity.class);
-
-//        confirmRequestAccepted();
-
-
+//        tabworking();
+        seekFriend();
 
 
     }
