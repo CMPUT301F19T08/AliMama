@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "418214372780-thbb60ol2mgb54opkogs38g3ce55vebs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alimama",
+            "certificate_hash": "854484650b6ac5f491c433cfdbb52ae3f2a56370"
+          }
+        },
+        {
           "client_id": "418214372780-bnomk7ovpic359c6dij4afurq33ais23.apps.googleusercontent.com",
           "client_type": 3
         }

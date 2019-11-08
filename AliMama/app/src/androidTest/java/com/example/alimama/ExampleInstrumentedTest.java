@@ -3,10 +3,6 @@ package com.example.alimama;
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
