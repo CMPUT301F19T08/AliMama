@@ -64,7 +64,7 @@
 - Requires an **Android Activity and its corresponding layout xml**.
 - The activity and the layout serves two purposes: to Allow participant Add a new MoodEvent and Edit an existing MoodEvent. 
 #### Layout Design
-- [ ] The layout file should contain views as follows: 
+- The layout file should contain views as follows: 
 - Edit Text for date and its prompt 
 - a list of emoticons for emotionalState and its prompt 
 - Edit Text for reasonInText and its prompt 
@@ -73,8 +73,8 @@
 - A CheckBox, when checked, retrieve geolocation where the MoodEvent takes place from GPS.
 - An Embedded Map view that pinpoints the current location on Map.
 - A Button, when participant is adding a new MoodEvent, has the text "Add"; When participant is editing an existing mood event, has the text "Update".
-- [ ] Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
-- [ ] After pressing the "Add/ Update" button, the participant should be directed back to MoodEvent History Screen. 
+- Requires implementations that assists the participant in proper data entry. For example, use appropriate user interface controls to enforce particular data types and avoid illegal values.
+- After pressing the "Add/ Update" button, the participant should be directed back to MoodEvent History Screen. 
 
 ## MoodEvent History Screen ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
 
