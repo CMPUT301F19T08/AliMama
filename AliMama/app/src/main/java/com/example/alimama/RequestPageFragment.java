@@ -32,11 +32,8 @@ import java.util.ArrayList;
  * */
 
 public class RequestPageFragment extends Fragment implements RequestPageClickDelegate{
-    private Database db;
-    FriendshipOperationFeedback friendshipOperationFeedback;
-
+    private DatabaseUtil db;
     View view;
-    Button acceptButton;
     RecyclerView recyclerView;
     RequestPageAdapter requestPageAdapter;
     private String currParticipant;
@@ -65,13 +62,8 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
         requestPageAdapter = new RequestPageAdapter(contactDataList,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-        this.db = new Database();
-
+        this.db = new DatabaseUtil();
         recyclerView.setAdapter(requestPageAdapter);
-        acceptButton = view.findViewById(R.id.friend_accept);
-
 
         return view;
     }

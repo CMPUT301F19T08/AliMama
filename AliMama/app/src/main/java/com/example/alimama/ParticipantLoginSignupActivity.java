@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.ArrayList;
-
-
 
 /**
  * This is the first screen of the the whole application which allows new Participants to sign up or existing Participants
@@ -25,7 +22,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     private TextInputLayout mUsername;
     private TextInputLayout mPassword;
-    private Database database;
+    private DatabaseUtil mDatabaseUtil;
 
 
     @Override
@@ -56,7 +53,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
         }
         username = username.trim();
         password = password.trim();
-        database.signupNewParticipant(username, password, this);
+        mDatabaseUtil.signupNewParticipant(username, password, this);
 
     }
 
@@ -79,7 +76,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
         }
         username = username.trim();
         password = password.trim();
-        database.authenticExistingParticipant(username, password, this);
+        mDatabaseUtil.authenticExistingParticipant(username, password, this);
 
     }
 
@@ -101,7 +98,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
 
         logo.setImageResource(R.drawable.logo);
-        database = new Database();
+        mDatabaseUtil = new DatabaseUtil();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +133,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     /**
      * This function is part of implementation of CredentialValidationDelegate Interface, which displays error
-     * on screen if username exists in database when new Participant sign up
+     * on screen if username exists in mDatabaseUtil when new Participant sign up
      *
      * */
     @Override
@@ -149,7 +146,7 @@ public class ParticipantLoginSignupActivity extends AppCompatActivity implements
 
     /**
      * This function is part of implementation of CredentialValidationDelegate Interface, which displays error
-     * on screen if username does not exist in database when existing Participant logs in
+     * on screen if username does not exist in mDatabaseUtil when existing Participant logs in
      *
      * */
     @Override

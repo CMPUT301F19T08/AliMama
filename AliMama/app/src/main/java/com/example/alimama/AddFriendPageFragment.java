@@ -19,6 +19,7 @@ import java.util.HashSet;
 import com.example.alimama.Controller.FriendPageAdapter;
 
 
+
 /**
  * @author Zi Xuan Zhang
  * FriendPage tab's Fragment page.
@@ -27,28 +28,29 @@ import com.example.alimama.Controller.FriendPageAdapter;
  * Action: add friend
  * Function for later version: search friend
  * */
-public class FriendPageFragment extends Fragment implements FriendPageClickDelegate {
+public class AddFriendPageFragment extends Fragment implements FriendPageClickDelegate {
 
     private View view;
     private RecyclerView recyclerView;
     private FriendPageAdapter friendPageAdapter;
-    private Database db;
+    private DatabaseUtil db;
     private String currParticipant;
     private ArrayList<String> contactDataList;
+
 
     /**
      * Constructor for fragment
      * @param currParticipant
      *
      * */
-    public FriendPageFragment(String currParticipant) {
+
+
+    public AddFriendPageFragment(String currParticipant) {
+
         this.currParticipant = currParticipant;
 
     }
-    public FriendPageFragment() {
 
-
-    }
 
     @Nullable
     @Override
@@ -61,7 +63,7 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        this.db = new Database();
+        this.db = new DatabaseUtil();
 
         return view;
     }
