@@ -93,7 +93,8 @@ public class ParticipantLoginSignupActivityTest {
         String username = "username";
         String password = "password";
 
-        Mockito.when(firebaseFirestore.collection("Participants")).thenReturn(mockCollectionReference);
+        Mockito.when(firebaseFirestore.collection("Participants"))
+                .thenReturn(mockCollectionReference);
         Mockito.when(mockCollectionReference.document(username)).thenReturn(mockDocumentReference);
         Mockito.when(mockDocumentReference.get()).thenReturn(mockDocumentSnapshotTask);
         Mockito.when(mockDocumentSnapshotTask.addOnCompleteListener(any(OnCompleteListener.class))).thenAnswer(new Answer<Object>() {

@@ -431,7 +431,7 @@ public class DatabaseUtil {
         final CollectionReference itemsRef = db.collection("PendingFriendRequests");
 
                 itemsRef
-                .whereEqualTo("username", username)
+                        .whereEqualTo("username", username)
                 .whereEqualTo("friendToAdd", usernameOfFriendRequestToAccept)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
