@@ -1,5 +1,6 @@
 package com.example.alimama;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.Button;
@@ -29,8 +30,16 @@ public class MoodMapActivityTest {
 
     private Solo solo;
 
+
     @Rule
-    public ActivityTestRule<ParticipantLoginSignupActivity> rule = new ActivityTestRule<>(ParticipantLoginSignupActivity.class, true, true);
+    public ActivityTestRule<MoodMap> rule = new ActivityTestRule<MoodMap>(MoodMap.class){
+        @Override
+        protected Intent getActivityIntent() {
+            Intent intent = new Intent();
+            intent.putExtra("USERNAME", "test");
+            return intent;
+        }
+    };
     /**
      * Runs before all tests and creates solo instance.
      * enters login information for future testing
@@ -39,16 +48,6 @@ public class MoodMapActivityTest {
     @Before
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
-        TextInputLayout usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
-        EditText usernameET = usernameTIL.getEditText();
-        TextInputLayout  passwordTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_password);
-        EditText passwordET = passwordTIL.getEditText();
-        solo.enterText(usernameET, "test");
-        solo.enterText(passwordET,"test");
-        solo.clickOnButton("Log In"); //click on Log In Button
-        assertTrue(solo.waitForActivity(Mainmenu.class, 5000));
-        solo.clickOnView(solo.getView(R.id.main_menu_mood_map_button));
-        assertTrue(solo.waitForActivity(MoodMap.class, 5000));
     }
 
     /**
@@ -115,8 +114,7 @@ public class MoodMapActivityTest {
     public void pressMyMoodBtnCheckIfMarkersAppear() {
         solo.assertCurrentActivity("Wrong Activity", MoodMap.class);
         solo.clickOnButton("myMoodMap");
-
-     //   assertTrue(solo.waitForText("12/04/2019 12:00:00", 1, 2000));
+        assertTrue(solo.waitForText("12/04/2019 12:00:00", 1, 8000));
     }
     /**
      *
@@ -128,7 +126,7 @@ public class MoodMapActivityTest {
         solo.assertCurrentActivity("Wrong Activity", MoodMap.class);
         solo.clickOnButton("friendMoodMap");
 
-     //   assertTrue(solo.waitForText("testmap", 1, 2000));
+        assertTrue(solo.waitForText("testmap", 1, 8000));
     }
     /**
      * Closes the activity after each test
