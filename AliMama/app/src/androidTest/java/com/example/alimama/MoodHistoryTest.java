@@ -1,24 +1,17 @@
 package com.example.alimama;
 
 import android.content.Intent;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
+
 import com.robotium.solo.Solo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -43,71 +36,11 @@ public class MoodHistoryTest {
             };
 
     /**
-     * Check the names and the numbers of my Mood history using assertTrue and
-     * Check the names and the numbers of friends' Mood history using assertTrue and
-     * Check whether the app switch to Add/Edit Mood Activity after the floating button is pressed
-     */
-    @Test
-    public void checkList() {
-        // Asserts that the current activity is the MainActivity. Otherwise, show “Wrong Activity”
-        solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
-        assertTrue(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou2", true));
-        assertFalse(solo.searchText("xhou3", true));
-        assertFalse(solo.searchText("xhou4", true));
-        assertEquals(9, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.btnFriendsHistory));
-        assertTrue(solo.searchText("xhou2", true));
-        assertFalse(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou3", true));
-        assertFalse(solo.searchText("xhou4", true));
-        assertEquals(1, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.pressSpinnerItem(0, 1);
-        assertFalse(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou2", true));
-        assertEquals(0, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.pressSpinnerItem(0, 3);
-        assertTrue(solo.searchText("xhou2", true));
-        assertFalse(solo.searchText("xhou4", true));
-        assertEquals(1, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.btnMyHistory));
-        solo.pressSpinnerItem(0, -4);
-        assertTrue(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou3", true));
-        assertEquals(9, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.pressSpinnerItem(0, 1);
-        assertTrue(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou4", true));
-        assertEquals(5, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.pressSpinnerItem(0, 5);
-        assertTrue(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou3", true));
-        assertEquals(4, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-
-        solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.fab));
-        solo.assertCurrentActivity("Wrong activity", AddEditMoodActivity.class);
-
-        solo.goBack();
-        solo.pressSpinnerItem(0, -6);
-        solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
-        assertTrue(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou4", true));
-        assertEquals(9, ((RecyclerView) solo.getCurrentActivity().findViewById(R.id.rvMoods)).getAdapter().getItemCount());
-    }
-
-    /**
      * Runs before all tests and creates solo instance.
      */
     @Before
     public void setUp() {
         solo = new Solo(InstrumentationRegistry.getInstrumentation(), rule.getActivity());
-        solo.assertCurrentActivity("Wrong activity", MoodHistory.class);
     }
 
     /**
@@ -120,6 +53,59 @@ public class MoodHistoryTest {
     }
 
     /**
+     *
+     * This function tests whether we switched to the friends Mood history activity tab when clicked
+     *
+     * */
+    @Test
+    public void checkIfSwitchedToFriendsHistoryTab() {
+        solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
+
+        solo.clickOnView(solo.getView(R.id.btnFriendsHistory));
+
+        assertTrue(solo.searchText("xhou2", true));
+        assertFalse(solo.searchText("xhou1", true));
+        assertFalse(solo.searchText("xhou3", true));
+        assertFalse(solo.searchText("xhou4", true));
+    }
+
+
+    /**
+     *
+     * This function tests whether we switched to the My Mood history activity tab when clicked
+     *
+     * */
+    @Test
+    public void checkIfSwitchedToMyHistoryTab() {
+        solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
+
+        solo.clickOnView(solo.getView(R.id.btnFriendsHistory));
+
+        assertTrue(solo.searchText("xhou2", true));
+        assertFalse(solo.searchText("xhou1", true));
+        assertFalse(solo.searchText("xhou3", true));
+        assertFalse(solo.searchText("xhou4", true));
+
+        solo.clickOnView(solo.getView(R.id.btnMyHistory));
+
+        assertTrue(solo.searchText("xhou1", true));
+        assertFalse(solo.searchText("xhou2", true));
+        assertFalse(solo.searchText("xhou3", true));
+
+    }
+
+
+    /**
+     * Check if add mood button works
+     */
+    @Test
+    public void checkAddButton(){
+        solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.fab));
+        solo.assertCurrentActivity("Wrong activity", AddEditMoodActivity.class);
+    }
+
+
+    /**
      * Closes the activity after each test
      */
     @After
@@ -127,63 +113,4 @@ public class MoodHistoryTest {
         solo.finishOpenedActivities();
     }
 
-//    @Test
-//    public void onCreate() {
-//    }
-//
-//    @Test
-//    public void onResume() {
-//    }
-//
-//    @Test
-//    public void failToUpdateAnExistingMoodEvent() {
-//    }
-//
-//    @Test
-//    public void updateAnExistingMoodEventSuccessfully() {
-//    }
-//
-//    @Test
-//    public void failToAddANewMoodEvent() {
-//    }
-//
-//    @Test
-//    public void addANewMoodEventSuccessfully() {
-//    }
-//
-//    @Test
-//    public void retrieveAllMoodEventOfAParticipantSuccessfully() {
-//    }
-//
-//    @Test
-//    public void failToRetrieveAllMoodEventOfAParticipant() {
-//    }
-//
-//    @Test
-//    public void deleteAMoodEventOfAParticipantSuccessfully() {
-//    }
-//
-//    @Test
-//    public void failToDeleteAMoodEventOfAParticipant() {
-//    }
-//
-//    @Test
-//    public void failRetrieveMostRecentMoodEventOfFriendsOfAParticipant() {
-//    }
-//
-//    @Test
-//    public void retrieveMostRecentMoodEventOfFriendsOfAParticipantSuccessfully() {
-//    }
-//
-//    @Test
-//    public void failRegisterMoodEventRealTimeListener() {
-//    }
-//
-//    @Test
-//    public void onEditClick() {
-//    }
-//
-//    @Test
-//    public void onDeleteClick() {
-//    }
 }
