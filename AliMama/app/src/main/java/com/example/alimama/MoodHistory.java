@@ -2,49 +2,50 @@ package com.example.alimama;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.alimama.Model.MoodEvent;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.alimama.Model.MoodEvent;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-/**
- * This is a class that keeps track of a list of the MoodEvent objects and displays them using a recycler view
- */
+
+import java.util.ArrayList;
 
 public class MoodHistory extends AppCompatActivity implements MoodEventManipulationFeedback, MoodEventClickListener {
 
     private final int STATE_MY_HISTORY = 0;
     private final int STATE_FRIENDS_HISTORY = 1;
     private int CURRENT_STATE = 0;
-    private Database database;
-    private String currLoggedInUser;
+
+    private DatabaseUtil mDatabaseUtil;
+
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private MoodHistoryAdapter adapter;
+
     private Button btnMyHistory;
     private Button btnFriendsHistory;
     private Spinner spEmoticon;
     private String currentEmoticon = "\uD83D\uDE0A"; //happy
+    private String currentLoggedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_history);
-
-        currLoggedInUser = getIntent().getStringExtra("USERNAME");
         FloatingActionButton fab = findViewById(R.id.fab);
         btnMyHistory = findViewById(R.id.btnMyHistory);
         btnFriendsHistory = findViewById(R.id.btnFriendsHistory);
         spEmoticon = findViewById(R.id.spEmoticon);
-        this.currLoggedInUser = getIntent().getStringExtra("USERNAME");
+        this.currentLoggedInUser = getIntent().getStringExtra("USERNAME");
 
         setupEmoticonsList();
 
@@ -53,6 +54,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 currentEmoticon = spEmoticon.getSelectedItem().toString();
                 getMoodEvents();
+
             }
 
             @Override
@@ -67,52 +69,49 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-        database = new Database();
+        mDatabaseUtil = new DatabaseUtil();
 
-        //Checks to see if the My History button is pressed so that it displays the mood history of the current logged on user.
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CURRENT_STATE = STATE_MY_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-                database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
+                mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
             }
         });
 
-        //Checks to see if the Friends History button is pressed so that it displays the mood history of the current logged on users friends.
         btnFriendsHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CURRENT_STATE = STATE_FRIENDS_HISTORY;
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
-                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currLoggedInUser, MoodHistory.this);
+                mDatabaseUtil.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
             }
         });
 
-        //Checks to see if the Add mood button is pressed so that a user can add a mood. It will switch to a new activity "AddEditMoodActivity"
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), AddEditMoodActivity.class);
-                intent.putExtra("USERNAME", currLoggedInUser);
+                intent.putExtra("USERNAME", currentLoggedInUser);
                 startActivity(intent);
             }
         });
     }
 
-    //Gets mood events from the database and sets the colors of the tabs to verify that we are on the tab that was selected.
     @Override
     protected void onResume() {
         super.onResume();
         btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
         btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
         getMoodEvents();
+
+
     }
 
-    // The following functions checks to see if updating or adding a mood event, or retrieving a mood event is successful or failed.
-    // If failed them then an error message is printed
     @Override
     public void failToUpdateAnExistingMoodEvent(String errmsg) {
 
@@ -145,7 +144,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     @Override
     public void deleteAMoodEventOfAParticipantSuccessfully() {
-        database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
+        mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, MoodHistory.this);
     }
 
     @Override
@@ -169,11 +168,6 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
 
     }
 
-    /**
-     * When the edit button is pressed, we switch to a new activity: "AddEditMoodActivity". It takes in the previous inputs for the current
-     * mood event and displays them on the edit screen so all the information can be viewed or edited.
-     * @param event
-     */
     @Override
     public void onEditClick(MoodEvent event) {
         Intent intent = new Intent(this, AddEditMoodActivity.class);
@@ -192,17 +186,11 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         startActivity(intent);
     }
 
-    /**
-     * This function deletes the mood event of the current logged on user.
-     * @param event
-     */
     @Override
     public void onDeleteClick(MoodEvent event) {
-        database.deleteAMoodEventOfAParticipant(event, this);
+        mDatabaseUtil.deleteAMoodEventOfAParticipant(event, this);
     }
 
-
-    //This function sets of the emoticon list that the user can use to filter by mood by choosing an emoticon
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);
@@ -210,12 +198,12 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
         spEmoticon.setAdapter(adapter);
     }
 
-    //Gets the mood events from the database depending on whether we are on the My History tab or the Friends History tab
     private void getMoodEvents() {
         if (CURRENT_STATE == STATE_MY_HISTORY) {
-            database.retrieveAllMoodEventsOfAParticipant(this.currLoggedInUser, this);
+            mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(this.currentLoggedInUser, this);
         } else if (CURRENT_STATE == STATE_FRIENDS_HISTORY) {
-            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currLoggedInUser, this);
+            mDatabaseUtil.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currentLoggedInUser, this);
         }
     }
+
 }

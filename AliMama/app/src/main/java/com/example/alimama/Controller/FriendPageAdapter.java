@@ -1,3 +1,4 @@
+
 package com.example.alimama.Controller;
 
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -37,14 +39,15 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
         ImageView pic;
         TextView contactName;
         private Button addButton;
-
+        CardView cv;
 
 
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
-            contactName = itemView.findViewById(R.id.contact_name);
+            contactName = itemView.findViewById(R.id.friend_name);
             addButton = itemView.findViewById(R.id.friend_add);
+            cv = itemView.findViewById(R.id.friend_card_view);
 
 
         }
@@ -102,4 +105,3 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
 
 
 }
-

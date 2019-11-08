@@ -1,10 +1,12 @@
 package com.example.alimama;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 
 
 /**
@@ -21,7 +23,8 @@ public class Mainmenu extends AppCompatActivity {
 
 
     /**
-     * This method acts as an init method which retrieves all references to Views on screen as well as setting on
+     *
+     * this method acts as an init method which retrieves all references to Views on screen as well as setting on
      * button onClickListener
      * */
     @Override
@@ -66,10 +69,11 @@ public class Mainmenu extends AppCompatActivity {
         viewOrAddFriendsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPage.class);
+                Intent goToViewAddFriend = new Intent(Mainmenu.this, FriendPageActivity.class);
                 goToViewAddFriend.putExtra("USERNAME", loggedInParticipant);
                 startActivity(goToViewAddFriend);
             }
         });
+
     }
 }

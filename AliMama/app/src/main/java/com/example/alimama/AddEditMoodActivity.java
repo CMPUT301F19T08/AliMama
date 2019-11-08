@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
+
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,6 +35,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.alimama.Model.MoodEvent;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,6 +51,7 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.UploadTask;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -55,15 +59,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
 import javax.annotation.Nullable;
+
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
-/**
- * AddEditEvent Model class
- * It is the encapsulation of the information regarding to add/edit mood event.
- */
 public class AddEditMoodActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback,
-OnCompleteListener<Uri>, MoodEventManipulationFeedback{
+        OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private static final int LOCATION_REQUEST_CODE = 1;
@@ -85,6 +87,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     static final String EXTRA_EMOTICON = "emoticon";
     static final String EXTRA_SOCIAL_SITUATION = "social_situation";
 
+
+
+
+
     private TextView tvTitle;
     private EditText etEmotionalState;
     private EditText etDatePicker;
@@ -101,10 +107,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     private GoogleMap googleMap;
     private LatLng currentLocation;
 
-    private Database database;
+    private DatabaseUtil mDatabaseUtil;
     private String currLoggedInUser;
 
-    private MoodEvent event = new MoodEvent();
+    private MoodEvent event;
     String currentPhotoPath;
     Boolean didPhotoUpdate = false;
 
@@ -126,15 +132,14 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         btnAddMood = findViewById(R.id.btnAddMood);
         spSocalSituation = findViewById(R.id.spSocialSituation);
         spEmoticon = findViewById(R.id.spEmoticon);
-
-        database = new Database();
+        event = new MoodEvent();
+        mDatabaseUtil = new DatabaseUtil();
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
         setupSocialSituationList();
         setupEmoticonsList();
 
-        // These setup the text for the title and button
         String documentId = getIntent().getStringExtra(EXTRA_DOCUMENT_ID);
         if (documentId != null) {
             CURRENT_STATE = STATE_EDIT;
@@ -143,13 +148,10 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             event.setDocumentId(documentId);
         }
 
-        // Retrieve the user name information
         final String username = getIntent().getStringExtra(EXTRA_USERNAME);
         if (username != null) {
             event.setUsername(username);
         }
-
-        // Retrieve the date information
         String dateStr = getIntent().getStringExtra(EXTRA_DATE);
         if (dateStr != null) {
             Date date = new Date(dateStr);
@@ -158,29 +160,22 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             etTimePicker.setText(date.getHours() + ":" + date.getMinutes());
             event.setDate(date);
         }
-
-        // Retrieve the emotional state information
         String emotionalState = getIntent().getStringExtra(EXTRA_EMOTIONAL_STATE);
         if (emotionalState != null) {
             etEmotionalState.setText(emotionalState);
             event.setEmotionalState(emotionalState);
         }
-
-        // Retrieve the description information
         String description = getIntent().getStringExtra(EXTRA_DESCRIPTION);
         if (description != null) {
             etDescription.setText(description);
             event.setReasonInText(description);
         }
-
-        // Retrieve the path of the photo information
         String photoPath = getIntent().getStringExtra(EXTRA_PHOTO_PATH);
         if (photoPath != null) {
             Glide.with(this).load(photoPath).into(ivThumbnail);
             event.setPathToPhoto(photoPath);
         }
 
-        // Retrieve the emoticon information
         final String emoticon = getIntent().getStringExtra(EXTRA_EMOTICON);
         if (emoticon != null) {
             new Handler().post(new Runnable() {
@@ -191,8 +186,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             });
             event.setEmoticon(emoticon);
         }
-
-        // Retrieve the date information
         final String socialSituation = getIntent().getStringExtra(EXTRA_SOCIAL_SITUATION);
         if (socialSituation != null) {
             new Handler().post(new Runnable() {
@@ -204,7 +197,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             event.setEmoticon(socialSituation);
         }
 
-        // Let user to choose the date
+
         etDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,15 +205,13 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             }
         });
 
-        // Let user to choose the time
         etTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePickerDialog();
+                showTimePickerDialog(view);
             }
         });
 
-        // Let user to take a picture
         ibCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,7 +219,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             }
         });
 
-        // When the button at the bottom is clicked
         btnAddMood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -253,18 +243,16 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
                     uploadFile(currentPhotoPath);
                 else {
                     if (CURRENT_STATE == STATE_ADD)
-                        database.addANewMoodEvent(event, AddEditMoodActivity.this);
+                        mDatabaseUtil.addANewMoodEvent(event, AddEditMoodActivity.this);
                     else if (CURRENT_STATE == STATE_EDIT)
-                        database.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
+                        mDatabaseUtil.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
+
                 }
+
             }
         });
     }
 
-    /**
-     * This function check the validation of date
-     * @return the parsed date if it is valid
-     */
     @Nullable
     private Date parseDate() {
         Date date = null;
@@ -284,9 +272,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         return date;
     }
 
-    /**
-     * This function set up the list for social situation spinner when editing
-     */
     private void setupSocialSituationList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.social_situation_array, android.R.layout.simple_spinner_item);
@@ -294,9 +279,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         spSocalSituation.setAdapter(adapter);
     }
 
-    /**
-     * This function setup the emoticon list when editing
-     */
+
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array, android.R.layout.simple_spinner_item);
@@ -304,9 +287,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         spEmoticon.setAdapter(adapter);
     }
 
-    /**
-     * This function setup the picture when editing
-     */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -327,11 +307,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
     }
 
-    /**
-     * This function retrieve the image
-     * @return image Information of the picture
-     * @throws IOException Signals that an I/O exception of some sort has occurred.
-     */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -346,16 +321,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         return image;
     }
 
-    /**
-     * This function retrieve the result from the activity.
-     * @param requestCode
-     * It is the request code.
-     * @param resultCode
-     * It specifies by the second activity. This is either RESULT_OK if the operation was
-     * successful or RESULT_CANCELED if the user backed out or the operation failed for some reason.
-     * @param data
-     * It carries the result data.
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -366,48 +331,26 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
     }
 
-    /**
-     * This function shows the dialog that let user to choose a date
-     * @param v Pass in the view
-     */
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "datePicker");
+
     }
 
-    /**
-     * This function shows the dialog that let user to choose a time
-     */
-    public void showTimePickerDialog() {
+    public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "timePicker");
+
     }
 
-    /**
-     * This function set the date dialog when editing.
-     * @param view It is the view of the current activity.
-     * @param year The candidate year that user wants to edit.
-     * @param month The candidate month that user wants to edit.
-     * @param day The candidate day that user wants to edit.
-     */
     public void onDateSet(DatePicker view, int year, int month, int day) {
         etDatePicker.setText(String.format(Locale.CANADA, "%d-%d-%d", year, month + 1, day));
     }
 
-    /**
-     * This function set the date dialog when editing.
-     * @param view It is the view of the current activity.
-     * @param hourOfDay The candidate hour that users wants to edit.
-     * @param minute The candidate minute that users wants to edit.
-     */
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         etTimePicker.setText(String.format(Locale.CANADA, "%d-%d", hourOfDay, minute));
     }
 
-    /**
-     * This function calls Gogle map.
-     * @param googleMap This retrieve the Google map.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
@@ -415,10 +358,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         moveMapCameraToCurrentLocation(googleMap);
     }
 
-    /**
-     * This function locate the user location on Google Map.
-     * @param googleMap The map that needs location.
-     */
     private void moveMapCameraToCurrentLocation(GoogleMap googleMap) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED &&
@@ -427,6 +366,7 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             ActivityCompat.requestPermissions(this, new String[]{
                     android.Manifest.permission.ACCESS_FINE_LOCATION
             }, LOCATION_REQUEST_CODE);
+
             return;
         }
         LocationManager locationManager = (LocationManager)
@@ -452,12 +392,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
     }
 
-    /**
-     * This function get the result of the
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case LOCATION_REQUEST_CODE:
@@ -514,10 +448,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }).addOnCompleteListener(this);
     }
 
-    /**
-     * Checks to see id the photo added is added or updated on the database.
-     * @param task
-     */
     @Override
     public void onComplete(@NonNull Task<Uri> task) {
         if (task.isSuccessful()) {
@@ -526,17 +456,16 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
             if (downloadUri != null) {
                 event.setPathToPhoto(downloadUri.toString());
                 if (CURRENT_STATE == STATE_ADD)
-                    database.addANewMoodEvent(event, AddEditMoodActivity.this);
+                    mDatabaseUtil.addANewMoodEvent(event, AddEditMoodActivity.this);
                 else if (CURRENT_STATE == STATE_EDIT)
-                    database.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
+                    mDatabaseUtil.updateAnExistingMoodEvent(event, AddEditMoodActivity.this);
             }
         } else {
             Toast.makeText(this, "Photo upload failed", Toast.LENGTH_SHORT).show();
+
         }
     }
 
-    // The following functions checks to see if updating or adding a mood event, or retrieving a mood event is successful or failed.
-    // If failed them then an error message is printed
     @Override
     public void failToUpdateAnExistingMoodEvent(String errmsg) {
 
@@ -592,10 +521,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     }
 
-    /**
-     * Gets the emoticon selected of the mood using a switch statement
-     * @param value
-     */
     private int getEmoticonPosition(String value) {
         switch (value) {
             case "\uD83D\uDE0A":
@@ -615,11 +540,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
         }
         return -1;
     }
-
-    /**
-     * Gets the social situation of the mood using a switch statement
-     * @param value
-     */
 
     private int getSocialSituationPosition(String value) {
         switch (value) {
