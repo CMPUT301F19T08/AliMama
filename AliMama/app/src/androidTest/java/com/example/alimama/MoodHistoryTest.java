@@ -1,6 +1,10 @@
 package com.example.alimama;
 
 import android.content.Intent;
+import android.os.SystemClock;
+import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
@@ -102,6 +106,34 @@ public class MoodHistoryTest {
     public void checkAddButton(){
         solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.fab));
         solo.assertCurrentActivity("Wrong activity", AddEditMoodActivity.class);
+    }
+
+    /**
+     * Tests if when delete button on mood is clicked, will delete selected mood
+     */
+    @Test
+    public void onDeleteClick() {
+        rule.getActivity();
+        //solo.assertCurrentActivity("Wrong activity", MoodHistory.class);
+        solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
+        final RecyclerView recyclerView = (RecyclerView) solo.getView(R.id.rvMoods);
+        View view = recyclerView.getChildAt(0);
+        SystemClock.sleep(5000);
+        solo.clickOnView(solo.getView(R.id.btnDeleteMood));
+        SystemClock.sleep(5000);
+    }
+
+    /**
+     * Tests if when edit button on mood is clicked, will switch to the Edit mood screen
+     */
+    @Test
+    public void onEditClick() {
+        solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
+        final RecyclerView recyclerView = (RecyclerView) solo.getView(R.id.rvMoods);
+        View view = recyclerView.getChildAt(0);
+        SystemClock.sleep(3000);
+        solo.clickOnView(solo.getView(R.id.btnEditMood));
+        solo.assertCurrentActivity("Wrong Activity", AddEditMoodActivity.class);
     }
 
 
