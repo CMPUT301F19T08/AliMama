@@ -85,10 +85,6 @@ OnCompleteListener<Uri>, MoodEventManipulationFeedback{
     static final String EXTRA_EMOTICON = "emoticon";
     static final String EXTRA_SOCIAL_SITUATION = "social_situation";
 
-
-
-
-
     private TextView tvTitle;
     private EditText etEmotionalState;
     private EditText etDatePicker;
