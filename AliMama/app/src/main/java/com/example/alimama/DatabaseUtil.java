@@ -39,6 +39,10 @@ public class DatabaseUtil {
     private static FirebaseFirestore db = null;
 
 
+
+    public DatabaseUtil(FirebaseFirestore fdb) {
+       db = fdb;
+    }
     /**
      * Class Constructor
      *
