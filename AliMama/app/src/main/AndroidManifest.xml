@@ -32,7 +32,9 @@
         <activity
             android:name=".FriendPageActivity"
             android:label="Friend Page"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.alimama.fileprovider"

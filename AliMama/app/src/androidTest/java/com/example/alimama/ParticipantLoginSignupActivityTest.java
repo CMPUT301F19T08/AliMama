@@ -45,7 +45,6 @@ public class ParticipantLoginSignupActivityTest {
     @Test
     public void start() throws Exception{
         Activity activity = rule.getActivity();
-
     }
 
 

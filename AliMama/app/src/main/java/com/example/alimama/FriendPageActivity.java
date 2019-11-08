@@ -21,6 +21,10 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
 
     private String username;
 
+    /**
+     * Create view for the whole page with tabs and fragments
+     * */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +36,9 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
         ViewPager viewPager = findViewById(R.id.view_pager);
         /*Fragments*/
 
-        tabPageAdapter.addFragment(new ContactPageFragment(username ),"Contact Page");
-        tabPageAdapter.addFragment(new AddFriendPageFragment(username ),"Friend Page");
-        tabPageAdapter.addFragment(new RequestPageFragment(username ),"Request Page");
+        tabPageAdapter.addFragment(new ContactPageFragment(username ),"Contacts");
+        tabPageAdapter.addFragment(new AddFriendPageFragment(username ),"Friends");
+        tabPageAdapter.addFragment(new RequestPageFragment(username ),"Requests");
 
         viewPager.setAdapter(tabPageAdapter);
 
@@ -45,6 +49,12 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
 
 
 
+    /**
+     * {@inheritDoc}
+     * @param pendingFriendRequests
+     * retrieve pending friends of the participant
+     * pass all pending into ArrayList
+     * */
 
     @Override
     public void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
@@ -56,15 +66,26 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
 
     }
 
+
+    /**
+     * {@inheritDoc}
+     * @param message
+     * unused
+     * */
     @Override
     public void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
 
     }
 
+
+    /**
+     * {@inheritDoc}
+     * update view when participant accepts a friend successfully
+     * */
     @Override
     public void acceptAFriendRequestOfAParticipantSuccessfully() {
 
-        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(2);
+        RequestPageFragment rpf = (RequestPageFragment) this.tabPageAdapter.getItem(positionRequestpage);
 
         rpf.getRequestPageAdapter().notifyDataSetChanged();
 
@@ -72,45 +93,83 @@ public class FriendPageActivity extends AppCompatActivity implements FriendshipO
 
     }
 
+    /**
+     * {@inheritDoc}
+     * @param message
+     * unused
+     * */
     @Override
     public void failAcceptAFriendRequestOfAParticipant(String message) {
 
     }
 
+    /**
+     * {@inheritDoc}
+     * @param currentFriendsOfAParticipant
+     * retrieve friends of participant
+     * */
     @Override
     public void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
-        ContactPageFragment cpf = (ContactPageFragment) this.tabPageAdapter.getItem(0);
+        ContactPageFragment cpf = (ContactPageFragment) this.tabPageAdapter.getItem(positionContactpage);
         cpf.setAdapterData(currentFriendsOfAParticipant);
         cpf.getContactPageAdapter().notifyDataSetChanged();
 
     }
 
+
+    /**
+     * {@inheritDoc}
+     * @param message
+     * */
     @Override
     public void failRetrieveCurrentFriendsOfAParticipant(String message) {
 
     }
 
+    /**
+     * {@inheritDoc}
+     * @param existingParticipants
+     * retrieve list of
+     * */
     @Override
     public void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
-        AddFriendPageFragment fpf = (AddFriendPageFragment) this.tabPageAdapter.getItem(1);
+        AddFriendPageFragment fpf = (AddFriendPageFragment) this.tabPageAdapter.getItem(positionFriendpage);
+
         fpf.setAdapterData(existingParticipants);
         fpf.getFriendPageAdapter().notifyDataSetChanged();
 
     }
 
+
+    /**
+     * {@inheritDoc}
+     * @param message
+     * unused
+     * */
     @Override
     public void failRetrieveAListOfParticipantsToAdd(String message) {
 
     }
 
+
+    /**
+     * {@inheritDoc}
+     * participant send friend request
+     * */
     @Override
     public void sendFriendRequestFromCurrentParticipantSuccessfully() {
-        AddFriendPageFragment fpf = (AddFriendPageFragment) this.tabPageAdapter.getItem(1);
+        AddFriendPageFragment fpf = (AddFriendPageFragment) this.tabPageAdapter.getItem(positionFriendpage);
+
 
         fpf.getContactPageAdapter().notifyDataSetChanged();
 
     }
 
+
+    /**
+     * {@inheritDoc}
+     * @param message
+     * */
     @Override
     public void failSendFriendRequestFromCurrentParticipant(String message) {
 
