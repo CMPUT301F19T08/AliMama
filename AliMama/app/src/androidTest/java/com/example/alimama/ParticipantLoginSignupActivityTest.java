@@ -54,7 +54,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void emptyUsernameSignUp() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
 
         TextInputLayout  passwordTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_password);
@@ -72,7 +72,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void emptyPasswordSignUp() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
 
         TextInputLayout  usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
@@ -93,7 +93,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void emptyPasswordLogIn() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
 
         TextInputLayout  usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
@@ -113,7 +113,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void emptyUsernameLogIn() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
 
         TextInputLayout  passwordTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_password);
@@ -132,7 +132,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void alreadyExistUsernameSignUp() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
         TextInputLayout  usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
         EditText usernameET = usernameTIL.getEditText();
@@ -154,7 +154,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void unknownUsernameLogIn() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
         TextInputLayout  usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
         EditText usernameET = usernameTIL.getEditText();
@@ -177,7 +177,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void invalidPasswordExistingParticipantLogIn() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
         TextInputLayout  usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
         EditText usernameET = usernameTIL.getEditText();
@@ -199,7 +199,7 @@ public class ParticipantLoginSignupActivityTest {
      * */
     @Test
     public void validCredentialExistingParticipantLogIn() {
-        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show “Wrong Activity”
+        // Asserts that the current activity is the ParticipantLoginSignupActivity. Otherwise, show "Wrong Activity"
         solo.assertCurrentActivity("Wrong Activity", ParticipantLoginSignupActivity.class);
         TextInputLayout  usernameTIL = (TextInputLayout)solo.getView(R.id.participant_login_signup_username);
         EditText usernameET = usernameTIL.getEditText();

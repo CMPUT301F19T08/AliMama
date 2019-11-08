@@ -44,7 +44,7 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
-            contactName = itemView.findViewById(R.id.contact_name);
+            contactName = itemView.findViewById(R.id.request_name);
             cv = itemView.findViewById(R.id.card_view);
             acceptButton = itemView.findViewById(R.id.friend_accept);
         }

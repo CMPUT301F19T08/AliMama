@@ -45,6 +45,10 @@ public class FriendPageFragment extends Fragment implements FriendPageClickDeleg
         this.currParticipant = currParticipant;
 
     }
+    public FriendPageFragment() {
+
+
+    }
 
     @Nullable
     @Override

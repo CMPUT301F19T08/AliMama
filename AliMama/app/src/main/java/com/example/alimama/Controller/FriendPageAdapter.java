@@ -44,7 +44,7 @@ public class FriendPageAdapter extends RecyclerView.Adapter<FriendPageAdapter.My
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
-            contactName = itemView.findViewById(R.id.contact_name);
+            contactName = itemView.findViewById(R.id.friend_name);
             addButton = itemView.findViewById(R.id.friend_add);
 
 
