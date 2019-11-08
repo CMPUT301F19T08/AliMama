@@ -37,7 +37,7 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
             contactName = itemView.findViewById(R.id.contact_name);
-            cv = itemView.findViewById(R.id.card_view);
+            cv = itemView.findViewById(R.id.contact_card_view);
         }
 
 

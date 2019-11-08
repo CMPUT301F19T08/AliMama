@@ -16,9 +16,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 
-
-
-
+import com.google.android.material.tabs.TabLayout;
 import com.robotium.solo.Solo;
 
 import junit.framework.TestCase;
@@ -27,6 +25,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.w3c.dom.Text;
 
 
 import static org.junit.Assert.assertEquals;
@@ -41,7 +40,11 @@ import static org.junit.Assert.assertTrue;
 
 public class FriendPageActivityTest {
     private Solo friendpage;
-
+    private Solo mainmenu;
+    private TextView textView;
+    RecyclerView recyclerView;
+    CardView cardView;
+    String name;
 
     @Rule
     public ActivityTestRule<FriendPageActivity> rule = new ActivityTestRule<FriendPageActivity>(FriendPageActivity.class,true,true){
@@ -54,11 +57,25 @@ public class FriendPageActivityTest {
     };
 
 
+    @Rule
+    public ActivityTestRule<Mainmenu> rule2 = new ActivityTestRule<Mainmenu>(Mainmenu.class,true,true){
+        @Override
+        protected Intent getActivityIntent() {
+            Intent intent = new Intent();
+            intent.putExtra("USERNAME", "test");
+            return intent;
+        }
+    };
+
+
 
     @Before
     public void setUp() throws Exception{
         friendpage = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         friendpage.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+
+        mainmenu = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
+
 
 
     }
@@ -70,27 +87,36 @@ public class FriendPageActivityTest {
 
     }
 
-
-
-
-    public void seekFriend(){
-
+    public String seekFriend(){
 
         friendpage.clickOnText("Friends");
 
+        textView = (TextView) friendpage.getView(R.id.friend_name);
+        name = textView.getText().toString();
+        friendpage.clickOnButton("Add");
+        friendpage.goBack();
+        mainmenu.assertCurrentActivity("Wrong Activity", Mainmenu.class);
 
 
-        RecyclerView recyclerView = (RecyclerView) friendpage.getView(R.id.my_recycler_view);
-        View view = recyclerView.getChildAt(0);
-        TextView textView = view.findViewById(R.id.friend_name);
-        String name  = textView.getText().toString();
-        Button button = (Button)view.findViewById(R.id.friend_add);
-        assertEquals(name,"xhou1");
-        friendpage.clickOnView(button);
-
-        System.out.println(name);
+        return name;
+    }
 
 
+
+
+
+    public void seekRequest(){
+        mainmenu.assertCurrentActivity("Wrong Activity", Mainmenu.class);
+        mainmenu.clickOnView(mainmenu.getView(R.id.main_menu_add_view_friend_button));
+        mainmenu.clickOnText("Requests");
+        textView = (TextView) mainmenu.getView(R.id.request_name);
+        String confirmName = textView.getText().toString();
+        assertTrue(mainmenu.searchText("sky1"));
+        mainmenu.clickOnButton("Accept");
+        mainmenu.clickOnText("Contacts");
+        textView = (TextView) mainmenu.getView(R.id.contact_name);
+        String sameName = textView.getText().toString();
+        assertEquals(sameName,confirmName);
 
     }
     @Test
@@ -98,6 +124,7 @@ public class FriendPageActivityTest {
 
 
         seekFriend();
+        seekRequest();
 
 
     }

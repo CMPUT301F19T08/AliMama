@@ -6,7 +6,7 @@
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
 
-    android:id="@+id/layout_container_friend"
+    android:id="@+id/card_page_contact"
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -15,7 +15,7 @@
 <!--    </LinearLayout>-->
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/contact_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
