@@ -3,7 +3,8 @@
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <TextView
         android:id="@+id/main_menu_string"
@@ -12,42 +13,68 @@
         android:textAlignment="center"
         android:text="@string/main_menu_name"
         android:textSize="55sp"
+        android:textColor="@color/white"
+        android:background="@color/blue"
 
         />
 
     <Button
         android:id="@+id/main_menu_mood_history_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_menu_view_mood_history_btn_name"
+        android:textColor="@color/white"
+
+
         android:layout_margin="8dp"
+        android:layout_gravity="center"
+
+        android:background="@drawable/button_main_menu"
+        android:drawableLeft="@drawable/ic_mood"
 
         />
     <Button
         android:id="@+id/main_menu_mood_map_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_menu_view_mood_history_on_map_btn_name"
-        android:layout_margin="8dp"
+        android:textColor="@color/white"
 
-       />
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_main_menu"
+        android:drawableLeft="@drawable/ic_map"
+
+
+
+        />
     <Button
         android:id="@+id/main_menu_add_view_friend_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:text="@string/main_menu_view_add_friends_btn_name"
+        android:textColor="@color/white"
+
         android:layout_margin="8dp"
+        android:layout_gravity="center"
+
+        android:background="@drawable/button_main_menu"
+        android:drawableLeft="@drawable/ic_contact"
 
         />
     <Button
         android:id="@+id/main_menu_logout_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_menu_logout_btn_name"
-        android:layout_margin="8dp"
+        android:textColor="@color/white"
 
-       />
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_main_menu"
+
+        />
 
 </LinearLayout>
 
