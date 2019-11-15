@@ -19,4 +19,4 @@
   
 - Add Friends & View Pending Friend Requests Screen: Tao, Zixuan
   - Unit tests & UI Tests: Zixuan 
-- Update Product Backlog, UML, and Storyboard and Interface: Xuechun, King, Yuqing, Zixuan
+- Update Product Backlog, UML, and Storyboard and Interface: Xuechun, King, Shelly, Zixuan
