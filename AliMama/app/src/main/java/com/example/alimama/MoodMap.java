@@ -137,7 +137,7 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
                     getResources().getDisplayMetrics().widthPixels,
                     getResources().getDisplayMetrics().heightPixels,
                     (int)((getResources().getDisplayMetrics().widthPixels)*0.2));  // determine where to set the camera based on markers
-        mMap.animateCamera(show_markers, 3000, null);}
+            mMap.animateCamera(show_markers, 3000, null);}
         catch (Exception e) {
         }
 
@@ -182,12 +182,12 @@ public class MoodMap extends AppCompatActivity implements MapViewFeedback, OnMap
         }
         // move camera to show the new markers
         try{
-        LatLngBounds bounds = latLngBounds.build();
-        CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
-                getResources().getDisplayMetrics().widthPixels,
-                getResources().getDisplayMetrics().heightPixels,
-                (int)((getResources().getDisplayMetrics().widthPixels)*0.2)); // determine where to set the camera based on markers
-        mMap.animateCamera(show_markers, 3000, null);}
+            LatLngBounds bounds = latLngBounds.build();
+            CameraUpdate show_markers = CameraUpdateFactory.newLatLngBounds(bounds,
+                    getResources().getDisplayMetrics().widthPixels,
+                    getResources().getDisplayMetrics().heightPixels,
+                    (int)((getResources().getDisplayMetrics().widthPixels)*0.2)); // determine where to set the camera based on markers
+            mMap.animateCamera(show_markers, 3000, null);}
         catch (Exception e) {
         }
     }

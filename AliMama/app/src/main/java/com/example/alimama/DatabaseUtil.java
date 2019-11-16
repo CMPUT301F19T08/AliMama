@@ -41,7 +41,7 @@ public class DatabaseUtil {
 
 
     public DatabaseUtil(FirebaseFirestore fdb) {
-       db = fdb;
+        db = fdb;
     }
     /**
      * Class Constructor
@@ -430,7 +430,7 @@ public class DatabaseUtil {
     void acceptAFriendRequestOfAParticipant(final String username, final String usernameOfFriendRequestToAccept, final FriendshipOperationFeedback fof) {
         final CollectionReference itemsRef = db.collection("PendingFriendRequests");
 
-                itemsRef
+        itemsRef
                 .whereEqualTo("username", username)
                 .whereEqualTo("friendToAdd", usernameOfFriendRequestToAccept)
                 .get()
@@ -730,7 +730,7 @@ public class DatabaseUtil {
                                                     for (QueryDocumentSnapshot document: task.getResult()) {
                                                         MoodEvent currMoodEvent = document.toObject(MoodEvent.class);
                                                         if (currMoodEvent.getLocationOfMoodEvent() != null){
-                                                             mostRecentMoodEventsOfFriendsOfAParticipantWithLocation.add(currMoodEvent);
+                                                            mostRecentMoodEventsOfFriendsOfAParticipantWithLocation.add(currMoodEvent);
                                                             break;
                                                         }
 

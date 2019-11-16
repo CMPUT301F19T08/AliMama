@@ -182,7 +182,6 @@ public class MoodEvent {
         return "Document ID: " + this.documentId + " Date: " + date.toString() +  " username: " + this.username + " emotionalState : " + emotionalState + " social Situation: " + socialSituation +"\n";
     }
 
-
     /**
      * emoticon getter
      * @return emoticon of the MoodEvent

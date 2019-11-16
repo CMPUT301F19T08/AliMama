@@ -80,7 +80,7 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       db.retrievePendingFriendRequestOfAParticipant(this.currParticipant, (FriendPageActivity) getContext());
+        db.retrievePendingFriendRequestOfAParticipant(this.currParticipant, (FriendPageActivity) getContext());
 
     }
 

@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
 public class AddEditMoodActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnMapReadyCallback,
-OnCompleteListener<Uri>, MoodEventManipulationFeedback{
+        OnCompleteListener<Uri>, MoodEventManipulationFeedback{
 
     private static final int REQUEST_IMAGE_CAPTURE = 0;
     private static final int LOCATION_REQUEST_CODE = 1;
