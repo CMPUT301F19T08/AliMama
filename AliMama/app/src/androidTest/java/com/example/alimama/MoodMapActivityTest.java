@@ -10,6 +10,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import com.example.alimama.Model.MoodEvent;
+import com.example.alimama.mapview.MoodMapActivity;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.GeoPoint;
@@ -32,7 +33,7 @@ public class MoodMapActivityTest {
 
 
     @Rule
-    public ActivityTestRule<MoodMap> rule = new ActivityTestRule<MoodMap>(MoodMap.class){
+    public ActivityTestRule<MoodMapActivity> rule = new ActivityTestRule<MoodMapActivity>(MoodMapActivity.class){
         @Override
         protected Intent getActivityIntent() {
             Intent intent = new Intent();
@@ -57,7 +58,7 @@ public class MoodMapActivityTest {
      * */
     @Test
     public void pressFriendMoodBtnCheckIfColorChange() {
-        solo.assertCurrentActivity("Wrong Activity", MoodMap.class);
+        solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
         int i = 1;
 
         Button friendMoodBtn = (Button) solo.getView(R.id.mood_map_friend_map_btn);
@@ -85,7 +86,7 @@ public class MoodMapActivityTest {
      * */
     @Test
     public void pressMyMoodBtnCheckIfColorChange() {
-        solo.assertCurrentActivity("Wrong Activity", MoodMap.class);
+        solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
         int a = 1;
 
         Button friendMoodBtn = (Button) solo.getView(R.id.mood_map_friend_map_btn);
@@ -112,7 +113,7 @@ public class MoodMapActivityTest {
      * */
     @Test
     public void pressMyMoodBtnCheckIfMarkersAppear() {
-        solo.assertCurrentActivity("Wrong Activity", MoodMap.class);
+        solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
         solo.clickOnButton("myMoodMap");
         assertTrue(solo.waitForText("12/04/2019 12:00:00", 1, 8000));
     }
@@ -123,7 +124,7 @@ public class MoodMapActivityTest {
      * */
     @Test
     public void pressFriendsMoodBtnCheckIfMarkersAppear() {
-        solo.assertCurrentActivity("Wrong Activity", MoodMap.class);
+        solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
         solo.clickOnButton("friendMoodMap");
 
         assertTrue(solo.waitForText("testmap", 1, 8000));

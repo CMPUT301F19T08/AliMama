@@ -1,5 +1,6 @@
 package com.example.alimama;
 
+import com.example.alimama.participant.login.CredentialValidationFeedback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -14,7 +15,6 @@ import org.mockito.stubbing.Answer;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 
 public class ParticipantLoginSignupActivityTest {
@@ -25,7 +25,7 @@ public class ParticipantLoginSignupActivityTest {
     Task<Void> mockVoidTask = (Task<Void>) Mockito.mock(Task.class);
     OnCompleteListener<DocumentSnapshot> mockDocumentSnapshotCompleteListener = (OnCompleteListener<DocumentSnapshot>) Mockito.mock(OnCompleteListener.class);
     DocumentSnapshot mockDocumentSnapshot =  Mockito.mock(DocumentSnapshot.class);
-    CredentialValidationDelegate mockCredentialValidationDelegate = Mockito.mock(CredentialValidationDelegate.class);
+    CredentialValidationFeedback mockCredentialValidationDelegate = Mockito.mock(CredentialValidationFeedback.class);
 
     @Test
     public void testUsernameDoesNotExist() {
