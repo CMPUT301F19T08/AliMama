@@ -11,7 +11,7 @@
 - Database methods, Participant Login/ Signup Screen and MainMenu Screen: Xuechun
   - Unit tests & UI tests: Xuechun
   
-- Add/View/Edit MoodEvent Screen, MoodEvent History Screen, Map View Of MoodEvent History Screen : Melisse, Xinjian, Yuqing
+- Add/View/Edit MoodEvent Screen, MoodEvent History Screen, Map View Of MoodEvent History Screen : Melisse, Xinjian, Shelly
   - Add/Edit and MoodEvent History: Melisse, King
   - Map View Of MoodEvent History Screen: Shelly
   - Unit tests & UI tests: Melisse, King
@@ -19,4 +19,4 @@
   
 - Add Friends & View Pending Friend Requests Screen: Tao, Zixuan
   - Unit tests & UI Tests: Zixuan 
-- Update Product Backlog, UML, and Storyboard and Interface: Xuechun, King, Yuqing, Zixuan
+- Update Product Backlog, UML, and Storyboard and Interface: Xuechun, King, Shelly, Zixuan

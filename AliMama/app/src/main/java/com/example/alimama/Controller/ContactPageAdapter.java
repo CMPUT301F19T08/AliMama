@@ -87,4 +87,3 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
 
 
 }
-

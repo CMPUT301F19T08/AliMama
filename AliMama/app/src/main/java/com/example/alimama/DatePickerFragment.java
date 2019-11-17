@@ -8,6 +8,11 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
+/**
+ * This is a class that uses the date picker fragment to be able to select a date in the AddEditMoodActivity
+ */
+
+
 public class DatePickerFragment extends DialogFragment {
         
         private DatePickerDialog.OnDateSetListener listener;
@@ -15,6 +20,13 @@ public class DatePickerFragment extends DialogFragment {
         public DatePickerFragment(DatePickerDialog.OnDateSetListener listener) {
             this.listener = listener;
         }
+
+    /**
+     * This function retrieve the image
+     * @return year picked by participant.
+     * @return month picked by participant.
+     * @return day of month picked by participant.
+     */
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {

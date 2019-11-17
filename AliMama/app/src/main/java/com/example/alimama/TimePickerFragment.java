@@ -9,6 +9,10 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
+/**
+ * This is a class that uses the time picker fragment to be able to select a time in the AddEditMoodActivity
+ */
+
 public class TimePickerFragment extends DialogFragment {
 
         private TimePickerDialog.OnTimeSetListener listener;
@@ -16,6 +20,12 @@ public class TimePickerFragment extends DialogFragment {
         public TimePickerFragment(TimePickerDialog.OnTimeSetListener listener) {
             this.listener = listener;
         }
+
+    /**
+     * This function retrieve the image
+     * @return hour picked by participant.
+     * @return minute picked by participant.
+     */
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
