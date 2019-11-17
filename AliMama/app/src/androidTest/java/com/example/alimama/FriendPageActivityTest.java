@@ -65,12 +65,20 @@ public class FriendPageActivityTest {
     public void checkExistingPendingFriendRequestOfAParticipant(){
 
         solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
-        TabLayout tabs = (TabLayout) solo.getView(R.id.tabs);
-        tabs.getTabAt(2).select();
-
-
+        solo.clickOnText("Requests");
         solo.waitForText("xhou2", 1, 2000);
 
+    }
+
+    /**
+     *
+     * if logged in as test should expect testMap participant shows on friends page as friend-to-add
+     * */
+    @Test
+    public void checkFriendsToAddOfAParticipant() {
+        solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+        solo.clickOnText("Friends");
+        solo.waitForText("testMap", 1, 2000);
     }
 
 

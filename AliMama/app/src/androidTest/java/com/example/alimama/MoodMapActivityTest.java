@@ -11,9 +11,6 @@ import androidx.test.rule.ActivityTestRule;
 
 import com.example.alimama.Model.MoodEvent;
 import com.example.alimama.mapview.MoodMapActivity;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.GeoPoint;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
@@ -37,7 +34,7 @@ public class MoodMapActivityTest {
         @Override
         protected Intent getActivityIntent() {
             Intent intent = new Intent();
-            intent.putExtra("USERNAME", "test");
+            intent.putExtra("USERNAME", "testMap");
             return intent;
         }
     };
@@ -115,7 +112,7 @@ public class MoodMapActivityTest {
     public void pressMyMoodBtnCheckIfMarkersAppear() {
         solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
         solo.clickOnButton("myMoodMap");
-        assertTrue(solo.waitForText("12/04/2019 12:00:00", 1, 8000));
+        assertTrue(solo.waitForText("testMap", 1, 8000));
     }
     /**
      *
@@ -127,7 +124,7 @@ public class MoodMapActivityTest {
         solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
         solo.clickOnButton("friendMoodMap");
 
-        assertTrue(solo.waitForText("testmap", 1, 8000));
+        assertTrue(solo.waitForText("xhou1", 1, 8000));
     }
     /**
      * Closes the activity after each test
