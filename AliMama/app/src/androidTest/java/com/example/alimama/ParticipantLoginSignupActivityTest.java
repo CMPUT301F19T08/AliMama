@@ -189,7 +189,7 @@ public class ParticipantLoginSignupActivityTest {
         solo.enterText(passwordET,"wrongpassword");
 
         solo.clickOnButton("Log In"); //click on Log In Button
-        assertTrue(solo.waitForText("Password is not valid, please enter again", 1, 2000));
+        assertTrue(solo.waitForText("The Username and Password you entered do not match", 1, 2000));
 
 
     }

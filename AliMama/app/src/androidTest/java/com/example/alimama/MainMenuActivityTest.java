@@ -2,6 +2,8 @@ package com.example.alimama;
 
 import com.example.alimama.friendOperation.FriendPageActivity;
 import com.example.alimama.homescreen.HomeScreenActivity;
+import com.example.alimama.mapview.MoodMapActivity;
+import com.example.alimama.participant.login.ParticipantLoginSignupActivity;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
@@ -14,6 +16,10 @@ import androidx.test.rule.ActivityTestRule;
 
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * UI Tests for HomeScreen
+ *
+ * */
 public class MainMenuActivityTest {
 
     private Solo solo;
@@ -61,7 +67,7 @@ public class MainMenuActivityTest {
         solo.clickOnView(solo.getView(R.id.main_menu_add_view_friend_button));
         assertTrue(solo.waitForActivity(FriendPageActivity.class, 5000));
         // verify that FriendPageActivity successfully started
-        solo.assertCurrentActivity("Not MoodMap Activity", FriendPageActivity.class);
+        solo.assertCurrentActivity("Not FriendPageActivity", FriendPageActivity.class);
 
 
     }
@@ -77,9 +83,9 @@ public class MainMenuActivityTest {
     public void pressViewMoodHistoryOnMapButton() {
         solo.assertCurrentActivity("Wrong Activity", HomeScreenActivity.class);
         solo.clickOnView(solo.getView(R.id.main_menu_mood_map_button));
-        assertTrue(solo.waitForActivity(MoodMap.class, 5000));
+        assertTrue(solo.waitForActivity(MoodMapActivity.class, 5000));
         // verify that MoodMap successfully started
-        solo.assertCurrentActivity("Not MoodMap Activity", MoodMap.class);
+        solo.assertCurrentActivity("Not MoodMap Activity", MoodMapActivity.class);
 
 
     }
