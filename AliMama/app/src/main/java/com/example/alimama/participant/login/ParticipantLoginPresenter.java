@@ -8,6 +8,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import androidx.annotation.NonNull;
 /**
  * This class is the implementation of ParticipantLoginContract.ParticipantLoginPresenter interface
@@ -206,20 +209,24 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
                                 cvd.usernameExist();
                             }
                             else {
+                                Map<String, String> credential = new HashMap<>();
+                                credential.put("username", newUser.getUsername());
+                                credential.put("password", newUser.getPassword());
 
-                                db.collection("Participants").add(newUser)
-                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                db.collection("Participants").document(newUser.getUsername()).set(credential)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                            public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     cvd.newParticipantSignupSuccessfully(newUser);
                                                 }
                                                 else {
                                                     cvd.newParticipantSignupError(task.getException().getMessage());
                                                 }
-
                                             }
                                         });
+
+
 
 
                             }

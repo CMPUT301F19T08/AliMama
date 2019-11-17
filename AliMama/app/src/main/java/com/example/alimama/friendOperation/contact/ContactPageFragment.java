@@ -1,9 +1,10 @@
-package com.example.alimama;
+package com.example.alimama.friendOperation.contact;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-import com.example.alimama.Controller.ContactPageAdapter;
+import com.example.alimama.R;
 
 
 /**
@@ -25,29 +26,23 @@ import com.example.alimama.Controller.ContactPageAdapter;
  * For viewing.
  *
  * */
-public class ContactPageFragment extends Fragment {
-    View view;
+public class ContactPageFragment extends Fragment implements ContactPageContract.ContactPageView {
 
-    private RecyclerView recyclerView;
+
     private ArrayList<String> contactDataList;
-    private DatabaseUtil db;
-    private String currParticipant;
-    ContactPageAdapter contactPageAdapter;
+    private ContactPagePresenter mContactPagePresenter;
 
-
-
-
+    private ContactPageAdapter contactPageAdapter;
     /**
      * Constructor for fragment
-     * @param currParticipant
+     * @param currentParticipant
      *
      * */
-    public ContactPageFragment(String currParticipant) {
-        this.currParticipant = currParticipant;
+    public ContactPageFragment(String currentParticipant) {
+        this.mContactPagePresenter = new ContactPagePresenter(this);
+        this.mContactPagePresenter.setCurrentLoggedInParticipant(currentParticipant);
+
     }
-
-
-
     /**
      * Set up view in fragment
      * */
@@ -55,38 +50,20 @@ public class ContactPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.view_recycler,container,false);
+        View view = inflater.inflate(R.layout.view_recycler,container,false);
 
-        recyclerView = view.findViewById(R.id.my_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.my_recycler_view);
         this.contactDataList = new ArrayList<>();
         this.contactPageAdapter = new ContactPageAdapter(contactDataList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(contactPageAdapter);
-        this.db = new DatabaseUtil();
-        // hardcode for now will connect to Controller menu later
-
-
-
+        this.mContactPagePresenter.registerCurrentFriendsOfAParticipantRealTimeListener();
         return view;
     }
 
 
-    /**
-     *Connect to FriendPage
-     *
-     * */
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        FriendPageActivity friendPageActivity = (FriendPageActivity)getContext();
-
-        this.db.registerCurrentFriendsOfAParticipantRealTimeListener(this.currParticipant, friendPageActivity);
-
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,10 +76,18 @@ public class ContactPageFragment extends Fragment {
      * @param currentFriendsOfAParticipant
      * */
 
+    @Override
     public void setAdapterData(ArrayList<String> currentFriendsOfAParticipant) {
         this.contactDataList.clear();
         this.contactDataList.addAll(currentFriendsOfAParticipant);
+        this.contactPageAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void displayExistingFriendsRetrievalErrorMessage(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
     /**
      * Get contact page adapter
      * @return ContactPageAdapter

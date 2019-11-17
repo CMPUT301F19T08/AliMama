@@ -1,10 +1,11 @@
-package com.example.alimama;
+package com.example.alimama.friendOperation.addFriend;
 
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.example.alimama.Controller.FriendPageAdapter;
-
+import com.example.alimama.R;
 
 
 /**
@@ -28,14 +28,11 @@ import com.example.alimama.Controller.FriendPageAdapter;
  * Action: add friend
  * Function for later version: search friend
  * */
-public class AddFriendPageFragment extends Fragment implements FriendPageClickDelegate {
+public class AddFriendPageFragment extends Fragment implements FriendPageClickDelegate, AddFriendPageContract.AddFriendPageView {
 
-    private View view;
-    private RecyclerView recyclerView;
-    private FriendPageAdapter friendPageAdapter;
-    private DatabaseUtil db;
-    private String currParticipant;
+    private AddFriendPageAdapter mAddFriendPageAdapter;
     private ArrayList<String> contactDataList;
+    private AddFriendPagePresenter mAddFriendPagePresenter;
 
 
     /**
@@ -45,22 +42,24 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
      * */
     public AddFriendPageFragment(String currParticipant) {
 
-        this.currParticipant = currParticipant;
+        this.mAddFriendPagePresenter = new AddFriendPagePresenter(this);
+        this.mAddFriendPagePresenter.setCurrentLoggedInParticipant(currParticipant);
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.view_recycler,container,false);
-
-        recyclerView = view.findViewById(R.id.my_recycler_view);
+        View view = inflater.inflate(R.layout.view_recycler, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.my_recycler_view);
         // list to be passed to Adapter
         this.contactDataList = new ArrayList<>();
+        mAddFriendPageAdapter = new AddFriendPageAdapter(contactDataList, this );
+        recyclerView.setAdapter(mAddFriendPageAdapter);
+        this.mAddFriendPagePresenter.retrieveAListOfParticipantsToAdd();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        this.db = new DatabaseUtil();
 
         return view;
     }
@@ -71,34 +70,47 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
         super.onCreate(savedInstanceState);
 
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        FriendPageActivity friendPageActivity = (FriendPageActivity) getContext();
-        friendPageAdapter = new FriendPageAdapter(contactDataList, this );
-        recyclerView.setAdapter(friendPageAdapter);
-        db.retrieveAListOfParticipantsToAdd(this.currParticipant, friendPageActivity);
-
-    }
-
     /**
      *get ContactPageAdapter
      *
-     * @return FriendPageAdapter
+     * @return AddFriendPageAdapter
      * */
 
-    FriendPageAdapter getFriendPageAdapter() {
-        return this.friendPageAdapter;
+    AddFriendPageAdapter getAddFriendPageAdapter() {
+        return this.mAddFriendPageAdapter;
     }
+
+
 
     /**
      * set Adapter for contactList.
      * add All of the friends to contactDataList
-     * @param updatedData
+     * @param existingParticipants
      * */
-    void setAdapterData(HashSet<String> updatedData) {
+
+    @Override
+    public void setAdapterData(HashSet<String> existingParticipants) {
         this.contactDataList.clear();
-        this.contactDataList.addAll(updatedData);
+        this.contactDataList.addAll(existingParticipants);
+        this.mAddFriendPageAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void displayErrorMessage(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void displaySuccessMessage(String successMessage) {
+        Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void notifyDatasetChaged() {
+        this.mAddFriendPageAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -110,8 +122,7 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
     public void onFriendAddButtonClick(int position) {
         String friendToAdd = contactDataList.get(position);
         contactDataList.remove(position);
-        System.out.println(friendToAdd);
-        this.db.sendFriendRequestFromCurrentParticipant(this.currParticipant, friendToAdd,(FriendPageActivity) getContext());
+        this.mAddFriendPagePresenter.sendFriendRequestFromCurrentParticipant(friendToAdd);
 
     }
 
@@ -119,8 +130,8 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
     /**
      * Get FriendPage adapter page adapter
      *
-     * @return FriendPageAdapter */
+     * @return AddFriendPageAdapter */
     RecyclerView.Adapter getContactPageAdapter() {
-        return this.friendPageAdapter;
+        return this.mAddFriendPageAdapter;
     }
 }

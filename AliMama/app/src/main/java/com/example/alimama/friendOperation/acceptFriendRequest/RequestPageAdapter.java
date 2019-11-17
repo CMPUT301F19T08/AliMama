@@ -1,4 +1,4 @@
-package com.example.alimama.Controller;
+package com.example.alimama.friendOperation.acceptFriendRequest;
 
 
 
@@ -21,8 +21,6 @@ import java.util.ArrayList;
 
 
 import com.example.alimama.R;
-
-import com.example.alimama.RequestPageClickDelegate;
 
 public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.MyViewHolder> {
     ArrayList<String> contactList;

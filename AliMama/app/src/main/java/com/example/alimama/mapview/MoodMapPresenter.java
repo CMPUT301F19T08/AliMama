@@ -96,13 +96,17 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             // retrieve a list of friends of a participant
+                            if (task.getResult().size() == 0) {
+                                mvf.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(null);
+
+
+                            } else {
+
                             final ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation = new ArrayList<>();
                             CollectionReference moodEventCollectionReference = db.collection("MoodEvents");
-
-
                             // for every friend retrieve the most recent moodEvent
-                            for (QueryDocumentSnapshot document: task.getResult()) {
-                                String friend  = document.getString("friend");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String friend = document.getString("friend");
                                 moodEventCollectionReference.whereEqualTo("username", friend)
                                         .orderBy("date", Query.Direction.DESCENDING)
                                         .get()
@@ -111,9 +115,9 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                 if (task.isSuccessful()) {
                                                     // problematic implementation
-                                                    for (QueryDocumentSnapshot document: task.getResult()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
                                                         MoodEvent currMoodEvent = document.toObject(MoodEvent.class);
-                                                        if (currMoodEvent.getLocationOfMoodEvent() != null){
+                                                        if (currMoodEvent.getLocationOfMoodEvent() != null) {
                                                             mostRecentMoodEventsOfFriendsOfAParticipantWithLocation.add(currMoodEvent);
                                                             break;
                                                         }
@@ -121,8 +125,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                                                     }
                                                     mvf.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(mostRecentMoodEventsOfFriendsOfAParticipantWithLocation);
 
-                                                }
-                                                else {
+                                                } else {
                                                     mvf.failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(task.getException().getMessage());
                                                 }
 
@@ -131,6 +134,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
 
 
                             }// for every friend, retrieve the most recent Mood request
+                            }
                         }
                         else {
                             mvf.failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(task.getException().getMessage());
@@ -150,6 +154,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
     @Override
     public void retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventsWithLocation) {
         this.mMoodMapView.clearMap();
+        if (moodEventsWithLocation == null) return;
         String dateformat = "MM/dd/yyyy HH:mm:ss";
         DateFormat dateF = new SimpleDateFormat(dateformat);
         for(MoodEvent each: moodEventsWithLocation) { // get user's emotion
@@ -180,6 +185,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
     @Override
     public void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
         this.mMoodMapView.clearMap();
+        if (mostRecentMoodEventsOfFriendsOfAParticipantWithLocation == null) return;
         String dateformat = "MM/dd/yyyy HH:mm:ss";
         DateFormat dateF = new SimpleDateFormat(dateformat);
         for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) { // get user's emotion

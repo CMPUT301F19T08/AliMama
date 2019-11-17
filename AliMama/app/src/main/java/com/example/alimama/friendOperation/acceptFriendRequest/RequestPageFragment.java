@@ -1,10 +1,10 @@
-package com.example.alimama;
+package com.example.alimama.friendOperation.acceptFriendRequest;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.alimama.Controller.RequestPageAdapter;
+import com.example.alimama.R;
 
 import java.util.ArrayList;
 
@@ -31,20 +31,20 @@ import java.util.ArrayList;
  *
  * */
 
-public class RequestPageFragment extends Fragment implements RequestPageClickDelegate{
-    private DatabaseUtil db;
-    View view;
-    RecyclerView recyclerView;
-    RequestPageAdapter requestPageAdapter;
-    private String currParticipant;
+public class RequestPageFragment extends Fragment implements RequestPageClickDelegate, AcceptFriendRequestContract.AcceptFriendRequestView {
+
+    private RequestPageAdapter requestPageAdapter;
     private ArrayList<String> contactDataList;
+    private AcceptFriendRequestContract.AcceptFriendRequestPresenter mAcceptFriendRequestPresenter;
 
     /**
      * Constructor for fragment
      * @param currParticipant
      * */
     public RequestPageFragment(String currParticipant) {
-        this.currParticipant = currParticipant;
+        this.mAcceptFriendRequestPresenter = new AcceptFriendRequestPresenter(this);
+        this.mAcceptFriendRequestPresenter.setCurrentLoggedInParticipant(currParticipant);
+
 
     }
 
@@ -54,15 +54,14 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.view_recycler,container,false);
+        View view = inflater.inflate(R.layout.view_recycler,container,false);
 
 
-        recyclerView =view.findViewById(R.id.my_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.my_recycler_view);
         this.contactDataList = new ArrayList<>();
         requestPageAdapter = new RequestPageAdapter(contactDataList,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        this.db = new DatabaseUtil();
         recyclerView.setAdapter(requestPageAdapter);
 
         return view;
@@ -80,7 +79,7 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        db.retrievePendingFriendRequestOfAParticipant(this.currParticipant, (FriendPageActivity) getContext());
+        this.mAcceptFriendRequestPresenter.retrievePendingFriendRequestOfAParticipant();
 
     }
 
@@ -97,12 +96,17 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
      * add All of the friends to contactDataList
      * @param updatedData
      * */
+    @Override
     public void setAdapterData(ArrayList<String> updatedData ) {
         this.contactDataList.clear();
         this.contactDataList.addAll(updatedData);
+        this.requestPageAdapter.notifyDataSetChanged();
     }
 
-
+    @Override
+    public void notifyDatasetChanged() {
+        this.requestPageAdapter.notifyDataSetChanged();
+    }
 
 
     /**
@@ -113,8 +117,20 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     public void onAcceptButtonClick(int position) {
         String friendToAdd = this.contactDataList.get(position);
         this.contactDataList.remove(position);
-        db.acceptAFriendRequestOfAParticipant(friendToAdd, this.currParticipant, (FriendPageActivity) getContext());
+        this.mAcceptFriendRequestPresenter.acceptAFriendRequestOfAParticipant(friendToAdd);
 
+
+    }
+
+    @Override
+    public void displayErrorMessage(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void displaySuccessMessage(String successMessage) {
+        Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.alimama;
+package com.example.alimama.friendOperation.acceptFriendRequest;
 
 public interface RequestPageClickDelegate {
 

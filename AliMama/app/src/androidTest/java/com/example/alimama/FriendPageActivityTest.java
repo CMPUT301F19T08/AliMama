@@ -1,28 +1,19 @@
 package com.example.alimama;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 
-import com.example.alimama.Controller.TabPageAdapter;
+import com.example.alimama.friendOperation.FriendPageActivity;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputLayout;
 import com.robotium.solo.Solo;
-
-import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;

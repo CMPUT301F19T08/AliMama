@@ -1,4 +1,4 @@
-package com.example.alimama.Controller;
+package com.example.alimama.friendOperation;
 
 import android.content.Context;
 

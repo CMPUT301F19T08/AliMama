@@ -1,5 +1,6 @@
 package com.example.alimama;
 
+import com.example.alimama.friendOperation.FriendPageActivity;
 import com.example.alimama.homescreen.HomeScreenActivity;
 import com.robotium.solo.Solo;
 
