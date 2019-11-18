@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.alimama.Model.MoodEvent;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_history);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         btnMyHistory = findViewById(R.id.btnMyHistory);
         btnFriendsHistory = findViewById(R.id.btnFriendsHistory);
         spEmoticon = findViewById(R.id.spEmoticon);
@@ -78,6 +79,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+                fab.show();
             }
         });
 
@@ -88,9 +90,9 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
                 mDatabaseUtil.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
+                fab.hide();
             }
         });
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -48,6 +48,8 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
         btnDeleteMood = itemView.findViewById(R.id.btnDeleteMood);
     }
 
+
+
     /**
      * Binds the mood event information to the view on the Mood History screen
      * @param moodEvent
@@ -65,6 +67,7 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
                 listener.onEditClick(moodEvent);
             }
         });
+
 
         btnDeleteMood.setOnClickListener(new View.OnClickListener() {
             @Override

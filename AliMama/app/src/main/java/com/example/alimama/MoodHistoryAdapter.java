@@ -30,6 +30,8 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
     private MoodEventClickListener listener;
     private List<MoodEvent> moodEvents = new ArrayList<>();
 
+    private boolean activate = false;
+
     /**
      * listener for the adapter
      * @param listener
