@@ -90,8 +90,11 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
 
         if (activate) {
             holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.INVISIBLE);
+            holder.itemView.findViewById(R.id.btnEditMood).setVisibility(View.INVISIBLE);
         } else {
             holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.VISIBLE);
+            holder.itemView.findViewById(R.id.btnEditMood).setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -107,7 +110,7 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
         return moodEvents.size();
     }
 
-    public void activateButtons(boolean activate) {
+    void activateButtons(boolean activate) {
         this.activate = activate;
         notifyDataSetChanged(); //need to call it for the child views to be re-created with buttons.
     }
