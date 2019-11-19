@@ -80,6 +80,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
                 mDatabaseUtil.retrieveAllMoodEventsOfAParticipant(currentLoggedInUser, MoodHistory.this);
                 fab.show();
+                adapter.activateButtons(false);
             }
         });
 
@@ -91,6 +92,7 @@ public class MoodHistory extends AppCompatActivity implements MoodEventManipulat
                 btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
                 mDatabaseUtil.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currentLoggedInUser, MoodHistory.this);
                 fab.hide();
+                adapter.activateButtons(true);
             }
         });
 

@@ -69,6 +69,7 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
         });
 
 
+
         btnDeleteMood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

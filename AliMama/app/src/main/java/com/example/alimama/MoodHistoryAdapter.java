@@ -3,6 +3,7 @@ package com.example.alimama;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,7 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
     private List<MoodEvent> moodEvents = new ArrayList<>();
 
     private boolean activate = false;
+    private ImageButton btnDeleteMood;
 
     /**
      * listener for the adapter
@@ -85,6 +87,12 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MoodHistoryViewHolder holder, int position) {
         holder.bind(moodEvents.get(position));
+
+        if (activate) {
+            holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.INVISIBLE);
+        } else {
+            holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -97,5 +105,10 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
     @Override
     public int getItemCount() {
         return moodEvents.size();
+    }
+
+    public void activateButtons(boolean activate) {
+        this.activate = activate;
+        notifyDataSetChanged(); //need to call it for the child views to be re-created with buttons.
     }
 }
