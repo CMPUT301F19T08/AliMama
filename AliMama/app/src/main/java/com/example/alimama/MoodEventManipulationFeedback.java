@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * in order to receive return results from database
  * */
 
-public interface MoodEventManipulationFeedback {
+public interface  MoodEventManipulationFeedback {
     void failToUpdateAnExistingMoodEvent(String errmsg);
 
     void updateAnExistingMoodEventSuccessfully();

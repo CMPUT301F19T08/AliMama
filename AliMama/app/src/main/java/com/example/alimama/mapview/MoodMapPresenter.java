@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
  * No outstanding issues identified
  *
  * */
-public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapViewFeedback {
+public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter {
 
     private FirebaseFirestore db;
     private MoodMapContract.MoodMapView mMoodMapView;
@@ -32,7 +32,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
     /**
      * class constructor
      * */
-    public MoodMapPresenter(MoodMapContract.MoodMapView view) {
+    MoodMapPresenter(MoodMapContract.MoodMapView view) {
         this.mMoodMapView = view;
         this.db = FirebaseFirestore.getInstance();
         FirebaseFirestore.setLoggingEnabled(true);
@@ -42,13 +42,13 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
     /**
      * This function retrieves all MoodEvent of current logged-in Participant that have locations from database
      * Result of the retrieval process will be passed through callback functions
-     * defined in MapViewFeedback interface
+     *
      * @param username username of current logged-in Participant
-     * @param mvf a reference to an implementation of MapViewFeedback interface
+     *
      *
      *
      * */
-    void retrieveAllLocatedMoodEventsOfAParticipant(String username, final MapViewFeedback mvf ) {
+    void retrieveAllLocatedMoodEventsOfAParticipant(String username ) {
         CollectionReference moodEventCollectionRef = db.collection("MoodEvents");
         moodEventCollectionRef.whereEqualTo("username", username)
                 .get()
@@ -63,10 +63,10 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                                     moodEventsWithLocation.add(currMoodEvent);
                                 }
                             }
-                            mvf.retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(moodEventsWithLocation);
+                            retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(moodEventsWithLocation);
                         }
                         else {
-                            mvf.failRetrieveAllLocatedMoodEventsOfAParticipant(task.getException().getMessage());
+                            failRetrieveAllLocatedMoodEventsOfAParticipant(task.getException().getMessage());
 
                         }
 
@@ -80,14 +80,14 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
     /**
      * This function retrieves most recent MoodEvents of friends of current logged-in Participant that have locations from database
      * Result of the retrieval process will be passed through callback functions
-     * defined in MapViewFeedback interface
+     *
      * @param username username of current logged-in Participant
-     * @param mvf a reference to an implementation of MapViewFeedback interface
+     *
      *
      *
      * */
 
-    void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(String username, final  MapViewFeedback mvf) {
+    void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(String username) {
 
         CollectionReference friendsCollectionReferece = db.collection("Friends");
         friendsCollectionReferece.whereEqualTo("username", username).get()
@@ -97,7 +97,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                         if (task.isSuccessful()) {
                             // retrieve a list of friends of a participant
                             if (task.getResult().size() == 0) {
-                                mvf.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(null);
+                                retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(null);
 
 
                             } else {
@@ -123,10 +123,10 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                                                         }
 
                                                     }
-                                                    mvf.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(mostRecentMoodEventsOfFriendsOfAParticipantWithLocation);
+                                                    retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(mostRecentMoodEventsOfFriendsOfAParticipantWithLocation);
 
                                                 } else {
-                                                    mvf.failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(task.getException().getMessage());
+                                                    failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(task.getException().getMessage());
                                                 }
 
                                             }
@@ -137,7 +137,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
                             }
                         }
                         else {
-                            mvf.failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(task.getException().getMessage());
+                            failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(task.getException().getMessage());
                         }
                     }
                 });
@@ -151,8 +151,8 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
      * this function is the callback when successfully retrieving all MoodEvent of a participant that has location recorded
      * @param moodEventsWithLocation query result from database
      * */
-    @Override
-    public void retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventsWithLocation) {
+
+    private void retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventsWithLocation) {
         this.mMoodMapView.clearMap();
         if (moodEventsWithLocation == null) return;
         String dateformat = "MM/dd/yyyy HH:mm:ss";
@@ -172,8 +172,8 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
      * this function is the callback when failed to retrieve all MoodEvent of a participant that has location recorded
      * @param message error message
      * */
-    @Override
-    public void failRetrieveAllLocatedMoodEventsOfAParticipant(String message) {
+
+    private void failRetrieveAllLocatedMoodEventsOfAParticipant(String message) {
         this.mMoodMapView.displayLocatedMoodEventDatabaseErrorToast(message);
 
     }
@@ -182,8 +182,8 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
      * this function is the callback when successfully retrieving most recent MoodEvent of friends of a participant that has location recorded
      * @param mostRecentMoodEventsOfFriendsOfAParticipantWithLocation query result from database
      * */
-    @Override
-    public void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
+
+    private void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
         this.mMoodMapView.clearMap();
         if (mostRecentMoodEventsOfFriendsOfAParticipantWithLocation == null) return;
         String dateformat = "MM/dd/yyyy HH:mm:ss";
@@ -203,8 +203,8 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
      * this function is the callback when failed to retrieve most recent MoodEvent of friends of a participant that has location recorded
      * @param message error message
      * */
-    @Override
-    public void failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(String message) {
+
+    private void failRetrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(String message) {
         this.mMoodMapView.displayLocatedMoodEventDatabaseErrorToast(message);
 
     }
@@ -214,7 +214,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
      * */
     @Override
     public void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant() {
-        retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(this.currentLoggedInParticipant, this);
+        retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant(this.currentLoggedInParticipant);
     }
 
     /**
@@ -222,7 +222,7 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter, MapVi
      * */
     @Override
     public void retrieveAllLocatedMoodEventsOfAParticipant() {
-        retrieveAllLocatedMoodEventsOfAParticipant(this.currentLoggedInParticipant, this);
+        retrieveAllLocatedMoodEventsOfAParticipant(this.currentLoggedInParticipant);
 
     }
 
