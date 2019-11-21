@@ -8,7 +8,7 @@ import java.util.Date;
 import androidx.annotation.NonNull;
 /**
  * MoodEvent model class, which is an encapsulation all information related to Participant's mood.
- *
+ * No outstanding issues identified
 * */
 
 public class MoodEvent {
@@ -181,7 +181,6 @@ public class MoodEvent {
     public String toString() {
         return "Document ID: " + this.documentId + " Date: " + date.toString() +  " username: " + this.username + " emotionalState : " + emotionalState + " social Situation: " + socialSituation +"\n";
     }
-
 
     /**
      * emoticon getter

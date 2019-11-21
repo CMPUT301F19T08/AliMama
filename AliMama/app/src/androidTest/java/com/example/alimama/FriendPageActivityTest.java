@@ -1,36 +1,22 @@
 package com.example.alimama;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
 
-import android.widget.Button;
-
-
-import android.widget.TextView;
-
-
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 
+import com.example.alimama.friendOperation.FriendPageActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.robotium.solo.Solo;
-
-import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.w3c.dom.Text;
 
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertFalse;
 
 
 /**
@@ -39,26 +25,12 @@ import static org.junit.Assert.assertTrue;
  * */
 
 public class FriendPageActivityTest {
-    private Solo friendpage;
-    private Solo mainmenu;
-    private TextView textView;
+    private Solo solo;
 
-
-    String name;
-
-    @Rule
-    public ActivityTestRule<FriendPageActivity> rule = new ActivityTestRule<FriendPageActivity>(FriendPageActivity.class,true,true){
-        @Override
-        protected Intent getActivityIntent() {
-            Intent intent = new Intent();
-            intent.putExtra("USERNAME","sky1");
-            return intent;
-        }
-    };
 
 
     @Rule
-    public ActivityTestRule<Mainmenu> rule2 = new ActivityTestRule<Mainmenu>(Mainmenu.class,true,true){
+    public ActivityTestRule<FriendPageActivity> rule = new ActivityTestRule<FriendPageActivity>(FriendPageActivity.class){
         @Override
         protected Intent getActivityIntent() {
             Intent intent = new Intent();
@@ -67,71 +39,51 @@ public class FriendPageActivityTest {
         }
     };
 
-
-
     @Before
     public void setUp() throws Exception{
-        friendpage = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
-        friendpage.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
-
-        mainmenu = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
-
-
+        solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
 
     }
 
+    /**
+     *
+     * if logged in as test should expect xhou1 as test's existing contacts
+     * */
     @Test
-    public void start() throws Exception{
-        Activity friendPageActivity = rule.getActivity();
+    public void checkExistingFriendsOfAParticipant(){
 
-
-    }
-
-    public String seekFriend(){
-
-        friendpage.clickOnText("Friends");
-
-        textView = (TextView) friendpage.getView(R.id.friend_name);
-        name = textView.getText().toString();
-        friendpage.clickOnButton("Add");
-        friendpage.goBack();
-        mainmenu.assertCurrentActivity("Wrong Activity", Mainmenu.class);
-
-
-        return name;
-    }
-
-
-
-
-
-    public void seekRequest(){
-        mainmenu.assertCurrentActivity("Wrong Activity", Mainmenu.class);
-        mainmenu.clickOnView(mainmenu.getView(R.id.main_menu_add_view_friend_button));
-        mainmenu.clickOnText("Requests");
-        textView = (TextView) mainmenu.getView(R.id.request_name);
-        String confirmName = textView.getText().toString();
-        assertTrue(mainmenu.searchText("sky1"));
-        mainmenu.clickOnButton("Accept");
-        mainmenu.clickOnText("Contacts");
-        textView = (TextView) mainmenu.getView(R.id.contact_name);
-        String sameName = textView.getText().toString();
-        assertEquals(sameName,confirmName);
+        solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+        solo.waitForText("xhou1", 1, 2000);
 
     }
+
+    /**
+     *
+     * if logged in as test should expect pending friend request from xhou2 shows on request page
+     * */
     @Test
-    public void FriendRequestSend(){
+    public void checkExistingPendingFriendRequestOfAParticipant(){
 
+        solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+        solo.clickOnText("Requests");
+        solo.waitForText("xhou2", 1, 2000);
 
-        seekFriend();
-        seekRequest();
+    }
 
-
+    /**
+     *
+     * if logged in as test should expect testMap participant shows on friends page as friend-to-add
+     * */
+    @Test
+    public void checkFriendsToAddOfAParticipant() {
+        solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+        solo.clickOnText("Friends");
+        solo.waitForText("testMap", 1, 2000);
     }
 
 
     @After
     public void tearDown() throws Exception{
-        friendpage.finishOpenedActivities();
+        solo.finishOpenedActivities();
     }
 }
