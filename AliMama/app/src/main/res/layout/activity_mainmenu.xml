@@ -19,66 +19,89 @@
 
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
 
-    <Button
-        android:id="@+id/main_menu_mood_history_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_menu_view_mood_history_btn_name"
-        android:textColor="@color/white"
+        <Button
+            android:id="@+id/main_menu_mood_history_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="129dp"
+            android:gravity="center"
 
-
-        android:layout_margin="8dp"
-        android:layout_gravity="center"
-
-        android:background="@drawable/button_main_menu"
-        android:drawableLeft="@drawable/ic_mood"
-
-        />
-    <Button
-        android:id="@+id/main_menu_mood_map_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_menu_view_mood_history_on_map_btn_name"
-        android:textColor="@color/white"
-
-        android:layout_margin="8dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_main_menu"
-        android:drawableLeft="@drawable/ic_map"
+            android:layout_marginTop="61dp"
+            android:background="@drawable/button_main_menu"
+            android:drawableLeft="@drawable/ic_mood"
+            android:text="@string/main_menu_view_mood_history_btn_name"
+            android:textColor="@color/white" />
 
 
+        <Button
+            android:id="@+id/main_menu_mood_map_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
 
-        />
-    <Button
-        android:id="@+id/main_menu_add_view_friend_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_below="@+id/main_menu_mood_history_button"
 
-        android:text="@string/main_menu_view_add_friends_btn_name"
-        android:textColor="@color/white"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="129dp"
+            android:layout_marginTop="32dp"
 
-        android:layout_margin="8dp"
-        android:layout_gravity="center"
+            android:layout_marginEnd="133dp"
+            android:background="@drawable/button_main_menu"
+            android:drawableLeft="@drawable/ic_map"
+            android:gravity="center"
+            android:text="@string/main_menu_view_mood_history_on_map_btn_name"
+            android:textColor="@color/white" />
 
-        android:background="@drawable/button_main_menu"
-        android:drawableLeft="@drawable/ic_contact"
+        <Button
+            android:id="@+id/main_menu_add_view_friend_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
 
-        />
-    <Button
-        android:id="@+id/main_menu_logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_menu_logout_btn_name"
-        android:textColor="@color/white"
 
-        android:layout_margin="8dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_main_menu"
+            android:layout_below="@+id/main_menu_mood_map_button"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="129dp"
 
-        />
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_main_menu"
+            android:drawableLeft="@drawable/ic_contact"
+            android:gravity="center"
+            android:text="@string/main_menu_view_add_friends_btn_name"
+            android:textColor="@color/white" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/main_menu_logout_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="159dp"
+
+
+            android:layout_marginLeft="159dp"
+            android:layout_marginRight="164dp"
+            android:layout_marginBottom="-3dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/main_menu_logout_btn_name"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    </LinearLayout>
 
 
 
