@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.alimama.friendOperation.FriendPageActivity;
-import com.example.alimama.friendOperation.acceptFriendRequest.RequestPageAdapter;
+
 import com.example.alimama.moodHistory.MoodHistory;
 import com.example.alimama.mapview.MoodMapActivity;
 import com.example.alimama.R;
@@ -44,6 +44,8 @@ public class HomeScreenActivity extends AppCompatActivity implements HomeScreenC
         viewMoodMapButton = findViewById(R.id.main_menu_mood_map_button);
         viewOrAddFriendsButton = findViewById(R.id.main_menu_add_view_friend_button);
         logoutButton = findViewById(R.id.main_menu_logout_button);
+
+
 
 
         this.mHomeScreenPresenter = new HomeScreenPresenter(this);
@@ -119,6 +121,14 @@ public class HomeScreenActivity extends AppCompatActivity implements HomeScreenC
         Intent goToMoodMap = new Intent(HomeScreenActivity.this, MoodMapActivity.class);
         goToMoodMap.putExtra("USERNAME", currentLoggedinParticipant);
         startActivity(goToMoodMap);
+
+    }
+
+    @Override
+    public void displayCurrentLoggedInUser(String currentLoggedinParticipant) {
+
+        showWelcome = findViewById(R.id.welcome_slogan);
+        showWelcome.setText("Welcome back, "+currentLoggedinParticipant);
 
     }
 }

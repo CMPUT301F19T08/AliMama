@@ -7,17 +7,7 @@
     >
 
 
-    <TextView
-        android:id="@+id/main_menu_string"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:text="@string/main_menu_name"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="55sp"
 
-        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_profile"
@@ -71,7 +61,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="128dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="185dp"
 
             android:background="@drawable/button_main_menu"
             android:drawableLeft="@drawable/ic_mood"

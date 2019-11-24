@@ -63,7 +63,6 @@ public interface HomeScreenContract {
         void startViewMoodMapScreen(String currentLoggedinParticipant);
 
 
-
-
+        void displayCurrentLoggedInUser(String currentLoggedinParticipant);
     }
 }
