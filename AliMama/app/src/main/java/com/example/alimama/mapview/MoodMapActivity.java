@@ -134,8 +134,7 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
         Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                 .position(new LatLng(latitude,
                         longitude))
-                .title("Markers may be duplicated")
-                .snippet("Click to see more")
+
                 .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon))));
 
         marker.hideInfoWindow();
@@ -171,8 +170,7 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
         Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                 .position(new LatLng(latitude,
                         longitude))
-                .title("Markers may be duplicated")
-                .snippet("Click to see more")
+
                 .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(icon))));
 
         marker.hideInfoWindow();
