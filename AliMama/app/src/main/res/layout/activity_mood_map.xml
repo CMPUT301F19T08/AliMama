@@ -21,7 +21,6 @@
         app:layout_constraintEnd_toStartOf="@+id/mood_map_friend_map_btn"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="4dp"
-        style="?android:attr/borderlessButtonStyle"
         />
 
     <Button
@@ -39,7 +38,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mood_map_my_map_btn"
         tools:layout_editor_absoluteY="4dp"
-        style="?android:attr/borderlessButtonStyle"
         />
 
     <androidx.constraintlayout.widget.Guideline

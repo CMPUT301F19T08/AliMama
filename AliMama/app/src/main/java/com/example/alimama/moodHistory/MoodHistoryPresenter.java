@@ -46,8 +46,7 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * Result of the retrieval process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param username username of current logged-in Participant
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
-     *
+
      *
      * */
     private void retrieveAllMoodEventsOfAParticipant(final String username) {
@@ -113,8 +112,7 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * Result of the retrieval process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param username username of current logged-in Participant
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
-     *
+
      *
      * */
     private void retrieveMostRecentMoodEventOfFriendsOfAParticipant(String username) {

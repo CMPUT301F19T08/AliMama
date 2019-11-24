@@ -74,9 +74,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
      * This function accepts a friend request sent to the current logged-in Participant.
      * Result of the acceptance process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
      * @param usernameOfFriendRequestToAccept the username of the Participant who created the friend request
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
      *
      *
      * */

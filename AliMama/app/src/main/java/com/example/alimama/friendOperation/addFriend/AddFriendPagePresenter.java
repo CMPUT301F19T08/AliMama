@@ -35,9 +35,7 @@ public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPa
      * This function retrieves a list of Participants who haven't been friends with current logged-in Participant from database.
      * Result of the retrieval process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
+
      *
      * */
     @Override
@@ -91,10 +89,7 @@ public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPa
      * This function initiated a friend request on behalf of current logged-in user and send to the designated participant.
      * Result of the process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param currentParticipant username of current logged-in Participant
      * @param participantToBeSentFriendRequest username of recipient Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
      *
      * */
     @Override
