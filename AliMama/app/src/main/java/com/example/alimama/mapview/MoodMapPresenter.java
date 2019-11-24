@@ -155,7 +155,6 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter {
     private void retrieveAllLocatedMoodEventsOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventsWithLocation) {
         this.mMoodMapView.clearMap();
         if (moodEventsWithLocation == null) return;
-<<<<<<< HEAD
      //   String dateformat = "MM/dd/yyyy" + "\n" + "HH:mm:ss";
       //  DateFormat dateF = new SimpleDateFormat(dateformat);
         for(MoodEvent each: moodEventsWithLocation) { // get user's emotion
@@ -163,16 +162,6 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter {
                 GeoPoint location = each.getLocationOfMoodEvent();
              //  String date = dateF.format(each.getDate());
                 this.mMoodMapView.createMarkerforUsers(each.getUsername(), location.getLatitude(), location.getLongitude(), each.getEmoticon());
-=======
-        String dateformat = "MM/dd/yyyy HH:mm:ss";
-        DateFormat dateF = new SimpleDateFormat(dateformat);
-        for(MoodEvent each: moodEventsWithLocation) { // get user's emotion
-            if (each.getEmoticon() != null) {
-                GeoPoint location = each.getLocationOfMoodEvent();
-                String date = dateF.format(each.getDate());
-                this.mMoodMapView.createMarker(each.getUsername(), date, location.getLatitude(), location.getLongitude(), each.getEmoticon());
->>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
-
             }
         }
 
@@ -196,7 +185,6 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter {
     private void retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) {
         this.mMoodMapView.clearMap();
         if (mostRecentMoodEventsOfFriendsOfAParticipantWithLocation == null) return;
-<<<<<<< HEAD
        // String dateformat = "MM/dd/yyyy" + "\n" + "HH:mm:ss";
        // DateFormat dateF = new SimpleDateFormat(dateformat);
         for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) { // get user's emotion
@@ -204,16 +192,6 @@ public class MoodMapPresenter implements MoodMapContract.MoodMapPresenter {
                 GeoPoint location = each.getLocationOfMoodEvent();
                 //String date = dateF.format(each.getDate());
                 this.mMoodMapView.createMarkerforFriends(each.getUsername(), location.getLatitude(), location.getLongitude(), each.getEmoticon());
-=======
-        String dateformat = "MM/dd/yyyy HH:mm:ss";
-        DateFormat dateF = new SimpleDateFormat(dateformat);
-        for(MoodEvent each: mostRecentMoodEventsOfFriendsOfAParticipantWithLocation) { // get user's emotion
-            if (each.getEmoticon() != null) {
-                GeoPoint location = each.getLocationOfMoodEvent();
-                String date = dateF.format(each.getDate());
-                this.mMoodMapView.createMarker(each.getUsername(), date, location.getLatitude(), location.getLongitude(), each.getEmoticon());
->>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
-
             }
         }
 
