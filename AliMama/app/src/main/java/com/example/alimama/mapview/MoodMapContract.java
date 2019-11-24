@@ -38,16 +38,24 @@ public interface MoodMapContract {
          * This method clears all marker currently displayed on GoogleMap
          * */
         void clearMap();
+
         /**
          * this method constructs a new GoogleMap Marker given parameters
          * @param username username to be displayed on the marker
-         * @param date date to be displayed on the marker
          * @param latitude latitude to be displayed on the marker
          * @param longitude longitude to be displayed on the marker
          * @param emoticon emoticon to be displayed on the marker
          * */
-        void createMarker(String username, String date, double latitude, double longitude, String emoticon);
+        void createMarkerforUsers(String username, double latitude, double longitude, String emoticon);
 
+        /**
+         * this method constructs a new GoogleMap Marker given parameters
+         * @param username username to be displayed on the marker
+         * @param latitude latitude to be displayed on the marker
+         * @param longitude longitude to be displayed on the marker
+         * @param emoticon emoticon to be displayed on the marker
+         * */
+        void createMarkerforFriends(String username, double latitude, double longitude, String emoticon);
         /**
          * this method displays a Toast showing the error message
          * @param error the error message
