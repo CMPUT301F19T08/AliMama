@@ -22,8 +22,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
+=======
+>>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
 
 /**
  * MoodMapActivity
@@ -125,22 +128,38 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
     /**
      * this method constructs a new GoogleMap Marker given parameters
      * @param username username to be displayed on the marker
+<<<<<<< HEAD
+=======
+     * @param date date to be displayed on the marker
+>>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
      * @param latitude latitude to be displayed on the marker
      * @param longitude longitude to be displayed on the marker
      * @param emoticon emoticon to be displayed on the marker
      * */
     @Override
+<<<<<<< HEAD
     public void createMarkerforUsers(String username, double latitude, double longitude, String emoticon) {
+=======
+    public void createMarker(String username, String date, double latitude, double longitude, String emoticon) {
+>>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
 
         IconGenerator iconGenerator = new IconGenerator(this);
         Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                 .position(new LatLng(latitude,
                         longitude))
+<<<<<<< HEAD
                 .title("Markers may be duplicated")
                 .snippet("Click to see more")
                 .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon))));
 
         marker.hideInfoWindow();
+=======
+                .title(username)
+                .snippet(date)
+                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon))));
+
+        marker.showInfoWindow();
+>>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
 
         latLngBounds.include(new LatLng(latitude,
                longitude)); // record markers
@@ -148,6 +167,7 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
     }
 
     /**
+<<<<<<< HEAD
      * this method constructs a new GoogleMap Marker given parameters
      * @param username username to be displayed on the marker
      * @param latitude latitude to be displayed on the marker
@@ -186,6 +206,8 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
     }
 
     /**
+=======
+>>>>>>> 92c59567824ceb0fb5bdba72e36b14f9975cd474
      * this method displays a Toast showing the error message
      * @param error the error message
      * */

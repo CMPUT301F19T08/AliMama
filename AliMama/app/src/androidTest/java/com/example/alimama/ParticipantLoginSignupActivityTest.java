@@ -3,6 +3,8 @@ package com.example.alimama;
 import android.app.Activity;
 import android.widget.EditText;
 
+import com.example.alimama.homescreen.HomeScreenActivity;
+import com.example.alimama.participant.login.ParticipantLoginSignupActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.robotium.solo.Solo;
 
@@ -45,7 +47,6 @@ public class ParticipantLoginSignupActivityTest {
     @Test
     public void start() throws Exception{
         Activity activity = rule.getActivity();
-
     }
 
 
@@ -188,7 +189,7 @@ public class ParticipantLoginSignupActivityTest {
         solo.enterText(passwordET,"wrongpassword");
 
         solo.clickOnButton("Log In"); //click on Log In Button
-        assertTrue(solo.waitForText("Password is not valid, please enter again", 1, 2000));
+        assertTrue(solo.waitForText("The Username and Password you entered do not match", 1, 2000));
 
 
     }
@@ -211,9 +212,9 @@ public class ParticipantLoginSignupActivityTest {
 
 
         solo.clickOnButton("Log In"); //click on Log In Button
-        assertTrue(solo.waitForActivity(Mainmenu.class, 5000));
+        assertTrue(solo.waitForActivity(HomeScreenActivity.class, 5000));
         // verify that ShowActivity successfully started
-        solo.assertCurrentActivity("Not MainMenu Activity", Mainmenu.class);
+        solo.assertCurrentActivity("Not MainMenu Activity", HomeScreenActivity.class);
 
 
     }
