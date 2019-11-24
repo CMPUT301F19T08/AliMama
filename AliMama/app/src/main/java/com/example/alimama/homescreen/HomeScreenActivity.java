@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.alimama.friendOperation.FriendPageActivity;
+import com.example.alimama.friendOperation.acceptFriendRequest.RequestPageAdapter;
 import com.example.alimama.moodHistory.MoodHistory;
 import com.example.alimama.mapview.MoodMapActivity;
 import com.example.alimama.R;
@@ -24,7 +26,9 @@ public class HomeScreenActivity extends AppCompatActivity implements HomeScreenC
     Button viewMoodMapButton;
     Button viewOrAddFriendsButton;
     Button logoutButton;
+    TextView showWelcome;
     private HomeScreenPresenter mHomeScreenPresenter;
+
 
 
     /**
@@ -40,6 +44,8 @@ public class HomeScreenActivity extends AppCompatActivity implements HomeScreenC
         viewMoodMapButton = findViewById(R.id.main_menu_mood_map_button);
         viewOrAddFriendsButton = findViewById(R.id.main_menu_add_view_friend_button);
         logoutButton = findViewById(R.id.main_menu_logout_button);
+
+
         this.mHomeScreenPresenter = new HomeScreenPresenter(this);
         this.mHomeScreenPresenter.setCurrentLoggedInParticipant(getIntent().getStringExtra("USERNAME"));
         logoutButton.setOnClickListener(new View.OnClickListener() {
