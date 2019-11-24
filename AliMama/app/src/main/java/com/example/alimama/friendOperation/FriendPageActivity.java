@@ -20,7 +20,7 @@ public class FriendPageActivity extends AppCompatActivity{
         setContentView(R.layout.main_tmp_tab_view);
 
 
-        TabPageAdapter tabPageAdapter = new TabPageAdapter(this, getSupportFragmentManager());
+        TabPageAdapter tabPageAdapter = new TabPageAdapter( getSupportFragmentManager());
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         String currentLoggedInUser = getIntent().getStringExtra("USERNAME");

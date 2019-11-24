@@ -15,16 +15,15 @@ import com.example.alimama.R;
 
 
 public class TabPageAdapter extends FragmentPagerAdapter {
-    private  static final int[] TAB_TITLE = new int[]{R.string.contact_Page,R.string.friend_page,R.string.request_page};
-    private final Context mContext;
+
 
     private final ArrayList<Fragment> setFragment = new ArrayList<>();
     private final ArrayList<String> setTitle = new ArrayList<>();
 
 
-    public TabPageAdapter(Context context, FragmentManager fm) {
+    public TabPageAdapter( FragmentManager fm) {
         super(fm);
-        mContext = context;
+
     }
 
     @Nullable
