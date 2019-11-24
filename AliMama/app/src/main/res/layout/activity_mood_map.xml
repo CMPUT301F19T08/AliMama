@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/blue_dark"
+    android:background="@color/blue"
     android:layout_height="match_parent">
 
 
@@ -13,14 +13,16 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/button_main_menu"
-        android:backgroundTint="@color/blue"
+
+        android:background="@color/blue"
 
         android:textColor="@color/white"
         android:text="@string/mood_map_my_map_btn_name"
         app:layout_constraintEnd_toStartOf="@+id/mood_map_friend_map_btn"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="4dp" />
+        tools:layout_editor_absoluteY="4dp"
+        style="?android:attr/borderlessButtonStyle"
+        />
 
     <Button
         android:id="@+id/mood_map_friend_map_btn"
@@ -29,14 +31,16 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="5dp"
 
-        android:background="@drawable/button_main_menu"
-        android:backgroundTint="@color/blue"
+
+        android:background="@color/blue"
         android:textColor="@color/white"
 
         android:text="@string/mood_map_friend_map_btn_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mood_map_my_map_btn"
-        tools:layout_editor_absoluteY="4dp" />
+        tools:layout_editor_absoluteY="4dp"
+        style="?android:attr/borderlessButtonStyle"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
