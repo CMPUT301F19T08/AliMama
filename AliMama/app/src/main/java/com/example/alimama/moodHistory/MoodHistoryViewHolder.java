@@ -1,4 +1,4 @@
-package com.example.alimama;
+package com.example.alimama.moodHistory;
 
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,10 +12,8 @@ import com.example.alimama.Model.MoodEvent;
  * This is a class is the Mood History view holder for the recycler view to display on the MoodHistory activity
  */
 
-import com.example.alimama.Model.MoodEvent;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.alimama.R;
+import com.example.alimama.moodHistory.MoodEventClickListener;
 
 
 class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
@@ -48,8 +46,6 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
         btnDeleteMood = itemView.findViewById(R.id.btnDeleteMood);
     }
 
-
-
     /**
      * Binds the mood event information to the view on the Mood History screen
      * @param moodEvent
@@ -67,8 +63,6 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
                 listener.onEditClick(moodEvent);
             }
         });
-
-
 
         btnDeleteMood.setOnClickListener(new View.OnClickListener() {
             @Override

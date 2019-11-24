@@ -1,9 +1,8 @@
-package com.example.alimama;
+package com.example.alimama.moodHistory;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,23 +15,16 @@ import java.util.List;
  */
 
 
-
-import com.example.alimama.Model.MoodEvent;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.alimama.moodHistory.MoodHistoryViewHolder;
+import com.example.alimama.R;
+import com.example.alimama.moodHistory.MoodEventClickListener;
 
 
 class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
 
     private MoodEventClickListener listener;
     private List<MoodEvent> moodEvents = new ArrayList<>();
-
-    private boolean activate = false;
-    private ImageButton btnDeleteMood;
+    private boolean disableDeleteButton = false;
 
     /**
      * listener for the adapter
@@ -50,8 +42,9 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
      * @param currentEmoticon
      */
 
-    void setMoodEvents(List<MoodEvent> moodEvents, String currentEmoticon) {
+    void setMoodEvents(List<MoodEvent> moodEvents, String currentEmoticon, boolean disableDeleteButton) {
         this.moodEvents.clear();
+        this.disableDeleteButton = disableDeleteButton;
         if (currentEmoticon.equals("Select filter")) {
             this.moodEvents.addAll(moodEvents);
         }
@@ -86,16 +79,11 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MoodHistoryViewHolder holder, int position) {
-        holder.bind(moodEvents.get(position));
-
-        if (activate) {
+        if (disableDeleteButton)
             holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.INVISIBLE);
-            holder.itemView.findViewById(R.id.btnEditMood).setVisibility(View.INVISIBLE);
-        } else {
+        else
             holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.VISIBLE);
-            holder.itemView.findViewById(R.id.btnEditMood).setVisibility(View.VISIBLE);
-
-        }
+        holder.bind(moodEvents.get(position));
     }
 
 
@@ -108,10 +96,5 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
     @Override
     public int getItemCount() {
         return moodEvents.size();
-    }
-
-    void activateButtons(boolean activate) {
-        this.activate = activate;
-        notifyDataSetChanged(); //need to call it for the child views to be re-created with buttons.
     }
 }

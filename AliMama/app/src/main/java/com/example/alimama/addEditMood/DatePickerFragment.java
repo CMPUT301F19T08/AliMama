@@ -1,4 +1,4 @@
-package com.example.alimama;
+package com.example.alimama.addEditMood;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

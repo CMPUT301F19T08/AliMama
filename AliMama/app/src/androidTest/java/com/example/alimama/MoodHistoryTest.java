@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.alimama.addEditMood.AddEditMoodActivity;
+import com.example.alimama.moodHistory.MoodHistory;
 import com.robotium.solo.Solo;
 import org.junit.After;
 import org.junit.Before;
