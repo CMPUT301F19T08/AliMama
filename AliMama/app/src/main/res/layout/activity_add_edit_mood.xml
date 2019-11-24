@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddEditMoodActivity">
+    tools:context=".addEditMood.AddEditMoodActivity">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -18,13 +18,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etEmotionalState"
+    <TextView
+        android:id="@+id/tvEmotionalState"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
         android:hint="emotional state required"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +42,8 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/etTime"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
-        app:layout_constraintTop_toBottomOf="@id/etEmotionalState" />
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
+        app:layout_constraintTop_toBottomOf="@id/tvEmotionalState" />
 
     <EditText
         android:id="@+id/etTime"
@@ -50,17 +52,17 @@
         android:focusable="false"
         android:hint="time required"
         android:inputType="time"
-        app:layout_constraintEnd_toEndOf="@id/etEmotionalState"
+        app:layout_constraintEnd_toEndOf="@id/tvEmotionalState"
         app:layout_constraintStart_toEndOf="@id/etDate"
-        app:layout_constraintTop_toBottomOf="@id/etEmotionalState" />
+        app:layout_constraintTop_toBottomOf="@id/tvEmotionalState" />
 
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="description"
-        app:layout_constraintEnd_toEndOf="@id/etEmotionalState"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
+        app:layout_constraintEnd_toEndOf="@id/tvEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
         app:layout_constraintTop_toBottomOf="@id/etDate" />
 
 
@@ -70,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="Emotional State"
         app:layout_constraintTop_toBottomOf="@id/etDescription"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
         app:layout_constraintEnd_toStartOf="@id/spEmoticon"/>
     <Spinner
         android:id="@+id/spEmoticon"
@@ -87,7 +89,7 @@
         android:text="Social Situation"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/tvEmoticon"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
         app:layout_constraintEnd_toStartOf="@id/spSocialSituation"/>
     <Spinner
         android:id="@+id/spSocialSituation"
@@ -102,7 +104,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
         app:layout_constraintTop_toBottomOf="@id/tvSocialSituation"
         />
 
@@ -111,8 +113,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
-        app:layout_constraintEnd_toEndOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
+        app:layout_constraintEnd_toEndOf="@id/tvEmotionalState"
         app:layout_constraintTop_toBottomOf="@id/tvSocialSituation"
         android:src="@android:drawable/ic_menu_camera"/>
 
@@ -123,7 +125,7 @@
         android:focusable="false"
         android:clickable="false"
         android:apiKey="@string/google_maps_key"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
         app:layout_constraintTop_toBottomOf="@id/ivThumbnail"/>
 
     <CheckBox
@@ -131,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
         app:layout_constraintTop_toBottomOf="@id/mapView"/>
 
     <TextView
@@ -149,8 +151,8 @@
         android:layout_height="wrap_content"
         android:text="Add Mood"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@id/etEmotionalState"
-        app:layout_constraintEnd_toEndOf="@id/etEmotionalState"
+        app:layout_constraintStart_toStartOf="@id/tvEmotionalState"
+        app:layout_constraintEnd_toEndOf="@id/tvEmotionalState"
         app:layout_constraintTop_toBottomOf="@id/checkBoxLocation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

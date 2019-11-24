@@ -1,28 +1,19 @@
 package com.example.alimama;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 
-import com.example.alimama.Controller.TabPageAdapter;
+import com.example.alimama.friendOperation.FriendPageActivity;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputLayout;
 import com.robotium.solo.Solo;
-
-import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -74,12 +65,20 @@ public class FriendPageActivityTest {
     public void checkExistingPendingFriendRequestOfAParticipant(){
 
         solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
-        TabLayout tabs = (TabLayout) solo.getView(R.id.tabs);
-        tabs.getTabAt(2).select();
-
-
+        solo.clickOnText("Requests");
         solo.waitForText("xhou2", 1, 2000);
 
+    }
+
+    /**
+     *
+     * if logged in as test should expect testMap participant shows on friends page as friend-to-add
+     * */
+    @Test
+    public void checkFriendsToAddOfAParticipant() {
+        solo.assertCurrentActivity("Wrong Activity", FriendPageActivity.class);
+        solo.clickOnText("Friends");
+        solo.waitForText("testMap", 1, 2000);
     }
 
 

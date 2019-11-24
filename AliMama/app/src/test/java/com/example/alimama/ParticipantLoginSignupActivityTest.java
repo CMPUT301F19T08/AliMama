@@ -1,5 +1,7 @@
 package com.example.alimama;
 
+import com.example.alimama.participant.login.ParticipantLoginPresenter;
+import com.example.alimama.participant.login.ParticipantLoginSignupActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -14,7 +16,6 @@ import org.mockito.stubbing.Answer;
 
 import java.util.Map;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 
 public class ParticipantLoginSignupActivityTest {
@@ -25,8 +26,14 @@ public class ParticipantLoginSignupActivityTest {
     Task<Void> mockVoidTask = (Task<Void>) Mockito.mock(Task.class);
     OnCompleteListener<DocumentSnapshot> mockDocumentSnapshotCompleteListener = (OnCompleteListener<DocumentSnapshot>) Mockito.mock(OnCompleteListener.class);
     DocumentSnapshot mockDocumentSnapshot =  Mockito.mock(DocumentSnapshot.class);
-    CredentialValidationDelegate mockCredentialValidationDelegate = Mockito.mock(CredentialValidationDelegate.class);
+    CredentialValidationFeedback mockCredentialValidationDelegate = Mockito.mock(CredentialValidationFeedback.class);
 
+    ParticipantLoginSignupActivity mockParticipantLoginSignupActivity = Mockito.mock(ParticipantLoginSignupActivity.class);
+
+
+    private ParticipantLoginPresenter mockPresenter() {
+        return new ParticipantLoginPresenter(mockParticipantLoginSignupActivity);
+    }
     @Test
     public void testUsernameDoesNotExist() {
 
@@ -50,7 +57,10 @@ public class ParticipantLoginSignupActivityTest {
         Mockito.when(mockDocumentSnapshotTask.getResult()).thenReturn(mockDocumentSnapshot);
         Mockito.when(mockDocumentSnapshot.exists()).thenReturn(false);
 
-        database.authenticExistingParticipant(username, "", mockCredentialValidationDelegate);
+
+        ParticipantLoginPresenter presenter = mockPresenter();
+        presenter.verifyExistingParticipantCredential(username, "");
+        //database.authenticExistingParticipant(username, "", mockCredentialValidationDelegate);
 
         Mockito.verify(mockCredentialValidationDelegate).usernameNotExist();
     }
@@ -80,9 +90,11 @@ public class ParticipantLoginSignupActivityTest {
         Mockito.when(mockDocumentSnapshot.exists()).thenReturn(true);
         Mockito.when(mockDocumentSnapshot.get("password")).thenReturn(password);
 
-        database.authenticExistingParticipant(username, password, mockCredentialValidationDelegate);
+        ParticipantLoginPresenter presenter = mockPresenter();
+        presenter.verifyExistingParticipantCredential(username, password);
+        //database.authenticExistingParticipant(username, password, mockCredentialValidationDelegate);
 
-        Mockito.verify(mockCredentialValidationDelegate).existingParticipantLoginSuccessfully();
+        Mockito.verify(mockCredentialValidationDelegate).existingParticipantLoginSuccessfully(null);
     }
 
     @Test
@@ -110,7 +122,9 @@ public class ParticipantLoginSignupActivityTest {
         Mockito.when(mockDocumentSnapshot.exists()).thenReturn(true);
         Mockito.when(mockDocumentSnapshot.get("password")).thenReturn(password);
 
-        database.authenticExistingParticipant(username, "incorrect", mockCredentialValidationDelegate);
+        ParticipantLoginPresenter presenter = mockPresenter();
+        presenter.verifyExistingParticipantCredential(username, "incorrect");
+        //database.authenticExistingParticipant(username, "incorrect", mockCredentialValidationDelegate);
 
         Mockito.verify(mockCredentialValidationDelegate).existingParticipantPasswordNotMatch();
     }
@@ -139,7 +153,9 @@ public class ParticipantLoginSignupActivityTest {
         Mockito.when(mockDocumentSnapshotTask.getResult()).thenReturn(mockDocumentSnapshot);
         Mockito.when(mockDocumentSnapshot.exists()).thenReturn(true);
 
-        database.signupNewParticipant(username, password, mockCredentialValidationDelegate);
+        ParticipantLoginPresenter presenter = mockPresenter();
+        presenter.verifyNewParticipantCredential(username, password);
+        //database.signupNewParticipant(username, password, mockCredentialValidationDelegate);
 
         Mockito.verify(mockCredentialValidationDelegate).usernameExist();
     }
@@ -180,9 +196,11 @@ public class ParticipantLoginSignupActivityTest {
         Mockito.when(mockDocumentSnapshotTask.getResult()).thenReturn(mockDocumentSnapshot);
         Mockito.when(mockDocumentSnapshot.exists()).thenReturn(false);
 
-        database.signupNewParticipant(username, password, mockCredentialValidationDelegate);
+        ParticipantLoginPresenter presenter = mockPresenter();
+        presenter.verifyNewParticipantCredential(username, password);
+        //database.signupNewParticipant(username, password, mockCredentialValidationDelegate);
 
-        Mockito.verify(mockCredentialValidationDelegate).newParticipantSignupSuccessfully();
+        Mockito.verify(mockCredentialValidationDelegate).newParticipantSignupSuccessfully(null);
     }
 
 }

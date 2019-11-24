@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.alimama.addEditMood.AddEditMoodActivity;
+import com.example.alimama.moodHistory.MoodHistory;
 import com.robotium.solo.Solo;
 import org.junit.After;
 import org.junit.Before;
@@ -26,7 +28,7 @@ public class MoodHistoryTest {
     private Solo solo;
 
     /**
-     * This function creates activity which sets USERNAME as "xhou1"
+     * This function creates activity which sets USERNAME as "test"
      */
     @Rule
     public ActivityTestRule<MoodHistory> rule =
@@ -34,7 +36,7 @@ public class MoodHistoryTest {
                 @Override
                 protected Intent getActivityIntent() {
                     Intent intent = new Intent();
-                    intent.putExtra("USERNAME", "xhou1");
+                    intent.putExtra("USERNAME", "test");
                     return intent;
                 }
             };
@@ -67,8 +69,8 @@ public class MoodHistoryTest {
 
         solo.clickOnView(solo.getView(R.id.btnFriendsHistory));
 
-        assertTrue(solo.searchText("xhou2", true));
-        assertFalse(solo.searchText("xhou1", true));
+        assertTrue(solo.searchText("xhou1", true));
+        assertFalse(solo.searchText("xhou2", true));
         assertFalse(solo.searchText("xhou3", true));
         assertFalse(solo.searchText("xhou4", true));
     }
@@ -83,16 +85,11 @@ public class MoodHistoryTest {
     public void checkIfSwitchedToMyHistoryTab() {
         solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
 
-        solo.clickOnView(solo.getView(R.id.btnFriendsHistory));
 
-        assertTrue(solo.searchText("xhou2", true));
-        assertFalse(solo.searchText("xhou1", true));
-        assertFalse(solo.searchText("xhou3", true));
-        assertFalse(solo.searchText("xhou4", true));
 
         solo.clickOnView(solo.getView(R.id.btnMyHistory));
 
-        assertTrue(solo.searchText("xhou1", true));
+        assertTrue(solo.searchText("test", true));
         assertFalse(solo.searchText("xhou2", true));
         assertFalse(solo.searchText("xhou3", true));
 

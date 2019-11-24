@@ -1,5 +1,9 @@
 package com.example.alimama;
 
+import com.example.alimama.friendOperation.FriendPageActivity;
+import com.example.alimama.homescreen.HomeScreenActivity;
+import com.example.alimama.mapview.MoodMapActivity;
+import com.example.alimama.moodHistory.MoodHistory;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
@@ -12,12 +16,16 @@ import androidx.test.rule.ActivityTestRule;
 
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * UI Tests for HomeScreen
+ *
+ * */
 public class MainMenuActivityTest {
 
     private Solo solo;
 
     @Rule
-    public ActivityTestRule<Mainmenu> rule = new ActivityTestRule<>(Mainmenu.class, true, true);
+    public ActivityTestRule<HomeScreenActivity> rule = new ActivityTestRule<>(HomeScreenActivity.class, true, true);
     /**
      * Runs before all tests and creates solo instance.
      * @throws Exception
@@ -29,6 +37,27 @@ public class MainMenuActivityTest {
     }
 
 
+<<<<<<< HEAD
+=======
+//    /**
+//     *
+//     *This function tests whether the application switches to ParticipantLoginSignup Activity when pressing the
+//     * Log out Button
+//     *
+//     * */
+//    @Test
+//    public void pressLogOutButton() {
+//        solo.assertCurrentActivity("Wrong Activity", HomeScreenActivity.class);
+//        solo.clickOnView(solo.getView(R.id.main_menu_logout_button));
+//        assertTrue(solo.waitForActivity(ParticipantLoginSignupActivity.class, 5000));
+//        // verify that ParticipantLoginSignupActivity successfully started
+//        solo.assertCurrentActivity("Not ParticipantLoginSignupActivity Activity", ParticipantLoginSignupActivity.class);
+//
+//
+//    }
+
+
+>>>>>>> dd9cbe553bcf85ebd31b54894a1883c5d40af4b9
     /**
      *
      *This function tests whether the application switches to FriendPageActivity Activity when pressing the
@@ -37,11 +66,11 @@ public class MainMenuActivityTest {
      * */
     @Test
     public void pressViewAddFriendsButton() {
-        solo.assertCurrentActivity("Wrong Activity", Mainmenu.class);
+        solo.assertCurrentActivity("Wrong Activity", HomeScreenActivity.class);
         solo.clickOnView(solo.getView(R.id.main_menu_add_view_friend_button));
         assertTrue(solo.waitForActivity(FriendPageActivity.class, 5000));
         // verify that FriendPageActivity successfully started
-        solo.assertCurrentActivity("Not MoodMap Activity", FriendPageActivity.class);
+        solo.assertCurrentActivity("Not FriendPageActivity", FriendPageActivity.class);
 
 
     }
@@ -55,11 +84,11 @@ public class MainMenuActivityTest {
      * */
     @Test
     public void pressViewMoodHistoryOnMapButton() {
-        solo.assertCurrentActivity("Wrong Activity", Mainmenu.class);
+        solo.assertCurrentActivity("Wrong Activity", HomeScreenActivity.class);
         solo.clickOnView(solo.getView(R.id.main_menu_mood_map_button));
-        assertTrue(solo.waitForActivity(MoodMap.class, 5000));
+        assertTrue(solo.waitForActivity(MoodMapActivity.class, 5000));
         // verify that MoodMap successfully started
-        solo.assertCurrentActivity("Not MoodMap Activity", MoodMap.class);
+        solo.assertCurrentActivity("Not MoodMap Activity", MoodMapActivity.class);
 
 
     }
@@ -72,7 +101,7 @@ public class MainMenuActivityTest {
      * */
     @Test
     public void pressViewMoodHistoryButton() {
-        solo.assertCurrentActivity("Wrong Activity", Mainmenu.class);
+        solo.assertCurrentActivity("Wrong Activity", HomeScreenActivity.class);
         solo.clickOnView(solo.getView(R.id.main_menu_mood_history_button));
         assertTrue(solo.waitForActivity(MoodHistory.class, 5000));
         // verify that MoodHistory successfully started
