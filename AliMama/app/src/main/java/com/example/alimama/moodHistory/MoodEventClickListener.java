@@ -1,4 +1,4 @@
-package com.example.alimama;
+package com.example.alimama.moodHistory;
 
 import com.example.alimama.Model.MoodEvent;
 

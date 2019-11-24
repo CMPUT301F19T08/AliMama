@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
  * No outstanding issues identified
  * @author Xuechun Hou
  * */
-public class ParticipantLoginPresenter implements ParticipantLoginContract.ParticipantLoginPresenter, CredentialValidationFeedback {
+public class ParticipantLoginPresenter implements ParticipantLoginContract.ParticipantLoginPresenter {
 
     private ParticipantLoginContract.ParticipantLoginView mParticipantLoginView;
     private FirebaseFirestore db;
@@ -31,19 +31,19 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
 
 
     /**
-     * this method is the callback function when signing up new Participant but username already exist
+     * this method is the Firestore callback function when signing up new Participant but username already exist
      * */
-    @Override
-    public void usernameExist() {
+
+    private void usernameExist() {
         mParticipantLoginView.displayUsernameAlreadyExistError();
 
     }
 
     /**
-     * this method is the callback function when logging in existing Participant successfully
+     * this method is the Firestore callback function when logging in existing Participant successfully
      * */
-    @Override
-    public void existingParticipantLoginSuccessfully(UserProfile currentLoggedInParticipant) {
+
+    private void existingParticipantLoginSuccessfully(UserProfile currentLoggedInParticipant) {
         mParticipantLoginView.displayExistingParticipantLoginSuccessToast();
         mParticipantLoginView.startMainScreen(currentLoggedInParticipant);
 
@@ -51,47 +51,47 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
     }
 
     /**
-     * this method is the callback function when signing up new Participant successfully
+     * this method is the Firestore callback function when signing up new Participant successfully
      * */
-    @Override
-    public void newParticipantSignupSuccessfully(UserProfile currentLoggedInParticipant) {
+
+    private void newParticipantSignupSuccessfully(UserProfile currentLoggedInParticipant) {
         mParticipantLoginView.displayNewParticipantSignupSuccessToast();
         mParticipantLoginView.startMainScreen(currentLoggedInParticipant);
 
     }
 
     /**
-     * this method is the callback function when existing Participant entered wrong password
+     * this method is the Firestore callback function when existing Participant entered wrong password
      * */
-    @Override
-    public void existingParticipantPasswordNotMatch() {
+
+    private void existingParticipantPasswordNotMatch() {
         mParticipantLoginView.displayUsernamePasswordNotMatchError();
 
     }
 
     /**
-     * this method is the callback function when logging in existing Participant but username doesn't exist
+     * this method is the Firestore callback function when logging in existing Participant but username doesn't exist
      * */
-    @Override
+
     public void usernameNotExist() {
         mParticipantLoginView.displayUsernameDoNotExistError();
 
     }
 
     /**
-     * this method is the callback function when signing up new Participant but database error occurred
+     * this method is the Firestore callback function when signing up new Participant but database error occurred
      * */
-    @Override
-    public void newParticipantSignupError(String message) {
+
+    private void newParticipantSignupError(String message) {
         mParticipantLoginView.displayNewParticipantSignupDatabaseErrorToast(message);
 
     }
 
     /**
-     * this method is the callback function when logging in existing Participant but database error occurred
+     * this method is the Firestore callback function when logging in existing Participant but database error occurred
      * */
-    @Override
-    public void existingParticipantLoginError(String message) {
+
+    private void existingParticipantLoginError(String message) {
         mParticipantLoginView.displayExistingParticipantLoginDatabaseErrorToast(message);
 
 
@@ -118,7 +118,7 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
         UserProfile newUser = new UserProfile(username.trim(),password.trim() );
 
 
-        signupNewParticipant(newUser, this);
+        signupNewParticipant(newUser);
 
     }
 
@@ -142,18 +142,18 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
         mParticipantLoginView.clearPasswordError();
         UserProfile existingUser = new UserProfile(username.trim(),password.trim() );
 
-        authenticExistingParticipant(existingUser, this);
+        authenticExistingParticipant(existingUser);
     }
 
     /**
      * Authenticate the given existing Participant.
      * Result of authentication will be passed through callback functions
-     * defined in CredentialValidationFeedback interface
+     *
      * @param existingUser stores the credential of the existing Participant to be logged in
-     * @param cvd a reference to an implementation of CredentialValidationFeedback interface
+     *
      *
      * */
-    private void authenticExistingParticipant(final UserProfile existingUser, final CredentialValidationFeedback cvd) {
+    private void authenticExistingParticipant(final UserProfile existingUser) {
 
 
 
@@ -166,20 +166,20 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (! document.exists()) {
-                                cvd.usernameNotExist();
+                                usernameNotExist();
                             }
                             else {
                                 UserProfile userProfile = document.toObject(UserProfile.class);
                                 if (existingUser.getPassword().equals(userProfile.getPassword())) {
-                                    cvd.existingParticipantLoginSuccessfully(existingUser);
+                                    existingParticipantLoginSuccessfully(existingUser);
                                 }else {
-                                    cvd.existingParticipantPasswordNotMatch();
+                                    existingParticipantPasswordNotMatch();
                                 }
                             }
 
                         }
                         else {
-                            cvd.existingParticipantLoginError(task.getException().getMessage());
+                            existingParticipantLoginError(task.getException().getMessage());
 
                         }
                     }
@@ -189,13 +189,13 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
 
     /**
      * Perform new Participant sign up. Result of the sign up process will be passed through callback functions
-     * defined in CredentialValidationFeedback interface
+     *
      * @param newUser stores the credential of the new Participant to be signed up
 
-     * @param cvd a reference to an implementation of CredentialValidationFeedback interface
+     *
      *
      * */
-    private void signupNewParticipant(final UserProfile newUser, final CredentialValidationFeedback cvd) {
+    private void signupNewParticipant(final UserProfile newUser) {
 
         // check if username exists
         DocumentReference usernameReference = db.collection("Participants").document(newUser.getUsername());
@@ -206,7 +206,7 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if ( document.exists()) {
-                                cvd.usernameExist();
+                                usernameExist();
                             }
                             else {
                                 Map<String, String> credential = new HashMap<>();
@@ -218,10 +218,10 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    cvd.newParticipantSignupSuccessfully(newUser);
+                                                    newParticipantSignupSuccessfully(newUser);
                                                 }
                                                 else {
-                                                    cvd.newParticipantSignupError(task.getException().getMessage());
+                                                    newParticipantSignupError(task.getException().getMessage());
                                                 }
                                             }
                                         });
@@ -233,7 +233,7 @@ public class ParticipantLoginPresenter implements ParticipantLoginContract.Parti
 
                         }
                         else {
-                            cvd.newParticipantSignupError(task.getException().getMessage());
+                            newParticipantSignupError(task.getException().getMessage());
 
                         }
                     }

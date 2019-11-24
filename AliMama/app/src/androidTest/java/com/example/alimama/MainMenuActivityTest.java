@@ -3,7 +3,7 @@ package com.example.alimama;
 import com.example.alimama.friendOperation.FriendPageActivity;
 import com.example.alimama.homescreen.HomeScreenActivity;
 import com.example.alimama.mapview.MoodMapActivity;
-import com.example.alimama.participant.login.ParticipantLoginSignupActivity;
+import com.example.alimama.moodHistory.MoodHistory;
 import com.robotium.solo.Solo;
 
 import org.junit.After;
