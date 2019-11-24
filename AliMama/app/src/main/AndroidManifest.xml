@@ -57,7 +57,10 @@
             android:name=".homescreen.HomeScreenActivity"
             android:label="@string/main_menu_name"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".participant.login.ParticipantLoginSignupActivity">
+        <activity
+            android:name=".participant.login.ParticipantLoginSignupActivity"
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

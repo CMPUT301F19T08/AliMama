@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#00594b"
+    android:background="@color/blue_dark"
     android:layout_height="match_parent">
 
 
@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"
-        android:background="@color/blue_dark"
+        android:background="@drawable/button_main_menu"
+        android:backgroundTint="@color/blue"
 
         android:textColor="@color/white"
         android:text="@string/mood_map_my_map_btn_name"
@@ -27,8 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="5dp"
-        android:background="@color/blue_dark"
+
+        android:background="@drawable/button_main_menu"
+        android:backgroundTint="@color/blue"
         android:textColor="@color/white"
+
         android:text="@string/mood_map_friend_map_btn_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mood_map_my_map_btn"

@@ -15,16 +15,16 @@
 
         android:layout_margin="8dp"
         android:layout_weight="0.4"
-         />
+        />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/participant_login_signup_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="20sp"
-            app:errorEnabled="true">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/participant_login_signup_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -51,26 +51,36 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/participant_login_signup_login_btn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:errorTextAppearance="@color/colorAccent"
-        android:text="@string/participant_login_signup_login_btn"
-        android:textSize="20sp"
-        android:layout_weight="0.1"
-        android:textAllCaps="true" />
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/participant_login_signup_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:errorTextAppearance="@color/colorAccent"
+            android:text="@string/participant_login_signup_login_btn"
+            android:textSize="20sp"
+            android:layout_weight="0.1"
+            android:textAllCaps="true"
 
-    <Button
-        android:id="@+id/participant_login_signup_signup_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_weight="0.1"
-        android:textSize="20sp"
-        android:text="@string/participant_login_signup_signup_btn" />
+            android:background="@drawable/button_main_menu"
+            android:backgroundTint="@color/blue"
+            />
 
+        <Button
+            android:id="@+id/participant_login_signup_signup_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="0.1"
+            android:textSize="20sp"
+            android:text="@string/participant_login_signup_signup_btn"
+            android:background="@drawable/button_main_menu"
+            android:backgroundTint="@color/blue"
+            />
+    </LinearLayout>
 
 </LinearLayout>

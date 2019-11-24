@@ -19,11 +19,90 @@
 
         />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:id="@+id/imageV"
+                android:src="@mipmap/ic_launcher_foreground"
+                android:layout_width="75dp"
+                android:layout_height="75dp"/>
+
+
+            <TextView
+                android:id="@+id/text_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignTop="@+id/imageV"
+
+                android:layout_marginStart="63dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@+id/imageV"
+                android:gravity="center_horizontal"
+
+                android:text="Friends"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="2dp"
+
+                android:layout_toEndOf="@+id/text_friend"
+                android:gravity="center_horizontal"
+                android:text="Requests"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/friend_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_friend"
+                android:layout_alignStart="@id/imageV"
+                android:layout_marginStart="156dp"
+                android:layout_marginTop="14dp"
+                android:text="10"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/request_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_request"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="70dp"
+                android:text="2"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         >
+
 
         <Button
             android:id="@+id/main_menu_mood_history_button"
@@ -32,15 +111,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="129dp"
-            android:gravity="center"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="150dp"
 
-            android:layout_marginTop="61dp"
             android:background="@drawable/button_main_menu"
             android:drawableLeft="@drawable/ic_mood"
+            android:gravity="center"
             android:text="@string/main_menu_view_mood_history_btn_name"
             android:textColor="@color/white" />
-
 
         <Button
             android:id="@+id/main_menu_mood_map_button"
