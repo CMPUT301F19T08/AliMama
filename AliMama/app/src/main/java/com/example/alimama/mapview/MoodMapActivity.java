@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
 
+import java.util.ArrayList;
 
 /**
  * MoodMapActivity
@@ -123,26 +124,61 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
     /**
      * this method constructs a new GoogleMap Marker given parameters
      * @param username username to be displayed on the marker
-     * @param date date to be displayed on the marker
      * @param latitude latitude to be displayed on the marker
      * @param longitude longitude to be displayed on the marker
      * @param emoticon emoticon to be displayed on the marker
      * */
     @Override
-    public void createMarker(String username, String date, double latitude, double longitude, String emoticon) {
+    public void createMarkerforUsers(String username, double latitude, double longitude, String emoticon) {
+        IconGenerator iconGenerator = new IconGenerator(this);
+        Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
+                .position(new LatLng(latitude,
+                        longitude))
+                .title("Markers may be duplicated")
+                .snippet("Click to see more")
+                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon))));
+
+        marker.hideInfoWindow();
+        latLngBounds.include(new LatLng(latitude,
+               longitude)); // record markers
+        moveCameraToNewMarker();
+    }
+
+    /**
+     * this method constructs a new GoogleMap Marker given parameters
+     * @param username username to be displayed on the marker
+     * @param latitude latitude to be displayed on the marker
+     * @param longitude longitude to be displayed on the marker
+     * @param emoticon emoticon to be displayed on the marker
+     * */
+
+    @Override
+    public void createMarkerforFriends(String username, double latitude, double longitude, String emoticon) {
+
+        ArrayList<String> mapList = new ArrayList<>();
+        mapList.add(emoticon);
+        mapList.add(username);
+        String string = "";
+
+        for (String s : mapList)
+        {
+            string += s + "\n";
+        }
+
+        String icon = string.trim();
 
         IconGenerator iconGenerator = new IconGenerator(this);
         Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                 .position(new LatLng(latitude,
                         longitude))
-                .title(username)
-                .snippet(date)
-                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon))));
+                .title("Markers may be duplicated")
+                .snippet("Click to see more")
+                .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(icon))));
 
-        marker.showInfoWindow();
+        marker.hideInfoWindow();
 
         latLngBounds.include(new LatLng(latitude,
-               longitude)); // record markers
+                longitude)); // record markers
         moveCameraToNewMarker();
     }
 
