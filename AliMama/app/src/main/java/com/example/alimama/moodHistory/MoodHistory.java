@@ -8,6 +8,7 @@ import com.example.alimama.Model.MoodEvent;
 import com.example.alimama.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -134,6 +135,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void setupButtonClickListeners() {

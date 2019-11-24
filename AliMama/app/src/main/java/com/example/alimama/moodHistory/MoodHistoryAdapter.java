@@ -15,9 +15,9 @@ import java.util.List;
  */
 
 
-import com.example.alimama.moodHistory.MoodHistoryViewHolder;
+
 import com.example.alimama.R;
-import com.example.alimama.moodHistory.MoodEventClickListener;
+
 
 
 class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
@@ -79,10 +79,18 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MoodHistoryViewHolder holder, int position) {
-        if (disableDeleteButton)
+        if (disableDeleteButton) {
             holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.INVISIBLE);
-        else
+            holder.itemView.findViewById(R.id.btnEditMood).setVisibility(View.INVISIBLE);
+
+        }
+
+        else {
             holder.itemView.findViewById(R.id.btnDeleteMood).setVisibility(View.VISIBLE);
+            holder.itemView.findViewById(R.id.btnEditMood).setVisibility(View.VISIBLE);
+
+        }
+
         holder.bind(moodEvents.get(position));
     }
 
