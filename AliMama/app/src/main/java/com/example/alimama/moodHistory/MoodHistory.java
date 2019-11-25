@@ -21,11 +21,6 @@ import android.widget.Spinner;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-/**
- * This is a class that keeps track of a list of the MoodEvent objects and displays them using a recycler view
- */
 
 public class MoodHistory extends AppCompatActivity implements MoodHistoryContract.View, MoodEventClickListener {
 
@@ -64,52 +59,8 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
 
             }
         });
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistory.java
-//
-//        recyclerView = findViewById(R.id.rvMoods);
-//        adapter = new MoodHistoryAdapter(this);
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        database = new Database();
-//
-//        //Checks to see if the My History button is pressed so that it displays the mood history of the current logged on user.
-//        btnMyHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CURRENT_STATE = STATE_MY_HISTORY;
-//                btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
-//                btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-//                database.retrieveAllMoodEventsOfAParticipant(currLoggedInUser, MoodHistory.this);
-//            }
-//        });
-//
-//        //Checks to see if the Friends History button is pressed so that it displays the mood history of the current logged on users friends.
-//        btnFriendsHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CURRENT_STATE = STATE_FRIENDS_HISTORY;
-//                btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-//                btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
-//                database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(currLoggedInUser, MoodHistory.this);
-//            }
-//        });
-//
-//        //Checks to see if the Add mood button is pressed so that a user can add a mood. It will switch to a new activity "AddEditMoodActivity"
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), AddEditMoodActivity.class);
-//                intent.putExtra("USERNAME", currLoggedInUser);
-//                startActivity(intent);
-//            }
-//        });
-//=======
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistory.java
     }
 
-    //Gets mood events from the database and sets the colors of the tabs to verify that we are on the tab that was selected.
     @Override
     protected void onResume() {
         super.onResume();
@@ -117,6 +68,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     // END - Android lifecycle methods
+
 
     // BEGIN - MoodEventClickListener methods
 
@@ -178,38 +130,6 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         btnFriendsHistory = findViewById(R.id.btnFriendsHistory);
         spEmoticon = findViewById(R.id.spEmoticon);
 
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistory.java
-    /**
-     * When the edit button is pressed, we switch to a new activity: "AddEditMoodActivity". It takes in the previous inputs for the current
-     * mood event and displays them on the edit screen so all the information can be viewed or edited.
-     * @param event
-     */
-    @Override
-    public void onEditClick(MoodEvent event) {
-        Intent intent = new Intent(this, AddEditMoodActivity.class);
-        intent.putExtra(AddEditMoodActivity.EXTRA_DOCUMENT_ID, event.getDocumentId());
-        intent.putExtra(AddEditMoodActivity.EXTRA_DATE, event.getDate().toString());
-        intent.putExtra(AddEditMoodActivity.EXTRA_EMOTIONAL_STATE, event.getEmotionalState());
-        intent.putExtra(AddEditMoodActivity.EXTRA_USERNAME, event.getUsername());
-        intent.putExtra(AddEditMoodActivity.EXTRA_DESCRIPTION, event.getReasonInText());
-        intent.putExtra(AddEditMoodActivity.EXTRA_PHOTO_PATH, event.getPathToPhoto());
-        if (event.getLocationOfMoodEvent() != null) {
-            intent.putExtra(AddEditMoodActivity.EXTRA_LOCATION_LAT, event.getLocationOfMoodEvent().getLatitude());
-            intent.putExtra(AddEditMoodActivity.EXTRA_LOCATION_LNG, event.getLocationOfMoodEvent().getLongitude());
-        }
-        intent.putExtra(AddEditMoodActivity.EXTRA_EMOTICON, event.getEmoticon());
-        intent.putExtra(AddEditMoodActivity.EXTRA_SOCIAL_SITUATION, event.getSocialSituation());
-        startActivity(intent);
-    }
-
-    /**
-     * This function deletes the mood event of the current logged on user.
-     * @param event
-     */
-    @Override
-    public void onDeleteClick(MoodEvent event) {
-        database.deleteAMoodEventOfAParticipant(event, this);
-//=======
         RecyclerView recyclerView = findViewById(R.id.rvMoods);
         adapter = new MoodHistoryAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -241,11 +161,8 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
                 startActivity(intent);
             }
         });
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistory.java
     }
 
-
-    //This function sets of the emoticon list that the user can use to filter by mood by choosing an emoticon
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);
@@ -253,17 +170,6 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         spEmoticon.setAdapter(adapter);
     }
 
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistory.java
-    //Gets the mood events from the database depending on whether we are on the My History tab or the Friends History tab
-    private void getMoodEvents() {
-        if (CURRENT_STATE == STATE_MY_HISTORY) {
-            database.retrieveAllMoodEventsOfAParticipant(this.currLoggedInUser, this);
-        } else if (CURRENT_STATE == STATE_FRIENDS_HISTORY) {
-            database.retrieveMostRecentMoodEventOfFriendsOfAParticipant(this.currLoggedInUser, this);
-        }
-    }
-//=======
     // END - Helper methods
 
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistory.java
 }

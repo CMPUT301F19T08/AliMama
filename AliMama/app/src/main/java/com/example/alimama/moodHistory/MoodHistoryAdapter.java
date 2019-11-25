@@ -14,15 +14,12 @@ import java.util.List;
  * This is a class is the Mood History adapter for the recycler view to display on the MoodHistory activity
  */
 
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
 
 
 import com.example.alimama.R;
 
 
 
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
 class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
 
     private MoodEventClickListener listener;
@@ -34,29 +31,18 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
      * @param listener
      */
 
-    /**
-     * listener for the adapter
-     * @param listener
-     */
     public MoodHistoryAdapter(MoodEventClickListener listener) {
         this.listener = listener;
     }
 
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     /**
      * Filters the Mood History screen based on what the emoticon that the user has picked
      * @param moodEvents
      * @param currentEmoticon
      */
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-    void setMoodEvents(List<MoodEvent> moodEvents, String currentEmoticon) {
-//=======
 
     void setMoodEvents(List<MoodEvent> moodEvents, String currentEmoticon, boolean disableDeleteButton) {
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
         this.moodEvents.clear();
         this.disableDeleteButton = disableDeleteButton;
         if (currentEmoticon.equals("Select filter")) {
@@ -70,19 +56,13 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
         this.notifyDataSetChanged();
     }
 
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     /**
      * creates the ViewHolder for the recycler view
      * @return  view
      * @return  listener
      */
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     @NonNull
     @Override
     public MoodHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -90,19 +70,13 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
         return new MoodHistoryViewHolder(view, listener);
     }
 
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     /**
      * Binds the view holder to position to set and update views in the recycler view.
      * @param holder
      * @param position
      */
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     @Override
     public void onBindViewHolder(@NonNull MoodHistoryViewHolder holder, int position) {
         if (disableDeleteButton) {
@@ -121,18 +95,12 @@ class MoodHistoryAdapter extends RecyclerView.Adapter<MoodHistoryViewHolder> {
     }
 
 
-<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     /**
      * creates the ViewHolder for the recycler view
      * @return  moodEvents.size() size of the mood events
      */
-//<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryAdapter.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryAdapter.java
+
     @Override
     public int getItemCount() {
         return moodEvents.size();

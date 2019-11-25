@@ -11,13 +11,10 @@ import com.example.alimama.Model.MoodEvent;
 /**
  * This is a class is the Mood History view holder for the recycler view to display on the MoodHistory activity
  */
-<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryViewHolder.java
-=======
 
 import com.example.alimama.R;
 import com.example.alimama.moodHistory.MoodEventClickListener;
 
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryViewHolder.java
 
 class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
 
@@ -36,10 +33,7 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
      * @param itemView
      * @param listener
      */
-<<<<<<< HEAD:AliMama/app/src/main/java/com/example/alimama/MoodHistoryViewHolder.java
-//=======
-//
-//>>>>>>> master:AliMama/app/src/main/java/com/example/alimama/moodHistory/MoodHistoryViewHolder.java
+
     public MoodHistoryViewHolder(@NonNull View itemView, final MoodEventClickListener listener) {
         super(itemView);
         this.listener = listener;
