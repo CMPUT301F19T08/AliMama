@@ -39,24 +39,22 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
+
             <TextView
                 android:id="@+id/contact_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imageV"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
                 android:layout_marginBottom="0dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
                 android:layout_toEndOf="@+id/imageV"
 
-                android:text="---This person is too lazy to write a description---"
-
+                android:text="This person is too lazy to write a description"
 
 
                 android:textSize="10dp"
                 android:textStyle="bold" />
-
-
 
             <Button
                 android:id="@+id/friend_add"
