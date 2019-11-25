@@ -29,6 +29,10 @@
     <string name="item_mood_history_username_prompt">Username:</string>
     <string name="item_mood_history_emotional_state_prompt">Emotional State</string>
     <string name="item_mood_history_description_prompt">Description</string>
+
+    <string name="err_msg_add_date">Date Field must not be empty</string>
+    <string name="err_msg_add_time">Time Field must not be empty</string>
+    <string name="err_msg_add_emotional_state">Emotional State must not be empty</string>
     <string-array name="social_situation_array">
         <item>alone</item>
         <item>with one other person</item>

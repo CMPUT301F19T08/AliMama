@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import io.grpc.Metadata;
 
 import com.example.alimama.Model.MoodEvent;
+import com.example.alimama.Model.MoodMetaData;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,6 +26,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Nullable;
+
+/**
+ * This is the interface that connects the database with the AddEditMood class
+ */
 
 public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     private final int STATE_ADD = 0;
@@ -47,6 +53,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
+
     public void onAddEditMoodViewCreated(String documentId,
                                          String username,
                                          String dateStr,
@@ -60,6 +67,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         this.location = geoPoint;
 
         event = new MoodEvent();
+
 
         if (documentId != null) {
             CURRENT_STATE = STATE_EDIT;
@@ -88,6 +96,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         if (emotionalState != null) {
             view.setEmotionalState(emotionalState);
             event.setEmotionalState(emotionalState);
+
         }
 
         if (description != null) {
@@ -103,6 +112,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         if (emoticon != null) {
             view.setEmoticon(emoticon);
             event.setEmoticon(emoticon);
+            event.setColor(MoodMetaData.map.get(emoticon));
         }
 
         if (socialSituation != null) {
@@ -115,6 +125,19 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         }
     }
 
+
+    /**
+     * updates the mood event with the information that user has input and provides and error message when date, time is missing
+     * or when the description is over 20 characters
+     * @param dateStr
+     * @param timeStr
+     * @param description
+     * @param emoticon
+     * @param socialSituation
+     * @param isCurrentLocationEnabled
+     *
+     *
+     * */
     @Override
     public void onAddMoodButtonClicked(String dateStr, String timeStr, String emotionalState, String description, String emoticon, String socialSituation, boolean isCurrentLocationEnabled) {
         if (TextUtils.isEmpty(dateStr)) {
@@ -133,11 +156,13 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
             return;
         }
 
+
         event.setDate(parseDate(dateStr, timeStr));
         event.setEmotionalState(emotionalState);
         event.setReasonInText(description);
         event.setEmoticon(emoticon);
         event.setSocialSituation(socialSituation);
+        event.setColor(MoodMetaData.map.get(emoticon));
 
         if (location != null && isCurrentLocationEnabled) {
             event.setLocationOfMoodEvent(location);
@@ -300,7 +325,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
-
+    // the following are error messages for when a mood fails to add or update to the database
     private void failToUpdateAnExistingMoodEvent(String errmsg) {
 
     }
