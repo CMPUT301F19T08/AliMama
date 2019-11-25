@@ -8,7 +8,7 @@ import java.util.Date;
 import androidx.annotation.NonNull;
 /**
  * MoodEvent model class, which is an encapsulation all information related to Participant's mood.
- *
+ * No outstanding issues identified
 * */
 
 public class MoodEvent {

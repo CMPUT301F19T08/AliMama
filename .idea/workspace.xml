@@ -9,34 +9,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AliMama/app/src/main/java/com/example/alimama/MapViewFeedback.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="383" />
-    <option name="y" value="207" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="797" />
+    <option name="height" value="790" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -69,6 +57,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -149,8 +139,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="383" y="207" width="1440" height="797" extended-state="0" />
-    <editor active="true" />
+    <frame x="383" y="23" width="1440" height="790" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32980973" />
@@ -170,12 +159,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AliMama/app/src/main/java/com/example/alimama/MapViewFeedback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/AliMama/app/src/main/java/com/example/alimama/MapViewFeedback.java" />
   </component>
 </project>
