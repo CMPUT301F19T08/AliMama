@@ -18,6 +18,13 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 
+/**
+* This class is used to accept friend requests.
+* If it fails, then a error message will display.
+* If succeed, two users will have each other in their friends list and the data will update in firestore.
+* And this friend request will be removed.
+*
+* */
 public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract.AcceptFriendRequestPresenter {
 
     private String currentLoggedInParticipant;
