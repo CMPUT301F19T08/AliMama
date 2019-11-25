@@ -35,6 +35,12 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
     private FirebaseFirestore db;
 
 
+    /**
+     * connects to the database
+     * @param view
+     * @param currentUsername
+     *
+     * */
     public MoodHistoryPresenter(MoodHistoryContract.View view, String currentUsername) {
         this.view = view;
         this.currentUsername = currentUsername;
@@ -166,6 +172,10 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
     }
 
 
+    /**
+     * gets the emoticon selected of emotional spinner in the AddEdit class
+     * @param emoticon
+     * */
     @Override
     public void onMoodItemSelected(String emoticon) {
         currentEmoticon = emoticon;
@@ -189,6 +199,7 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
 
     }
 
+    // continue viewing MoodHistory
     @Override
     public void onMoodHistoryViewResumed() {
         if (CURRENT_STATE == STATE_MY_HISTORY) view.selectMyHistoryButton();
@@ -196,12 +207,17 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
         getMoodEvents();
     }
 
+    /**
+     * listens for when the delete button is clicked so that the selected mood is deleted
+     * @param event
+     * */
     @Override
     public void onMoodItemDeleteClicked(MoodEvent event) {
         deleteAMoodEventOfAParticipant(event);
     }
 
 
+    //get all the current moods in the database depending if on the My History tab or the Friends Hisotry tab
     private void getMoodEvents() {
         if (CURRENT_STATE == STATE_MY_HISTORY) {
             retrieveAllMoodEventsOfAParticipant(currentUsername);
@@ -211,16 +227,25 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
     }
 
 
+    /**
+     * retrieves all the mood events of the participant
+     * @param moodEventHistory
+     * */
     private void retrieveAllMoodEventOfAParticipantSuccessfully(ArrayList<MoodEvent> moodEventHistory) {
         view.showMoodEventsList(moodEventHistory, currentEmoticon, false);
     }
 
 
+    //checks to make sure the mood selected is deleted by getting all the moods
     private void deleteAMoodEventOfAParticipantSuccessfully() {
         getMoodEvents();
     }
 
 
+    /**
+     * retrieves all the mood events of the participants friends mood history
+     * @param mostRecentMoodEventsOfFriendsOfAParticipant
+     * */
     private void retrieveMostRecentMoodEventOfFriendsOfAParticipantSuccessfully(ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipant) {
         view.showMoodEventsList(mostRecentMoodEventsOfFriendsOfAParticipant, currentEmoticon, true);
     }
@@ -235,16 +260,18 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * fail to delete the selected mood, or fail to retrieve all mood of friends
      * */
 
+    //error message when failed to retrieve all mood events from database for current logged on user
     private void failToRetrieveAllMoodEventOfAParticipant(String errmsg) {
 
     }
 
 
+    //error message when failed to delete selected mood events from database
     private void failToDeleteAMoodEventOfAParticipant(String errmsg) {
 
     }
 
-
+    //error message when failed to retrieve all mood events from database for current logged on user's friends history
     private void failRetrieveMostRecentMoodEventOfFriendsOfAParticipant(String message) {
 
     }
