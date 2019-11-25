@@ -8,6 +8,8 @@ import com.example.alimama.Model.MoodEvent;
  */
 
 interface MoodEventClickListener {
+    //listens for when the edit mood button is called in the MoodHistoryViewHolder
     void onEditClick(MoodEvent event);
+    //listens for when the delete mood button is called in the MoodHistoryViewHolder
     void onDeleteClick(MoodEvent event);
 }

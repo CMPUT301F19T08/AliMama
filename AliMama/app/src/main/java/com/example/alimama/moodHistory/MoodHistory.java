@@ -181,6 +181,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
             }
         });
 
+        //switches to the add mood screen when the floating action button is clicked
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
