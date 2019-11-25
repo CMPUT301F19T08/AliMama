@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import io.grpc.Metadata;
 
 import com.example.alimama.Model.MoodEvent;
+import com.example.alimama.Model.MoodMetaData;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,6 +49,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
+
     public void onAddEditMoodViewCreated(String documentId,
                                          String username,
                                          String dateStr,
@@ -60,6 +63,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         this.location = geoPoint;
 
         event = new MoodEvent();
+
 
         if (documentId != null) {
             CURRENT_STATE = STATE_EDIT;
@@ -88,6 +92,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         if (emotionalState != null) {
             view.setEmotionalState(emotionalState);
             event.setEmotionalState(emotionalState);
+
         }
 
         if (description != null) {
@@ -103,6 +108,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         if (emoticon != null) {
             view.setEmoticon(emoticon);
             event.setEmoticon(emoticon);
+            event.setColor(MoodMetaData.map.get(emoticon));
         }
 
         if (socialSituation != null) {
@@ -133,11 +139,13 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
             return;
         }
 
+
         event.setDate(parseDate(dateStr, timeStr));
         event.setEmotionalState(emotionalState);
         event.setReasonInText(description);
         event.setEmoticon(emoticon);
         event.setSocialSituation(socialSituation);
+        event.setColor(MoodMetaData.map.get(emoticon));
 
         if (location != null && isCurrentLocationEnabled) {
             event.setLocationOfMoodEvent(location);

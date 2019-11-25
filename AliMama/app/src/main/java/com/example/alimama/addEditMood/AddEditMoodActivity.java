@@ -459,13 +459,13 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
             case "\uD83D\uDE0A":
                 return "happy";
             case "\uD83D\uDE02":
-                return "tears";
+                return "tears with joy";
             case "\uD83D\uDE0D":
                 return "heart";
             case "\uD83D\uDE21":
                 return "angry";
             case "\uD83D\uDE1C":
-                return "tongue";
+                return "naughty";
             case "\uD83D\uDE22":
                 return "cry";
             case "\uD83D\uDE0F":
