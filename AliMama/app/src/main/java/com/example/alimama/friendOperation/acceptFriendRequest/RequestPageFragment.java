@@ -17,20 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.alimama.R;
 
 import java.util.ArrayList;
-
-
-
-
-
-
 /**
- * @author Zi Xuan Zhang
  * RequestPage tab's Fragment page.
  * Set up data for each contact card
  * For viewing.
- *
+ * @author Zi Xuan Zhang
  * */
-
 public class RequestPageFragment extends Fragment implements RequestPageClickDelegate, AcceptFriendRequestContract.AcceptFriendRequestView {
 
     private RequestPageAdapter requestPageAdapter;
@@ -39,18 +31,21 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
 
     /**
      * Constructor for fragment
-     * @param currParticipant
+     * @param currParticipant the name of current user
      * */
     public RequestPageFragment(String currParticipant) {
         this.mAcceptFriendRequestPresenter = new AcceptFriendRequestPresenter(this);
         this.mAcceptFriendRequestPresenter.setCurrentLoggedInParticipant(currParticipant);
 
-
     }
 
-
-
-
+    /**
+     * Create a view
+     * @param container
+     * @param inflater
+     * @param savedInstanceState
+     * @return view
+     * */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,6 +62,10 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
         return view;
     }
 
+    /**
+     * Create view
+     * @param savedInstanceState
+     * */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +73,10 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
 
     }
 
-    /*functionality*/
-    /*receive all pending*/
+    /**
+     * Functionality and receive all pending
+     * @param savedInstanceState
+     * */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -84,7 +85,7 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     }
 
     /**
-     *  Get RequestPage adapter page adapter
+     * Get RequestPage adapter page adapter
      * @return RequestPageAdapter
      * */
     public RequestPageAdapter getRequestPageAdapter() {
@@ -92,7 +93,7 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
     }
 
     /**
-     * set Adapter for contactList.
+     * Set Adapter for contactList.
      * add All of the friends to contactDataList
      * @param updatedData
      * */
@@ -103,6 +104,9 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
         this.requestPageAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * Update data
+     * */
     @Override
     public void notifyDatasetChanged() {
         this.requestPageAdapter.notifyDataSetChanged();
@@ -122,11 +126,16 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
 
     }
 
+    /**
+     * Display the error message
+     * @param error the text of error message
+     * */
     @Override
     public void displayErrorMessage(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
 
     }
+
 
     @Override
     public void displaySuccessMessage(String successMessage) {

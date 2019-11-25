@@ -26,15 +26,16 @@ import androidx.annotation.NonNull;
  * */
 public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract.AcceptFriendRequestPresenter {
     /**
-     * set the name of current LoggedInParticipant as a string
-     * set the type of friends request view 
+     * Set the name of current LoggedInParticipant as a string
+     * Set the type of friends request view
+     * Set the type of database
      */
     private String currentLoggedInParticipant;
     private AcceptFriendRequestContract.AcceptFriendRequestView mAcceptFriendRequestView;
     private FirebaseFirestore db;
 
     /**
-     * constructor
+     * Constructor
      * @param view the view of the contact page after friend request accepted
      * */
     public AcceptFriendRequestPresenter(AcceptFriendRequestContract.AcceptFriendRequestView view) {
@@ -45,7 +46,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * setter
+     * Setter
      * @param currentLoggedInParticipant the username of the current logged in participant
      * */
     @Override
@@ -86,7 +87,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
 
 
     /**
-     * This function accepts a friend request sent to the current logged-in Participant.
+     * Accept a friend request sent to the current logged-in Participant.
      * Result of the acceptance process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
      * @param usernameOfFriendRequestToAccept the username of the Participant who created the friend request
@@ -149,7 +150,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * this function retrieve all the pending friend request of a participant and
+     * Retrieve all the pending friend request of a participant and
      * will set the data to adapter if successfully
      * @param pendingFriendRequests An array list of the name of pending friend requests
      * */
@@ -159,7 +160,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * this function will display a error message if fail to retrieve pending friend request
+     * Display a error message if fail to retrieve pending friend request
      * @param message the error message that will be displayed if failed
      * */
     private void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
@@ -168,7 +169,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * this function will display a success message
+     * Display a success message
      * and change the data
      * */
     private void acceptAFriendRequestOfAParticipantSuccessfully() {
@@ -178,7 +179,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * this function will display a error message
+     * Display a error message
      * @param message  the error message that will display when failed
      * */
     private void failAcceptAFriendRequestOfAParticipant(String message) {
