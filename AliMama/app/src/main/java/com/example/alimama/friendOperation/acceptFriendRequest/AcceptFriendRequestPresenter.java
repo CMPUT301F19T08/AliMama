@@ -23,13 +23,20 @@ import androidx.annotation.NonNull;
 * If it fails, then a error message will display.
 * If succeed, two users will have each other in their friends list and the data will update in firestore.
 * And this friend request will be removed.
-*
 * */
 public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract.AcceptFriendRequestPresenter {
-
+    /**
+     * set the name of current LoggedInParticipant as a string
+     * set the type of friends request view 
+     */
     private String currentLoggedInParticipant;
     private AcceptFriendRequestContract.AcceptFriendRequestView mAcceptFriendRequestView;
     private FirebaseFirestore db;
+
+    /**
+    * constructor
+    * @param view the view of the contact page after friend request accepted
+    * */
     public AcceptFriendRequestPresenter(AcceptFriendRequestContract.AcceptFriendRequestView view) {
         this.mAcceptFriendRequestView = view;
         this.db = FirebaseFirestore.getInstance();
@@ -37,6 +44,10 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
 
     }
 
+    /**
+    * setter
+    * @param currentLoggedInParticipant the username of the current logged in participant
+    * */
     @Override
     public void setCurrentLoggedInParticipant(String currentLoggedInParticipant) {
         this.currentLoggedInParticipant = currentLoggedInParticipant;
@@ -44,13 +55,11 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
 
-     /** This function retrieves all pending friend requests of current logged-in Participant from database
+     /**
+     * This function retrieves all pending friend requests of current logged-in Participant from database
      * Result of the retrieval process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
-     */
+     * */
      @Override
         public void retrievePendingFriendRequestOfAParticipant() {
             db.collection("PendingFriendRequests")
@@ -81,11 +90,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
      * This function accepts a friend request sent to the current logged-in Participant.
      * Result of the acceptance process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
      * @param usernameOfFriendRequestToAccept the username of the Participant who created the friend request
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
-     *
      * */
 
     @Override
