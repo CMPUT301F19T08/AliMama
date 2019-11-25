@@ -4,6 +4,10 @@ import com.example.alimama.Model.MoodEvent;
 
 import java.util.ArrayList;
 
+/**
+ * This is the interface of the Mood History Model that are called when each buttons are selected
+ */
+
 interface MoodHistoryContract {
     interface View {
 

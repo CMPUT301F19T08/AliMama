@@ -25,6 +25,10 @@ import java.util.Date;
 
 import javax.annotation.Nullable;
 
+/**
+ * This is the interface that connects the database with the AddEditMood class
+ */
+
 public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     private final int STATE_ADD = 0;
     private final int STATE_EDIT = 1;
@@ -115,6 +119,19 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         }
     }
 
+
+    /**
+     * updates the mood event with the information that user has input and provides and error message when date, time is missing
+     * or when the description is over 20 characters
+     * @param dateStr
+     * @param timeStr
+     * @param description
+     * @param emoticon
+     * @param socialSituation
+     * @param isCurrentLocationEnabled
+     *
+     *
+     * */
     @Override
     public void onAddMoodButtonClicked(String dateStr, String timeStr, String emotionalState, String description, String emoticon, String socialSituation, boolean isCurrentLocationEnabled) {
         if (TextUtils.isEmpty(dateStr)) {
@@ -300,7 +317,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
-
+    // the following are error messages for when a mood fails to add or update to the database
     private void failToUpdateAnExistingMoodEvent(String errmsg) {
 
     }

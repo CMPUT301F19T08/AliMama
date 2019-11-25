@@ -94,29 +94,4 @@ public class AddEditMoodTest {
 
     }
 
-//    @Test
-//    public void checkDatePickerDialog(){
-////        solo.assertCurrentActivity("Wrong Activity", AddEditMoodActivity.class);
-////        //solo.setDatePicker(0, 2014, 8, 8);
-////
-////        DatePicker datePicker = solo.getView(DatePicker.class, 0);
-////        solo.setDatePicker(datePicker, 2014, 8, 8);
-////        assertTrue(solo.searchText("2014-8-8"));
-////        solo.clickOnView(solo.getView(R.id.etDate));
-////        solo.assertCurrentActivity("Wrong Activity", DatePickerFragment.class);
-//
-//        solo.clickOnView(solo.getView(R.id.etDate));
-//
-//        solo.setDatePicker(0, 2000, 1, 1);
-//
-//        DatePickerFragment dialogFragment = (DatePickerFragment) DatePickerFragment.getFragmentManager()
-//                .findFragmentByTag(datePicker.TAG);
-//        DatePickerDialog dialog = (DatePickerDialog) dialogFragment.getDialog();
-//        Button okButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-//        solo.clickOnView(okButton);
-//
-//        solo.waitForDialogToClose();
-//    }
-
-
 }

@@ -15,6 +15,10 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
+/**
+ * This is the class that connects the database for with the mood history class.
+ */
+
 public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
 
     private MoodHistoryContract.View view;
@@ -173,6 +177,7 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
         getMoodEvents();
     }
 
+    //retrieves all mood of the logged in user when on the My History tab
     @Override
     public void onMyHistoryClicked() {
         CURRENT_STATE = STATE_MY_HISTORY;
@@ -180,6 +185,7 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
         retrieveAllMoodEventsOfAParticipant(currentUsername);
     }
 
+    //retrieves all mood of the logged in user's friends when on the Friends History tab
     @Override
     public void onFriendsHistoryButtonClicked() {
         CURRENT_STATE = STATE_FRIENDS_HISTORY;
@@ -229,7 +235,10 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
 
 
 
-
+    /**
+     * The following are error messages to be displayed when we cannot either, retrieve the mood events of the user,
+     * fail to delete the selected mood, or fail to retrieve all mood of friends
+     * */
 
     private void failToRetrieveAllMoodEventOfAParticipant(String errmsg) {
 
