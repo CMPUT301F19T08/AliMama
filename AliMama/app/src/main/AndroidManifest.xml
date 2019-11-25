@@ -44,7 +44,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
-        <activity android:name=".addEditMood.AddEditMoodActivity"></activity>
+        <activity
+            android:name=".addEditMood.AddEditMoodActivity"
+            android:label="@string/add_edit_mood"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
         <activity
             android:name=".mapview.MoodMapActivity"
             android:label="@string/title_activity_mood_map"

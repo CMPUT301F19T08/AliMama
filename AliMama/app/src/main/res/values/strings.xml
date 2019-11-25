@@ -11,6 +11,8 @@
     <string name="title_activity_friends_list">FriendsList</string>
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
+    <string name="add_edit_mood">Add/Edit Mood page</string>
+
 
     <string name="main_menu_name">Main Menu</string>
     <string name="main_menu_view_mood_history_btn_name">Mood History</string>
