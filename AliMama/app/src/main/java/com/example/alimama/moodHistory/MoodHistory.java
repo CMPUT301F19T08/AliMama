@@ -1,6 +1,8 @@
 package com.example.alimama.moodHistory;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.alimama.addEditMood.AddEditMoodActivity;
@@ -120,7 +122,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     @Override
     public void selectMyHistoryButton() {
         fab.show();
-        btnMyHistory.setTextColor(getColor(R.color.white));
+        btnMyHistory.setTextColor(getColor(R.color.blue));
         btnFriendsHistory.setTextColor(getColor(R.color.white));
     }
 
@@ -131,7 +133,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     public void selectFriendsHistoryButton() {
         fab.hide();
         btnMyHistory.setTextColor(getColor(R.color.white));
-        btnFriendsHistory.setTextColor(getColor(R.color.white));
+        btnFriendsHistory.setTextColor(getColor(R.color.blue));
     }
 
     /**
@@ -166,11 +168,18 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     /**for when the edit, delete and add mood buttons are clicked*/
-    private void setupButtonClickListeners() {
+    /**when My History Button is clicked, the button color changes to verify we are in the Friends History tab */
+    /**when the Friends History Button is clicked, the button color changes to verify we are in the Friends History tab */
+
+     private void setupButtonClickListeners() {
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.onMyHistoryClicked();
+                btnMyHistory.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+                btnMyHistory.setTextColor(Color.parseColor("#42a5f5"));
+                btnFriendsHistory.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#42a5f5")));
+                btnFriendsHistory.setTextColor(Color.parseColor("#ffffff"));
             }
         });
 
@@ -178,6 +187,10 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
             @Override
             public void onClick(View view) {
                 presenter.onFriendsHistoryButtonClicked();
+                btnMyHistory.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#42a5f5")));
+                btnMyHistory.setTextColor(Color.parseColor("#ffffff"));
+                btnFriendsHistory.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+                btnFriendsHistory.setTextColor(Color.parseColor("#42a5f5"));
             }
         });
 

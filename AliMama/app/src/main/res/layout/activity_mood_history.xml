@@ -14,11 +14,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="My moods history"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFriendsHistory"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/blue"
+        android:background="@color/white"
 
         />
 
