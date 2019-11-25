@@ -150,7 +150,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
 
     // BEGIN - Helper methods
 
-    //sets up the ui of the mood history screen
+    /**sets up the ui of the mood history screen*/
     private void setupViews() {
         fab = findViewById(R.id.fab);
         btnMyHistory = findViewById(R.id.btnMyHistory);
@@ -165,7 +165,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
     }
 
-    //for when the edit, delete and add mood buttons are clicked
+    /**for when the edit, delete and add mood buttons are clicked*/
     private void setupButtonClickListeners() {
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +192,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         });
     }
 
-    //sets up the list of emotions that can be picked as an emotional state
+    /**sets up the list of emotions that can be picked as an emotional state*/
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);
