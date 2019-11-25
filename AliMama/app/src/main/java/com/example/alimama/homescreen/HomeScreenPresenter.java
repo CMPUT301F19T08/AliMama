@@ -65,5 +65,6 @@ public class HomeScreenPresenter implements HomeScreenContract.HomeScreenPresent
     @Override
     public void setCurrentLoggedInParticipant(String currentLoggedinParticipant) {
         this.currentLoggedInParticipant = currentLoggedinParticipant;
+        this.mHomeScreenView.displayCurrentLoggedInUser(currentLoggedinParticipant);
     }
 }

@@ -120,8 +120,8 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     @Override
     public void selectMyHistoryButton() {
         fab.show();
-        btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
-        btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
+        btnMyHistory.setTextColor(getColor(R.color.white));
+        btnFriendsHistory.setTextColor(getColor(R.color.white));
     }
 
     /**
@@ -130,8 +130,8 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     @Override
     public void selectFriendsHistoryButton() {
         fab.hide();
-        btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-        btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
+        btnMyHistory.setTextColor(getColor(R.color.white));
+        btnFriendsHistory.setTextColor(getColor(R.color.white));
     }
 
     /**

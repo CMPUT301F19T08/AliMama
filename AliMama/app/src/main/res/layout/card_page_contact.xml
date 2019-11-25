@@ -12,7 +12,7 @@
     android:layout_height="wrap_content">
 
 
-    <!--    </LinearLayout>-->
+<!--    </LinearLayout>-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/contact_card_view"
@@ -28,7 +28,7 @@
                 android:id="@+id/imageV"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_contact_page_foreground" />
 
             <TextView
                 android:id="@+id/contact_name"
@@ -55,7 +55,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_toEndOf="@+id/imageV"
 
-                android:text="---This is Contact Descrition---"
+                android:text="---This person is too lazy to write a description---"
 
 
                 android:textSize="10dp"

@@ -40,12 +40,14 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
      * @param currParticipant
      *
      * */
+
     public AddFriendPageFragment(String currParticipant) {
 
         this.mAddFriendPagePresenter = new AddFriendPagePresenter(this);
         this.mAddFriendPagePresenter.setCurrentLoggedInParticipant(currParticipant);
 
     }
+
 
     @Nullable
     @Override

@@ -7,7 +7,7 @@
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
 
-    android:id="@+id/card_friend_request"
+   android:id="@+id/card_friend_request"
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -23,7 +23,7 @@
 
             <ImageView
                 android:id="@+id/imageV"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/ic_contact_page_foreground"
                 android:layout_width="75dp"
                 android:layout_height="75dp"/>
 
@@ -49,7 +49,8 @@
                 android:layout_marginBottom="0dp"
                 android:layout_toEndOf="@+id/imageV"
 
-                android:text="---This is Contact Descrition---"
+                android:text="---This person is too lazy to write a description---"
+
 
 
                 android:textSize="10dp"
@@ -75,5 +76,4 @@
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
 </LinearLayout>
