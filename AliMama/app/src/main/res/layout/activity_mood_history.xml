@@ -4,25 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".moodHistory.MoodHistory">
+
+    tools:context=".moodHistory.MoodHistory"
+
+    >
 
     <Button
         android:id="@+id/btnMyHistory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="My moods history"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnFriendsHistory"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/blue"
+
+        />
 
     <Button
         android:id="@+id/btnFriendsHistory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="My Friends history"
+        android:textColor="@color/white"
+
         app:layout_constraintStart_toEndOf="@id/btnMyHistory"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/blue"
+
+
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -50,6 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:tint="#ffffff"
+
+        android:tint="@color/white"
+        app:backgroundTint="@color/blue"
         app:srcCompat="@android:drawable/ic_input_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

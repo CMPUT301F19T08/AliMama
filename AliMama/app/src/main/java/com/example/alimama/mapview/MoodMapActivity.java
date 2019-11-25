@@ -64,10 +64,10 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
 
                 mMoodMapPresenter.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant();
                 /* change button color onclick */
-                friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+                /*friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
                 friendMoodBtn.setTextColor(Color.parseColor("#008577"));
                 myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
-                myMoodBtn.setTextColor(Color.parseColor("#ffffff"));
+                myMoodBtn.setTextColor(Color.parseColor("#ffffff"));*/
             }
         });
         myMoodBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +75,10 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
             public void onClick(View view) {
                 mMoodMapPresenter.retrieveAllLocatedMoodEventsOfAParticipant();
                 /* change button color onclick */
-                myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
+                /*myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
                 myMoodBtn.setTextColor(Color.parseColor("#008577"));
                 friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
-                friendMoodBtn.setTextColor(Color.parseColor("#ffffff"));
+                friendMoodBtn.setTextColor(Color.parseColor("#ffffff"));*/
 
             }
         });
@@ -134,8 +134,7 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
         Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                 .position(new LatLng(latitude,
                         longitude))
-                .title("Markers may be duplicated")
-                .snippet("Click to see more")
+
                 .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(emoticon))));
 
         marker.hideInfoWindow();
@@ -171,8 +170,7 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
         Marker marker = mMap.addMarker(new MarkerOptions() // add a marker on map based on the geopoints recorded
                 .position(new LatLng(latitude,
                         longitude))
-                .title("Markers may be duplicated")
-                .snippet("Click to see more")
+
                 .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(icon))));
 
         marker.hideInfoWindow();

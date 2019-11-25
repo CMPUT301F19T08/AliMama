@@ -112,6 +112,7 @@ public class MainMenuActivityTest {
 
 
     /**
+     *
      * Closes the activity after each test
      * @throws Exception
      */

@@ -52,6 +52,9 @@ import java.util.Locale;
 
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
+/**
+ * This is the class for AddEditMood activity that is used for when a user wants to add or view/edit their selected mood.
+ */
 public class AddEditMoodActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener,
         DatePickerDialog.OnDateSetListener, OnMapReadyCallback, AddEditMoodContract.View {
 
@@ -233,6 +236,7 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
 
     // BEGIN - AddEditMoodContract.View methods
 
+    //when we switch to edit mood instead of add mood
     @Override
     public void setEditModeState() {
         tvTitle.setText("Edit Mood");
@@ -313,6 +317,7 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         }
     }
 
+    //error validation messages when a date or time is not selected or when the description should be less than 20 characters
     @Override
     public void showDateError() {
         etDatePicker.setError("Field is required");
@@ -343,6 +348,7 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
 
     // BEGIN - Date and Time picker methods
 
+    //date and time picker dialogs used to select a required date and time
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "datePicker");
@@ -459,13 +465,13 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
             case "\uD83D\uDE0A":
                 return "happy";
             case "\uD83D\uDE02":
-                return "tears";
+                return "tears with joy";
             case "\uD83D\uDE0D":
                 return "heart";
             case "\uD83D\uDE21":
                 return "angry";
             case "\uD83D\uDE1C":
-                return "tongue";
+                return "naughty";
             case "\uD83D\uDE22":
                 return "cry";
             case "\uD83D\uDE0F":

@@ -1,3 +1,4 @@
+
 package com.example.alimama.friendOperation.acceptFriendRequest;
 
 
@@ -31,6 +32,12 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
+
+    /**
+     * provide a reference to the views for each data item
+     * provide access to all the views for a data item in a view holder
+     *
+     * */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         ImageView pic;
@@ -38,6 +45,11 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         CardView cv;
         Button acceptButton;
 
+
+        /**
+         * providing all the elements in the view
+         * @param itemView
+         * */
         public MyViewHolder(View itemView){
             super(itemView);
             pic = itemView.findViewById(R.id.imageV);
@@ -51,6 +63,14 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
+
+    /**
+     *
+     * constructor
+     *
+     * @param contactDataList
+     * @param rpc
+     * */
     public RequestPageAdapter(ArrayList<String> contactDataList, RequestPageClickDelegate rpc) {
         this.contactList = contactDataList;
         this.rpc = rpc;
@@ -58,6 +78,12 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
 
 
     // Create new views (invoked by the layout manager)
+
+    /**
+     * creates the ViewHolder for the recycler view
+     * @return  view
+     * @return  listener
+     */
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
@@ -67,10 +93,14 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
         MyViewHolder viewHolder = new MyViewHolder(view);
         context = parent.getContext();
         return viewHolder;
+
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
+    /**
+     * Binds the view holder to position to set and update views in the recycler view.
+     * @param holder
+     * @param position
+     */    @Override
     public void onBindViewHolder(MyViewHolder holder,final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
@@ -99,6 +129,10 @@ public class RequestPageAdapter extends RecyclerView.Adapter<RequestPageAdapter.
     }
 
     // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     * get size of the dataset and return the count
+     * */
     @Override
     public int getItemCount() {
         return contactList.size();

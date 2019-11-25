@@ -1,4 +1,3 @@
-
 package com.example.alimama.friendOperation.contact;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,3 +87,4 @@ public class ContactPageAdapter extends RecyclerView.Adapter<ContactPageAdapter.
 
 
 }
+
