@@ -68,11 +68,11 @@ public class AddEditMoodTest {
 
         //select the third emotion on the emotional spinner - heart emotion)
         solo.pressSpinnerItem(0,2);
-        assertTrue(solo.searchText("heart", true));
+        assertTrue(solo.searchText("feeling loved", true));
 
         //select the 2nd item in the emotional state spinner
         solo.pressSpinnerItem(0,-1);
-        assertTrue(solo.searchText("tears", true));
+        assertTrue(solo.searchText("LOL", true));
     }
 
     /**
