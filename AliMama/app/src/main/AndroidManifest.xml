@@ -44,7 +44,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
-        <activity android:name=".addEditMood.AddEditMoodActivity"></activity>
+        <activity
+            android:name=".addEditMood.AddEditMoodActivity"
+            android:label="@string/add_edit_mood"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
         <activity
             android:name=".mapview.MoodMapActivity"
             android:label="@string/title_activity_mood_map"
@@ -53,8 +57,14 @@
             android:name=".moodHistory.MoodHistory"
             android:label="@string/title_activity_mood_history"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".homescreen.HomeScreenActivity" />
-        <activity android:name=".participant.login.ParticipantLoginSignupActivity">
+        <activity
+            android:name=".homescreen.HomeScreenActivity"
+            android:label="@string/main_menu_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".participant.login.ParticipantLoginSignupActivity"
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

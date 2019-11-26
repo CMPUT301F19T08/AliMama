@@ -2,6 +2,11 @@ package com.example.alimama.addEditMood;
 
 import com.google.firebase.firestore.GeoPoint;
 
+/**
+ * This is the interface of the AddEditMood class that gets and sets the information needed of the mood event as well as listens for
+ * when the buttons are clicked
+ */
+
 interface AddEditMoodContract {
     interface View {
 

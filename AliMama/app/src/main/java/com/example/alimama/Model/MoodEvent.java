@@ -22,6 +22,7 @@ public class MoodEvent {
     private String socialSituation;
     private String emoticon;
     private GeoPoint locationOfMoodEvent;
+    private String color;
     /**
      * Class Constructor
      * */
@@ -197,5 +198,21 @@ public class MoodEvent {
 
     public void setEmoticon(String emoticon) {
         this.emoticon = emoticon;
+    }
+
+    /**
+     * color getter
+     * @return color of the MoodEvent
+     * */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * color setter
+     * @param color set color of the MoodEvent to new value
+     * */
+    public void setColor(String color) {
+        this.color = color;
     }
 }

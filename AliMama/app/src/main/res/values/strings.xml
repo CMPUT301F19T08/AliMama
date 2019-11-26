@@ -11,10 +11,12 @@
     <string name="title_activity_friends_list">FriendsList</string>
     <string name="title_activity_mood_map">Mood Map</string>
     <string name="title_activity_google_maps">Map</string>
+    <string name="add_edit_mood">Add/Edit Mood page</string>
+
 
     <string name="main_menu_name">Main Menu</string>
-    <string name="main_menu_view_mood_history_btn_name">View Mood History</string>
-    <string name="main_menu_view_mood_history_on_map_btn_name">View Mood History on Map</string>
+    <string name="main_menu_view_mood_history_btn_name">Mood History</string>
+    <string name="main_menu_view_mood_history_on_map_btn_name">Mood History on Map</string>
     <string name="main_menu_view_add_friends_btn_name">View/Add Friends</string>
     <string name="main_menu_logout_btn_name">Log Out</string>
     <string name="title_activity_contact_page">Contact List</string>
@@ -27,6 +29,10 @@
     <string name="item_mood_history_username_prompt">Username:</string>
     <string name="item_mood_history_emotional_state_prompt">Emotional State</string>
     <string name="item_mood_history_description_prompt">Description</string>
+
+    <string name="err_msg_add_date">Date Field must not be empty</string>
+    <string name="err_msg_add_time">Time Field must not be empty</string>
+    <string name="err_msg_add_emotional_state">Emotional State must not be empty</string>
     <string-array name="social_situation_array">
         <item>alone</item>
         <item>with one other person</item>

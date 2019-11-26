@@ -22,6 +22,12 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+
+/**
+ * This is a class is the Mood History that is used to display the mood events of the current logged in user as well as
+ * their friends using the recylcerview
+ */
+
 public class MoodHistory extends AppCompatActivity implements MoodHistoryContract.View, MoodEventClickListener {
 
     private MoodHistoryPresenter presenter;
@@ -73,8 +79,10 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     // BEGIN - MoodEventClickListener methods
 
     /**
+
      * This function provides information when the Edit Mood button is clicked.
      * @param event This is the current event.
+
      */
     @Override
     public void onEditClick(MoodEvent event) {
@@ -95,8 +103,10 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     /**
+
      * This function remove the mood when the Delete button is clicked.
      * @param event This is the current event.
+
      */
     @Override
     public void onDeleteClick(MoodEvent event) {
@@ -109,30 +119,36 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     // BEGIN - MoodHistoryContract.View methods
 
     /**
-     * This controls the view when the My History Button is clicked.
+
+     * when the My History Button is clicked, the tab text changes to white to verify we are in the My History tab
+
      */
     @Override
     public void selectMyHistoryButton() {
         fab.show();
-        btnMyHistory.setTextColor(getColor(R.color.colorPrimary));
-        btnFriendsHistory.setTextColor(getColor(R.color.colorPrimaryDark));
+        btnMyHistory.setTextColor(getColor(R.color.white));
+        btnFriendsHistory.setTextColor(getColor(R.color.white));
     }
 
     /**
-     * This controls the view when the Friend History Button is clicked.
+
+     * when the Friends History Button is clicked, the tab text changes to white to verify we are in the Friends History tab
+
      */
     @Override
     public void selectFriendsHistoryButton() {
         fab.hide();
-        btnMyHistory.setTextColor(getColor(R.color.colorPrimaryDark));
-        btnFriendsHistory.setTextColor(getColor(R.color.colorPrimary));
+        btnMyHistory.setTextColor(getColor(R.color.white));
+        btnFriendsHistory.setTextColor(getColor(R.color.white));
     }
 
     /**
+
      * This controls the recycler view list.
      * @param moodEventHistory This is the Mood Events Arrays that needs to be displayed.
      * @param currentEmoticon This is the sorted emoticon.
      * @param disableDeleteButton Whether edition or deletion is allowed or not.
+
      */
     @Override
     public void showMoodEventsList(ArrayList<MoodEvent> moodEventHistory, String currentEmoticon, boolean disableDeleteButton) {
@@ -144,9 +160,11 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
 
     // BEGIN - Helper methods
 
+
     /**
      * This function sets up the view.
      */
+
     private void setupViews() {
         fab = findViewById(R.id.fab);
         btnMyHistory = findViewById(R.id.btnMyHistory);
@@ -161,9 +179,11 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
     }
 
+
     /**
      * This function manages when the My History button is clicked.
      */
+
     private void setupButtonClickListeners() {
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +199,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
             }
         });
 
+        //switches to the add mood screen when the floating action button is clicked
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -189,9 +210,8 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         });
     }
 
-    /**
-     * This function sets up the RecyclerView array.
-     */
+    /**sets up the list of emotions that can be picked as an emotional state*/
+
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);

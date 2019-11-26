@@ -18,17 +18,29 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 
+
 public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract.AcceptFriendRequestPresenter {
 
     private String currentLoggedInParticipant;
     private AcceptFriendRequestContract.AcceptFriendRequestView mAcceptFriendRequestView;
     private FirebaseFirestore db;
+
+
+    /**
+     * constructor
+     * @param view the view of contact page after friend request accepted
+     * */
     public AcceptFriendRequestPresenter(AcceptFriendRequestContract.AcceptFriendRequestView view) {
         this.mAcceptFriendRequestView = view;
         this.db = FirebaseFirestore.getInstance();
         FirebaseFirestore.setLoggingEnabled(true);
 
     }
+
+    /**
+     * setter
+     * @param currentLoggedInParticipant the username of the current logged in participant
+     * */
 
     @Override
     public void setCurrentLoggedInParticipant(String currentLoggedInParticipant) {
@@ -37,11 +49,10 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
 
-     /** This function retrieves all pending friend requests of current logged-in Participant from database
+     /**
+      * * *This function retrieves all pending friend requests of current logged-in Participant from database
      * Result of the retrieval process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
      *
      */
      @Override
@@ -74,9 +85,7 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
      * This function accepts a friend request sent to the current logged-in Participant.
      * Result of the acceptance process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
      * @param usernameOfFriendRequestToAccept the username of the Participant who created the friend request
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
      *
      *
      * */
@@ -149,17 +158,28 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
 
+    /**
+     * return data to pending friend request page if retrieve successfully
+     * @param pendingFriendRequests
+     * */
     private void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
         this.mAcceptFriendRequestView.setAdapterData(pendingFriendRequests);
 
     }
 
-
+    /**
+     * display the error message if fail to retrieve the pending friends requests
+     * @param message
+     * */
     private void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
         this.mAcceptFriendRequestView.displayErrorMessage(message);
 
     }
 
+    /**
+     * display message and update view if accept request successful
+     *
+     * */
 
     private void acceptAFriendRequestOfAParticipantSuccessfully() {
         this.mAcceptFriendRequestView.displaySuccessMessage("Friend Added");
@@ -167,7 +187,12 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
 
     }
 
-
+    /**
+     *
+     * display error message if fail to accept request
+     * @param message
+     *
+     * */
     private void failAcceptAFriendRequestOfAParticipant(String message) {
         this.mAcceptFriendRequestView.displayErrorMessage(message);
 
