@@ -187,6 +187,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     /**when the Friends History Button is clicked, the button color changes to verify we are in the Friends History tab */
 
 
+    private void setupButtonClickListeners() {
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
