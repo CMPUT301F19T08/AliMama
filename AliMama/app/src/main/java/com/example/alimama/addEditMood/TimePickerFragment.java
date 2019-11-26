@@ -26,7 +26,6 @@ public class TimePickerFragment extends DialogFragment {
      * @return hour picked by participant.
      * @return minute picked by participant.
      */
-
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker

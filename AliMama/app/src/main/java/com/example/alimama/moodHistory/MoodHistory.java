@@ -81,8 +81,10 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     // BEGIN - MoodEventClickListener methods
 
     /**
-     * when the edit button is clicked for each mood event, we get all the information of the current mood selected
-     * @param event
+
+     * This function provides information when the Edit Mood button is clicked.
+     * @param event This is the current event.
+
      */
     @Override
     public void onEditClick(MoodEvent event) {
@@ -103,8 +105,10 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     /**
-     * when the delete button is clicked, the selected mood is deleted
-     * @param event
+
+     * This function remove the mood when the Delete button is clicked.
+     * @param event This is the current event.
+
      */
     @Override
     public void onDeleteClick(MoodEvent event) {
@@ -117,7 +121,9 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     // BEGIN - MoodHistoryContract.View methods
 
     /**
+
      * when the My History Button is clicked, the tab text changes to white to verify we are in the My History tab
+
      */
     @Override
     public void selectMyHistoryButton() {
@@ -127,7 +133,9 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     /**
+
      * when the Friends History Button is clicked, the tab text changes to white to verify we are in the Friends History tab
+
      */
     @Override
     public void selectFriendsHistoryButton() {
@@ -137,10 +145,12 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     /**
-     * shows the mood event list using the mood event adapter
-     * @param moodEventHistory
-     * @param currentEmoticon
-     * @param disableDeleteButton
+
+     * This controls the recycler view list.
+     * @param moodEventHistory This is the Mood Events Arrays that needs to be displayed.
+     * @param currentEmoticon This is the sorted emoticon.
+     * @param disableDeleteButton Whether edition or deletion is allowed or not.
+
      */
     @Override
     public void showMoodEventsList(ArrayList<MoodEvent> moodEventHistory, String currentEmoticon, boolean disableDeleteButton) {
@@ -152,7 +162,11 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
 
     // BEGIN - Helper methods
 
-    /**sets up the ui of the mood history screen*/
+
+    /**
+     * This function sets up the view.
+     */
+
     private void setupViews() {
         fab = findViewById(R.id.fab);
         btnMyHistory = findViewById(R.id.btnMyHistory);
@@ -167,11 +181,12 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
     }
 
+
     /**for when the edit, delete and add mood buttons are clicked*/
     /**when My History Button is clicked, the button color changes to verify we are in the Friends History tab */
     /**when the Friends History Button is clicked, the button color changes to verify we are in the Friends History tab */
 
-     private void setupButtonClickListeners() {
+
         btnMyHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,6 +221,7 @@ public class MoodHistory extends AppCompatActivity implements MoodHistoryContrac
     }
 
     /**sets up the list of emotions that can be picked as an emotional state*/
+
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array_filter, android.R.layout.simple_spinner_item);
