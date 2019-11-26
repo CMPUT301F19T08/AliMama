@@ -45,10 +45,10 @@ public class FriendPageActivityTest {
 
     }
 
-   /**
-    *
-    * if logged in as test should expect xhou1 as test's existing contacts
-    * */
+    /**
+     *
+     * if logged in as test should expect xhou1 as test's existing contacts
+     * */
     @Test
     public void checkExistingFriendsOfAParticipant(){
 

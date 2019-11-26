@@ -56,8 +56,6 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * Result of the retrieval process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param username username of current logged-in Participant
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
-     *
      *
      * */
     private void retrieveAllMoodEventsOfAParticipant(final String username) {
@@ -92,7 +90,6 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * Result of the delete process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param moodEvent a MoodEvent object to be deleted
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
      *
      *
      * */
@@ -123,8 +120,6 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * Result of the retrieval process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param username username of current logged-in Participant
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
-     *
      *
      * */
     private void retrieveMostRecentMoodEventOfFriendsOfAParticipant(String username) {
@@ -265,18 +260,24 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
      * fail to delete the selected mood, or fail to retrieve all mood of friends
      * */
 
-    //error message when failed to retrieve all mood events from database for current logged on user
+    /**error message when failed to retrieve all mood events from database for current logged on user
+     * @param errmsg error message to be displayed
+     * */
     private void failToRetrieveAllMoodEventOfAParticipant(String errmsg) {
 
     }
 
 
-    //error message when failed to delete selected mood events from database
+    /**error message when failed to delete selected mood events from database
+     *  @param errmsg error message to be displayed
+     * */
     private void failToDeleteAMoodEventOfAParticipant(String errmsg) {
 
     }
 
-    //error message when failed to retrieve all mood events from database for current logged on user's friends history
+    /**error message when failed to retrieve all mood events from database for current logged on user's friends history
+     *  @param message error message to be displayed
+     * */
     private void failRetrieveMostRecentMoodEventOfFriendsOfAParticipant(String message) {
 
     }

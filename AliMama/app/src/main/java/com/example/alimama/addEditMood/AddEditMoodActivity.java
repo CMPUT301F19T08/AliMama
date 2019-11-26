@@ -205,6 +205,10 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         mapView.onLowMemory();
     }
 
+    /**
+     * This function setsup the google map API
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
@@ -212,6 +216,12 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         presenter.onGoogleMapReady();
     }
 
+    /**
+     * This function returns the result of the activity.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -220,6 +230,12 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         }
     }
 
+    /**
+     * This function ask for permission.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case LOCATION_REQUEST_CODE:
@@ -236,38 +252,67 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
 
     // BEGIN - AddEditMoodContract.View methods
 
-    //when we switch to edit mood instead of add mood
+
+    /**
+     * This function sets the title of the mood activity
+     * to Edit Mood.
+     */
+
     @Override
     public void setEditModeState() {
         tvTitle.setText("Edit Mood");
         btnAddMood.setText("Edit Mood");
     }
 
+    /**
+     * This function sets the date of the datepicker.
+     * @param date It is the selected date.
+     */
     @Override
     public void setDate(String date) {
         etDatePicker.setText(date);
     }
 
+    /**
+     * This function sets the time of the picker.
+     * @param time It is the selected time.
+     */
     @Override
     public void setTime(String time) {
         etTimePicker.setText(time);
     }
 
+    /**
+     * This function sets the emotional state.
+     * @param emotionalState It is the sel
+     */
     @Override
     public void setEmotionalState(String emotionalState) {
         tvEmotionalState.setText(emotionalState);
     }
 
+    /**
+     * This funcition sets up the textview of the description edittext.
+     * @param description This is the previous description.
+     */
     @Override
     public void setDescription(String description) {
         etDescription.setText(description);
     }
 
+    /**
+     * This function sets up the photo from the previous.
+     * @param photoPath This is absolute path of the photo.
+     */
     @Override
     public void setThumbnail(String photoPath) {
         Glide.with(this).load(photoPath).into(ivThumbnail);
     }
 
+    /**
+     * This function sets up the emotion.
+     * @param emoticon This is the previous emoticon.
+     */
     @Override
     public void setEmoticon(final String emoticon) {
         new Handler().post(new Runnable() {
@@ -278,6 +323,10 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         });
     }
 
+    /**
+     * This function sets up the social situation.
+     * @param socialSituation This is the previous social situation.
+     */
     @Override
     public void setSocialSituation(final String socialSituation) {
         new Handler().post(new Runnable() {
@@ -288,6 +337,10 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         });
     }
 
+    /**
+     * This function sets up the location of the map.
+     * @param geoPoint This is the geoPoint of the previous location.
+     */
     @Override
     public void setLocation(GeoPoint geoPoint) {
         LatLng latLng = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
@@ -295,6 +348,10 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14.0f));
     }
 
+    /**
+     * This function checks the permission for the app to read the path of the photo
+     * from the phone.
+     */
     @Override
     public void getCheckPremissionsAndGetPhoneLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -317,17 +374,30 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         }
     }
 
+
+    /**
+     * This function shows error if date is not selected.
+     */
+
     //error validation messages when a date or time is not selected or when the description should be less than 20 characters
+
     @Override
     public void showDateError() {
         etDatePicker.setError("Field is required");
     }
 
+    /**
+     * This function shows error if time is not selected.
+     */
     @Override
     public void showTimeError() {
         etTimePicker.setError("Field is required");
     }
 
+    /**
+     * This function shows error if description does not
+     * satisfy the requirement.
+     */
     @Override
     public void showDescriptionError() {
         etDescription.setError("Description should be less than 20 characters");
@@ -348,23 +418,47 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
 
     // BEGIN - Date and Time picker methods
 
+
+    /**
+     * This function opens the date picker dialogue.
+     * @param v
+     */
+
     //date and time picker dialogs used to select a required date and time
+
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "datePicker");
 
     }
 
+    /**
+     * This function opens the time picker dialogue.
+     * @param v This is the view.
+     */
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment(this);
         newFragment.show(getSupportFragmentManager(), "timePicker");
 
     }
 
+    /**
+     *This function sets the the date of the view.
+     * @param view This is the view.
+     * @param year This is the selected year.
+     * @param month This is the selected month.
+     * @param day This is the selected date.
+     */
     public void onDateSet(DatePicker view, int year, int month, int day) {
         etDatePicker.setText(String.format(Locale.CANADA, "%d-%d-%d", year, month + 1, day));
     }
 
+    /**
+     * This function sets the time of the edittext.
+     * @param view This is the view.
+     * @param hourOfDay This is the selected hour.
+     * @param minute This is the selected minute.
+     */
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         etTimePicker.setText(String.format(Locale.CANADA, "%d:%d", hourOfDay, minute));
     }
@@ -374,6 +468,9 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
 
     // BEGIN - Helper methods
 
+    /**
+     * This function setup the view.
+     */
     private void setupViews() {
         tvTitle = findViewById(R.id.tvTitle);
         tvEmotionalState = findViewById(R.id.tvEmotionalState);
@@ -389,7 +486,9 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         spEmoticon = findViewById(R.id.spEmoticon);
     }
 
-
+    /**
+     * This function setup the social situation spinner.
+     */
     private void setupSocialSituationList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.social_situation_array, android.R.layout.simple_spinner_item);
@@ -397,7 +496,9 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         spSocalSituation.setAdapter(adapter);
     }
 
-
+    /**
+     * This function sets up the emoticon spinner.
+     */
     private void setupEmoticonsList() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.emoticons_array, android.R.layout.simple_spinner_item);
@@ -405,6 +506,9 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         spEmoticon.setAdapter(adapter);
     }
 
+    /**
+     * This function gets the result from taking picture.
+     */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -425,6 +529,11 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         }
     }
 
+    /**
+     * This function return the image taken.
+     * @return It return the image that is taken.
+     * @throws IOException
+     */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -440,6 +549,11 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         return image;
     }
 
+    /**
+     * This functions converts emoticon into an integer.
+     * @param value This is the string representation of the emoticon.
+     * @return It returns the integer conversions of the emoticon.
+     */
     private int getEmoticonPosition(String value) {
         switch (value) {
             case "\uD83D\uDE0A":
@@ -460,26 +574,36 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
         return -1;
     }
 
+    /**
+     * It converts the integer to the string representation of the emoticon.
+     * @param value It is the integer value of the emoticon.
+     * @return It return the strings of the emotion.
+     */
     private String getEmoticonText(String value) {
         switch (value) {
             case "\uD83D\uDE0A":
                 return "happy";
             case "\uD83D\uDE02":
-                return "tears";
+                return "LOL";
             case "\uD83D\uDE0D":
-                return "heart";
+                return "feeling loved";
             case "\uD83D\uDE21":
                 return "angry";
             case "\uD83D\uDE1C":
-                return "tongue";
+                return "feeling cute";
             case "\uD83D\uDE22":
-                return "cry";
+                return "sad";
             case "\uD83D\uDE0F":
-                return "smirk";
+                return "naughty";
         }
         return "";
     }
 
+    /**
+     * It converts the social position to the index of the spinner.
+     * @param value It is the selected social string.
+     * @return The index of social situation in the spinner.
+     */
     private int getSocialSituationPosition(String value) {
         switch (value) {
             case "alone":

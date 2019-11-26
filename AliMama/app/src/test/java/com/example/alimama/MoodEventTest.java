@@ -133,4 +133,19 @@ public class MoodEventTest {
         assertNull(moodEvent.getDate());
 
     }
+
+    @Test
+    public void testGetColor() {
+        MoodEvent moodEvent = mockMoodEvent();
+        assertNull(moodEvent.getColor());
+
+    }
+    @Test
+    public void testSetColor() {
+        MoodEvent moodEvent = mockMoodEvent();
+        assertNull(moodEvent.getColor());
+        moodEvent.setColor("#ffffff");
+        assertNotNull(moodEvent.getColor());
+
+    }
 }

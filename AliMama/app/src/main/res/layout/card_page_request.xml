@@ -1,73 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/card_page_request">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/request_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
             >
 
-            <ImageView
-                android:id="@+id/imageV"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="75dp"
-                android:layout_height="75dp"/>
+        <ImageView
+            android:id="@+id/imageV"
+            android:src="@mipmap/ic_contact_page_foreground"
+            android:layout_width="75dp"
+            android:layout_height="75dp"/>
 
-            <TextView
-                android:id="@+id/request_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/request_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-                android:layout_alignTop="@+id/imageV"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@+id/imageV"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/imageV"
 
-                android:text="This is Contact name"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+            android:text="This is Contact name"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/contact_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+      <!--  <TextView
+            android:id="@+id/contact_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-                android:layout_alignBottom="@+id/imageV"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/imageV"
-
-                android:text="---This is Contact Descrition---"
+            android:layout_alignBottom="@+id/imageV"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/imageV"
 
 
-                android:textSize="10dp"
-                android:textStyle="bold" />
+            android:text="This person is too lazy to write a description"
+
+
+
+            android:textSize="10dp"
+            android:textStyle="bold" /> -->
 
             <Button
                 android:id="@+id/friend_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_alignBaseline="@+id/imageV"
-                android:layout_alignBottom="@+id/imageV"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
 
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="-5dp"
+                android:layout_marginEnd="5dp"
 
                 android:backgroundTint="@color/cardview_light_background"
-                android:text="Accept" />
+                android:text="Accept"
+                android:textAlignment="center"
+                />
 
         </RelativeLayout>
 

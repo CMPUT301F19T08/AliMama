@@ -1,6 +1,5 @@
 package com.example.alimama.friendOperation.addFriend;
 
-import com.example.alimama.friendOperation.addFriend.AddFriendPageContract;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -18,6 +17,11 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
+/**
+ * This function update the friend list of current user
+ * and save the change in fire store
+ * */
 public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPagePresenter {
     private String currentLoggedInParticipant;
     private AddFriendPageContract.AddFriendPageView mAddFriendPageView;
@@ -29,16 +33,10 @@ public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPa
 
     }
 
-
-
     /**
      * This function retrieves a list of Participants who haven't been friends with current logged-in Participant from database.
      * Result of the retrieval process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
-     *
      * */
     @Override
     public void retrieveAListOfParticipantsToAdd( ) {
@@ -70,17 +68,12 @@ public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPa
                                         }
                                         retrieveAListOfParticipantsToAddSuccessfully(existingParticipants);
                                     }
-
                                 }
                             });
-
-
-
                         }
                         else  {
                             failRetrieveAListOfParticipantsToAdd(task.getException().getMessage());
                         }
-
                     }
                 });
     }
@@ -88,14 +81,11 @@ public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPa
 
 
     /**
-     * This function initiated a friend request on behalf of current logged-in user and send to the designated participant.
+     * This function initiated a friend request on behalf of current logged-in user and
+     * send to the designated participant.
      * Result of the process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param currentParticipant username of current logged-in Participant
      * @param participantToBeSentFriendRequest username of recipient Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
-     *
      * */
     @Override
     public void sendFriendRequestFromCurrentParticipant(final String participantToBeSentFriendRequest) {
@@ -121,33 +111,47 @@ public class AddFriendPagePresenter implements AddFriendPageContract.AddFriendPa
                 });
     }
 
+    /**
+     * Set the current user
+     * @param currentLoggedInParticipant the name of current user
+     * */
     @Override
     public void setCurrentLoggedInParticipant(String currentLoggedInParticipant) {
         this.currentLoggedInParticipant = currentLoggedInParticipant;
     }
 
-
-
-
+    /**
+     * Update the data to adapter if retrieve successfully
+     * @param existingParticipants the set of name of existing friends
+     * */
     private void retrieveAListOfParticipantsToAddSuccessfully(HashSet<String> existingParticipants) {
         this.mAddFriendPageView.setAdapterData(existingParticipants);
 
     }
 
-
+    /**
+     * Display error message if fail to retrieve
+     * @param message the text of error message
+     * */
     private void failRetrieveAListOfParticipantsToAdd(String message) {
         this.mAddFriendPageView.displayErrorMessage(message);
 
     }
 
-
+    /**
+     * Display success message and update the data set
+     * if send friend request successfully
+     * */
     private void sendFriendRequestFromCurrentParticipantSuccessfully() {
         this.mAddFriendPageView.displaySuccessMessage("Friend Request Sent!");
         this.mAddFriendPageView.notifyDatasetChaged();
 
     }
 
-
+    /**
+     * Display error message if send friend request failed
+     * @param message the text of error message
+     * */
     private void failSendFriendRequestFromCurrentParticipant(String message) {
         this.mAddFriendPageView.displayErrorMessage(message);
 

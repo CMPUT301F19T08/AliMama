@@ -65,8 +65,8 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
                 mMoodMapPresenter.retrieveAllLocatedMostRecentMoodEventsOfFriendsOfAParticipant();
                 /* change button color onclick */
                 friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
-                friendMoodBtn.setTextColor(Color.parseColor("#008577"));
-                myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
+                friendMoodBtn.setTextColor(Color.parseColor("#42a5f5"));
+                myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#42a5f5")));
                 myMoodBtn.setTextColor(Color.parseColor("#ffffff"));
             }
         });
@@ -76,8 +76,8 @@ public class MoodMapActivity extends AppCompatActivity implements MoodMapContrac
                 mMoodMapPresenter.retrieveAllLocatedMoodEventsOfAParticipant();
                 /* change button color onclick */
                 myMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ffffff")));
-                myMoodBtn.setTextColor(Color.parseColor("#008577"));
-                friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#008577")));
+                myMoodBtn.setTextColor(Color.parseColor("#42a5f5"));
+                friendMoodBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#42a5f5")));
                 friendMoodBtn.setTextColor(Color.parseColor("#ffffff"));
 
             }

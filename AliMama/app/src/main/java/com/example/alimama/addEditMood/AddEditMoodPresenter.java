@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import io.grpc.Metadata;
 
 import com.example.alimama.Model.MoodEvent;
+import com.example.alimama.Model.MoodMetaData;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,6 +45,10 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
 
     private FirebaseFirestore db;
 
+    /**
+     * This function sets up the online database firebase.
+     * @param view This is the view.
+     */
     public AddEditMoodPresenter(AddEditMoodContract.View view) {
         this.view = view;
 
@@ -50,6 +56,19 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         FirebaseFirestore.setLoggingEnabled(true);
     }
 
+
+    /**
+     * This function sets up the View for Add/Edit mood.
+     * @param documentId This is the id of the document.
+     * @param username This is the username that is loggged in.
+     * @param dateStr This is the selected date.
+     * @param emotionalState This is the selected emotion state.
+     * @param description This is the description.
+     * @param photoPath This is the path of the photo.
+     * @param emoticon This is the selected emoticon.
+     * @param socialSituation This is the selected social situation.
+     * @param geoPoint This is the selected geoPoint of the location.
+     */
 
     public void onAddEditMoodViewCreated(String documentId,
                                          String username,
@@ -64,6 +83,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         this.location = geoPoint;
 
         event = new MoodEvent();
+
 
         if (documentId != null) {
             CURRENT_STATE = STATE_EDIT;
@@ -92,6 +112,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         if (emotionalState != null) {
             view.setEmotionalState(emotionalState);
             event.setEmotionalState(emotionalState);
+
         }
 
         if (description != null) {
@@ -107,6 +128,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         if (emoticon != null) {
             view.setEmoticon(emoticon);
             event.setEmoticon(emoticon);
+            event.setColor(MoodMetaData.map.get(emoticon));
         }
 
         if (socialSituation != null) {
@@ -121,17 +143,18 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
 
 
     /**
+     * This function manages the resulf the and Add/Edit Mood button is clicked of the mood.
      * updates the mood event with the information that user has input and provides and error message when date, time is missing
      * or when the description is over 20 characters
-     * @param dateStr
-     * @param timeStr
-     * @param description
-     * @param emoticon
-     * @param socialSituation
-     * @param isCurrentLocationEnabled
-     *
-     *
-     * */
+     * @param dateStr This is the selected date of the mood.
+     * @param timeStr This is the selected time of the mood.
+     * @param emotionalState This is the selected emotional state of the mood.
+     * @param description This is the description of the mood.
+     * @param emoticon This is the selected emoticon of the mood.
+     * @param socialSituation This is the selected social situation of the mood.
+     * @param isCurrentLocationEnabled This is the
+     */
+
     @Override
     public void onAddMoodButtonClicked(String dateStr, String timeStr, String emotionalState, String description, String emoticon, String socialSituation, boolean isCurrentLocationEnabled) {
         if (TextUtils.isEmpty(dateStr)) {
@@ -150,11 +173,13 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
             return;
         }
 
+
         event.setDate(parseDate(dateStr, timeStr));
         event.setEmotionalState(emotionalState);
         event.setReasonInText(description);
         event.setEmoticon(emoticon);
         event.setSocialSituation(socialSituation);
+        event.setColor(MoodMetaData.map.get(emoticon));
 
         if (location != null && isCurrentLocationEnabled) {
             event.setLocationOfMoodEvent(location);
@@ -176,7 +201,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
      * This function updates an MoodEvent of the current logged-in Participant. Result of the update process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param moodEvent a MoodEvent object to be updated
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
      *
      *
      * */
@@ -207,7 +232,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
      * Result of the add process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param newMoodEvent a new MoodEvent object to be added
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
      *
      *
      * */
@@ -235,32 +260,39 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
 
     }
 
-
-
-
-
-
-
-
-
+    /**
+     * This function sets the new geeoPoint of the location.
+     * @param geoPoint This is the geoPoint of the selected location.
+     */
     @Override
     public void setLocation(GeoPoint geoPoint) {
         this.location = geoPoint;
         view.setLocation(geoPoint);
     }
 
+    /**
+     * This function set up the googleMap API.
+     */
     @Override
     public void onGoogleMapReady() {
         view.setLocation(location);
         view.getCheckPremissionsAndGetPhoneLocation();
     }
 
+    /**
+     * This function sets up the absolute path of the photo.
+     * @param absolutePath This is the absolute path.
+     */
     @Override
     public void setPhotoPath(String absolutePath) {
         this.photoPath = absolutePath;
         view.setThumbnail(absolutePath);
     }
 
+    /**
+     * This function uploads a new picture.
+     * @param path This is the path of the photo.
+     */
     private void uploadPhoto(String path) {
         final Uri file = Uri.fromFile(new File(path));
 
@@ -297,6 +329,12 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         });
     }
 
+    /**
+     * This function parse the date and the time from the input
+     * @param dateStr This is the string of date.
+     * @param timeStr This is the string of time.
+     * @return The functions returns the converted date.
+     */
     @Nullable
     private Date parseDate(String dateStr, String timeStr) {
         Date date = null;
@@ -317,22 +355,33 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
-    // the following are error messages for when a mood fails to add or update to the database
+    /** the following are error messages for when a mood fails to add or update to the database
+     * @param errmsg error message
+     * */
     private void failToUpdateAnExistingMoodEvent(String errmsg) {
 
     }
 
 
+    /** This function finish current activity and return back to mood history activity
+     * when updating a new mood event successfully
+     * */
     private void updateAnExistingMoodEventSuccessfully() {
         view.finish();
     }
 
 
+    /** the following are error messages for when a mood fails to add or update to the database
+     * @param errmsg error message
+     * */
     private void failToAddANewMoodEvent(String errmsg) {
 
     }
 
 
+    /** This function finish current activity and return back to mood history activity
+     *  when adding a new mood event successfully
+     * */
     private void addANewMoodEventSuccessfully() {
         view.finish();
     }
