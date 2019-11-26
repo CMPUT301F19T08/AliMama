@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
             >
 
         <ImageView
@@ -28,7 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_alignTop="@+id/imageV"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/imageV"
@@ -37,7 +38,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/contact_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,27 +49,28 @@
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/imageV"
 
-            android:text="---This person is too lazy to write a description---"
+            android:text="-This person is too lazy to write a description-"
 
 
 
             android:textSize="10dp"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
 
             <Button
                 android:id="@+id/friend_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_alignBaseline="@+id/imageV"
-                android:layout_alignBottom="@+id/imageV"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
 
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="-5dp"
+                android:layout_marginEnd="5dp"
 
                 android:backgroundTint="@color/cardview_light_background"
-                android:text="Accept" />
+                android:text="Accept"
+                android:textAlignment="center"
+                />
 
         </RelativeLayout>
 
