@@ -1,6 +1,5 @@
 package com.example.alimama.friendOperation.contact;
 
-import com.example.alimama.friendOperation.contact.ContactPageContract;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -15,38 +14,55 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * Manage the current user's contact page
+ * Update the data in fire store
+ * */
 public class ContactPagePresenter implements ContactPageContract.ContactPagePresenter {
     private String currentLoggedInParticipant;
     private ContactPageContract.ContactPageView mFriendOperationView;
     private FirebaseFirestore db;
 
+    /**
+     * Set friend operation view and fire store
+     * @param view the contact page view
+     * */
     public ContactPagePresenter(ContactPageContract.ContactPageView view) {
         this.mFriendOperationView = view;
         this.db = FirebaseFirestore.getInstance();
         FirebaseFirestore.setLoggingEnabled(true);
     }
+
+    /**
+     * Set the current user
+     * @param currentLoggedInParticipant the current user
+     * */
     @Override
     public void setCurrentLoggedInParticipant(String currentLoggedInParticipant) {
         this.currentLoggedInParticipant = currentLoggedInParticipant;
 
     }
+
+    /**
+     * Set the data to adapter
+     * @param currentFriendsOfAParticipant the list of friends of the current user
+     * */
     private void retrieveCurrentFriendsOfAParticipantSuccessfully(ArrayList<String> currentFriendsOfAParticipant) {
         this.mFriendOperationView.setAdapterData(currentFriendsOfAParticipant);
 
     }
 
-
+    /**
+     * Display error message if failed
+     * @param message the text of error message
+     * */
     private void failRetrieveCurrentFriendsOfAParticipant(String message) {
         this.mFriendOperationView.displayExistingFriendsRetrievalErrorMessage(message);
 
     }
 
     /**
-     * This function registers a realtime listener of existing friend list of current logged-in Participant.
-     * @param username username of current logged-in Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
-     *
+     * Registers a realtime listener of existing friend list of current logged-in Participant.
      * */
     @Override
     public void registerCurrentFriendsOfAParticipantRealTimeListener() {
@@ -75,13 +91,9 @@ public class ContactPagePresenter implements ContactPageContract.ContactPagePres
 
 
     /**
-     * This function retrieves a list of existing friends of current logged-in Participant from database.
+     * Retrieves a list of existing friends of current logged-in Participant from database.
      * Result of the retrieval process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     * @param username username of current logged-in Participant
-     * @param fof a reference to an implementation of FriendshipOperationFeedback interface
-     *
-     *
      * */
     @Override
     public void retrieveCurrentFriendsOfAParticipant() {

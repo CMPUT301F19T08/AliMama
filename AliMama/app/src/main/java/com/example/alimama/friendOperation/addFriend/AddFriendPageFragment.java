@@ -21,12 +21,12 @@ import com.example.alimama.R;
 
 
 /**
- * @author Zi Xuan Zhang
  * FriendPage tab's Fragment page.
  * Set up data for each contact card that can be added
  * For viewing.
  * Action: add friend
  * Function for later version: search friend
+ * @author Zi Xuan Zhang
  * */
 public class AddFriendPageFragment extends Fragment implements FriendPageClickDelegate, AddFriendPageContract.AddFriendPageView {
 
@@ -37,8 +37,7 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
 
     /**
      * Constructor for fragment
-     * @param currParticipant
-     *
+     * @param currParticipant the name of current user
      * */
 
     public AddFriendPageFragment(String currParticipant) {
@@ -48,6 +47,13 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
 
     }
 
+
+    /**
+     * Create the view
+     * @param savedInstanceState  the bundle
+     * @param inflater the layout inflater
+     * @param container the view group
+     * */
 
     @Nullable
     @Override
@@ -66,30 +72,31 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
         return view;
     }
 
-
+    /**
+     * Create bundle
+     * @param savedInstanceState the bundle
+     * */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
+
+
     /**
-     *get ContactPageAdapter
-     *
+     * Get ContactPageAdapter
      * @return AddFriendPageAdapter
      * */
-
-    AddFriendPageAdapter getAddFriendPageAdapter() {
+    public AddFriendPageAdapter getAddFriendPageAdapter() {
         return this.mAddFriendPageAdapter;
     }
-
 
 
     /**
      * set Adapter for contactList.
      * add All of the friends to contactDataList
-     * @param existingParticipants
+     * @param existingParticipants the list of existing friends
      * */
-
     @Override
     public void setAdapterData(HashSet<String> existingParticipants) {
         this.contactDataList.clear();
@@ -98,27 +105,37 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
 
     }
 
+    /**
+     * Display the error message
+     * @param error the text of error message
+     * */
     @Override
     public void displayErrorMessage(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
 
     }
 
+    /**
+     * Display the success message
+     * @param successMessage the text of success message
+     * */
     @Override
     public void displaySuccessMessage(String successMessage) {
         Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
 
     }
 
+    /**
+     * Update the data set
+     * */
     @Override
     public void notifyDatasetChaged() {
         this.mAddFriendPageAdapter.notifyDataSetChanged();
     }
 
     /**
-     *This is a to initial add friend button
-     *
-     * @param position
+     * Initial add friend button
+     * @param position the position of click
      * */
     @Override
     public void onFriendAddButtonClick(int position) {
@@ -131,9 +148,9 @@ public class AddFriendPageFragment extends Fragment implements FriendPageClickDe
 
     /**
      * Get FriendPage adapter page adapter
-     *
-     * @return AddFriendPageAdapter */
-    RecyclerView.Adapter getContactPageAdapter() {
+     * @return AddFriendPageAdapter
+     * */
+    public RecyclerView.Adapter getContactPageAdapter() {
         return this.mAddFriendPageAdapter;
     }
 }

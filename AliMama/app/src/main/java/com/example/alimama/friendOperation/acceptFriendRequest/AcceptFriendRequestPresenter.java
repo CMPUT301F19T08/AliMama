@@ -19,16 +19,28 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 
 
-public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract.AcceptFriendRequestPresenter {
+/**
+ * This class is used to accept friend requests.
+ * If it fails, then a error message will display.
+ * If succeed, two users will have each other in their friends list and the data will update in firestore.
+ * And this friend request will be removed.
+ * */
 
+public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract.AcceptFriendRequestPresenter {
+    /**
+     * Set the name of current LoggedInParticipant as a string
+     * Set the type of friends request view
+     * Set the type of database
+     */
     private String currentLoggedInParticipant;
     private AcceptFriendRequestContract.AcceptFriendRequestView mAcceptFriendRequestView;
     private FirebaseFirestore db;
 
 
     /**
-     * constructor
-     * @param view the view of contact page after friend request accepted
+     * Constructor
+     * @param view the view of the contact page after friend request accepted
+
      * */
     public AcceptFriendRequestPresenter(AcceptFriendRequestContract.AcceptFriendRequestView view) {
         this.mAcceptFriendRequestView = view;
@@ -38,7 +50,8 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * setter
+
+     * Setter
      * @param currentLoggedInParticipant the username of the current logged in participant
      * */
 
@@ -49,13 +62,13 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
 
-     /**
-      * * *This function retrieves all pending friend requests of current logged-in Participant from database
+    /**
+     * This function retrieves all pending friend requests of current logged-in Participant from database
      * Result of the retrieval process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
-     *
-     */
-     @Override
+     * */
+    @Override
+
         public void retrievePendingFriendRequestOfAParticipant() {
             db.collection("PendingFriendRequests")
                     .whereEqualTo("friendToAdd", currentLoggedInParticipant)
@@ -82,14 +95,11 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
 
 
     /**
-     * This function accepts a friend request sent to the current logged-in Participant.
+     * Accept a friend request sent to the current logged-in Participant.
      * Result of the acceptance process will be passed through callback functions
      * defined in FriendshipOperationFeedback interface
      * @param usernameOfFriendRequestToAccept the username of the Participant who created the friend request
-     *
-     *
      * */
-
     @Override
     public void acceptAFriendRequestOfAParticipant( final String usernameOfFriendRequestToAccept) {
         final CollectionReference itemsRef = db.collection("PendingFriendRequests");
@@ -125,42 +135,34 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             acceptAFriendRequestOfAParticipantSuccessfully();
-
                                                         }else {
                                                            failAcceptAFriendRequestOfAParticipant(task.getException().getMessage());
-
                                                         }
                                                     }
                                                 });
-
-
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 failAcceptAFriendRequestOfAParticipant(e.getMessage());
-
                                             }
                                         });
                             }
                         }
                         else {
                             failAcceptAFriendRequestOfAParticipant(task.getException().getMessage());
-
                         }
                     }
                 });
-
-
-
-
     }
 
 
     /**
-     * return data to pending friend request page if retrieve successfully
-     * @param pendingFriendRequests
+     * Retrieve all the pending friend request of a participant and
+     * will set the data to adapter if successfully
+     * @param pendingFriendRequests An array list of the name of pending friend requests
+
      * */
     private void retrieveAllPendingFriendRequestsOfAParticipantSuccessfully(ArrayList<String> pendingFriendRequests) {
         this.mAcceptFriendRequestView.setAdapterData(pendingFriendRequests);
@@ -168,8 +170,9 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * display the error message if fail to retrieve the pending friends requests
-     * @param message
+
+     * Display a error message if fail to retrieve pending friend request
+     * @param message the error message that will be displayed if failed
      * */
     private void failRetrieveAllPendingFriendRequestsOfAParticipant(String message) {
         this.mAcceptFriendRequestView.displayErrorMessage(message);
@@ -177,10 +180,10 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     * display message and update view if accept request successful
-     *
-     * */
 
+     * Display a success message
+     * and change the data
+     * */
     private void acceptAFriendRequestOfAParticipantSuccessfully() {
         this.mAcceptFriendRequestView.displaySuccessMessage("Friend Added");
         this.mAcceptFriendRequestView.notifyDatasetChanged();
@@ -188,18 +191,11 @@ public class AcceptFriendRequestPresenter implements AcceptFriendRequestContract
     }
 
     /**
-     *
-     * display error message if fail to accept request
-     * @param message
-     *
+     * Display a error message
+     * @param message  the error message that will display when failed
      * */
     private void failAcceptAFriendRequestOfAParticipant(String message) {
         this.mAcceptFriendRequestView.displayErrorMessage(message);
 
-
     }
-
-
-
-
 }

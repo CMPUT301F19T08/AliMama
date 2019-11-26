@@ -48,7 +48,7 @@
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/imageV"
 
-            android:text="---This person is too lazy to write a description---"
+            android:text="This person is too lazy to write a description"
 
 
 
