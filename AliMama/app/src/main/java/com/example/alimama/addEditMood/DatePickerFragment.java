@@ -27,7 +27,6 @@ public class DatePickerFragment extends DialogFragment {
      * @return month picked by participant.
      * @return day of month picked by participant.
      */
-
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current date as the default date in the picker
