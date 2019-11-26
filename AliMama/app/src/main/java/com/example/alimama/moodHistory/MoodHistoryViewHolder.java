@@ -23,6 +23,7 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
     private TextView tvTime;
     private TextView tvUsername;
     private TextView tvEmotion;
+    private TextView tvEmoticon;
     private ImageButton btnEditMood;
     private ImageButton btnDeleteMood;
 
@@ -43,6 +44,7 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
         tvTime = itemView.findViewById(R.id.tvTime);
         tvUsername = itemView.findViewById(R.id.tvUsername);
         tvEmotion = itemView.findViewById(R.id.tvEmotion);
+        tvEmoticon = itemView.findViewById(R.id.tvEmoticon);
 
         btnEditMood = itemView.findViewById(R.id.btnEditMood);
         btnDeleteMood = itemView.findViewById(R.id.btnDeleteMood);
@@ -59,8 +61,8 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
         tvDate.setText(year + "-" +moodEvent.getDate().getMonth() + "-" + moodEvent.getDate().getDate());
         tvTime.setText(moodEvent.getDate().getHours() + ":" + moodEvent.getDate().getMinutes());
         tvUsername.setText(moodEvent.getUsername());
-        tvEmotion.setText(moodEvent.getEmotionalState() + " " + moodEvent.getEmoticon());
-
+        tvEmotion.setText(moodEvent.getEmotionalState());
+        tvEmoticon.setText(moodEvent.getEmoticon());
         btnEditMood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
