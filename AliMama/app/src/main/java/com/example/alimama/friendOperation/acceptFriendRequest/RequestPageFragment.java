@@ -136,7 +136,10 @@ public class RequestPageFragment extends Fragment implements RequestPageClickDel
 
     }
 
-
+    /**
+     * Display success message
+     * @param successMessage the text of success message
+     * */
     @Override
     public void displaySuccessMessage(String successMessage) {
         Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
