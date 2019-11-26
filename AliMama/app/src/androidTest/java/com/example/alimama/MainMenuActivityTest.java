@@ -36,25 +36,6 @@ public class MainMenuActivityTest {
 
     }
 
-
-//    /**
-//     *
-//     *This function tests whether the application switches to ParticipantLoginSignup Activity when pressing the
-//     * Log out Button
-//     *
-//     * */
-//    @Test
-//    public void pressLogOutButton() {
-//        solo.assertCurrentActivity("Wrong Activity", HomeScreenActivity.class);
-//        solo.clickOnView(solo.getView(R.id.main_menu_logout_button));
-//        assertTrue(solo.waitForActivity(ParticipantLoginSignupActivity.class, 5000));
-//        // verify that ParticipantLoginSignupActivity successfully started
-//        solo.assertCurrentActivity("Not ParticipantLoginSignupActivity Activity", ParticipantLoginSignupActivity.class);
-//
-//
-//    }
-
-
     /**
      *
      *This function tests whether the application switches to FriendPageActivity Activity when pressing the
@@ -106,9 +87,6 @@ public class MainMenuActivityTest {
 
 
     }
-
-
-
 
 
     /**

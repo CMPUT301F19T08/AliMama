@@ -8,12 +8,15 @@ import com.example.alimama.friendOperation.addFriend.AddFriendPageFragment;
 import com.example.alimama.friendOperation.contact.ContactPageFragment;
 import com.google.android.material.tabs.TabLayout;
 
+/**
+ * Create view for the whole page with tabs and fragments
+ * */
 public class FriendPageActivity extends AppCompatActivity{
 
     /**
-     * Create view for the whole page with tabs and fragments
+     * Create bundle
+     * @param savedInstanceState the bundle
      * */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
