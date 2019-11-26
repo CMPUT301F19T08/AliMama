@@ -201,7 +201,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
      * This function updates an MoodEvent of the current logged-in Participant. Result of the update process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param moodEvent a MoodEvent object to be updated
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
      *
      *
      * */
@@ -232,7 +232,7 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
      * Result of the add process will be passed through callback functions
      * defined in MoodEventManipulationFeedback interface
      * @param newMoodEvent a new MoodEvent object to be added
-     * @param mmf a reference to an implementation of MoodEventManipulationFeedback interface
+     *
      *
      *
      * */
@@ -355,22 +355,33 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
-    // the following are error messages for when a mood fails to add or update to the database
+    /** the following are error messages for when a mood fails to add or update to the database
+     * @param errmsg error message
+     * */
     private void failToUpdateAnExistingMoodEvent(String errmsg) {
 
     }
 
 
+    /** This function finish current activity and return back to mood history activity
+     * when updating a new mood event successfully
+     * */
     private void updateAnExistingMoodEventSuccessfully() {
         view.finish();
     }
 
 
+    /** the following are error messages for when a mood fails to add or update to the database
+     * @param errmsg error message
+     * */
     private void failToAddANewMoodEvent(String errmsg) {
 
     }
 
 
+    /** This function finish current activity and return back to mood history activity
+     *  when adding a new mood event successfully
+     * */
     private void addANewMoodEventSuccessfully() {
         view.finish();
     }
