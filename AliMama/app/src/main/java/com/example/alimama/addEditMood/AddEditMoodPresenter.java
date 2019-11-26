@@ -45,6 +45,10 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
 
     private FirebaseFirestore db;
 
+    /**
+     * This function sets up the online database firebase.
+     * @param view This is the view.
+     */
     public AddEditMoodPresenter(AddEditMoodContract.View view) {
         this.view = view;
 
@@ -53,6 +57,18 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
     }
 
 
+    /**
+     * This function sets up the View for Add/Edit mood.
+     * @param documentId This is the id of the document.
+     * @param username This is the username that is loggged in.
+     * @param dateStr This is the selected date.
+     * @param emotionalState This is the selected emotion state.
+     * @param description This is the description.
+     * @param photoPath This is the path of the photo.
+     * @param emoticon This is the selected emoticon.
+     * @param socialSituation This is the selected social situation.
+     * @param geoPoint This is the selected geoPoint of the location.
+     */
 
     public void onAddEditMoodViewCreated(String documentId,
                                          String username,
@@ -127,17 +143,18 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
 
 
     /**
+     * This function manages the resulf the and Add/Edit Mood button is clicked of the mood.
      * updates the mood event with the information that user has input and provides and error message when date, time is missing
      * or when the description is over 20 characters
-     * @param dateStr
-     * @param timeStr
-     * @param description
-     * @param emoticon
-     * @param socialSituation
-     * @param isCurrentLocationEnabled
-     *
-     *
-     * */
+     * @param dateStr This is the selected date of the mood.
+     * @param timeStr This is the selected time of the mood.
+     * @param emotionalState This is the selected emotional state of the mood.
+     * @param description This is the description of the mood.
+     * @param emoticon This is the selected emoticon of the mood.
+     * @param socialSituation This is the selected social situation of the mood.
+     * @param isCurrentLocationEnabled This is the
+     */
+
     @Override
     public void onAddMoodButtonClicked(String dateStr, String timeStr, String emotionalState, String description, String emoticon, String socialSituation, boolean isCurrentLocationEnabled) {
         if (TextUtils.isEmpty(dateStr)) {
@@ -243,32 +260,39 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
 
     }
 
-
-
-
-
-
-
-
-
+    /**
+     * This function sets the new geeoPoint of the location.
+     * @param geoPoint This is the geoPoint of the selected location.
+     */
     @Override
     public void setLocation(GeoPoint geoPoint) {
         this.location = geoPoint;
         view.setLocation(geoPoint);
     }
 
+    /**
+     * This function set up the googleMap API.
+     */
     @Override
     public void onGoogleMapReady() {
         view.setLocation(location);
         view.getCheckPremissionsAndGetPhoneLocation();
     }
 
+    /**
+     * This function sets up the absolute path of the photo.
+     * @param absolutePath This is the absolute path.
+     */
     @Override
     public void setPhotoPath(String absolutePath) {
         this.photoPath = absolutePath;
         view.setThumbnail(absolutePath);
     }
 
+    /**
+     * This function uploads a new picture.
+     * @param path This is the path of the photo.
+     */
     private void uploadPhoto(String path) {
         final Uri file = Uri.fromFile(new File(path));
 
@@ -305,6 +329,12 @@ public class AddEditMoodPresenter implements AddEditMoodContract.Presenter {
         });
     }
 
+    /**
+     * This function parse the date and the time from the input
+     * @param dateStr This is the string of date.
+     * @param timeStr This is the string of time.
+     * @return The functions returns the converted date.
+     */
     @Nullable
     private Date parseDate(String dateStr, String timeStr) {
         Date date = null;
