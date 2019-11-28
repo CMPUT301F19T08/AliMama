@@ -58,7 +58,7 @@ class MoodHistoryViewHolder extends RecyclerView.ViewHolder {
      */
     public void bind(final MoodEvent moodEvent) {
         int year = moodEvent.getDate().getYear() + 1900;
-        tvDate.setText(year + "-" +moodEvent.getDate().getMonth() + "-" + moodEvent.getDate().getDate());
+        tvDate.setText(year + "-" + (moodEvent.getDate().getMonth() + 1) + "-" + moodEvent.getDate().getDate());
         tvTime.setText(moodEvent.getDate().getHours() + ":" + moodEvent.getDate().getMinutes());
         tvUsername.setText(moodEvent.getUsername());
         tvEmotion.setText(moodEvent.getEmotionalState());

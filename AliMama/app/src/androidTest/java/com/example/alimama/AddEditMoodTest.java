@@ -82,12 +82,13 @@ public class AddEditMoodTest {
     public void checkSocialState(){
         solo.assertCurrentActivity("Wrong Activity", AddEditMoodActivity.class);
 
+
         //select the second social state emotion on the social state spinner - with one other person)
-        solo.pressSpinnerItem(1,1);
+        solo.pressSpinnerItem(1,2);
         assertTrue(solo.isSpinnerTextSelected(1,"with one other person"));
 
         //select the fourth social state emotion on the social state spinner - with a crowd)
-        solo.pressSpinnerItem(1,2);
+        solo.pressSpinnerItem(1,3);
         assertTrue(solo.isSpinnerTextSelected(1,"with a crowd"));
 
         //select the third social state emotion on the social state spinner - with teo to several ppl)
