@@ -1,3 +1,11 @@
 com.example.alimama
-com.example.alimama.Controller
 com.example.alimama.Model
+com.example.alimama.addEditMood
+com.example.alimama.friendOperation
+com.example.alimama.friendOperation.acceptFriendRequest
+com.example.alimama.friendOperation.addFriend
+com.example.alimama.friendOperation.contact
+com.example.alimama.homescreen
+com.example.alimama.mapview
+com.example.alimama.moodHistory
+com.example.alimama.participant.login
