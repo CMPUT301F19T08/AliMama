@@ -606,14 +606,16 @@ public class AddEditMoodActivity extends AppCompatActivity implements TimePicker
      */
     private int getSocialSituationPosition(String value) {
         switch (value) {
-            case "alone":
+            case " ":
                 return 0;
-            case "with one other person":
+            case "alone":
                 return 1;
-            case "with two to several ppl":
+            case "with one other person":
                 return 2;
-            case "with a crowd":
+            case "with two to several ppl":
                 return 3;
+            case "with a crowd":
+                return 4;
         }
         return -1;
     }

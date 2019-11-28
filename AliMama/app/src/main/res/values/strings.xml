@@ -34,6 +34,7 @@
     <string name="err_msg_add_time">Time Field must not be empty</string>
     <string name="err_msg_add_emotional_state">Emotional State must not be empty</string>
     <string-array name="social_situation_array">
+        <item> </item>
         <item>alone</item>
         <item>with one other person</item>
         <item>with two to several ppl</item>
