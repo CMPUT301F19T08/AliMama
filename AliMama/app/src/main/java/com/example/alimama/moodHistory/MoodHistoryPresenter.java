@@ -130,6 +130,10 @@ public class MoodHistoryPresenter implements MoodHistoryContract.Presenter {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            if (task.getResult().size() == 0) {
+                                retrieveMostRecentMoodEventOfFriendsOfAParticipantSuccessfully(new ArrayList());
+
+                            }
                             // retrieve a list of friends of a participant
                             final ArrayList<MoodEvent> mostRecentMoodEventsOfFriendsOfAParticipant = new ArrayList<>();
                             CollectionReference moodEventCollectionReference = db.collection("MoodEvents");
