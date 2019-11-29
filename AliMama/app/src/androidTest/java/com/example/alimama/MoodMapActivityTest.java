@@ -70,7 +70,7 @@ public class MoodMapActivityTest {
         int friendMoodBtnColorValue = friendMoodBtnBackground.getColor();
 
         if(i==0){
-            assertTrue(myMoodBtnColorValue == Color.parseColor("#008577"));
+            assertTrue(myMoodBtnColorValue == Color.parseColor("#42a5f5"));
             assertTrue(friendMoodBtnColorValue == Color.parseColor("#ffffff"));
         }
     }
@@ -99,7 +99,7 @@ public class MoodMapActivityTest {
 
         if(a==0){
             assertTrue(myMoodBtnColorValue == Color.parseColor("#ffffff"));
-            assertTrue(friendMoodBtnColorValue == Color.parseColor("#008577"));
+            assertTrue(friendMoodBtnColorValue == Color.parseColor("#42a5f5"));
         }
     }
 
