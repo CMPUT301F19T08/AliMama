@@ -183,7 +183,7 @@ public class MoodHistoryTest {
         //assertTrue(solo.searchText("heart", true));
 
         //select the second social state emotion on the social state spinner - with one other person)
-        solo.pressSpinnerItem(1,1);
+        solo.pressSpinnerItem(1,2);
         //assertTrue(solo.isSpinnerTextSelected(1,"with one other person"));
 
         //check the checkbox
@@ -191,12 +191,13 @@ public class MoodHistoryTest {
 
         //add the mood to the current users mood history
         solo.clickOnButton("Add Mood");
-        SystemClock.sleep(10000);
+        SystemClock.sleep(1000);
         solo.assertCurrentActivity("Wrong Activity", MoodHistory.class);
         assertTrue(solo.searchText("test", true));
 
         //deletes test mood
         solo.clickInRecyclerView(0,0,R.id.btnDeleteMood);
+        SystemClock.sleep(10000);
         assertFalse(solo.searchText("test"));
     }
 
@@ -229,7 +230,7 @@ public class MoodHistoryTest {
         //assertTrue(solo.searchText("heart", true));
 
         //select the second social state emotion on the social state spinner - with one other person)
-        solo.pressSpinnerItem(1,1);
+        solo.pressSpinnerItem(1,2);
         //assertTrue(solo.isSpinnerTextSelected(1,"with one other person"));
 
         //check the checkbox
@@ -252,6 +253,7 @@ public class MoodHistoryTest {
 
         //deletes test mood
         solo.clickInRecyclerView(0,0,R.id.btnDeleteMood);
+        SystemClock.sleep(10000);
         assertFalse(solo.searchText("test", true));
 
 

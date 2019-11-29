@@ -34,7 +34,7 @@ public class FriendPageActivityTest {
         @Override
         protected Intent getActivityIntent() {
             Intent intent = new Intent();
-            intent.putExtra("USERNAME", "test");
+            intent.putExtra("USERNAME", "testFriend");
             return intent;
         }
     };
