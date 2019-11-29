@@ -70,7 +70,7 @@ public class MoodMapActivityTest {
         int friendMoodBtnColorValue = friendMoodBtnBackground.getColor();
 
         if(i==0){
-            assertTrue(myMoodBtnColorValue == Color.parseColor("#008577"));
+            assertTrue(myMoodBtnColorValue == Color.parseColor("#42a5f5"));
             assertTrue(friendMoodBtnColorValue == Color.parseColor("#ffffff"));
         }
     }
@@ -99,33 +99,10 @@ public class MoodMapActivityTest {
 
         if(a==0){
             assertTrue(myMoodBtnColorValue == Color.parseColor("#ffffff"));
-            assertTrue(friendMoodBtnColorValue == Color.parseColor("#008577"));
+            assertTrue(friendMoodBtnColorValue == Color.parseColor("#42a5f5"));
         }
     }
-
-    /**
-     *
-     * This function tests whether markers appear when clicked button
-     *
-     * */
-    @Test
-    public void pressMyMoodBtnCheckIfMarkersAppear() {
-        solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
-        solo.clickOnButton("myMoodMap");
-        assertTrue(solo.waitForText("testMap", 1, 8000));
-    }
-    /**
-     *
-     * This function tests whether markers appear when clicked button
-     *
-     * */
-    @Test
-    public void pressFriendsMoodBtnCheckIfMarkersAppear() {
-        solo.assertCurrentActivity("Wrong Activity", MoodMapActivity.class);
-        solo.clickOnButton("friendMoodMap");
-
-        assertTrue(solo.waitForText("xhou1", 1, 8000));
-    }
+    
     /**
      * Closes the activity after each test
      * @throws Exception
